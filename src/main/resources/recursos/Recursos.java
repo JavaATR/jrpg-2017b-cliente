@@ -60,6 +60,19 @@ public class Recursos {
 	private static BufferedImage[] elfoAbajo;
 	private static BufferedImage[] elfoAbajoIzq;
 	// Fin Personajes
+	
+	//Inicio Enemigos
+	private static SpriteSheet spriteElBryan;
+	public static LinkedList<BufferedImage[]> elBryan = new LinkedList<>();
+	private static BufferedImage[] elBryanIzq;
+	private static BufferedImage[] elBryanArribaIzq;
+	private static BufferedImage[] elBryanArriba;
+	private static BufferedImage[] elBryanArribaDer;
+	private static BufferedImage[] elBryanDer;
+	private static BufferedImage[] elBryanAbajoDer;
+	private static BufferedImage[] elBryanAbajo;
+	private static BufferedImage[] elBryanAbajoIzq;
+	//Fin Enemigos
 
 	// Entorno
 	private static SpriteSheet trees;
@@ -324,6 +337,79 @@ public class Recursos {
 		elfo.add(elfoAbajoIzq);
 
 		// Fin Elfo
+		
+		// Inicio ElBryan
+		spriteElBryan = new SpriteSheet(CargadorImagen.cargarImagen("/ElBryan.png"));
+
+		actualizarBarraDeCarga(++elementosCargados, menuCarga);
+		
+		elBryanIzq = new BufferedImage[4];
+		elBryanArribaIzq = new BufferedImage[4];
+		elBryanArriba = new BufferedImage[4];
+		elBryanArribaDer = new BufferedImage[4];
+		elBryanDer = new BufferedImage[4];
+		elBryanAbajoDer = new BufferedImage[4];
+		elBryanAbajo = new BufferedImage[4];
+		elBryanAbajoIzq = new BufferedImage[4];
+
+		for (int i = 0; i < 4; i++) {
+			elBryanIzq[i] = spriteElBryan.getTile(ANCHO * i, 0, ANCHO, ALTO);
+		}
+		
+		actualizarBarraDeCarga(++elementosCargados, menuCarga);
+
+		for (int i = 0; i < 4; i++) {
+			elBryanArribaIzq[i] = spriteElBryan.getTile(ANCHO * i, ALTO, ANCHO, ALTO);
+		}
+
+		actualizarBarraDeCarga(++elementosCargados, menuCarga);
+		
+		for (int i = 0; i < 4; i++) {
+			elBryanArriba[i] = spriteElBryan.getTile(ANCHO * i, ALTO * 2, ANCHO, ALTO);
+		}
+
+		actualizarBarraDeCarga(++elementosCargados, menuCarga);
+		
+		for (int i = 0; i < 4; i++) {
+			elBryanArribaDer[i] = spriteElBryan.getTile(ANCHO * i, ALTO * 3, ANCHO, ALTO);
+		}
+
+		actualizarBarraDeCarga(++elementosCargados, menuCarga);
+		
+		for (int i = 0; i < 4; i++) {
+			elBryanDer[i] = spriteElBryan.getTile(ANCHO * i, ALTO * 4, ANCHO, ALTO);
+		}
+
+		actualizarBarraDeCarga(++elementosCargados, menuCarga);
+		
+		for (int i = 0; i < 4; i++) {
+			elBryanAbajoDer[i] = spriteElBryan.getTile(ANCHO * i, ALTO * 5, ANCHO, ALTO);
+		}
+
+		actualizarBarraDeCarga(++elementosCargados, menuCarga);
+		
+		for (int i = 0; i < 4; i++) {
+			elBryanAbajo[i] = spriteElBryan.getTile(ANCHO * i, ALTO * 6, ANCHO, ALTO);
+		}
+
+		actualizarBarraDeCarga(++elementosCargados, menuCarga);
+		
+		for (int i = 0; i < 4; i++) {
+			elBryanAbajoIzq[i] = spriteElBryan.getTile(ANCHO * i, ALTO * 7, ANCHO, ALTO);
+		}
+
+		actualizarBarraDeCarga(++elementosCargados, menuCarga);
+		
+		elBryan.add(elBryanIzq);
+		elBryan.add(elBryanArribaIzq);
+		elBryan.add(elBryanArriba);
+		elBryan.add(elBryanArribaDer);
+		elBryan.add(elBryanDer);
+		elBryan.add(elBryanAbajoDer);
+		elBryan.add(elBryanAbajo);
+		elBryan.add(elBryanAbajoIzq);
+
+		// Fin ElBryan
 
 		// Agrego los pj al hash
 		personaje.put("Humano", humano);

@@ -22,6 +22,7 @@ import juego.Pantalla;
 import mensajeria.Comando;
 import mensajeria.PaqueteMovimiento;
 import mensajeria.PaquetePersonaje;
+import mensajeria.PaqueteEnemigo;
 import mundo.Mundo;
 import recursos.Recursos;
 
@@ -29,9 +30,12 @@ public class EstadoJuego extends Estado {
 
 	private Entidad entidadPersonaje;
 	private PaquetePersonaje paquetePersonaje;
+	private PaqueteEnemigo paqueteEnemigo;
 	private Mundo mundo;
 	private Map<Integer, PaqueteMovimiento> ubicacionPersonajes;
 	private Map<Integer, PaquetePersonaje> personajesConectados;
+	private Map<Integer, PaqueteMovimiento> ubicacionEnemigos;
+	private Map<Integer, PaqueteEnemigo> enemigosConectados;
 	private boolean haySolicitud;
 	private int tipoSolicitud;
 
@@ -72,6 +76,7 @@ public class EstadoJuego extends Estado {
 		//entidadPersonaje.graficar(g);
 		graficarPersonajes(g);
 		mundo.graficarObstaculos(g);
+		graficarEnemigos(g);
 		entidadPersonaje.graficarNombre(g);
 		g.drawImage(Recursos.marco, 0, 0, juego.getAncho(), juego.getAlto(), null);
 		EstadoDePersonaje.dibujarEstadoDePersonaje(g, 5, 5, paquetePersonaje, miniaturaPersonaje);
@@ -83,8 +88,39 @@ public class EstadoJuego extends Estado {
 
 	}
 
-	public void graficarPersonajes(Graphics g) {
+	private void graficarEnemigos(Graphics g) {
+		PaqueteEnemigo elBryan = new PaqueteEnemigo(); // Creo un Bryan
+		PaqueteMovimiento posicion = new PaqueteMovimiento(0, 368, 268);
+		
+		Map<Integer, PaqueteEnemigo> enemigos = new HashMap<Integer, PaqueteEnemigo>(); // Agrego al Bryan al mapeo
+		Integer i = 0;		
+		enemigos.put(i, elBryan);
+		
+		Map<Integer, PaqueteMovimiento> posicionesEnemigos = new HashMap<Integer, PaqueteMovimiento>(20);
+		posicionesEnemigos.put(i, posicion);
+		
+		juego.setEnemigosConectados(enemigos); // Seteo el atributo de juego con el mapeo
+		juego.setUbicacionEnemigos(posicionesEnemigos);
 
+		enemigosConectados = new HashMap(juego.getEnemigosConectados());
+		ubicacionEnemigos = new HashMap(juego.getUbicacionEnemigos());
+		
+		Iterator<Integer> it = enemigosConectados.keySet().iterator();
+		int key;
+		PaqueteMovimiento actual;
+		g.setColor(Color.WHITE);
+		g.setFont(new Font("Book Antiqua", Font.PLAIN, 15));
+		while (it.hasNext()) {
+			key = it.next();
+			actual = ubicacionEnemigos.get(key);
+			//if (actual != null && actual.getIdPersonaje() != 0) {
+				Pantalla.centerString(g, new Rectangle((int) (actual.getPosX() - juego.getCamara().getxOffset() + 32), (int) (actual.getPosY() - juego.getCamara().getyOffset() - 20 ), 0, 10), enemigosConectados.get(actual.getIdPersonaje()).getNombre());
+				g.drawImage(Recursos.elBryan.get(actual.getDireccion())[actual.getFrame()], (int) (actual.getPosX() - juego.getCamara().getxOffset() ), (int) (actual.getPosY() - juego.getCamara().getyOffset()), 64, 64, null);
+			//}
+		}
+	}
+
+	public void graficarPersonajes(Graphics g) {
 		if(juego.getPersonajesConectados() != null){
 			personajesConectados = new HashMap(juego.getPersonajesConectados());
 			ubicacionPersonajes = new HashMap(juego.getUbicacionPersonajes());

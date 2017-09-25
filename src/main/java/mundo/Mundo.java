@@ -44,7 +44,7 @@ public class Mundo {
 		yMinimo = (int) juego.getCamara().getyOffset() + yOffset - 60;
 		yMaximo = yMinimo + juego.getAlto() + yOffset + 60;
 
-		// Grafico el el tile base
+		// Grafico el tile base
 		for (int i = 0; i < alto; i++) {
 			for (int j = 0; j < ancho; j++) {
 				iso = dosDaIso(j, i);

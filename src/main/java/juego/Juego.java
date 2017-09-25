@@ -15,6 +15,7 @@ import dominio.Personaje;
 import estados.Estado;
 import estados.EstadoBatalla;
 import estados.EstadoJuego;
+import mensajeria.PaqueteEnemigo;
 import mensajeria.PaqueteMovimiento;
 import mensajeria.PaquetePersonaje;
 
@@ -46,8 +47,11 @@ public class Juego implements Runnable {
 	private EscuchaMensajes escuchaMensajes;
 	private PaquetePersonaje paquetePersonaje;
 	private PaqueteMovimiento ubicacionPersonaje;
+	private PaqueteMovimiento ubicacionEnemigo;
 	private Map<Integer, PaquetePersonaje> personajesConectados;
+	private Map<Integer, PaqueteEnemigo> enemigosConectados;
 	private Map<Integer, PaqueteMovimiento> ubicacionPersonajes;
+	private Map<Integer, PaqueteMovimiento> ubicacionEnemigos;
 	private Map<String, MiChat> chatsActivos = new HashMap<>();
 
 
@@ -132,7 +136,7 @@ public class Juego implements Runnable {
 
 		while (corriendo) {
 			ahora = System.nanoTime();
-			delta += (ahora - ultimoTiempo) / tiempoPorActualizacion; // Calculo  para determinar cuando realizar la actualizacion y el graficado
+			delta += (ahora - ultimoTiempo) / tiempoPorActualizacion; // Calculo para determinar cuando realizar la actualizacion y el graficado
 			timer += ahora - ultimoTiempo; // Sumo el tiempo transcurrido hasta que se acumule 1 segundo y mostrar los FPS
 			ultimoTiempo = ahora; // Para las proximas corridas del bucle
 
@@ -219,6 +223,10 @@ public class Juego implements Runnable {
 	public PaqueteMovimiento getUbicacionPersonaje(){
 		return ubicacionPersonaje;
 	}
+	
+	public PaqueteMovimiento getUbicacionEnemigo(){
+		return ubicacionEnemigo;
+	}
 
 	public void setPersonaje(PaquetePersonaje paquetePersonaje) {
 		this.paquetePersonaje = paquetePersonaje;
@@ -236,12 +244,28 @@ public class Juego implements Runnable {
 		this.personajesConectados = map;
 	}
 	
+	public Map<Integer, PaqueteEnemigo> getEnemigosConectados() {
+		return enemigosConectados;
+	}
+
+	public void setEnemigosConectados(Map<Integer, PaqueteEnemigo> map) {
+		this.enemigosConectados = map;
+	}
+	
 	public Map<Integer, PaqueteMovimiento> getUbicacionPersonajes() {
 		return ubicacionPersonajes;
 	}
 
 	public void setUbicacionPersonajes(Map<Integer, PaqueteMovimiento> ubicacionPersonajes) {
 		this.ubicacionPersonajes = ubicacionPersonajes;
+	}
+	
+	public Map<Integer, PaqueteMovimiento> getUbicacionEnemigos() {
+		return ubicacionEnemigos;
+	}
+
+	public void setUbicacionEnemigos(Map<Integer, PaqueteMovimiento> ubicacionEnemigos) {
+		this.ubicacionEnemigos = ubicacionEnemigos;
 	}
 
 	public Map<String, MiChat> getChatsActivos() {

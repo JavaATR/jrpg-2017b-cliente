@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Random;
 
 import javax.swing.JOptionPane;
 
@@ -89,21 +90,35 @@ public class EstadoJuego extends Estado {
 	}
 
 	private void graficarEnemigos(Graphics g) {
-		PaqueteEnemigo elBryan = new PaqueteEnemigo(); // Creo un Bryan
-		PaqueteMovimiento posicion = new PaqueteMovimiento(0, 368, 268);
+		Random randomGenerator = new Random(); // Agrego random generator para las posiciones
+		PaqueteEnemigo [] elBryan = new PaqueteEnemigo[10]; // Creo un Bryan
+		PaqueteMovimiento [] posicion = new PaqueteMovimiento[10];
+		Integer i = 0;
+		
+		for(i=0; i<10; i++) {
+			elBryan[i] = new PaqueteEnemigo();
+		}
+		
+		for(i=0; i<10; i++) {
+			posicion[i] = new PaqueteMovimiento(0, 360 + (i * 100), 240 + (i * 50)); //ver la generacion de posiciones
+		}
 		
 		Map<Integer, PaqueteEnemigo> enemigos = new HashMap<Integer, PaqueteEnemigo>(); // Agrego al Bryan al mapeo
-		Integer i = 0;		
-		enemigos.put(i, elBryan);
+				
+		for(i=0; i<10; i++) {
+			enemigos.put(i, elBryan[i]);
+		}
 		
 		Map<Integer, PaqueteMovimiento> posicionesEnemigos = new HashMap<Integer, PaqueteMovimiento>(20);
-		posicionesEnemigos.put(i, posicion);
+		for(i=0; i<10; i++) {
+			posicionesEnemigos.put(i, posicion[i]);
+		}
 		
 		juego.setEnemigosConectados(enemigos); // Seteo el atributo de juego con el mapeo
 		juego.setUbicacionEnemigos(posicionesEnemigos);
 
-		enemigosConectados = new HashMap(juego.getEnemigosConectados());
-		ubicacionEnemigos = new HashMap(juego.getUbicacionEnemigos());
+		enemigosConectados = new HashMap<Integer, PaqueteEnemigo>(juego.getEnemigosConectados());
+		ubicacionEnemigos = new HashMap<Integer, PaqueteMovimiento>(juego.getUbicacionEnemigos());
 		
 		Iterator<Integer> it = enemigosConectados.keySet().iterator();
 		int key;
@@ -122,8 +137,8 @@ public class EstadoJuego extends Estado {
 
 	public void graficarPersonajes(Graphics g) {
 		if(juego.getPersonajesConectados() != null){
-			personajesConectados = new HashMap(juego.getPersonajesConectados());
-			ubicacionPersonajes = new HashMap(juego.getUbicacionPersonajes());
+			personajesConectados = new HashMap<Integer, PaquetePersonaje>(juego.getPersonajesConectados());
+			ubicacionPersonajes = new HashMap<Integer, PaqueteMovimiento>(juego.getUbicacionPersonajes());
 			Iterator<Integer> it = personajesConectados.keySet().iterator();
 			int key;
 			PaqueteMovimiento actual;

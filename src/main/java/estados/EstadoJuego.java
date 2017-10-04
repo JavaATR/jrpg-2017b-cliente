@@ -86,52 +86,22 @@ public class EstadoJuego extends Estado {
 		g.drawImage(Recursos.chat, 3, 524, 102, 35, null);
 		if(haySolicitud)
 			menuEnemigo.graficar(g, tipoSolicitud);
-
 	}
 
 	private void graficarEnemigos(Graphics g) {
-		Random randomGenerator = new Random(); // Agrego random generator para las posiciones
-		PaqueteEnemigo [] elBryan = new PaqueteEnemigo[10]; // Creo un Bryan
-		PaqueteMovimiento [] posicion = new PaqueteMovimiento[10];
-		Integer i = 0;
-		
-		for(i=0; i<10; i++) {
-			elBryan[i] = new PaqueteEnemigo();
-		}
-		
-		for(i=0; i<10; i++) {
-			posicion[i] = new PaqueteMovimiento(0, 360 + (i * 100), 240 + (i * 50)); //ver la generacion de posiciones
-		}
-		
-		Map<Integer, PaqueteEnemigo> enemigos = new HashMap<Integer, PaqueteEnemigo>(); // Agrego al Bryan al mapeo
-				
-		for(i=0; i<10; i++) {
-			enemigos.put(i, elBryan[i]);
-		}
-		
-		Map<Integer, PaqueteMovimiento> posicionesEnemigos = new HashMap<Integer, PaqueteMovimiento>(20);
-		for(i=0; i<10; i++) {
-			posicionesEnemigos.put(i, posicion[i]);
-		}
-		
-		juego.setEnemigosConectados(enemigos); // Seteo el atributo de juego con el mapeo
-		juego.setUbicacionEnemigos(posicionesEnemigos);
-
 		enemigosConectados = new HashMap<Integer, PaqueteEnemigo>(juego.getEnemigosConectados());
 		ubicacionEnemigos = new HashMap<Integer, PaqueteMovimiento>(juego.getUbicacionEnemigos());
-		
-		Iterator<Integer> it = enemigosConectados.keySet().iterator();
+		Iterator<Integer> it = enemigosConectados.keySet().iterator(); // Dibujo a los Bryan sobre el mapa
 		int key;
 		PaqueteMovimiento actual;
+		
 		g.setColor(Color.WHITE);
 		g.setFont(new Font("Book Antiqua", Font.PLAIN, 15));
 		while (it.hasNext()) {
 			key = it.next();
 			actual = ubicacionEnemigos.get(key);
-			//if (actual != null && actual.getIdPersonaje() != 0) {
-				Pantalla.centerString(g, new Rectangle((int) (actual.getPosX() - juego.getCamara().getxOffset() + 32), (int) (actual.getPosY() - juego.getCamara().getyOffset() - 20 ), 0, 10), enemigosConectados.get(actual.getIdPersonaje()).getNombre());
-				g.drawImage(Recursos.elBryan.get(actual.getDireccion())[actual.getFrame()], (int) (actual.getPosX() - juego.getCamara().getxOffset() ), (int) (actual.getPosY() - juego.getCamara().getyOffset()), 64, 64, null);
-			//}
+			Pantalla.centerString(g, new Rectangle((int) (actual.getPosX() - juego.getCamara().getxOffset() + 32), (int) (actual.getPosY() - juego.getCamara().getyOffset() - 20 ), 0, 10), enemigosConectados.get(actual.getIdPersonaje()).getNombre());
+			g.drawImage(Recursos.elBryan.get(actual.getDireccion())[actual.getFrame()], (int) (actual.getPosX() - juego.getCamara().getxOffset() ), (int) (actual.getPosY() - juego.getCamara().getyOffset()), 64, 64, null); // TODO: Hacer que sea genérico el drawImage, para cualquier tipo de enemigo (Dan)
 		}
 	}
 

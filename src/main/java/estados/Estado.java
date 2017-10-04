@@ -18,7 +18,7 @@ public abstract class Estado {
 	public Estado(Juego juego) {
 		this.juego = juego;
 	}
-
+	
 	public abstract void actualizar();
 
 	public abstract void graficar(Graphics g);

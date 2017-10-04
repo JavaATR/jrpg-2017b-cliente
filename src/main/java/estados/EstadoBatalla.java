@@ -167,9 +167,7 @@ public class EstadoBatalla extends Estado {
 				juego.getHandlerMouse().setNuevoClick(false);
 			}
 		}
-
 	}
-
 
 	@Override
 	public void graficar(Graphics g) {
@@ -187,8 +185,6 @@ public class EstadoBatalla extends Estado {
 
 		EstadoDePersonaje.dibujarEstadoDePersonaje(g, 25, 5, personaje, miniaturaPersonaje);
 		EstadoDePersonaje.dibujarEstadoDePersonaje(g, 550, 5, enemigo, miniaturaEnemigo);
-		
-
 	}
 
 	private void crearPersonajes() {
@@ -213,10 +209,6 @@ public class EstadoBatalla extends Estado {
 			JOptionPane.showMessageDialog(null, "Error al crear la batalla");
 		}
 		
-
-
-
-
 		nombre = paqueteEnemigo.getNombre();
 		salud = paqueteEnemigo.getSaludTope();
 		energia = paqueteEnemigo.getEnergiaTope();

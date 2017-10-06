@@ -90,18 +90,39 @@ public class EstadoJuego extends Estado {
 
 	private void graficarEnemigos(Graphics g) {
 		enemigosConectados = new HashMap<Integer, PaqueteEnemigo>(juego.getEnemigosConectados());
-		ubicacionEnemigos = new HashMap<Integer, PaqueteMovimiento>(juego.getUbicacionEnemigos());
+		ubicacionEnemigos = new HashMap<Integer, PaqueteMovimiento>(juego.getUbicacionEnemigos());		
 		Iterator<Integer> it = enemigosConectados.keySet().iterator(); // Dibujo a los Bryan sobre el mapa
 		int key;
 		PaqueteMovimiento actual;
+		
+		Random randomPosX = new Random();
+		Random randomPosY = new Random();
+		
+		
+		//Seteo la posicion de los 10 Bryan  NO ME TOMA ESTE SET de posiciones
+//		while (it.hasNext()) {
+//			key = it.next();
+//			//random de posicion entre 100 y 900			
+//			ubicacionEnemigos.get(key).setPosX((randomPosX.nextFloat() * 900 + 100));
+//			ubicacionEnemigos.get(key).setPosY((randomPosY.nextFloat() * 900 + 100));
+//			actual = ubicacionEnemigos.get(key);
+//		}	
 		
 		g.setColor(Color.WHITE);
 		g.setFont(new Font("Book Antiqua", Font.PLAIN, 15));
 		while (it.hasNext()) {
 			key = it.next();
+			
+			//random entre 100 y 900
+			ubicacionEnemigos.get(key).setPosX((randomPosX.nextFloat() * 900 + 100));
+			ubicacionEnemigos.get(key).setPosY((randomPosY.nextFloat() * 900 + 100));
+			
 			actual = ubicacionEnemigos.get(key);
 			Pantalla.centerString(g, new Rectangle((int) (actual.getPosX() - juego.getCamara().getxOffset() + 32), (int) (actual.getPosY() - juego.getCamara().getyOffset() - 20 ), 0, 10), enemigosConectados.get(actual.getIdPersonaje()).getNombre());
 			g.drawImage(Recursos.elBryan.get(actual.getDireccion())[actual.getFrame()], (int) (actual.getPosX() - juego.getCamara().getxOffset() ), (int) (actual.getPosY() - juego.getCamara().getyOffset()), 64, 64, null); // TODO: Hacer que sea genérico el drawImage, para cualquier tipo de enemigo (Dan)
+			
+
+
 		}
 	}
 

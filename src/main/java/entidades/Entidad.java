@@ -87,6 +87,7 @@ public class Entidad {
 	private Mundo mundo;
 	private String nombre;
 	private int[] tilePersonajes;
+	private int[] tileEnemigos;
 	private int idEnemigo;
 	
 	//Ubicacion para abrir comerciar.
@@ -263,11 +264,17 @@ public class Entidad {
 					} else if (juego.getEstadoJuego().getMenuEnemigo().clickEnCerrar(
 							posMouse[0], posMouse[1])) {
 						juego.getEstadoJuego().setHaySolicitud(false, null, MenuInfoPersonaje.menuBatallar);
+					} else if (juego.getEstadoJuego().getMenuEnemigo().clickEnCerrar(
+							posMouse[0], posMouse[1])) {
+						juego.getEstadoJuego().setHaySolicitudEnemigo(false, null, MenuInfoPersonaje.menuBatallar);
 					}
 				} else {
 					juego.getEstadoJuego().setHaySolicitud(false, null, MenuInfoPersonaje.menuBatallar);
 				}
+			} else if (juego.getEstadoJuego().getHaySolicitudEnemigo()) {
+				juego.getEstadoJuego().setHaySolicitudEnemigo(false, null, MenuInfoPersonaje.menuBatallar);
 			} else {
+				// Me fijo si el click cae sobre el tile donde hay un jugador
 				Iterator<Integer> it = juego.getUbicacionPersonajes().
 						keySet().iterator();
 				int key;
@@ -299,10 +306,34 @@ public class Entidad {
 							} else {
 								// SI ESTOY DENTRO DE LA ZONA DE BATALLA SETEO QUE SE ABRA EL MENU
 								// DE BATALLA
-								juego.getEstadoJuego().setHaySolicitud(true,juego.
+								juego.getEstadoJuego().setHaySolicitud(true, juego.
 										getPersonajesConectados().get(idEnemigo), MenuInfoPersonaje.
 										menuBatallar);		
 							}
+							juego.getHandlerMouse().setNuevoClick(false);
+						}
+					}
+				}
+				
+				// Me fijo si el click cae sobre el tile donde hay un enemigo
+				Iterator<Integer> it2 = juego.getUbicacionEnemigos().
+						keySet().iterator();
+				int key2;
+				PaqueteMovimiento actual2;
+
+				while (it2.hasNext()) {
+					key2 = it2.next();
+					actual2 = juego.getUbicacionEnemigos().get(key2);
+					tileEnemigos = Mundo.mouseATile(actual2.getPosX(), actual2.getPosY());
+					if (actual2 != null) {
+						if (tileMoverme[0] == tileEnemigos[0] && tileMoverme[1] == 
+								tileEnemigos[1]) {
+							idEnemigo = actual2.getIdPersonaje();
+							float XY[] = Mundo.isoA2D(x,y);
+
+							juego.getEstadoJuego().setHaySolicitudEnemigo(true, juego.
+									getEnemigosConectados().get(idEnemigo), MenuInfoPersonaje.
+									menuBatallar);
 							juego.getHandlerMouse().setNuevoClick(false);
 						}
 					}

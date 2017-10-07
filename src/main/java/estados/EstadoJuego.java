@@ -19,6 +19,7 @@ import com.google.gson.Gson;
 
 import entidades.Entidad;
 import interfaz.EstadoDePersonaje;
+import interfaz.MenuInfoEnemigo;
 import interfaz.MenuInfoPersonaje;
 import juego.Juego;
 import juego.Pantalla;
@@ -41,6 +42,7 @@ public class EstadoJuego extends Estado {
 	private Map<Integer, PaqueteMovimiento> ubicacionEnemigos;
 	private Map<Integer, PaqueteEnemigo> enemigosConectados;
 	private boolean haySolicitud;
+	private boolean haySolicitudEnemigo;
 	private int tipoSolicitud;
 
 	private final Gson gson = new Gson();
@@ -48,6 +50,7 @@ public class EstadoJuego extends Estado {
 	private BufferedImage miniaturaPersonaje;
 
 	MenuInfoPersonaje menuEnemigo;
+	MenuInfoEnemigo menuEnemigoNPC;
 
 	public EstadoJuego(Juego juego) {
 		super(juego);
@@ -107,6 +110,8 @@ public class EstadoJuego extends Estado {
 		g.drawImage(Recursos.chat, 3, 524, 102, 35, null);
 		if(haySolicitud)
 			menuEnemigo.graficar(g, tipoSolicitud);
+		if(haySolicitudEnemigo)
+			menuEnemigoNPC.graficar(g, tipoSolicitud);
 	}
 
 	private void graficarEnemigos(Graphics g) {
@@ -122,9 +127,6 @@ public class EstadoJuego extends Estado {
 			actual = ubicacionEnemigos.get(key);
 			Pantalla.centerString(g, new Rectangle((int) (actual.getPosX() - juego.getCamara().getxOffset() + 32), (int) (actual.getPosY() - juego.getCamara().getyOffset() - 20 ), 0, 10), enemigosConectados.get(actual.getIdPersonaje()).getNombre());
 			g.drawImage(Recursos.elBryan.get(actual.getDireccion())[actual.getFrame()], (int) (actual.getPosX() - juego.getCamara().getxOffset() ), (int) (actual.getPosY() - juego.getCamara().getyOffset()), 64, 64, null); // TODO: Hacer que sea genérico el drawImage, para cualquier tipo de enemigo (Dan)
-			
-
-
 		}
 	}
 
@@ -172,17 +174,32 @@ public class EstadoJuego extends Estado {
 		menuEnemigo = new MenuInfoPersonaje(300, 50, enemigo);
 		this.tipoSolicitud = tipoSolicitud;
 	}
+	
+	public void setHaySolicitudEnemigo(boolean b, PaqueteEnemigo enemigo, int tipoSolicitud) {
+		haySolicitudEnemigo = b;
+		// menu que mostrara al enemigo
+		menuEnemigoNPC = new MenuInfoEnemigo(300, 50, enemigo);
+		this.tipoSolicitud = tipoSolicitud;
+	}
 
 	public boolean getHaySolicitud() {
 		return haySolicitud;
 	}
 
+	public boolean getHaySolicitudEnemigo() {
+		return haySolicitudEnemigo;
+	}
+	
 	public void actualizarPersonaje() {
 		paquetePersonaje = juego.getPersonaje();
 	}
 
 	public MenuInfoPersonaje getMenuEnemigo(){
 		return menuEnemigo;
+	}
+	
+	public MenuInfoEnemigo getMenuEnemigoNPC(){
+		return menuEnemigoNPC;
 	}
 
 	public int getTipoSolicitud() {

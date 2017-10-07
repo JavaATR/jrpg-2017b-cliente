@@ -271,35 +271,4 @@ public class Juego implements Runnable {
 	public Map<String, MiChat> getChatsActivos() {
 		return chatsActivos;
 	}
-
-/*	
-	public void generarEnemigos() {
-		generateBryans();
-	}
-	
-	private void generateBryans() {
-		Random randomGenerator = new Random(); // Random generator para las posiciones
-		Integer i = 0;
-		PaqueteEnemigo bryans[] = new PaqueteEnemigo[10]; // Creo array de 10 Bryans y otro para sus posiciones
-		PaqueteMovimiento posicionesBryans[] = new PaqueteMovimiento[10];
-		enemigosConectados = new HashMap<Integer, PaqueteEnemigo>();
-		ubicacionEnemigos = new HashMap<Integer, PaqueteMovimiento>();
-
-		
-		for(i=0; i<bryans.length; i++) {
-			randomGenerator = new Random();
-			bryans[i] = new PaqueteEnemigo();
-//			posicionesBryans[i] = new PaqueteMovimiento(0, 100 + (i * 40), 150 + (i * 20)); // TODO: Generacion de posiciones
-			//Generacion randon de posiciones de X[1111,50] Y[2000,50]
-			posicionesBryans[i] = new PaqueteMovimiento(0,randomGenerator.nextInt(1111)+50, randomGenerator.nextInt(2000)+50);
-
-			enemigosConectados.put(i, bryans[i]); // Paso los arrays a hashmaps
-			ubicacionEnemigos.put(i, posicionesBryans[i]);
-		}
-		
-		setEnemigosConectados(enemigosConectados); // Inserto los Bryans al juego usando los hashmaps
-		setUbicacionEnemigos(ubicacionEnemigos);
-	}
- */
-
 }

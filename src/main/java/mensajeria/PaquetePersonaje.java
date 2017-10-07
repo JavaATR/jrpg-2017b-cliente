@@ -67,16 +67,13 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 		return id;
 	}
 
-
 	public void setId(int id) {
 		this.id = id;
 	}
 
-
 	public String getCasta() {
 		return casta;
 	}
-
 
 	public void setCasta(String casta) {
 		this.casta = casta;
@@ -86,71 +83,58 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 		return nombre;
 	}
 
-
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
 
 	public String getRaza() {
 		return raza;
 	}
 
-
 	public void setRaza(String raza) {
 		this.raza = raza;
 	}
-
 
 	public int getSaludTope() {
 		return saludTope;
 	}
 
-
 	public void setSaludTope(int saludTope) {
 		this.saludTope = saludTope;
 	}
-
 
 	public int getEnergiaTope() {
 		return energiaTope;
 	}
 
-
 	public void setEnergiaTope(int energiaTope) {
 		this.energiaTope = energiaTope;
 	}
-
 
 	public int getFuerza() {
 		return fuerza;
 	}
 
-
 	public void setFuerza(int fuerza) {
 		this.fuerza = fuerza;
 	}
-
 
 	public int getDestreza() {
 		return destreza;
 	}
 
-
 	public void setDestreza(int destreza) {
 		this.destreza = destreza;
 	}
-
 
 	public int getInteligencia() {
 		return inteligencia;
 	}
 
-
 	public void setInteligencia(int inteligencia) {
 		this.inteligencia = inteligencia;
 	}
-
+	
 	@Override
 	public Object clone() {
 		Object obj = null;
@@ -196,6 +180,7 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 			i++;
 		}
 	}
+	
 	public final  void sacarBonus(int bonusSalud, int bonusEnergia, int bonusAtaque, int bonusDefensa, int bonusMagia) {
 		saludTope -= bonusSalud;
 		energiaTope -= bonusEnergia;
@@ -203,6 +188,7 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 		destreza -= bonusDefensa;
 		inteligencia -= bonusMagia;
 	}
+	
 	public final void ponerBonus() {
 		//Intente usar un iterator y por alguna razón no andaba..
 		int i = 0;
@@ -261,6 +247,7 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 			sacarBonus(items.get(i).getBonusSalud(),items.get(i).getBonusEnergia(),items.get(i).getBonusFuerza(), items.get(i).getBonusDestreza(), items.get(i).getBonusInteligencia());
 		}
 	}
+	
 	public void ponerUltimoItem() {
 		int i = items.size()-1;
 		if(i>=0) {

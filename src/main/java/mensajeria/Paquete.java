@@ -12,6 +12,7 @@ public class Paquete implements Serializable, Cloneable {
 	private String mensaje;
 	private String ip;
 	private int comando;
+	
 	public Paquete() {
 
 	}

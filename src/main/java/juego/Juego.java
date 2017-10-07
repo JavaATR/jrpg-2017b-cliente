@@ -133,8 +133,6 @@ public class Juego implements Runnable {
 		long ultimoTiempo = System.nanoTime();
 		long timer = 0; // Timer para mostrar fps cada un segundo
 		int actualizaciones = 0; // Cantidad de actualizaciones que se realizan realmente
-		
-		generarEnemigos();
 
 		while (corriendo) {
 			ahora = System.nanoTime();
@@ -272,28 +270,5 @@ public class Juego implements Runnable {
 
 	public Map<String, MiChat> getChatsActivos() {
 		return chatsActivos;
-	}
-	
-	public void generarEnemigos() {
-		generateBryans();
-	}
-	
-	private void generateBryans() {
-		Random randomGenerator = new Random(); // Random generator para las posiciones
-		Integer i = 0;
-		PaqueteEnemigo bryans[] = new PaqueteEnemigo[10]; // Creo array de 10 Bryans y otro para sus posiciones
-		PaqueteMovimiento posicionesBryans[] = new PaqueteMovimiento[10];
-		enemigosConectados = new HashMap<Integer, PaqueteEnemigo>();
-		ubicacionEnemigos = new HashMap<Integer, PaqueteMovimiento>();
-		
-		for(i=0; i<bryans.length; i++) {
-			bryans[i] = new PaqueteEnemigo();
-			posicionesBryans[i] = new PaqueteMovimiento(0, 100 + (i * 40), 150 + (i * 20)); // TODO: Generacion de posiciones
-			enemigosConectados.put(i, bryans[i]); // Paso los arrays a hashmaps
-			ubicacionEnemigos.put(i, posicionesBryans[i]);
-		}
-		
-		setEnemigosConectados(enemigosConectados); // Inserto los Bryans al juego usando los hashmaps
-		setUbicacionEnemigos(ubicacionEnemigos);
 	}
 }

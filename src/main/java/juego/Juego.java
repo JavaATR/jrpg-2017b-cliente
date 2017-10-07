@@ -285,10 +285,15 @@ public class Juego implements Runnable {
 		PaqueteMovimiento posicionesBryans[] = new PaqueteMovimiento[10];
 		enemigosConectados = new HashMap<Integer, PaqueteEnemigo>();
 		ubicacionEnemigos = new HashMap<Integer, PaqueteMovimiento>();
+
 		
 		for(i=0; i<bryans.length; i++) {
+			randomGenerator = new Random();
 			bryans[i] = new PaqueteEnemigo();
-			posicionesBryans[i] = new PaqueteMovimiento(0, 100 + (i * 40), 150 + (i * 20)); // TODO: Generacion de posiciones
+//			posicionesBryans[i] = new PaqueteMovimiento(0, 100 + (i * 40), 150 + (i * 20)); // TODO: Generacion de posiciones
+			//Generacion randon de posiciones de X[1111,50] Y[2000,50]
+			posicionesBryans[i] = new PaqueteMovimiento(0,randomGenerator.nextInt(1111)+50, randomGenerator.nextInt(2000)+50);
+
 			enemigosConectados.put(i, bryans[i]); // Paso los arrays a hashmaps
 			ubicacionEnemigos.put(i, posicionesBryans[i]);
 		}

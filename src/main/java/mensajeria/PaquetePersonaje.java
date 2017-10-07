@@ -27,6 +27,18 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 	private int experiencia;
 	private int puntosAsignar;
 	private ArrayList<Item> items = new ArrayList<Item>();
+	/**
+	 * Fuerza inicial de las castas. <br>
+	 */
+	private final int fuerzaIncial[] = { 15, 10, 10 };
+	/**
+	 * Destreza inicial de las castas. <br> 
+	 */
+	private final int destrezaIncial[] = { 10, 10, 15 };
+	/**
+	 * Inteligencia inicial de las castas. <br>
+	 */
+	private final int inteligenciaInicial[] = { 10, 15, 10 };
 
 	public PaquetePersonaje() throws IOException {
 		estado = Estado.estadoOffline;
@@ -313,5 +325,35 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 	 */
 	public void setPuntosAsignar(final int puntosAsignar) {
 		this.puntosAsignar = puntosAsignar;
+	}
+
+	public int getFuerzaInicial() {
+		if (this.casta.equals("Guerrero")) {
+			return this.fuerzaIncial[0];
+		}
+		if (this.casta.equals("Hechicero")) {
+			return this.fuerzaIncial[1];
+		}
+		return this.fuerzaIncial[2];
+	}
+
+	public int getDestrezaInicial() {
+		if (this.casta.equals("Guerrero")) {
+			return this.destrezaIncial[0];
+		}
+		if (this.casta.equals("Hechicero")) {
+			return this.destrezaIncial[1];
+		}
+		return this.destrezaIncial[2];
+	}
+
+	public int getInteligenciaInicial() {
+		if (this.casta.equals("Guerrero")) {
+			return this.inteligenciaInicial[0];
+		}
+		if (this.casta.equals("Hechicero")) {
+			return this.inteligenciaInicial[1];
+		}
+		return this.inteligenciaInicial[2];
 	}
 }

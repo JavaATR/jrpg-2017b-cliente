@@ -12,6 +12,7 @@ import estados.Estado;
 
 public class PaqueteEnemigo extends Paquete implements Serializable, Cloneable {
 
+	private int id;
 	private String nombre;
 	private int saludTope;
 	private int energiaTope;
@@ -74,6 +75,10 @@ public class PaqueteEnemigo extends Paquete implements Serializable, Cloneable {
 
 	public void setInteligencia(int inteligencia) {
 		this.inteligencia = inteligencia;
+	}
+	
+	public int getId() {
+		return id;
 	}
 
 	@Override

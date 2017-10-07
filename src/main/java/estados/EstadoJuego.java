@@ -13,6 +13,8 @@ import java.util.Random;
 
 import javax.swing.JOptionPane;
 
+import cliente.Cliente;
+
 import com.google.gson.Gson;
 
 import entidades.Entidad;
@@ -21,6 +23,7 @@ import interfaz.MenuInfoPersonaje;
 import juego.Juego;
 import juego.Pantalla;
 import mensajeria.Comando;
+import mensajeria.PaqueteDeEnemigos;
 import mensajeria.PaqueteMovimiento;
 import mensajeria.PaquetePersonaje;
 import mensajeria.PaqueteEnemigo;
@@ -62,6 +65,24 @@ public class EstadoJuego extends Estado {
 		} catch (IOException e) {
 			JOptionPane.showMessageDialog(null, "Fallo la conexión con el servidor al ingresar al mundo");
 		}
+		
+		try {
+			juego.getPersonaje().setComando(Comando.CONEXIONENEMIGOS);
+			juego.getPersonaje().setEstado(Estado.estadoJuego);
+			juego.getCliente().getSalida().writeObject(gson.toJson(juego.getPersonaje(), PaquetePersonaje.class));
+			juego.getCliente().getSalida().writeObject(gson.toJson(juego.getUbicacionPersonaje(), PaqueteMovimiento.class));
+		} catch (IOException e) {
+			JOptionPane.showMessageDialog(null, "Fallo la conexión con el servidor al ingresar al mundo");
+		}
+		
+//		try {
+//			PaqueteDeEnemigos pde = new PaqueteDeEnemigos(new HashMap<Integer, PaqueteEnemigo>(juego.getEnemigosConectados()));
+//			pde.setComando(Comando.MOSTRARENEMIGOS);
+//			juego.getCliente().getSalida().writeObject(gson.toJson(pde, PaqueteDeEnemigos.class));
+//			juego.getCliente().getSalida().writeObject(gson.toJson(juego.getUbicacionEnemigo(), PaqueteMovimiento.class));
+//		} catch (IOException e) {
+//			JOptionPane.showMessageDialog(null, "Fallo la conexión con el servidor al actualizar el cliente con los enemigos");
+//		}
 	}
 
 	@Override
@@ -90,8 +111,8 @@ public class EstadoJuego extends Estado {
 
 	private void graficarEnemigos(Graphics g) {
 		enemigosConectados = new HashMap<Integer, PaqueteEnemigo>(juego.getEnemigosConectados());
-		ubicacionEnemigos = new HashMap<Integer, PaqueteMovimiento>(juego.getUbicacionEnemigos());		
-		Iterator<Integer> it = enemigosConectados.keySet().iterator(); // Dibujo a los Bryan sobre el mapa
+		ubicacionEnemigos = new HashMap<Integer, PaqueteMovimiento>(juego.getUbicacionEnemigos());
+		Iterator<Integer> it = enemigosConectados.keySet().iterator();
 		int key;
 		PaqueteMovimiento actual;
 		g.setColor(Color.WHITE);

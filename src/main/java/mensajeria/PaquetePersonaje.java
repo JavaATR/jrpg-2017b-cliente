@@ -147,7 +147,7 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 	public void setInteligencia(int inteligencia) {
 		this.inteligencia = inteligencia;
 	}
-
+	
 	@Override
 	public Object clone() {
 		Object obj = null;
@@ -197,7 +197,7 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 		}
 	}
 
-	public final void sacarBonus(int bonusSalud, int bonusEnergia, int bonusAtaque, int bonusDefensa, int bonusMagia) {
+	public final  void sacarBonus(int bonusSalud, int bonusEnergia, int bonusAtaque, int bonusDefensa, int bonusMagia) {
 		saludTope -= bonusSalud;
 		energiaTope -= bonusEnergia;
 		fuerza -= bonusAtaque;
@@ -205,7 +205,7 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 		inteligencia -= bonusMagia;
 	}
 
-	public final void ponerBonus() {
+		public final void ponerBonus() {
 		// Intente usar un iterator y por alguna razón no andaba..
 		int i = 0;
 		while (i < items.size()) {

@@ -133,8 +133,6 @@ public class Juego implements Runnable {
 		long ultimoTiempo = System.nanoTime();
 		long timer = 0; // Timer para mostrar fps cada un segundo
 		int actualizaciones = 0; // Cantidad de actualizaciones que se realizan realmente
-		
-		generarEnemigos();
 
 		while (corriendo) {
 			ahora = System.nanoTime();
@@ -273,7 +271,8 @@ public class Juego implements Runnable {
 	public Map<String, MiChat> getChatsActivos() {
 		return chatsActivos;
 	}
-	
+
+/*	
 	public void generarEnemigos() {
 		generateBryans();
 	}
@@ -301,4 +300,6 @@ public class Juego implements Runnable {
 		setEnemigosConectados(enemigosConectados); // Inserto los Bryans al juego usando los hashmaps
 		setUbicacionEnemigos(ubicacionEnemigos);
 	}
+ */
+
 }

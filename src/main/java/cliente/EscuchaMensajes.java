@@ -11,6 +11,7 @@ import comandos.ComandosEscucha;
 import juego.Juego;
 import mensajeria.Comando;
 import mensajeria.Paquete;
+import mensajeria.PaqueteEnemigo;
 import mensajeria.PaqueteMovimiento;
 import mensajeria.PaquetePersonaje;
 /**La clase EscuchaMensajes tiene como función  
@@ -39,15 +40,15 @@ public class EscuchaMensajes extends Thread {
 	public void run() {
 
 		try {
-
 			Paquete paquete;
 			
 			ComandosEscucha comand;
 			juego.setPersonajesConectados(new HashMap<Integer, PaquetePersonaje>());
 			juego.setUbicacionPersonajes(new HashMap<Integer, PaqueteMovimiento>());
+			juego.setEnemigosConectados(new HashMap<Integer, PaqueteEnemigo>());
+			juego.setUbicacionEnemigos(new HashMap<Integer, PaqueteMovimiento>());
 
 			while (true) {
-
 				String objetoLeido = (String) entrada.readObject();
 
 				paquete = gson.fromJson(objetoLeido , Paquete.class);
@@ -55,7 +56,6 @@ public class EscuchaMensajes extends Thread {
 				comand.setJuego(juego);
 				comand.setCadena(objetoLeido);
 				comand.ejecutar();
-				
 			}
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "Fallo la conexión con el servidor.");

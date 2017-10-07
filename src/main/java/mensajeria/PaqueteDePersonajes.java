@@ -25,5 +25,4 @@ public class PaqueteDePersonajes extends Paquete implements Serializable, Clonea
 		obj = super.clone();
 		return obj;
 	}
-
 }

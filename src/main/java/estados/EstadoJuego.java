@@ -115,14 +115,16 @@ public class EstadoJuego extends Estado {
 		Iterator<Integer> it = enemigosConectados.keySet().iterator();
 		int key;
 		PaqueteMovimiento actual;
-		
 		g.setColor(Color.WHITE);
 		g.setFont(new Font("Book Antiqua", Font.PLAIN, 15));
 		while (it.hasNext()) {
-			key = it.next();
+			key = it.next();		
 			actual = ubicacionEnemigos.get(key);
 			Pantalla.centerString(g, new Rectangle((int) (actual.getPosX() - juego.getCamara().getxOffset() + 32), (int) (actual.getPosY() - juego.getCamara().getyOffset() - 20 ), 0, 10), enemigosConectados.get(actual.getIdPersonaje()).getNombre());
 			g.drawImage(Recursos.elBryan.get(actual.getDireccion())[actual.getFrame()], (int) (actual.getPosX() - juego.getCamara().getxOffset() ), (int) (actual.getPosY() - juego.getCamara().getyOffset()), 64, 64, null); // TODO: Hacer que sea genérico el drawImage, para cualquier tipo de enemigo (Dan)
+			
+
+
 		}
 	}
 

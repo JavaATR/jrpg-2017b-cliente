@@ -400,7 +400,7 @@ public class MenuAsignarSkills extends JFrame {
 		imageLabel.setVisible(true);
 		contentPane.add(imageLabel);
 
-		JButton btnReasignarPuntos = new JButton("Reiniciar");
+		final JButton btnReasignarPuntos = new JButton("Reiniciar");
 		btnReasignarPuntos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (JOptionPane.showConfirmDialog(btnReasignarPuntos,

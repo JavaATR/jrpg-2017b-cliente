@@ -32,7 +32,7 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 	 */
 	private final int fuerzaIncial[] = { 15, 10, 10 };
 	/**
-	 * Destreza inicial de las castas. <br> 
+	 * Destreza inicial de las castas. <br>
 	 */
 	private final int destrezaIncial[] = { 10, 10, 15 };
 	/**
@@ -147,7 +147,7 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 	public void setInteligencia(int inteligencia) {
 		this.inteligencia = inteligencia;
 	}
-	
+
 	@Override
 	public Object clone() {
 		Object obj = null;
@@ -197,7 +197,7 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 		}
 	}
 
-	public final  void sacarBonus(int bonusSalud, int bonusEnergia, int bonusAtaque, int bonusDefensa, int bonusMagia) {
+	public final void sacarBonus(int bonusSalud, int bonusEnergia, int bonusAtaque, int bonusDefensa, int bonusMagia) {
 		saludTope -= bonusSalud;
 		energiaTope -= bonusEnergia;
 		fuerza -= bonusAtaque;
@@ -205,7 +205,7 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 		inteligencia -= bonusMagia;
 	}
 
-		public final void ponerBonus() {
+	public final void ponerBonus() {
 		// Intente usar un iterator y por alguna razón no andaba..
 		int i = 0;
 		while (i < items.size()) {
@@ -327,6 +327,11 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 		this.puntosAsignar = puntosAsignar;
 	}
 
+	/**
+	 * Devuelve la fuerza inicial de la casta. <br>
+	 * 
+	 * @return Fuerza inicial de la casta. <br>
+	 */
 	public int getFuerzaInicial() {
 		if (this.casta.equals("Guerrero")) {
 			return this.fuerzaIncial[0];
@@ -337,6 +342,11 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 		return this.fuerzaIncial[2];
 	}
 
+	/**
+	 * Devuelve la destreza inicial de la casta. <br>
+	 * 
+	 * @return Destreza inicial de la casta. <br>
+	 */
 	public int getDestrezaInicial() {
 		if (this.casta.equals("Guerrero")) {
 			return this.destrezaIncial[0];
@@ -347,6 +357,11 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 		return this.destrezaIncial[2];
 	}
 
+	/**
+	 * Devuelve la inteligencia inicial de la casta. <br>
+	 * 
+	 * @return Inteligencia inicial de la casta. <br>
+	 */
 	public int getInteligenciaInicial() {
 		if (this.casta.equals("Guerrero")) {
 			return this.inteligenciaInicial[0];
@@ -355,5 +370,12 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 			return this.inteligenciaInicial[1];
 		}
 		return this.inteligenciaInicial[2];
+	}
+
+	/**
+	 * Sube el nivel del personaje. <br>
+	 */
+	public void subirDeNivel() {
+		this.nivel++;
 	}
 }

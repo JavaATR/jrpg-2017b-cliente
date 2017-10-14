@@ -272,7 +272,9 @@ public class Entidad {
 					juego.getEstadoJuego().setHaySolicitud(false, null, MenuInfoPersonaje.menuBatallar);
 				}
 			} else if (juego.getEstadoJuego().getHaySolicitudEnemigo()) {
-				juego.getEstadoJuego().setHaySolicitudEnemigo(false, null, MenuInfoPersonaje.menuBatallar);
+				if(juego.getEstadoJuego().getMenuEnemigoNPC().clickEnCerrar(posMouse[0], posMouse[1])) {
+					juego.getEstadoJuego().setHaySolicitudEnemigo(false, null, MenuInfoPersonaje.menuBatallar);
+				}
 			} else {
 				// Me fijo si el click cae sobre el tile donde hay un jugador
 				Iterator<Integer> it = juego.getUbicacionPersonajes().
@@ -341,7 +343,8 @@ public class Entidad {
 			}
 		}
 
-
+		// TODO: Cuando te choques con un Bryan no deberías poder atravesarlo.
+		// TODO: Opcional - Cuando te choques con un Bryan, perdés aleatoriamente un objeto porque te lo roba el muy chorro.
 		if (juego.getHandlerMouse().getNuevoRecorrido() && !juego.getEstadoJuego().getHaySolicitud()) {
 
 			tileMoverme = Mundo.mouseATile(posMouseRecorrido[0] + juego.getCamara().getxOffset() - xOffset,

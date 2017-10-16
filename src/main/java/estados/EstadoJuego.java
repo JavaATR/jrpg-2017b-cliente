@@ -21,6 +21,7 @@ import interfaz.MenuInfoPersonaje;
 import juego.Juego;
 import juego.Pantalla;
 import mensajeria.Comando;
+import mensajeria.PaqueteDeEnemigos;
 import mensajeria.PaqueteEnemigo;
 import mensajeria.PaqueteMovimiento;
 import mensajeria.PaquetePersonaje;
@@ -67,28 +68,15 @@ public class EstadoJuego extends Estado {
 			JOptionPane.showMessageDialog(null, "Fallo la conexión con el servidor al ingresar al mundo");
 		}
 
-		try {
-			juego.getPersonaje().setComando(Comando.CONEXIONENEMIGOS);
-			juego.getPersonaje().setEstado(Estado.estadoJuego);
-			juego.getCliente().getSalida().writeObject(gson.toJson(juego.getPersonaje(), PaquetePersonaje.class));
-			juego.getCliente().getSalida()
-					.writeObject(gson.toJson(juego.getUbicacionPersonaje(), PaqueteMovimiento.class));
-		} catch (IOException e) {
-			JOptionPane.showMessageDialog(null, "Fallo la conexión con el servidor al ingresar al mundo");
-		}
-
-		// try {
-		// PaqueteDeEnemigos pde = new PaqueteDeEnemigos(new HashMap<Integer,
-		// PaqueteEnemigo>(juego.getEnemigosConectados()));
-		// pde.setComando(Comando.MOSTRARENEMIGOS);
-		// juego.getCliente().getSalida().writeObject(gson.toJson(pde,
-		// PaqueteDeEnemigos.class));
-		// juego.getCliente().getSalida().writeObject(gson.toJson(juego.getUbicacionEnemigo(),
-		// PaqueteMovimiento.class));
-		// } catch (IOException e) {
-		// JOptionPane.showMessageDialog(null, "Fallo la conexión con el
-		// servidor al actualizar el cliente con los enemigos");
-		// }
+//		try {
+//			// Le envio al servidor que me pase la información de enemigos conectados
+//			juego.getPersonaje().setComando(Comando.CONEXIONENEMIGOS);
+//			juego.getPersonaje().setEstado(Estado.estadoJuego);
+//			juego.getCliente().getSalida().writeObject(gson.toJson(juego.getPersonaje(), PaquetePersonaje.class));
+//			juego.getCliente().getSalida().writeObject(gson.toJson(juego.getUbicacionPersonaje(), PaqueteMovimiento.class));
+//		} catch (IOException e) {
+//			JOptionPane.showMessageDialog(null, "Fallo la conexión con el servidor al actualizar el cliente con los enemigos");
+//		}
 	}
 
 	@Override
@@ -128,9 +116,8 @@ public class EstadoJuego extends Estado {
 		while (it.hasNext()) {
 			key = it.next();
 			actual = ubicacionEnemigos.get(key);
-																								// genérico
-			Pantalla.centerString(g, new Rectangle((int) (actual.getPosX() - juego.getCamara().getxOffset() + 32), (int) (actual.getPosY() - juego.getCamara().getyOffset() - 20 ), 0, 10), enemigosConectados.get(actual.getIdPersonaje()).getNombre());
-			g.drawImage(Recursos.elBryan.get(actual.getDireccion())[actual.getFrame()], (int) (actual.getPosX() - juego.getCamara().getxOffset() ), (int) (actual.getPosY() - juego.getCamara().getyOffset()), 64, 64, null); // TODO: Hacer que sea genérico el drawImage, para cualquier tipo de enemigo (Dan)
+			Pantalla.centerString(g, new Rectangle((int) (actual.getPosX() - juego.getCamara().getxOffset() + 32), (int) (actual.getPosY() - juego.getCamara().getyOffset() - 20 ), 0, 10), "El Bryan");
+			g.drawImage(Recursos.elBryan.get(actual.getDireccion())[actual.getFrame()], (int) (actual.getPosX() - juego.getCamara().getxOffset() ), (int) (actual.getPosY() - juego.getCamara().getyOffset()), 64, 64, null);
 		}
 	}
 

@@ -19,14 +19,24 @@ public class PaqueteEnemigo extends Paquete implements Serializable, Cloneable {
 	private int fuerza;
 	private int destreza;
 	private int inteligencia;
+	private int estado;
 	
-	public PaqueteEnemigo() {
+	public PaqueteEnemigo(int id) {
+		this.id = id;
 		nombre = "El Bryan";
 		saludTope = 100;
 		energiaTope = 50;
 		fuerza = 50;
 		destreza = 50;
 		inteligencia = 50;
+	}
+	
+	public int getEstado() {
+		return estado;
+	}
+
+	public void setEstado(int estado) {
+		this.estado = estado;
 	}
 
 	public String getNombre() {

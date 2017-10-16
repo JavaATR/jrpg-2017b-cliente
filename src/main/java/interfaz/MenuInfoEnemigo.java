@@ -53,24 +53,6 @@ public class MenuInfoEnemigo {
 			case menuBatallar:
 				graficarMenuInformacion(g);
 				break;
-//			case menuInformacion:
-//				graficarMenuInformacion(g);
-//				break;
-//			case menuSubirNivel:
-//				graficarMenuSubirNivel(g);
-//				break;
-//			case menuGanarBatalla:
-//				graficarMenuGanarBatalla(g);
-//				break;
-//			case menuPerderBatalla:
-//				graficarMenuPerderBatalla(g);
-//				break;
-//			case menuGanarItem:
-//				graficarMenuItem(g);
-//				break;
-//			case menuComerciar:
-//				graficarMenuComerciar(g);
-//				break;
 		}
 
 
@@ -135,9 +117,8 @@ public class MenuInfoEnemigo {
 		// muestro los atributos
 		g.setFont(new Font("Book Antiqua", 0, 20));
 		g.drawString("Ladrón", x + 100, y + 260);
-		g.drawString(999 + " ", x + 100, y + 290);
-		g.drawString(300 + " / " + Personaje.getTablaDeNiveles()[6 + 1], x + 150, y + 320);
-
+		g.drawString(5 + " ", x + 100, y + 290);
+		g.drawString(0 + " / " + Personaje.getTablaDeNiveles()[6 + 1], x + 150, y + 320);
 	}
 //	
 //	private void graficarMenuItem(Graphics g) {

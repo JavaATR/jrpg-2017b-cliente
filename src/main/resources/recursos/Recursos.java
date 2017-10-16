@@ -24,7 +24,7 @@ public class Recursos {
 	private static int ALTO; // Alto del frame a obtener
 
 	// Inicio Personajes
-	// Hash de imagenes para los personajes (humano, ogro, elfo)
+	// Hash de imagenes para los personajes (humano, ogro, elfo, el Bryan)
 	public static Map<String, LinkedList<BufferedImage[]>> personaje = new HashMap<>();
 
 	private static SpriteSheet spriteHumano;
@@ -415,6 +415,7 @@ public class Recursos {
 		personaje.put("Humano", humano);
 		personaje.put("Orco", orco);
 		personaje.put("Elfo", elfo);
+		personaje.put("El Bryan", elBryan);
 
 		// Inicio Entorno
 		cesped = CargadorImagen.cargarImagen("/Cesped.png");

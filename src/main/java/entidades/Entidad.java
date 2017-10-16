@@ -192,10 +192,8 @@ public class Entidad {
 		// Tomo el click izquierdo 
 		if (juego.getHandlerMouse().getNuevoClick()) {
 			if (juego.getEstadoJuego().getHaySolicitud()) {
-
 				if (juego.getEstadoJuego().getMenuEnemigo().clickEnMenu(posMouse[0], posMouse[1])) {
-					if (juego.getEstadoJuego().getMenuEnemigo().clickEnBoton(posMouse[0], 
-							posMouse[1])) {
+					if (juego.getEstadoJuego().getMenuEnemigo().clickEnBoton(posMouse[0], posMouse[1])) {
 						// Pregunto si menuBatallar o menuComerciar, sino no me interesa hacer esto
 						if (juego.getEstadoJuego().getTipoSolicitud() == 
 								MenuInfoPersonaje.menuBatallar || 
@@ -209,23 +207,20 @@ public class Entidad {
 						// pregunto si el menu emergente es de tipo batalla
 						if (juego.getEstadoJuego().getTipoSolicitud() == 
 								MenuInfoPersonaje.menuBatallar) {
-							//ME FIJO SI CON EL QUE QUIERO BATALLAR ESTA EN LA ZONA DE COMERCIO
+							//ME ASEGURO DE QUE EL ENEMIGO NO ESTÉ EN LA ZONA DE COMERCIO
 							if (!((int)comercio[0] >= 44 && (int)comercio[0] <= 71 && 
 									(int)comercio[1] >= 0 && (int)comercio[1] <= 29)) {
 								juego.getEstadoJuego().setHaySolicitud(false, null, MenuInfoPersonaje.menuBatallar);
+								
 								PaqueteBatalla pBatalla = new PaqueteBatalla();
 								
 								pBatalla.setId(juego.getPersonaje().getId());
 								pBatalla.setIdEnemigo(idEnemigo);
 								
-								juego.getEstadoJuego().setHaySolicitud(false, null, MenuInfoPersonaje.menuBatallar);
-								
 								try {
-									juego.getCliente().getSalida().writeObject(gson.toJson
-											(pBatalla));
+									juego.getCliente().getSalida().writeObject(gson.toJson(pBatalla));
 								} catch (IOException e) {
-									JOptionPane.showMessageDialog(null, "Fallo la conexión "
-											+ "con el servidor");
+									JOptionPane.showMessageDialog(null, "Fallo la conexión " + "con el servidor");
 								}
 							} else {
 								JOptionPane.showMessageDialog(null, "El otro usuario se encuentra "
@@ -259,8 +254,6 @@ public class Entidad {
 							}
 						}
 						juego.getEstadoJuego().setHaySolicitud(false, null, MenuInfoPersonaje.menuBatallar);
-
-
 					} else if (juego.getEstadoJuego().getMenuEnemigo().clickEnCerrar(
 							posMouse[0], posMouse[1])) {
 						juego.getEstadoJuego().setHaySolicitud(false, null, MenuInfoPersonaje.menuBatallar);
@@ -271,9 +264,25 @@ public class Entidad {
 				} else {
 					juego.getEstadoJuego().setHaySolicitud(false, null, MenuInfoPersonaje.menuBatallar);
 				}
-			} else if (juego.getEstadoJuego().getHaySolicitudEnemigo()) {
-				if(juego.getEstadoJuego().getMenuEnemigoNPC().clickEnCerrar(posMouse[0], posMouse[1])) {
+			} else if (juego.getEstadoJuego().getHaySolicitudEnemigo()) { // TODO: Completar batalla con Bryan
+				if (juego.getEstadoJuego().getMenuEnemigoNPC().clickEnCerrar(posMouse[0], posMouse[1])) {
 					juego.getEstadoJuego().setHaySolicitudEnemigo(false, null, MenuInfoPersonaje.menuBatallar);
+				}
+				else if (juego.getEstadoJuego().getMenuEnemigoNPC().clickEnMenu(posMouse[0], posMouse[1])) {
+					if (juego.getEstadoJuego().getMenuEnemigoNPC().clickEnBoton(posMouse[0], posMouse[1])) {
+						juego.getEstadoJuego().setHaySolicitudEnemigo(false, null, MenuInfoPersonaje.menuBatallar);
+						
+						PaqueteBatalla pBatalla = new PaqueteBatalla();
+						
+						pBatalla.setId(juego.getPersonaje().getId());
+						pBatalla.setIdEnemigo(idEnemigo);
+						
+						try {
+							juego.getCliente().getSalida().writeObject(gson.toJson(pBatalla));
+						} catch (IOException e) {
+							JOptionPane.showMessageDialog(null, "Fallo la conexión " + "con el servidor");
+						}
+					}
 				}
 			} else {
 				// Me fijo si el click cae sobre el tile donde hay un jugador
@@ -318,28 +327,7 @@ public class Entidad {
 				}
 				
 				// Me fijo si el click cae sobre el tile donde hay un enemigo
-				Iterator<Integer> it2 = juego.getUbicacionEnemigos().
-						keySet().iterator();
-				int key2;
-				PaqueteMovimiento actual2;
-
-				while (it2.hasNext()) {
-					key2 = it2.next();
-					actual2 = juego.getUbicacionEnemigos().get(key2);
-					tileEnemigos = Mundo.mouseATile(actual2.getPosX(), actual2.getPosY());
-					if (actual2 != null) {
-						if (tileMoverme[0] == tileEnemigos[0] && tileMoverme[1] == 
-								tileEnemigos[1]) {
-							idEnemigo = actual2.getIdPersonaje();
-							float XY[] = Mundo.isoA2D(x,y);
-
-							juego.getEstadoJuego().setHaySolicitudEnemigo(true, juego.
-									getEnemigosConectados().get(idEnemigo), MenuInfoPersonaje.
-									menuBatallar);
-							juego.getHandlerMouse().setNuevoClick(false);
-						}
-					}
-				}
+				clickEsSobreEnemigo(tileMoverme);
 			}
 		}
 
@@ -433,6 +421,32 @@ public class Entidad {
 			enMovimiento = true;
 		}
 	}
+	
+	private void clickEsSobreEnemigo(int[] tileMoverme) {
+		Iterator<Integer> it = juego.getUbicacionEnemigos().
+				keySet().iterator();
+		int key;
+		PaqueteMovimiento actual;
+
+		while (it.hasNext()) {
+			key = it.next();
+			actual = juego.getUbicacionEnemigos().get(key);
+			tileEnemigos = Mundo.mouseATile(actual.getPosX(), actual.getPosY());
+			if (actual != null) {
+				if (tileMoverme[0] == tileEnemigos[0] && tileMoverme[1] == 
+						tileEnemigos[1]) {
+					idEnemigo = actual.getIdPersonaje();
+					float XY[] = Mundo.isoA2D(x,y);
+
+					juego.getEstadoJuego().setHaySolicitudEnemigo(true, juego.
+							getEnemigosConectados().get(idEnemigo), MenuInfoPersonaje.
+							menuBatallar);
+					juego.getHandlerMouse().setNuevoClick(false);
+				}
+			}
+		}
+	}
+	
 	/**Mueve el personaje
 	 */
 	public void mover() {

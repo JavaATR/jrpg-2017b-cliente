@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
+import dominio.NonPlayableCharacter;
 import dominio.Personaje;
 import mensajeria.PaquetePersonaje;
 import recursos.Recursos;
@@ -18,8 +19,7 @@ public class EstadoDePersonaje {
 	private static final int ALTOMINIATURA = 64;
 	private static final int ANCHOMINIATURA = 64;
 
-	public static void dibujarEstadoDePersonaje(Graphics g, int x, int y, Personaje personaje, BufferedImage miniaturaPersonaje){
-
+	public static void dibujarEstadoDePersonaje(Graphics g, int x, int y, Personaje personaje, BufferedImage miniaturaPersonaje) {
 		int drawBarra = 0;
 
 		g.drawImage(Recursos.estadoPersonaje, x, y, null);
@@ -58,12 +58,42 @@ public class EstadoDePersonaje {
 		g.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		g.setColor(Color.GREEN);
 		g.drawString(String.valueOf(personaje.getNivel()), x + 59, y + 70);
+	}
+	
+	public static void dibujarEstadoDeEnemigo(Graphics g, int x, int y, NonPlayableCharacter enemigo, BufferedImage miniaturaEnemigo) {
+		int drawBarra = 0;
 
+		g.drawImage(Recursos.estadoPersonaje, x, y, null);
 
+		g.drawImage(miniaturaEnemigo, x + 10, y + 9, ANCHOMINIATURA, ALTOMINIATURA, null);
+
+		if(enemigo.getSalud() == 540) {
+			drawBarra = ANCHOBARRA;
+		} else {
+			drawBarra = (enemigo.getSalud() * ANCHOBARRA) / 540;
+		}
+
+		g.setColor(Color.WHITE);
+		g.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		g.drawImage(Recursos.barraSalud,  x + 80, y + 26, drawBarra, ALTOSALUD, null);
+		g.drawString(String.valueOf(enemigo.getSalud()) + " / " + String.valueOf(540), x + 132, y + 37);
+
+		drawBarra = ANCHOBARRA;
+
+		g.drawImage(Recursos.barraEnergia, x + 80, y + 42, drawBarra, ALTOENERGIA, null);
+		g.drawString(String.valueOf(100) + " / " + String.valueOf(100), x + 132, y + 52);
+
+		drawBarra = (0 * ANCHOBARRA) / 100;
+
+		g.setFont(new Font("Tahoma", Font.PLAIN, 8));
+		g.drawImage(Recursos.barraExperiencia, x + 77, y + 65, drawBarra, ALTOEXPERIENCIA, null);
+		g.drawString(String.valueOf(0) + " / " + String.valueOf(100), x + 132, y + 70);
+		g.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		g.setColor(Color.GREEN);
+		g.drawString(String.valueOf(enemigo.getNivel()), x + 59, y + 70);
 	}
 
-	public static void dibujarEstadoDePersonaje(Graphics g, int x, int y, PaquetePersonaje personaje, BufferedImage miniaturaPersonaje){
-
+	public static void dibujarEstadoDePersonaje(Graphics g, int x, int y, PaquetePersonaje personaje, BufferedImage miniaturaPersonaje) {
 		int drawBarra = 0;
 
 		g.drawImage(Recursos.estadoPersonaje, x, y, null);

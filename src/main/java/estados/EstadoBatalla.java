@@ -114,7 +114,6 @@ public class EstadoBatalla extends Estado {
 
 	@Override
 	public void actualizar() {
-
 		juego.getCamara().setxOffset(-350);
 		juego.getCamara().setyOffset(150);
 
@@ -122,7 +121,6 @@ public class EstadoBatalla extends Estado {
 		haySpellSeleccionada = false;
 
 		if (miTurno) {
-
 			if (juego.getHandlerMouse().getNuevoClick()) {
 				posMouse = juego.getHandlerMouse().getPosMouse();
 
@@ -131,7 +129,11 @@ public class EstadoBatalla extends Estado {
 					if (menuBatalla.getBotonClickeado(posMouse[0], posMouse[1]) == 1) {
 						if(personaje.puedeAtacar()){
 							seRealizoAccion = true;
-							personaje.habilidadRaza1(enemigo);
+							
+							if (enemigoNPC != null)
+								personaje.habilidadRaza1(enemigoNPC);
+							else
+								personaje.habilidadRaza1(enemigo);
 						}
 						haySpellSeleccionada = true;
 					}
@@ -139,7 +141,11 @@ public class EstadoBatalla extends Estado {
 					if (menuBatalla.getBotonClickeado(posMouse[0], posMouse[1]) == 2) {
 						if(personaje.puedeAtacar()){
 							seRealizoAccion = true;
-							personaje.habilidadRaza2(enemigo);
+							
+							if (enemigoNPC != null)
+								personaje.habilidadRaza2(enemigoNPC);
+							else
+								personaje.habilidadRaza2(enemigo);
 						}
 						haySpellSeleccionada = true;
 					}
@@ -147,7 +153,11 @@ public class EstadoBatalla extends Estado {
 					if (menuBatalla.getBotonClickeado(posMouse[0], posMouse[1]) == 3) {
 						if(personaje.puedeAtacar()){
 							seRealizoAccion = true;
-							personaje.habilidadCasta1(enemigo);
+							
+							if (enemigoNPC != null)
+								personaje.habilidadCasta1(enemigoNPC);
+							else
+								personaje.habilidadCasta1(enemigo);
 						}
 						haySpellSeleccionada = true;
 					}
@@ -155,7 +165,11 @@ public class EstadoBatalla extends Estado {
 					if (menuBatalla.getBotonClickeado(posMouse[0], posMouse[1]) == 4) {
 						if(personaje.puedeAtacar()){
 							seRealizoAccion = true;
-							personaje.habilidadCasta2(enemigo);
+							
+							if (enemigoNPC != null)
+								personaje.habilidadCasta2(enemigoNPC);
+							else
+								personaje.habilidadCasta2(enemigo);
 						}
 						haySpellSeleccionada = true;
 					}
@@ -163,7 +177,11 @@ public class EstadoBatalla extends Estado {
 					if (menuBatalla.getBotonClickeado(posMouse[0], posMouse[1]) == 5) {
 						if(personaje.puedeAtacar()){
 							seRealizoAccion = true;
-							personaje.habilidadCasta3(enemigo);
+							
+							if (enemigoNPC != null)
+								personaje.habilidadCasta3(enemigoNPC);
+							else
+								personaje.habilidadCasta3(enemigo);
 						}
 						haySpellSeleccionada = true;
 					}
@@ -175,20 +193,36 @@ public class EstadoBatalla extends Estado {
 					}
 				}
 
-
 				if (haySpellSeleccionada && seRealizoAccion) {
-					if (!enemigo.estaVivo()) {
+					int nivelEnemigo;
+					Boolean enemigoEstaVivo;
+					
+					if (enemigoNPC != null) {
+						nivelEnemigo = enemigoNPC.getNivel();
+						enemigoEstaVivo = enemigoNPC.estaVivo();
+					}
+					else {
+						nivelEnemigo = enemigo.getNivel();
+						enemigoEstaVivo = enemigo.estaVivo();
+					}
+					
+					if (enemigoEstaVivo == false) {
 						juego.getEstadoJuego().setHaySolicitud(true, juego.getPersonaje(), MenuInfoPersonaje.menuGanarBatalla);
-						if(personaje.ganarExperiencia(enemigo.getNivel() * 40)){
+						if(personaje.ganarExperiencia(nivelEnemigo * 40)){
 							juego.getPersonaje().setNivel(personaje.getNivel());
 							juego.getEstadoJuego().setHaySolicitud(true, juego.getPersonaje(), MenuInfoPersonaje.menuSubirNivel);
 						}
 						paqueteFinalizarBatalla.setGanadorBatalla(juego.getPersonaje().getId());
 						finalizarBatalla();
 						Estado.setEstado(juego.getEstadoJuego());
-						
 					} else {
-						paqueteAtacar = new PaqueteAtacar(paquetePersonaje.getId(), paqueteEnemigo.getId(), personaje.getSalud(), personaje.getEnergia(), enemigo.getSalud(), enemigo.getEnergia(), personaje.getDefensa(), enemigo.getDefensa(), personaje.getCasta().getProbabilidadEvitarDaño(), enemigo.getCasta().getProbabilidadEvitarDaño());
+						if (enemigoNPC != null) {
+							paqueteAtacar = new PaqueteAtacar(paquetePersonaje.getId(), paqueteEnemigoNPC.getId(), personaje.getSalud(), personaje.getEnergia(), enemigoNPC.getSalud(), 100, personaje.getDefensa(), enemigoNPC.getDefensa(), 0, 0);
+							enemigoNPC.setSalud(enemigoNPC.getSalud() - personaje.calcularPuntosDeAtaque()) ;
+						}
+						else
+							paqueteAtacar = new PaqueteAtacar(paquetePersonaje.getId(), paqueteEnemigo.getId(), personaje.getSalud(), personaje.getEnergia(), enemigo.getSalud(), enemigo.getEnergia(), personaje.getDefensa(), enemigo.getDefensa(), personaje.getCasta().getProbabilidadEvitarDaño(), enemigo.getCasta().getProbabilidadEvitarDaño());
+						
 						enviarAtaque(paqueteAtacar);
 						miTurno = false;
 						menuBatalla.setHabilitado(false);
@@ -199,6 +233,15 @@ public class EstadoBatalla extends Estado {
 
 				juego.getHandlerMouse().setNuevoClick(false);
 			}
+		}
+		// Si no es mi turno y estoy en batalla contra un NPC, El Bryan nos ataca
+		else if (enemigoNPC != null) {
+			paqueteAtacar = new PaqueteAtacar(paqueteEnemigoNPC.getId(), paquetePersonaje.getId(), enemigoNPC.getSalud(), enemigoNPC.getEnergia(), personaje.getSalud() - 10, personaje.getEnergia(), enemigoNPC.getDefensa(), personaje.getDefensa(), 0, 0);
+			enviarAtaque(paqueteAtacar);
+			enemigoNPC.setEnergia(enemigoNPC.getEnergia() - 10);
+			
+			miTurno = true;
+			menuBatalla.setHabilitado(true);
 		}
 	}
 
@@ -251,7 +294,7 @@ public class EstadoBatalla extends Estado {
 		}
 		
 		if (esEnemigoNPC == 1) {
-			enemigoNPC = new NonPlayableCharacter("El Bryan", 5, 5);
+			enemigoNPC = new NonPlayableCharacter("El Bryan", 3, 3);
 		}
 		else {
 			nombre = paqueteEnemigo.getNombre();
@@ -347,6 +390,10 @@ public class EstadoBatalla extends Estado {
 
 	public Personaje getEnemigo() {
 		return enemigo;
+	}
+	
+	public NonPlayableCharacter getEnemigoNPC() {
+		return enemigoNPC;
 	}
 	
 	@Override

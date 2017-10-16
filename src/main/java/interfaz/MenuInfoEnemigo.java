@@ -55,7 +55,6 @@ public class MenuInfoEnemigo {
 				break;
 		}
 
-
 		// muestro los botones
 		g.setFont(new Font("Book Antiqua", 1, 20));
 		g.drawImage(Recursos.botonMenu, x + 50, y + 380, 200, 25, null);
@@ -117,7 +116,7 @@ public class MenuInfoEnemigo {
 		// muestro los atributos
 		g.setFont(new Font("Book Antiqua", 0, 20));
 		g.drawString("Ladrón", x + 100, y + 260);
-		g.drawString(5 + " ", x + 100, y + 290);
+		g.drawString(3 + " ", x + 100, y + 290);
 		g.drawString(0 + " / " + Personaje.getTablaDeNiveles()[6 + 1], x + 150, y + 320);
 	}
 //	

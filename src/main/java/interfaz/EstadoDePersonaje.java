@@ -67,21 +67,25 @@ public class EstadoDePersonaje {
 
 		g.drawImage(miniaturaEnemigo, x + 10, y + 9, ANCHOMINIATURA, ALTOMINIATURA, null);
 
-		if(enemigo.getSalud() == 540) {
+		if(enemigo.getSalud() == 240) {
 			drawBarra = ANCHOBARRA;
 		} else {
-			drawBarra = (enemigo.getSalud() * ANCHOBARRA) / 540;
+			drawBarra = (enemigo.getSalud() * ANCHOBARRA) / 240;
 		}
 
 		g.setColor(Color.WHITE);
 		g.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		g.drawImage(Recursos.barraSalud,  x + 80, y + 26, drawBarra, ALTOSALUD, null);
-		g.drawString(String.valueOf(enemigo.getSalud()) + " / " + String.valueOf(540), x + 132, y + 37);
+		g.drawImage(Recursos.barraSalud, x + 80, y + 26, drawBarra, ALTOSALUD, null);
+		g.drawString(String.valueOf(enemigo.getSalud()) + " / " + String.valueOf(240), x + 132, y + 37);
 
-		drawBarra = ANCHOBARRA;
+		if(enemigo.getEnergia() == 100) {
+			drawBarra = ANCHOBARRA;
+		} else {
+			drawBarra = (enemigo.getEnergia() * ANCHOBARRA) / 100;
+		}
 
 		g.drawImage(Recursos.barraEnergia, x + 80, y + 42, drawBarra, ALTOENERGIA, null);
-		g.drawString(String.valueOf(100) + " / " + String.valueOf(100), x + 132, y + 52);
+		g.drawString(String.valueOf(enemigo.getEnergia()) + " / " + String.valueOf(100), x + 132, y + 52);
 
 		drawBarra = (0 * ANCHOBARRA) / 100;
 

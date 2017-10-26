@@ -8,7 +8,7 @@ import mensajeria.PaquetePersonaje;
  */
 public class ActualizarPersonajeLvl extends ComandosEscucha {
 	/**
-	 * 
+	 *
 	 */
 	@Override
 	public void ejecutar() {

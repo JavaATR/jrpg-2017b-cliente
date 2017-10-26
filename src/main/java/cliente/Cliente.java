@@ -58,7 +58,7 @@ public class Cliente extends Thread {
 
 	/**
 	 * Pide la accion
-	 * 
+	 *
 	 * @return Devuelve la accion
 	 */
 	public int getAccion() {
@@ -67,7 +67,7 @@ public class Cliente extends Thread {
 
 	/**
 	 * Setea la accion
-	 * 
+	 *
 	 * @param accion
 	 *            accion a setear
 	 */
@@ -198,7 +198,7 @@ public class Cliente extends Thread {
 
 	/**
 	 * Pide el cliente
-	 * 
+	 *
 	 * @return Devuelve el cliente
 	 */
 	public Socket getSocket() {
@@ -207,7 +207,7 @@ public class Cliente extends Thread {
 
 	/**
 	 * Setea el cliente
-	 * 
+	 *
 	 * @param cliente
 	 *            cliente a setear
 	 */
@@ -217,7 +217,7 @@ public class Cliente extends Thread {
 
 	/**
 	 * Pide la ip
-	 * 
+	 *
 	 * @return Devuelve la ip
 	 */
 	public String getMiIp() {
@@ -226,7 +226,7 @@ public class Cliente extends Thread {
 
 	/**
 	 * Setea la ip
-	 * 
+	 *
 	 * @param miIp
 	 *            ip a setear
 	 */
@@ -236,7 +236,7 @@ public class Cliente extends Thread {
 
 	/**
 	 * Pide la entrada
-	 * 
+	 *
 	 * @return Devuelve la entrada
 	 */
 	public ObjectInputStream getEntrada() {
@@ -245,7 +245,7 @@ public class Cliente extends Thread {
 
 	/**
 	 * Setea la entrada
-	 * 
+	 *
 	 * @param entrada
 	 *            entrada a setear
 	 */
@@ -255,7 +255,7 @@ public class Cliente extends Thread {
 
 	/**
 	 * Pide la salida
-	 * 
+	 *
 	 * @return Devuelve la salida
 	 */
 	public ObjectOutputStream getSalida() {
@@ -264,7 +264,7 @@ public class Cliente extends Thread {
 
 	/**
 	 * Setea la salida
-	 * 
+	 *
 	 * @param salida
 	 *            salida a setear
 	 */
@@ -274,7 +274,7 @@ public class Cliente extends Thread {
 
 	/**
 	 * Pide el paquete usuario
-	 * 
+	 *
 	 * @return Devuelve el paquete usuario
 	 */
 	public PaqueteUsuario getPaqueteUsuario() {
@@ -283,7 +283,7 @@ public class Cliente extends Thread {
 
 	/**
 	 * Pide el paquete personaje
-	 * 
+	 *
 	 * @return Devuelve el paquete personaje
 	 */
 	public PaquetePersonaje getPaquetePersonaje() {
@@ -292,7 +292,7 @@ public class Cliente extends Thread {
 
 	/**
 	 * Pide el juego
-	 * 
+	 *
 	 * @return Devuelve el juego
 	 */
 	public Juego getJuego() {
@@ -301,7 +301,7 @@ public class Cliente extends Thread {
 
 	/**
 	 * Pide el menu de carga
-	 * 
+	 *
 	 * @return Devuelve el menu de carga
 	 */
 	public MenuCarga getMenuCarga() {
@@ -310,7 +310,7 @@ public class Cliente extends Thread {
 
 	/**
 	 * Actualiza los items del personaje del cliente. <br>
-	 * 
+	 *
 	 * @param paqueteActualizado
 	 *            Personaje del cliente. <br>
 	 */

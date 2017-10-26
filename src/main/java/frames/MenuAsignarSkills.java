@@ -77,7 +77,7 @@ public class MenuAsignarSkills extends JFrame {
 	 * <p>
 	 * El personaje puede asignar puntos que tenga disponible como puede
 	 * resetear y reasignar los puntos nuevamente. <br>
-	 * 
+	 *
 	 * @param cliente
 	 *            Cliente que lo invoca. <br>
 	 */

@@ -217,7 +217,7 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 
 	/**
 	 * Aplica nuevos stats al personaje. <br>
-	 * 
+	 *
 	 * @param bonusSalud
 	 *            Puntos de salud a agregar. <br>
 	 * @param bonusEnergia
@@ -310,7 +310,7 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 
 	/**
 	 * Devuelve los puntos para asignar de skill. <br>
-	 * 
+	 *
 	 * @return Puntos para asignar de skill. <br>
 	 */
 	public int getPuntosAsignar() {
@@ -319,7 +319,7 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 
 	/**
 	 * Establece los puntos para asignar de skill. <br>
-	 * 
+	 *
 	 * @param puntosAsignar
 	 *            Puntos para asignar de skill. <br>
 	 */
@@ -329,7 +329,7 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 
 	/**
 	 * Devuelve la fuerza inicial de la casta. <br>
-	 * 
+	 *
 	 * @return Fuerza inicial de la casta. <br>
 	 */
 	public int getFuerzaInicial() {
@@ -344,7 +344,7 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 
 	/**
 	 * Devuelve la destreza inicial de la casta. <br>
-	 * 
+	 *
 	 * @return Destreza inicial de la casta. <br>
 	 */
 	public int getDestrezaInicial() {
@@ -359,7 +359,7 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 
 	/**
 	 * Devuelve la inteligencia inicial de la casta. <br>
-	 * 
+	 *
 	 * @return Inteligencia inicial de la casta. <br>
 	 */
 	public int getInteligenciaInicial() {

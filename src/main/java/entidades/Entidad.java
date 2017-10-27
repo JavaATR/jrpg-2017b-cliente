@@ -89,12 +89,12 @@ public class Entidad {
 	private int[] tilePersonajes;
 	private int[] tileEnemigos;
 	private int idEnemigo;
-	
+
 	//Ubicacion para abrir comerciar.
 	private float xComercio;
 	private float yComercio;
 	private float [] comercio;
-	
+
 	/**Constructor de la clase Entidad
 	 * @param juego juego con el que se instancia Entidad
 	 * @param mundo mundo con el que se instancia Entidad
@@ -106,7 +106,7 @@ public class Entidad {
 	 * @param animaciones animaciones del personaje
 	 * @param velAnimacion velocidad de animacion del personaje
 	 */
-	public Entidad(final Juego juego, final Mundo mundo, final int ancho, final int alto, 
+	public Entidad(final Juego juego, final Mundo mundo, final int ancho, final int alto,
 			final String nombre, final float spawnX, final float spawnY,
 			final LinkedList<BufferedImage[]> animaciones, final int velAnimacion) {
 		this.juego = juego;
@@ -173,50 +173,50 @@ public class Entidad {
 				Pantalla.menuInventario = new MenuInventario(juego.getCliente());
 				Pantalla.menuInventario.setVisible(true);
 			}
-			juego.getHandlerMouse().setNuevoClick(false);				
+			juego.getHandlerMouse().setNuevoClick(false);
 		}
 		if(juego.getHandlerMouse().getNuevoClick() && posMouse[0] >= 3 && posMouse[0] <= 105 && posMouse[1] >= 562 && posMouse[1] <= 597) {
 			if (Pantalla.menuEscp == null) {
 				Pantalla.menuEscp = new MenuEscape(juego.getCliente());
 				Pantalla.menuEscp.setVisible(true);
 			}
-			juego.getHandlerMouse().setNuevoClick(false);				
+			juego.getHandlerMouse().setNuevoClick(false);
 		}
 		if(juego.getHandlerMouse().getNuevoClick() && posMouse[0] >= 3 && posMouse[0] <= 105 && posMouse[1] >= 524 && posMouse[1] <= 559) {
 			if (Pantalla.ventContac == null) {
 				Pantalla.ventContac = new VentanaContactos(juego);
 				Pantalla.ventContac.setVisible(true);
 			}
-			juego.getHandlerMouse().setNuevoClick(false);				
+			juego.getHandlerMouse().setNuevoClick(false);
 		}
-		// Tomo el click izquierdo 
+		// Tomo el click izquierdo
 		if (juego.getHandlerMouse().getNuevoClick()) {
 			if (juego.getEstadoJuego().getHaySolicitud()) {
 				if (juego.getEstadoJuego().getMenuEnemigo().clickEnMenu(posMouse[0], posMouse[1])) {
 					if (juego.getEstadoJuego().getMenuEnemigo().clickEnBoton(posMouse[0], posMouse[1])) {
 						// Pregunto si menuBatallar o menuComerciar, sino no me interesa hacer esto
-						if (juego.getEstadoJuego().getTipoSolicitud() == 
-								MenuInfoPersonaje.menuBatallar || 
-								juego.getEstadoJuego().getTipoSolicitud() == 
+						if (juego.getEstadoJuego().getTipoSolicitud() ==
+								MenuInfoPersonaje.menuBatallar ||
+								juego.getEstadoJuego().getTipoSolicitud() ==
 								MenuInfoPersonaje.menuComerciar) {
 							//Guardo las poss con el que quiero comerciar
 							xComercio = juego.getUbicacionPersonajes().get(idEnemigo).getPosX();
 							yComercio = juego.getUbicacionPersonajes().get(idEnemigo).getPosY();
-							comercio = Mundo.isoA2D(xComercio, yComercio);							
+							comercio = Mundo.isoA2D(xComercio, yComercio);
 						}
 						// pregunto si el menu emergente es de tipo batalla
-						if (juego.getEstadoJuego().getTipoSolicitud() == 
+						if (juego.getEstadoJuego().getTipoSolicitud() ==
 								MenuInfoPersonaje.menuBatallar) {
 							//ME ASEGURO DE QUE EL ENEMIGO NO ESTÉ EN LA ZONA DE COMERCIO
-							if (!((int)comercio[0] >= 44 && (int)comercio[0] <= 71 && 
+							if (!((int)comercio[0] >= 44 && (int)comercio[0] <= 71 &&
 									(int)comercio[1] >= 0 && (int)comercio[1] <= 29)) {
 								juego.getEstadoJuego().setHaySolicitud(false, null, MenuInfoPersonaje.menuBatallar);
-								
+
 								PaqueteBatalla pBatalla = new PaqueteBatalla();
-								
+
 								pBatalla.setId(juego.getPersonaje().getId());
 								pBatalla.setIdEnemigo(idEnemigo);
-								
+
 								try {
 									juego.getCliente().getSalida().writeObject(gson.toJson(pBatalla));
 								} catch (IOException e) {
@@ -224,26 +224,26 @@ public class Entidad {
 								}
 							} else {
 								JOptionPane.showMessageDialog(null, "El otro usuario se encuentra "
-										+ "dentro de la zona de comercio");	
-							}				
+										+ "dentro de la zona de comercio");
+							}
 						} else {
 							// PREGUNTO SI EL MENU EMERGENTE ES DE TIPO COMERCIO
-							if (juego.getEstadoJuego().getTipoSolicitud() == 
+							if (juego.getEstadoJuego().getTipoSolicitud() ==
 									MenuInfoPersonaje.menuComerciar) {
-								if ((int)comercio[0] >= 44 && (int)comercio[0] <= 71 && 
+								if ((int)comercio[0] >= 44 && (int)comercio[0] <= 71 &&
 										(int)comercio[1] >= 0 && (int)comercio[1] <= 29) {
 									if (juego.getCliente().getM1() == null) {
 										juego.getCliente().setPaqueteComercio(new PaqueteComerciar());
 										juego.getCliente().getPaqueteComercio().setId(juego.getPersonaje().getId());
 										juego.getCliente().getPaqueteComercio().setIdEnemigo(idEnemigo);
-										
+
 										try {
 											juego.getCliente().getSalida().writeObject(gson.toJson
 													(juego.getCliente().getPaqueteComercio()));
 										} catch (IOException e) {
 											JOptionPane.showMessageDialog(null, "Fallo la conexión "
 													+ "con el servidor");
-										}	
+										}
 									} else {
 										JOptionPane.showMessageDialog(null, "Ya te encuentras comerciando!");
 									}
@@ -271,12 +271,12 @@ public class Entidad {
 				else if (juego.getEstadoJuego().getMenuEnemigoNPC().clickEnMenu(posMouse[0], posMouse[1])) {
 					if (juego.getEstadoJuego().getMenuEnemigoNPC().clickEnBoton(posMouse[0], posMouse[1])) {
 						juego.getEstadoJuego().setHaySolicitudEnemigo(false, null, MenuInfoPersonaje.menuBatallar);
-						
+
 						PaqueteBatalla pBatalla = new PaqueteBatalla();
-						
+
 						pBatalla.setId(juego.getPersonaje().getId());
 						pBatalla.setIdEnemigo(idEnemigo);
-						
+
 						try {
 							juego.getCliente().getSalida().writeObject(gson.toJson(pBatalla));
 						} catch (IOException e) {
@@ -289,7 +289,7 @@ public class Entidad {
 				Iterator<Integer> it = juego.getUbicacionPersonajes().
 						keySet().iterator();
 				int key;
-				int []tileMoverme = Mundo.mouseATile(posMouse[0] + juego.getCamara().getxOffset() - 
+				int []tileMoverme = Mundo.mouseATile(posMouse[0] + juego.getCamara().getxOffset() -
 						xOffset,posMouse[1] + juego.getCamara().getyOffset() - yOffset);
 				PaqueteMovimiento actual;
 
@@ -303,7 +303,7 @@ public class Entidad {
 							&& juego.getPersonajesConectados().get(actual.
 									getIdPersonaje()).getEstado() == Estado.estadoJuego) {
 
-						if (tileMoverme[0] == tilePersonajes[0] && tileMoverme[1] == 
+						if (tileMoverme[0] == tilePersonajes[0] && tileMoverme[1] ==
 								tilePersonajes[1]) {
 							idEnemigo = actual.getIdPersonaje();
 							float XY[] = Mundo.isoA2D(x,y);
@@ -319,13 +319,13 @@ public class Entidad {
 								// DE BATALLA
 								juego.getEstadoJuego().setHaySolicitud(true, juego.
 										getPersonajesConectados().get(idEnemigo), MenuInfoPersonaje.
-										menuBatallar);		
+										menuBatallar);
 							}
 							juego.getHandlerMouse().setNuevoClick(false);
 						}
 					}
 				}
-				
+
 				// Me fijo si el click cae sobre el tile donde hay un enemigo
 				clickEsSobreEnemigo(tileMoverme);
 			}
@@ -373,7 +373,7 @@ public class Entidad {
 			}
 
 			if (pilaMovimiento == null) {
-				pilaMovimiento = caminoMasCorto(tileActual[0], tileActual[1], 
+				pilaMovimiento = caminoMasCorto(tileActual[0], tileActual[1],
 						tileMoverme[0], tileMoverme[1]);
 			}
 			// Me muevo al primero de la pila
@@ -421,7 +421,7 @@ public class Entidad {
 			enMovimiento = true;
 		}
 	}
-	
+
 	private void clickEsSobreEnemigo(int[] tileMoverme) {
 		Iterator<Integer> it = juego.getUbicacionEnemigos().
 				keySet().iterator();
@@ -433,7 +433,7 @@ public class Entidad {
 			actual = juego.getUbicacionEnemigos().get(key);
 			tileEnemigos = Mundo.mouseATile(actual.getPosX(), actual.getPosY());
 			if (actual != null) {
-				if (tileMoverme[0] == tileEnemigos[0] && tileMoverme[1] == 
+				if (tileMoverme[0] == tileEnemigos[0] && tileMoverme[1] ==
 						tileEnemigos[1]) {
 					idEnemigo = actual.getIdPersonaje();
 					float XY[] = Mundo.isoA2D(x,y);
@@ -446,7 +446,7 @@ public class Entidad {
 			}
 		}
 	}
-	
+
 	/**Mueve el personaje
 	 */
 	public void mover() {
@@ -663,11 +663,9 @@ public class Entidad {
 	 * @return true or false
 	 */
 	private boolean estanEnDiagonal(final Nodo nodoUno, final Nodo nodoDos) {
-		if (nodoUno.obtenerX() == nodoDos.obtenerX() || nodoUno.obtenerY() == nodoDos.obtenerY())
-			return false;
-		return true;
+		return nodoUno.obtenerX() == nodoDos.obtenerX() || nodoUno.obtenerY() == nodoDos.obtenerY();
 	}
-	/**Pide el valor de X 
+	/**Pide el valor de X
 	 * @return devuelve la ubicacion en X
 	 */
 	public float getX() {
@@ -679,7 +677,7 @@ public class Entidad {
 	public void setX(final float x) {
 		this.x = x;
 	}
-	/**Pide el valor de Y 
+	/**Pide el valor de Y
 	 * @return devuelve la ubicacion en Y
 	 */
 	public float getY() {
@@ -691,7 +689,7 @@ public class Entidad {
 	public void setY(final float y) {
 		this.y = y;
 	}
-	/**Pide el ancho 
+	/**Pide el ancho
 	 * @return devuelve el ancho
 	 */
 	public int getAncho() {
@@ -703,7 +701,7 @@ public class Entidad {
 	public void setAncho(final int ancho) {
 		this.ancho = ancho;
 	}
-	/**Pide el alto 
+	/**Pide el alto
 	 * @return devuelve el alto
 	 */
 	public int getAlto() {
@@ -721,7 +719,7 @@ public class Entidad {
 	public int getxOffset() {
 		return xOffset;
 	}
-	/**Pide el offset de Y 
+	/**Pide el offset de Y
 	 * @return devuelve el offset de Y
 	 */
 	public int getYOffset() {

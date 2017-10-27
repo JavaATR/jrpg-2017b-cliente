@@ -82,14 +82,14 @@ public class MenuAsignarSkills extends JFrame {
 	 *            Cliente que lo invoca. <br>
 	 */
 	public MenuAsignarSkills(final Cliente cliente) {
-		puntosFuerzaInicial = cliente.getPaquetePersonaje().getFuerza();
-		puntosDestrezaInicial = cliente.getPaquetePersonaje().getDestreza();
-		puntosInteligenciaInicial = cliente.getPaquetePersonaje().getInteligencia();
-		puntosAsignarInicial = cliente.getPaquetePersonaje().getPuntosAsignar();
-		puntosFuerza = puntosFuerzaInicial;
-		puntosDestreza = puntosDestrezaInicial;
-		puntosInteligencia = puntosInteligenciaInicial;
-		puntosAsignar = puntosAsignarInicial;
+		this.puntosFuerzaInicial = cliente.getPaquetePersonaje().getFuerza();
+		this.puntosDestrezaInicial = cliente.getPaquetePersonaje().getDestreza();
+		this.puntosInteligenciaInicial = cliente.getPaquetePersonaje().getInteligencia();
+		this.puntosAsignarInicial = cliente.getPaquetePersonaje().getPuntosAsignar();
+		this.puntosFuerza = this.puntosFuerzaInicial;
+		this.puntosDestreza = this.puntosDestrezaInicial;
+		this.puntosInteligencia = this.puntosInteligenciaInicial;
+		this.puntosAsignar = this.puntosAsignarInicial;
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -176,7 +176,7 @@ public class MenuAsignarSkills extends JFrame {
 				int bonusF = puntosFuerza - puntosFuerzaInicial;
 				int bonusD = puntosDestreza - puntosDestrezaInicial;
 				int bonusI = puntosInteligencia - puntosInteligenciaInicial;
-				int bonusS =  puntosAsignarInicial - puntosAsignar;
+				int bonusS = puntosAsignarInicial - puntosAsignar;
 				cliente.getPaquetePersonaje().useBonus(0, 0, bonusF, bonusD, bonusI, bonusS);
 				cliente.getPaquetePersonaje().removerBonus();
 				cliente.getPaquetePersonaje().setComando(Comando.ACTUALIZARPERSONAJELV);
@@ -208,34 +208,20 @@ public class MenuAsignarSkills extends JFrame {
 			public void actionPerformed(final ActionEvent e) {
 				if (JOptionPane.showConfirmDialog(btnReasignarPuntos,
 						"Esta seguro que quiere reasignar los puntos?") == 0) {
-					// puntosFuerza =
-					// cliente.getPaquetePersonaje().getFuerzaInicial(); // Aca
-					// // adentro
-					// // valido
-					// // que
-					// // casta
-					// // es
-					// // y
-					// // cuanto
-					// // le
-					// // devuelvo
-					// puntosDestreza =
-					// cliente.getPaquetePersonaje().getDestrezaInicial();
-					// puntosInteligencia =
-					// cliente.getPaquetePersonaje().getInteligenciaInicial();
-					// puntosAsignar = 3 *
-					// (cliente.getPaquetePersonaje().getNivel());
-					// labelFuerza.setText(Integer.toString(puntosFuerza));
-					// labelDestreza.setText(Integer.toString(puntosDestreza));
-					// labelInteligencia.setText(Integer.toString(puntosInteligencia));
-					// labelPuntos.setText(Integer.toString(puntosAsignar));
-
 					cliente.getPaquetePersonaje().reiniciarStats();
 					cliente.getPaquetePersonaje().ponerBonus();
 					labelFuerza.setText(Integer.toString(cliente.getPaquetePersonaje().getFuerza()));
 					labelDestreza.setText(Integer.toString(cliente.getPaquetePersonaje().getDestreza()));
 					labelInteligencia.setText(Integer.toString(cliente.getPaquetePersonaje().getInteligencia()));
 					labelPuntos.setText(Integer.toString(cliente.getPaquetePersonaje().getPuntosAsignar()));
+					puntosFuerzaInicial = cliente.getPaquetePersonaje().getFuerza();
+					puntosDestrezaInicial = cliente.getPaquetePersonaje().getDestreza();
+					puntosInteligenciaInicial = cliente.getPaquetePersonaje().getInteligencia();
+					puntosAsignarInicial = cliente.getPaquetePersonaje().getPuntosAsignar();
+					puntosFuerza = puntosFuerzaInicial;
+					puntosDestreza = puntosDestrezaInicial;
+					puntosInteligencia = puntosInteligenciaInicial;
+					puntosAsignar = puntosAsignarInicial;
 				}
 			}
 		});

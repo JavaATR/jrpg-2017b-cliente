@@ -209,7 +209,8 @@ public class EstadoBatalla extends Estado {
 					if (enemigoEstaVivo == false) {
 						juego.getEstadoJuego().setHaySolicitud(true, juego.getPersonaje(), MenuInfoPersonaje.menuGanarBatalla);
 						if(personaje.ganarExperiencia(nivelEnemigo * 40)){
-							juego.getPersonaje().setNivel(personaje.getNivel());
+							// juego.getPersonaje().setNivel(personaje.getNivel());
+							juego.getPersonaje().setPuntosAsignar(juego.getPersonaje().getPuntosAsignar() + 3);
 							juego.getEstadoJuego().setHaySolicitud(true, juego.getPersonaje(), MenuInfoPersonaje.menuSubirNivel);
 						}
 						paqueteFinalizarBatalla.setGanadorBatalla(juego.getPersonaje().getId());
@@ -221,7 +222,7 @@ public class EstadoBatalla extends Estado {
 							enemigoNPC.setSalud(enemigoNPC.getSalud() - personaje.calcularPuntosDeAtaque()) ;
 						}
 						else
-							paqueteAtacar = new PaqueteAtacar(paquetePersonaje.getId(), paqueteEnemigo.getId(), personaje.getSalud(), personaje.getEnergia(), enemigo.getSalud(), enemigo.getEnergia(), personaje.getDefensa(), enemigo.getDefensa(), personaje.getCasta().getProbabilidadEvitarDaño(), enemigo.getCasta().getProbabilidadEvitarDaño());
+							paqueteAtacar = new PaqueteAtacar(paquetePersonaje.getId(), paqueteEnemigo.getId(), personaje.getSalud(), personaje.getEnergia(), enemigo.getSalud(), enemigo.getEnergia(), personaje.getDefensa(), enemigo.getDefensa(), personaje.getCasta().getProbabilidadEvitarDano(), enemigo.getCasta().getProbabilidadEvitarDano());
 						
 						enviarAtaque(paqueteAtacar);
 						miTurno = false;

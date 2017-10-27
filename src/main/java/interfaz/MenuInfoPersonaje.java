@@ -6,10 +6,10 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
-import dominio.Personaje;
 import juego.Pantalla;
 import mensajeria.PaquetePersonaje;
 import recursos.Recursos;
+import dominio.Personaje;
 
 public class MenuInfoPersonaje {
 
@@ -105,7 +105,7 @@ public class MenuInfoPersonaje {
 		Pantalla.centerString(g, new Rectangle(x, y + 290, menu.getWidth(), 0), "a tu oponente, sigue así");
 		Pantalla.centerString(g, new Rectangle(x, y + 310, menu.getWidth(), 0), "para lograr subir de nivel");
 		Pantalla.centerString(g, new Rectangle(x, y + 330, menu.getWidth(), 0), "y mejorar tus atributos.");
-		
+
 	}
 
 	private void graficarMenuSubirNivel(Graphics g) {
@@ -138,7 +138,7 @@ public class MenuInfoPersonaje {
 		g.drawString(personaje.getExperiencia() + " / " + Personaje.getTablaDeNiveles()[personaje.getNivel() + 1], x + 150, y + 320);
 
 	}
-	
+
 	private void graficarMenuItem(Graphics g) {
 
 		// Informo que subio de nivel
@@ -152,7 +152,7 @@ public class MenuInfoPersonaje {
 		Pantalla.centerString(g, new Rectangle(x, y + 325, menu.getWidth(), 0), String.valueOf(personaje.getNivel()));
 
 	}
-	
+
 	private void graficarMenuComerciar(Graphics g){
 
 		// muestro los nombres de los atributos

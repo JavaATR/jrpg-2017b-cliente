@@ -43,7 +43,7 @@ public class Pantalla {
 	public static MenuStats menuStats;
 	public static MenuEscape menuEscp;
 	public static VentanaContactos ventContac;
-		
+
 	private final Gson gson = new Gson();
 
 	public Pantalla(final String NOMBRE, final int ANCHO, final int ALTO, final Cliente cliente) {
@@ -90,6 +90,7 @@ public class Pantalla {
 							menuAsignar = new MenuAsignarSkills(cliente);
 							menuAsignar.setVisible(true);
 						}
+						menuAsignar = null;
 					} 
 				} else if (e.getKeyCode() == KeyEvent.VK_S) {
 					if(Estado.getEstado().esEstadoDeJuego()) {
@@ -143,17 +144,17 @@ public class Pantalla {
 	}
 
 	public static void centerString(Graphics g, Rectangle r, String s) {
-	    FontRenderContext frc = new FontRenderContext(null, true, true);
+		FontRenderContext frc = new FontRenderContext(null, true, true);
 
-	    Rectangle2D r2D = g.getFont().getStringBounds(s, frc);
-	    int rWidth = (int) Math.round(r2D.getWidth());
-	    int rHeight = (int) Math.round(r2D.getHeight());
-	    int rX = (int) Math.round(r2D.getX());
-	    int rY = (int) Math.round(r2D.getY());
+		Rectangle2D r2D = g.getFont().getStringBounds(s, frc);
+		int rWidth = (int) Math.round(r2D.getWidth());
+		int rHeight = (int) Math.round(r2D.getHeight());
+		int rX = (int) Math.round(r2D.getX());
+		int rY = (int) Math.round(r2D.getY());
 
-	    int a = (r.width / 2) - (rWidth / 2) - rX;
-	    int b = (r.height / 2) - (rHeight / 2) - rY;
+		int a = (r.width / 2) - (rWidth / 2) - rX;
+		int b = (r.height / 2) - (rHeight / 2) - rY;
 
-	    g.drawString(s, r.x + a, r.y + b);
+		g.drawString(s, r.x + a, r.y + b);
 	}
 }

@@ -1,7 +1,7 @@
 package entidades;
 
 import java.awt.image.BufferedImage;
-/**La clase Animacion tiene como función  
+/**La clase Animacion tiene como función
  * controlar las animaciones.
  */
 public class Animacion {
@@ -10,7 +10,7 @@ public class Animacion {
 	private int indice;
 	private long ultimoTiempo, timer;
 	private BufferedImage[] frames;
-	/**Constructor de la clase
+	/**Constructor de la clase.
 	 * @param velocidad velocidad con la cual se actualiza
 	 * @param frames imagen de frame
 	 */
@@ -21,7 +21,7 @@ public class Animacion {
 		timer = 0;
 		ultimoTiempo = System.currentTimeMillis();
 	}
-	/**Actualiza los frames
+	/**Actualiza los frames.
 	 */
 	public void actualizar() {
 		timer += System.currentTimeMillis() - ultimoTiempo;
@@ -35,18 +35,18 @@ public class Animacion {
 			}
 		}
 	}
-	/**Resetea el indice
+	/**Resetea el indice.
 	 */
 	public void reset() {
 		indice = 0;
 	}
-	/**Pide el frame actual 
+	/**Pide el frame actual.
 	 * @return devuelve el valor del frame en un indice
 	 */
 	public BufferedImage getFrameActual() {
 		return frames[indice];
 	}
-	/**Pide el frame  
+	/**Pide el frame.
 	 * @return devuelve el indice del frame
 	 */
 	public int getFrame() {

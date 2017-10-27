@@ -4,17 +4,24 @@ import java.io.Serializable;
 import java.util.HashMap;
 
 public class PaqueteAtacar extends Paquete implements Serializable, Cloneable {
-
+	/**
+	 * Atributos de la clase.
+	 */
 	private int id;
 	private int idEnemigo;
 	private int nuevaSaludPersonaje;
 	private int nuevaEnergiaPersonaje;
 	private int nuevaSaludEnemigo;
 	private int nuevaEnergiaEnemigo;
-	private HashMap<String,Number> mapPersonaje = new HashMap<String,Number>();
-	private HashMap<String,Number> mapEnemigo = new HashMap<String,Number>();
+	private HashMap<String, Number> mapPersonaje = new HashMap<String, Number>();
+	private HashMap<String, Number> mapEnemigo = new HashMap<String, Number>();
 
-	public PaqueteAtacar(int id, int idEnemigo, int nuevaSalud, int nuevaEnergia, int nuevaSaludEnemigo, int nuevaEnergiaEnemigo, int nuevaDefensa, int nuevaDefensaEnemigo, double probEvitarDano, double probEvitarDanoEnemgio) {
+	/**
+	 * Class constructor.
+	 */
+	public PaqueteAtacar(int id, int idEnemigo, int nuevaSalud, int nuevaEnergia, int nuevaSaludEnemigo,
+			int nuevaEnergiaEnemigo, int nuevaDefensa, int nuevaDefensaEnemigo, double probEvitarDano,
+				double probEvitarDanoEnemgio) {
 		setComando(Comando.ATACAR);
 		this.id = id;
 		this.idEnemigo = idEnemigo;

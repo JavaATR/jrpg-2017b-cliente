@@ -32,33 +32,67 @@ import frames.MenuStats;
 import mensajeria.Comando;
 import mensajeria.Paquete;
 
+/**
+ * Clase que administra la pantalla. <br>
+ */
 public class Pantalla {
-
+	/**
+	 * Pantalla. <br>
+	 */
 	private JFrame pantalla;
+	/**
+	 * Canvas en el que dibuja. <br>
+	 */
 	private Canvas canvas;
-
-	// Menus
+	/**
+	 * Menú del inventario. <br>
+	 */
 	public static MenuInventario menuInventario;
+	/**
+	 * Menú de asignar skills. <br>
+	 */
 	public static MenuAsignarSkills menuAsignar;
+	/**
+	 * Menú de stats. <br>
+	 */
 	public static MenuStats menuStats;
+	/**
+	 * Menú de escape. <br>
+	 */
 	public static MenuEscape menuEscp;
+	/**
+	 * Ventada de contactos del chat. <br>
+	 */
 	public static VentanaContactos ventContac;
-		
+	/**
+	 * Gson Pantalla. <br>
+	 */
 	private final Gson gson = new Gson();
 
-	public Pantalla(final String NOMBRE, final int ANCHO, final int ALTO, final Cliente cliente) {
-		pantalla = new JFrame(NOMBRE);
+	/**
+	 * Construye la pantalla del juego. <br>
+	 * Se encarga de mostrar desde el mundo hasta el inventario. <br>
+	 * @param nombre
+	 *            Nombre del juego. <br>
+	 * @param ancho
+	 *            Ancho de pantalla. <br>
+	 * @param alto
+	 *            Alto de pantalla. <br>
+	 * @param cliente
+	 *            Usuario. <br>
+	 */
+	public Pantalla(final String nombre, final int ancho, final int alto, final Cliente cliente) {
+		pantalla = new JFrame(nombre);
 		pantalla.setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/java/frames/IconoWome.png"));
 		pantalla.setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
-			new ImageIcon(MenuJugar.class.getResource("/cursor.png")).getImage(),
-			new Point(0,0),"custom cursor"));
-
-		pantalla.setSize(ANCHO, ALTO);
+				new ImageIcon(MenuJugar.class.getResource("/cursor.png")).getImage(), new Point(0, 0),
+				"custom cursor"));
+		pantalla.setSize(ancho, alto);
 		pantalla.setResizable(false);
 		pantalla.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 		pantalla.addWindowListener(new WindowAdapter() {
 			@Override
-			public void windowClosing(WindowEvent evt) {
+			public void windowClosing(final WindowEvent evt) {
 				try {
 					Paquete p = new Paquete();
 					p.setComando(Comando.DESCONECTAR);
@@ -76,84 +110,107 @@ public class Pantalla {
 		});
 		pantalla.addKeyListener(new KeyAdapter() {
 			@Override
-			public void keyReleased(KeyEvent e) {
+			public void keyReleased(final KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_I) {
-					if(Estado.getEstado().esEstadoDeJuego()) {
+					if (Estado.getEstado().esEstadoDeJuego()) {
 						if (menuInventario == null) {
 							menuInventario = new MenuInventario(cliente);
 							menuInventario.setVisible(true);
 						}
 					}
-				} else if (e.getKeyCode() == KeyEvent.VK_A) {
-					if(Estado.getEstado().esEstadoDeJuego()) {
-						if (menuAsignar == null) {
-							menuAsignar = new MenuAsignarSkills(cliente);
-							menuAsignar.setVisible(true);
+				} else {
+					if (e.getKeyCode() == KeyEvent.VK_A) {
+						if (Estado.getEstado().esEstadoDeJuego()) {
+							if (menuAsignar == null) {
+								menuAsignar = new MenuAsignarSkills(cliente);
+								menuAsignar.setVisible(true);
+							}
+							menuAsignar = null;
 						}
-					} 
-				} else if (e.getKeyCode() == KeyEvent.VK_S) {
-					if(Estado.getEstado().esEstadoDeJuego()) {
-						if (menuStats == null) {
-							menuStats = new MenuStats(cliente);
-							menuStats.setVisible(true);
+					} else {
+						if (e.getKeyCode() == KeyEvent.VK_S) {
+							if (Estado.getEstado().esEstadoDeJuego()) {
+								if (menuStats == null) {
+									menuStats = new MenuStats(cliente);
+									menuStats.setVisible(true);
+								}
+							}
+						} else {
+							if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+								if (Estado.getEstado().esEstadoDeJuego()) {
+									if (menuEscp == null) {
+										menuEscp = new MenuEscape(cliente);
+										menuEscp.setVisible(true);
+									}
+								}
+							} else {
+								if (e.getKeyCode() == KeyEvent.VK_C) {
+									// if(Estado.getEstado().esEstadoDeJuego())
+									// {
+									if (ventContac == null) {
+										ventContac = new VentanaContactos(cliente.getJuego());
+										ventContac.setVisible(true);
+									}
+									// }
+								}
+							}
 						}
 					}
-				} else if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-					if(Estado.getEstado().esEstadoDeJuego()) {
-						if (menuEscp == null) {
-							menuEscp = new MenuEscape(cliente);
-							menuEscp.setVisible(true);
-						}
-					}
-				} else if (e.getKeyCode() == KeyEvent.VK_C) {
-//					if(Estado.getEstado().esEstadoDeJuego()) {
-						if (ventContac == null) {
-							ventContac = new VentanaContactos(cliente.getJuego());
-							ventContac.setVisible(true);
-						}
-//					}
 				}
 			}
 		});
-
-
 		pantalla.setLocationRelativeTo(null);
 		pantalla.setVisible(false);
-
 		canvas = new Canvas();
-		canvas.setPreferredSize(new Dimension(ANCHO, ALTO));
-		canvas.setMaximumSize(new Dimension(ANCHO, ALTO));
-		canvas.setMinimumSize(new Dimension(ANCHO, ALTO));
+		canvas.setPreferredSize(new Dimension(ancho, alto));
+		canvas.setMaximumSize(new Dimension(ancho, alto));
+		canvas.setMinimumSize(new Dimension(ancho, alto));
 		canvas.setFocusable(false);
-
 		pantalla.add(canvas);
 		pantalla.pack();
 	}
 
+	/**
+	 * Devuelve el canvas. <br>
+	 * @return Canvas. <br>
+	 */
 	public Canvas getCanvas() {
 		return canvas;
 	}
 
+	/**
+	 * Muestra la pantalla. <br>
+	 * @return Pantalla. <br>
+	 */
 	public JFrame getFrame() {
 		return pantalla;
 	}
 
+	/**
+	 * Hace la pantalla visible. <br>
+	 */
 	public void mostrar() {
 		pantalla.setVisible(true);
 	}
 
-	public static void centerString(Graphics g, Rectangle r, String s) {
-	    FontRenderContext frc = new FontRenderContext(null, true, true);
-
-	    Rectangle2D r2D = g.getFont().getStringBounds(s, frc);
-	    int rWidth = (int) Math.round(r2D.getWidth());
-	    int rHeight = (int) Math.round(r2D.getHeight());
-	    int rX = (int) Math.round(r2D.getX());
-	    int rY = (int) Math.round(r2D.getY());
-
-	    int a = (r.width / 2) - (rWidth / 2) - rX;
-	    int b = (r.height / 2) - (rHeight / 2) - rY;
-
-	    g.drawString(s, r.x + a, r.y + b);
+	/**
+	 * Centraliza la pantalla con el movimiento del jugador. <br>
+	 * @param g
+	 *            Grafico. <br>
+	 * @param area
+	 *            Rectangulo. <br>
+	 * @param string
+	 *            String. <br>
+	 */
+	public static void centerString(final Graphics g, final Rectangle area, final String string) {
+		FontRenderContext frc = new FontRenderContext(null, true, true);
+		Rectangle2D r2D = g.getFont().getStringBounds(string, frc);
+		int rWidth = (int) Math.round(r2D.getWidth());
+		int rHeight = (int) Math.round(r2D.getHeight());
+		int rX = (int) Math.round(r2D.getX());
+		int rY = (int) Math.round(r2D.getY());
+		int a = (area.width / 2) - (rWidth / 2) - rX;
+		int b = (area.height / 2) - (rHeight / 2) - rY;
+		g.drawString(string, area.x + a, area.y + b);
 	}
 }

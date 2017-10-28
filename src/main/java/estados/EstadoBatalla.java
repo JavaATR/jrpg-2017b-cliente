@@ -127,7 +127,7 @@ public class EstadoBatalla extends Estado {
 				if (menuBatalla.clickEnMenu(posMouse[0], posMouse[1])) {
 
 					if (menuBatalla.getBotonClickeado(posMouse[0], posMouse[1]) == 1) {
-						if(personaje.puedeAtacar()){
+						if(personaje.puedeAtacar()) {
 							seRealizoAccion = true;
 							
 							if (enemigoNPC != null)
@@ -218,7 +218,7 @@ public class EstadoBatalla extends Estado {
 					} else {
 						if (enemigoNPC != null) {
 							paqueteAtacar = new PaqueteAtacar(paquetePersonaje.getId(), paqueteEnemigoNPC.getId(), personaje.getSalud(), personaje.getEnergia(), enemigoNPC.getSalud(), 100, personaje.getDefensa(), enemigoNPC.getDefensa(), 0, 0);
-							enemigoNPC.setSalud(enemigoNPC.getSalud() - personaje.calcularPuntosDeAtaque()) ;
+							//enemigoNPC.setSalud(enemigoNPC.getSalud() - personaje.calcularPuntosDeAtaque()) ;
 						}
 						else
 							paqueteAtacar = new PaqueteAtacar(paquetePersonaje.getId(), paqueteEnemigo.getId(), personaje.getSalud(), personaje.getEnergia(), enemigo.getSalud(), enemigo.getEnergia(), personaje.getDefensa(), enemigo.getDefensa(), personaje.getCasta().getProbabilidadEvitarDaño(), enemigo.getCasta().getProbabilidadEvitarDaño());
@@ -349,21 +349,31 @@ public class EstadoBatalla extends Estado {
 			paquetePersonaje.setFuerza(personaje.getFuerza());
 			paquetePersonaje.setInteligencia(personaje.getInteligencia());
 			paquetePersonaje.removerBonus();
-
-			paqueteEnemigo.setSaludTope(enemigo.getSaludTope());
-			paqueteEnemigo.setEnergiaTope(enemigo.getEnergiaTope());
-			paqueteEnemigo.setNivel(enemigo.getNivel());
-			paqueteEnemigo.setExperiencia(enemigo.getExperiencia());
-			paqueteEnemigo.setDestreza(enemigo.getDestreza());
-			paqueteEnemigo.setFuerza(enemigo.getFuerza());
-			paqueteEnemigo.setInteligencia(enemigo.getInteligencia());
-			paqueteEnemigo.removerBonus();
-
+			
 			paquetePersonaje.setComando(Comando.ACTUALIZARPERSONAJE);
-			paqueteEnemigo.setComando(Comando.ACTUALIZARPERSONAJE);
+
+			if (paqueteEnemigoNPC != null) {
+				paqueteEnemigoNPC.setSaludTope(100);
+				paqueteEnemigoNPC.setEnergiaTope(50);
+	
+				//paqueteEnemigoNPC.setComando(Comando.ACTUALIZARPERSONAJE);
+				//juego.getCliente().getSalida().writeObject(gson.toJson(paqueteEnemigoNPC));
+			}
+			else {
+				paqueteEnemigo.setSaludTope(enemigo.getSaludTope());
+				paqueteEnemigo.setEnergiaTope(enemigo.getEnergiaTope());
+				paqueteEnemigo.setNivel(enemigo.getNivel());
+				paqueteEnemigo.setExperiencia(enemigo.getExperiencia());
+				paqueteEnemigo.setDestreza(enemigo.getDestreza());
+				paqueteEnemigo.setFuerza(enemigo.getFuerza());
+				paqueteEnemigo.setInteligencia(enemigo.getInteligencia());
+				paqueteEnemigo.removerBonus();
+	
+				paqueteEnemigo.setComando(Comando.ACTUALIZARPERSONAJE);
+				juego.getCliente().getSalida().writeObject(gson.toJson(paqueteEnemigo));
+			}
 
 			juego.getCliente().getSalida().writeObject(gson.toJson(paquetePersonaje));
-			juego.getCliente().getSalida().writeObject(gson.toJson(paqueteEnemigo));
 			
 		} catch (IOException e) {
 			JOptionPane.showMessageDialog(null, "Fallo la conexión con el servidor");

@@ -434,7 +434,8 @@ public class Entidad {
 			tileEnemigos = Mundo.mouseATile(actual.getPosX(), actual.getPosY());
 			if (actual != null) {
 				if (tileMoverme[0] == tileEnemigos[0] && tileMoverme[1] == 
-						tileEnemigos[1]) {
+						tileEnemigos[1] && juego.getEnemigosConectados().get(actual.
+						getIdPersonaje() * -1 + 1).getEstado() == Estado.estadoJuego) {
 					idEnemigo = actual.getIdPersonaje();
 					float XY[] = Mundo.isoA2D(x,y);
 

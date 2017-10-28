@@ -29,6 +29,7 @@ public class PaqueteEnemigo extends Paquete implements Serializable, Cloneable {
 		fuerza = 50;
 		destreza = 50;
 		inteligencia = 50;
+		estado = 1;
 	}
 	
 	public int getEstado() {

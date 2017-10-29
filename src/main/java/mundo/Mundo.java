@@ -71,6 +71,26 @@ public class Mundo {
 	 * Matriz de grafos no sólidos. <br>
 	 */
 	private Grafo grafoDeTilesNoSolidos;
+	/**
+	 * Offset X de cámara. <br>
+	 */
+	private static final int OFFSET_X = 30;
+	/**
+	 * Offset Y de cámara. <br>
+	 */
+	private static final int OFFSET_Y = 60;
+	/**
+	 * Offset de pantala Y. <br>
+	 */
+	private static final int OFFSET_MUNDO_Y = 32;
+	/**
+	 * Ancho de pantalla del mundo. <br>
+	 */
+	private static final int MUNDO_X = 64;
+	/**
+	 * Alto de pantalla del mundo. <br>
+	 */
+	private static final int MUNDO_Y = 64;
 
 	/**
 	 * Construye un mundo para el juego. <br>
@@ -93,19 +113,18 @@ public class Mundo {
 	public void actualizar() {
 
 	}
-
 	/**
 	 * Grafica el mundo. <br>
 	 * @param g
 	 *            Graficador. <br>
 	 */
-	public void graficar(final Graphics g) {
+	public final void graficar(final Graphics g) {
 		xOffset = juego.getEstadoJuego().getPersonaje().getxOffset();
 		yOffset = juego.getEstadoJuego().getPersonaje().getYOffset();
-		xMinimo = (int) (juego.getCamara().getxOffset() - xOffset - 30);
-		xMaximo = xMinimo + juego.getAncho() + xOffset + 30;
-		yMinimo = (int) juego.getCamara().getyOffset() + yOffset - 60;
-		yMaximo = yMinimo + juego.getAlto() + yOffset + 60;
+		xMinimo = (int) (juego.getCamara().getxOffset() - xOffset - OFFSET_X);
+		xMaximo = xMinimo + juego.getAncho() + xOffset + OFFSET_X;
+		yMinimo = (int) juego.getCamara().getyOffset() + yOffset - OFFSET_Y;
+		yMaximo = yMinimo + juego.getAlto() + yOffset + OFFSET_Y;
 		// Grafico el tile base
 		for (int i = 0; i < alto; i++) {
 			for (int j = 0; j < ancho; j++) {
@@ -114,20 +133,22 @@ public class Mundo {
 					int map = juego.getPersonaje().getMapa();
 					if (map == 1) {
 						Tile.aubenor[Tile.aubenorBase].graficar(g, (int) (iso[0] - juego.getCamara().getxOffset()),
-								(int) (iso[1] - juego.getCamara().getyOffset() - 32), 64, 64);
+								(int) (iso[1] - juego.getCamara().getyOffset() - OFFSET_MUNDO_Y), MUNDO_X, MUNDO_Y);
 					} else {
 						if (map == 2) {
 							Tile.aris[Tile.arisBase].graficar(g, (int) (iso[0] - juego.getCamara().getxOffset()),
-									(int) (iso[1] - juego.getCamara().getyOffset() - 32), 64, 64);
+									(int) (iso[1] - juego.getCamara().getyOffset() - OFFSET_MUNDO_Y), MUNDO_X, MUNDO_Y);
 						} else {
 							if (map == 3) {
 								Tile.aubenor[Tile.aubenorBase].graficar(g,
 										(int) (iso[0] - juego.getCamara().getxOffset()),
-										(int) (iso[1] - juego.getCamara().getyOffset() - 32), 64, 64);
+										(int) (iso[1] - juego.getCamara().getyOffset() - OFFSET_MUNDO_Y), MUNDO_X, MUNDO_Y);
 							}
-							if (!getTile(j, i).esSolido())
+							if (!getTile(j, i).esSolido()) {
 								getTile(j, i).graficar(g, (int) (iso[0] - juego.getCamara().getxOffset()),
-										(int) (iso[1] - juego.getCamara().getyOffset() - 32), 64, 64);
+										(int) (iso[1] - juego.getCamara().getyOffset() - OFFSET_MUNDO_Y), MUNDO_X,
+										MUNDO_Y);
+							}
 						}
 					}
 				}
@@ -140,18 +161,20 @@ public class Mundo {
 	 * @param g
 	 *            Graficador. <br>
 	 */
-	public void graficarObstaculos(final Graphics g) {
+	public final void graficarObstaculos(final Graphics g) {
 		Tile obst;
 		for (int i = 0; i < alto; i++) {
 			for (int j = 0; j < ancho; j++) {
 				iso = dosDaIso(j, i);
 				// Grafico al personaje
-				if (Estado.getEstado() == juego.getEstadoJuego())
+				if (Estado.getEstado() == juego.getEstadoJuego()) {
 					if (Mundo.mouseATile(juego.getUbicacionPersonaje().getPosX(),
 							juego.getUbicacionPersonaje().getPosY())[0] == j
 							&& Mundo.mouseATile(juego.getUbicacionPersonaje().getPosX(),
-									juego.getUbicacionPersonaje().getPosY())[1] == i)
+									juego.getUbicacionPersonaje().getPosY())[1] == i) {
 						juego.getEstadoJuego().getPersonaje().graficar(g);
+					}
+				}
 				// Grafico los obstaculos
 				if ((iso[0] >= xMinimo && iso[0] <= xMaximo) && (iso[1] >= yMinimo && iso[1] <= yMaximo)
 						&& getTile(j, i).esSolido()) {
@@ -172,7 +195,7 @@ public class Mundo {
 	 *            Posición Y. <br>
 	 * @return Tile. <br>
 	 */
-	public Tile getTile(final int x, final int y) {
+	public final Tile getTile(final int x, final int y) {
 		Tile t = Tile.tiles[tiles[x][y]];
 		if (t == null) {
 			int map = juego.getPersonaje().getMapa();
@@ -214,7 +237,6 @@ public class Mundo {
 			}
 		}
 	}
-	
 	/**
 	 * Transforma el mapa en un mundo de grafos para calcular las distancias más
 	 * cortas de recorridos.<br>
@@ -224,9 +246,11 @@ public class Mundo {
 		Nodo[][] nodos = new Nodo[this.ancho][this.alto];
 		int indice = 0;
 		// Lleno la matriz con los nodos
-		for (int y = 0; y < this.alto; y++)
-			for (int x = 0; x < this.ancho; x++)
+		for (int y = 0; y < this.alto; y++) {
+			for (int x = 0; x < this.ancho; x++) {
 				nodos[y][x] = new Nodo(indice++, x, y);
+			}
+		}
 		// Variables finales
 		int xFinal = this.ancho;
 		int yFinal = this.alto;
@@ -275,32 +299,32 @@ public class Mundo {
 		this.grafoDeTilesNoSolidos = new Grafo(this.ancho * this.alto);
 		indice = 0;
 		// Paso la matriz a un array
-		for (int i = 0; i < this.ancho; i++)
-			for (int j = 0; j < this.alto; j++)
+		for (int i = 0; i < this.ancho; i++) {
+			for (int j = 0; j < this.alto; j++) {
 				this.grafoDeTilesNoSolidos.agregarNodo(nodos[i][j]);
+			}
+		}
 	}
 
 	/**
 	 * Devuelve los caminos sin obstaculos. <br>
 	 * @return Grafos no sólidos. <br>
 	 */
-	public Grafo obtenerGrafoDeTilesNoSolidos() {
+	public final Grafo obtenerGrafoDeTilesNoSolidos() {
 		return this.grafoDeTilesNoSolidos;
 	}
-	
 	/**
 	 * Devuelve el ancho del mundo. <br>
 	 * @return Ancho. <br>
 	 */
-	public int obtenerAncho() {
+	public final int obtenerAncho() {
 		return this.ancho;
 	}
-	
 	/**
 	 * Devuelve el alto del mundo. <br> 
 	 * @return Alto. <br>
 	 */
-	public int obtenerAlto() {
+	public final int obtenerAlto() {
 		return this.alto;
 	}
 
@@ -342,7 +366,7 @@ public class Mundo {
 	 *            Posición Y. <br>
 	 * @return Distancia. <br>
 	 */
-	public static int[] mouseATile(float x, float y) {
+	public static int[] mouseATile(final float x, final float y) {
 		int tile[] = new int[2];
 		tile[0] = (int) Math.floor((y / Tile.ALTO) + (x / Tile.ANCHO)) + 1;
 		tile[1] = (int) Math.floor((-x / Tile.ANCHO) + (y / Tile.ALTO)) + 1;

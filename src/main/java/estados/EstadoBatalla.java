@@ -221,7 +221,7 @@ public class EstadoBatalla extends Estado {
 							//enemigoNPC.setSalud(enemigoNPC.getSalud() - personaje.calcularPuntosDeAtaque()) ;
 						}
 						else
-							paqueteAtacar = new PaqueteAtacar(paquetePersonaje.getId(), paqueteEnemigo.getId(), personaje.getSalud(), personaje.getEnergia(), enemigo.getSalud(), enemigo.getEnergia(), personaje.getDefensa(), enemigo.getDefensa(), personaje.getCasta().getProbabilidadEvitarDaño(), enemigo.getCasta().getProbabilidadEvitarDaño());
+							paqueteAtacar = new PaqueteAtacar(paquetePersonaje.getId(), paqueteEnemigo.getId(), personaje.getSalud(), personaje.getEnergia(), enemigo.getSalud(), enemigo.getEnergia(), personaje.getDefensa(), enemigo.getDefensa(), personaje.getCasta().getProbabilidadEvitarDano(), enemigo.getCasta().getProbabilidadEvitarDano());
 						
 						enviarAtaque(paqueteAtacar);
 						miTurno = false;

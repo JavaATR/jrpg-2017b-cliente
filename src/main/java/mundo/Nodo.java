@@ -10,7 +10,7 @@ public class Nodo {
 	 */
 	private int y;
 	/**
-	 * Índice. <br>
+	 * Indice. <br>
 	 */
 	private int indice;
 	/**
@@ -25,7 +25,7 @@ public class Nodo {
 	/**
 	 * Crea un nodo con su posición. <br>
 	 * @param indice
-	 *            Índice. <br>
+	 *            Indice. <br>
 	 * @param x
 	 *            Posición X. <br>
 	 * @param y
@@ -56,8 +56,8 @@ public class Nodo {
 	}
 
 	/**
-	 * Devuelve el índice. <br>
-	 * @return Índice. <br>
+	 * Devuelve el Indice. <br>
+	 * @return Indice. <br>
 	 */
 	public int obtenerIndice() {
 		return this.indice;

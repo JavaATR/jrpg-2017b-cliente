@@ -22,12 +22,99 @@ import juego.Juego;
 import juego.Pantalla;
 import mensajeria.PaquetePersonaje;
 
-public class VentanaContactos extends JFrame {	
+/**
+ * Clase que administra la lista de contactos del cliente. <br>
+ */
+@SuppressWarnings("serial")
+public class VentanaContactos extends JFrame {
+	/**
+	 * Panel principal. <br>
+	 */
 	private JPanel contentPane;
+	/**
+	 * Lista de usuarios visual. <br>
+	 */
 	private DefaultListModel<String> modelo = new DefaultListModel<String>();
+	/**
+	 * Lista de usuarios. <br>
+	 */
 	private static JList<String> list = new JList<String>();
+	/**
+	 * Botón del multi-chat. <br>
+	 */
 	private static JButton botonMc;
+	/**
+	 * Fondo del chat. <br>
+	 */
 	private JLabel background;
+	/**
+	 * Empty BorderPante del ContentPane. <br>
+	 */
+	private static final int CONTENT_PANE_BORDER = 5;
+	/**
+	 * Bounds X del principal. <br>
+	 */
+	private static final int TEXTO_X = 100;
+	/**
+	 * Bounds Y del principal. <br>
+	 */
+	private static final int TEXTO_Y = 100;
+	/**
+	 * Bounds Width del principal. <br>
+	 */
+	private static final int TEXTO_WIDTH = 327;
+	/**
+	 * Bounds Height del principal. <br>
+	 */
+	private static final int TEXTO_HEIGHT = 273;
+	/**
+	 * Bounds X del scrollPane. <br>
+	 */
+	private static final int SCROLL_PANE_X = 10;
+	/**
+	 * Bounds Y del scrollPane. <br>
+	 */
+	private static final int SCROLL_PANE_Y = 11;
+	/**
+	 * Bounds Width del scrollPane. <br>
+	 */
+	private static final int SCROLL_PANE_WIDTH = 299;
+	/**
+	 * Bounds Height del scrollPane. <br>
+	 */
+	private static final int SCROLL_PANE_HEIGHT = 188;
+	/**
+	 * Bounds X del botón de multi-chat. <br>
+	 */
+	private static final int BOTON_MC_X = 119;
+	/**
+	 * Bounds Y del botón de multi-chat. <br>
+	 */
+	private static final int BOTON_MC_Y = 208;
+	/**
+	 * Bounds Width del botón de multi-chat. <br>
+	 */
+	private static final int BOTON_MC_WIDTH = 89;
+	/**
+	 * Bounds Height del botón de multi-chat. <br>
+	 */
+	private static final int BOTON_MC_HEIGHT = 23;
+	/**
+	 * Bounds X del background. <br>
+	 */
+	private static final int BACKGROUND_X = -16;
+	/**
+	 * Bounds Y del background. <br>
+	 */
+	private static final int BACKGROUND_Y = 0;
+	/**
+	 * Bounds Width del background. <br>
+	 */
+	private static final int BACKGROUND_WIDTH = 352;
+	/**
+	 * Bounds Height del background. <br>
+	 */
+	private static final int BACKGROUND_HEIGHT = 254;
 
 	/**
 	 * Create the frame.
@@ -35,33 +122,30 @@ public class VentanaContactos extends JFrame {
 	public VentanaContactos(final Juego juego) {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 327, 273);
+		setBounds(TEXTO_X, TEXTO_Y, TEXTO_WIDTH, TEXTO_HEIGHT);
 		setLocationRelativeTo(null);
 		setTitle("Usuarios");
-		
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBorder(
+				new EmptyBorder(CONTENT_PANE_BORDER, CONTENT_PANE_BORDER, CONTENT_PANE_BORDER, CONTENT_PANE_BORDER));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 11, 299, 188);
+		scrollPane.setBounds(SCROLL_PANE_X, SCROLL_PANE_Y, SCROLL_PANE_WIDTH, SCROLL_PANE_HEIGHT);
 		contentPane.add(scrollPane);
-
 		addWindowListener(new WindowAdapter() {
 			@Override
-			public void windowClosing(WindowEvent arg0) {
+			public void windowClosing(final WindowEvent arg0) {
 				Pantalla.ventContac = null;
 				dispose();
 			}
 		});
-		
 		botonMc = new JButton("Multichat");
 		botonMc.setIcon(new ImageIcon("recursos//multichatButton.png"));
 		botonMc.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(modelo.size() != 0) {
-					if(!juego.getChatsActivos().containsKey("Sala")) {
+			public void actionPerformed(final ActionEvent e) {
+				if (modelo.size() != 0) {
+					if (!juego.getChatsActivos().containsKey("Sala")) {
 						MiChat chat = new MiChat(juego);
 						juego.getChatsActivos().put("Sala", chat);
 						chat.setTitle("Sala");
@@ -71,9 +155,8 @@ public class VentanaContactos extends JFrame {
 				}
 			}
 		});
-		botonMc.setBounds(119, 208, 89, 23);
+		botonMc.setBounds(BOTON_MC_X, BOTON_MC_Y, BOTON_MC_WIDTH, BOTON_MC_HEIGHT);
 		contentPane.add(botonMc);
-		
 		// Cargo la lista de contactos
 		actualizarLista(juego);
 		// Pregunto si la ventana sala esta abierta y cancelo el boton multichat
@@ -82,36 +165,37 @@ public class VentanaContactos extends JFrame {
 		} else {
 			botonMc.setEnabled(true);
 		}
-		
 		list.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
+			public void mouseClicked(final MouseEvent arg0) {
 				if (arg0.getClickCount() == 2) {
-					if(list.getSelectedValue() != null) {
-						if(!juego.getChatsActivos().containsKey(list.getSelectedValue())) {
+					if (list.getSelectedValue() != null) {
+						if (!juego.getChatsActivos().containsKey(list.getSelectedValue())) {
 							if (juego.getCliente() != null) {
 								MiChat chat = new MiChat(juego);
 								juego.getChatsActivos().put(list.getSelectedValue(), chat);
 								chat.setTitle(list.getSelectedValue());
 								chat.setVisible(true);
-							}	
+							}
 						}
 					}
 				}
 			}
 		});
-
-
 		list.setModel(modelo);
 		scrollPane.setViewportView(list);
-		
 		background = new JLabel(new ImageIcon("recursos//background.jpg"));
-		background.setBounds(-16, 0, 352, 254);
+		background.setBounds(BACKGROUND_X, BACKGROUND_Y, BACKGROUND_WIDTH, BACKGROUND_HEIGHT);
 		contentPane.add(background);
 	}
 
+	/**
+	 * Actualiza la lista de contactos del cliente. <br>
+	 * @param juego
+	 *            Juego del cliente. <br>
+	 */
 	private void actualizarLista(final Juego juego) {
-		if(juego.getCliente() != null) {
+		if (juego.getCliente() != null) {
 			synchronized (juego.getCliente()) {
 				modelo.removeAllElements();
 				if (juego.getPersonajesConectados() != null) {
@@ -124,11 +208,19 @@ public class VentanaContactos extends JFrame {
 			}
 		}
 	}
-	
+
+	/**
+	 * Devuelve la lista de los contactos. <br>
+	 * @return Lista de contactos. <br>
+	 */
 	public static JList<String> getList() {
 		return list;
 	}
-	
+
+	/**
+	 * Devuelve el botón del multi-chat. <br>
+	 * @return Botón de multi-chat. <br>
+	 */
 	public static JButton getBotonMc() {
 		return botonMc;
 	}

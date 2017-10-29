@@ -68,15 +68,19 @@ public class EstadoJuego extends Estado {
 			JOptionPane.showMessageDialog(null, "Fallo la conexión con el servidor al ingresar al mundo");
 		}
 
-//		try {
-//			// Le envio al servidor que me pase la información de enemigos conectados
-//			juego.getPersonaje().setComando(Comando.CONEXIONENEMIGOS);
-//			juego.getPersonaje().setEstado(Estado.estadoJuego);
-//			juego.getCliente().getSalida().writeObject(gson.toJson(juego.getPersonaje(), PaquetePersonaje.class));
-//			juego.getCliente().getSalida().writeObject(gson.toJson(juego.getUbicacionPersonaje(), PaqueteMovimiento.class));
-//		} catch (IOException e) {
-//			JOptionPane.showMessageDialog(null, "Fallo la conexión con el servidor al actualizar el cliente con los enemigos");
-//		}
+		// try {
+		// // Le envio al servidor que me pase la información de enemigos
+		// conectados
+		// juego.getPersonaje().setComando(Comando.CONEXIONENEMIGOS);
+		// juego.getPersonaje().setEstado(Estado.estadoJuego);
+		// juego.getCliente().getSalida().writeObject(gson.toJson(juego.getPersonaje(),
+		// PaquetePersonaje.class));
+		// juego.getCliente().getSalida().writeObject(gson.toJson(juego.getUbicacionPersonaje(),
+		// PaqueteMovimiento.class));
+		// } catch (IOException e) {
+		// JOptionPane.showMessageDialog(null, "Fallo la conexión con el
+		// servidor al actualizar el cliente con los enemigos");
+		// }
 	}
 
 	@Override
@@ -101,7 +105,7 @@ public class EstadoJuego extends Estado {
 		g.drawImage(Recursos.chat, 3, 524, 102, 35, null);
 		if (haySolicitud)
 			menuEnemigo.graficar(g, tipoSolicitud);
-		if(haySolicitudEnemigo)
+		if (haySolicitudEnemigo)
 			menuEnemigoNPC.graficar(g, tipoSolicitud);
 	}
 
@@ -116,8 +120,11 @@ public class EstadoJuego extends Estado {
 		while (it.hasNext()) {
 			key = it.next();
 			actual = ubicacionEnemigos.get(key);
-			Pantalla.centerString(g, new Rectangle((int) (actual.getPosX() - juego.getCamara().getxOffset() + 32), (int) (actual.getPosY() - juego.getCamara().getyOffset() - 20 ), 0, 10), "El Bryan");
-			g.drawImage(Recursos.elBryan.get(actual.getDireccion())[actual.getFrame()], (int) (actual.getPosX() - juego.getCamara().getxOffset() ), (int) (actual.getPosY() - juego.getCamara().getyOffset()), 64, 64, null);
+			Pantalla.centerString(g, new Rectangle((int) (actual.getPosX() - juego.getCamara().getxOffset() + 32),
+					(int) (actual.getPosY() - juego.getCamara().getyOffset() - 20), 0, 10), "El Bryan");
+			g.drawImage(Recursos.elBryan.get(actual.getDireccion())[actual.getFrame()],
+					(int) (actual.getPosX() - juego.getCamara().getxOffset()),
+					(int) (actual.getPosY() - juego.getCamara().getyOffset()), 64, 64, null);
 		}
 	}
 
@@ -156,15 +163,8 @@ public class EstadoJuego extends Estado {
 	private String getMundo() {
 		int mundo = juego.getPersonaje().getMapa();
 
-		if (mundo == 1) {
-			return "Aubenor";
-		} else if (mundo == 2) {
-			return "Aris";
-		} else if (mundo == 3) {
-			return "Eodrim";
-		}
+		return (mundo == 1) ? "Aubenor" : (mundo == 2) ? "Aris" : (mundo == 3) ? "Eodrim" : null;
 
-		return null;
 	}
 
 	public void setHaySolicitud(boolean b, PaquetePersonaje enemigo, int tipoSolicitud) {
@@ -173,7 +173,7 @@ public class EstadoJuego extends Estado {
 		menuEnemigo = new MenuInfoPersonaje(300, 50, enemigo);
 		this.tipoSolicitud = tipoSolicitud;
 	}
-	
+
 	public void setHaySolicitudEnemigo(boolean b, PaqueteEnemigo enemigo, int tipoSolicitud) {
 		haySolicitudEnemigo = b;
 		// menu que mostrara al enemigo
@@ -188,7 +188,7 @@ public class EstadoJuego extends Estado {
 	public boolean getHaySolicitudEnemigo() {
 		return haySolicitudEnemigo;
 	}
-	
+
 	public void actualizarPersonaje() {
 		paquetePersonaje = juego.getPersonaje();
 	}
@@ -196,8 +196,8 @@ public class EstadoJuego extends Estado {
 	public MenuInfoPersonaje getMenuEnemigo() {
 		return menuEnemigo;
 	}
-	
-	public MenuInfoEnemigo getMenuEnemigoNPC(){
+
+	public MenuInfoEnemigo getMenuEnemigoNPC() {
 		return menuEnemigoNPC;
 	}
 

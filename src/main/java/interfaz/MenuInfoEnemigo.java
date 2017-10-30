@@ -15,7 +15,7 @@ import recursos.Recursos;
 public class MenuInfoEnemigo {
 
 	private static final int anchoPersonaje = 128;
-	private static final BufferedImage menu = Recursos.menuEnemigo;
+	private static final BufferedImage menu = Recursos.getMenuEnemigo();
 	public static final int menuBatallar = 0;
 	public static final int menuInformacion = 1;
 	public static final int menuSubirNivel = 2;
@@ -57,7 +57,7 @@ public class MenuInfoEnemigo {
 
 		// muestro los botones
 		g.setFont(new Font("Book Antiqua", 1, 20));
-		g.drawImage(Recursos.botonMenu, x + 50, y + 380, 200, 25, null);
+		g.drawImage(Recursos.getBotonMenu(), x + 50, y + 380, 200, 25, null);
 		g.setColor(Color.WHITE);
 		Pantalla.centerString(g, new Rectangle(x + 50, y + 380, 200, 25), leyendaBoton[tipoMenu]);
 	}

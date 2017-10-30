@@ -979,7 +979,7 @@ public class Recursos {
 
 	/**
 	 * Devuelve el sprite del menú de batalla deshabilitado. <br>
-	 * @return Sprite del bloque de hielo. <br>
+	 * @return Sprite del menú de batalla deshabilitado. <br>
 	 */
 	public static BufferedImage getMenuBatallaDeshabilitado() {
 		return menuBatallaDeshabilitado;

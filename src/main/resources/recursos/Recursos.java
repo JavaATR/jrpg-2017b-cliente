@@ -209,85 +209,85 @@ public class Recursos {
 	/**
 	 * Sprite de cesped. <br>
 	 */
-	public static BufferedImage cesped;
+	private static BufferedImage cesped;
 	/**
 	 * Sprite de rocas. <br>
 	 */
-	public static BufferedImage roca;
+	private static BufferedImage roca;
 	/**
 	 * Sprite del fondo. <br>
 	 */
-	public static BufferedImage background;
+	private static BufferedImage background;
 	/**
 	 * Sprite del marco. <br>
 	 */
-	public static BufferedImage marco;
+	private static BufferedImage marco;
 	/**
 	 * Sprite del botón del menú. <br>
 	 */
-	public static BufferedImage botonMenu;
+	private static BufferedImage botonMenu;
 	/**
 	 * Sprite del menú del enemigo. <br>
 	 */
-	public static BufferedImage menuEnemigo;
+	private static BufferedImage menuEnemigo;
 	/**
 	 * Sprite de árboles verdes. <br>
 	 */
-	public static BufferedImage greenTree;
+	private static BufferedImage greenTree;
 	/**
 	 * Sprite de piso nevado. <br>
 	 */
-	public static BufferedImage nievePiso1;
+	private static BufferedImage nievePiso1;
 	/**
 	 * Sprite de bloques de hielo. <br>
 	 */
-	public static BufferedImage iceBlock;
+	private static BufferedImage iceBlock;
 	// Fin Entorno
 	// Batalla
 	/**
 	 * Sprite de la barra de hechizos. <br>
 	 */
-	public static BufferedImage barraSpells;
+	private static BufferedImage barraSpells;
 	/**
 	 * Sprite del estado del personaje. <br>
 	 */
-	public static BufferedImage estadoPersonaje;
+	private static BufferedImage estadoPersonaje;
 	/**
 	 * Sprite de la barra de salud del personaje. <br>
 	 */
-	public static BufferedImage barraSalud;
+	private static BufferedImage barraSalud;
 	/**
 	 * Sprite de la barra de energía. <br>
 	 */
-	public static BufferedImage barraEnergia;
+	private static BufferedImage barraEnergia;
 	/**
 	 * Sprite de la barra de experiencia. <br>
 	 */
-	public static BufferedImage barraExperiencia;
+	private static BufferedImage barraExperiencia;
 	/**
 	 * Sprite del menú de batalla. <br>
 	 */
-	public static BufferedImage menuBatalla;
+	private static BufferedImage menuBatalla;
 	/**
 	 * Sprite del menú de batalla deshabilitado. <br>
 	 */
-	public static BufferedImage menuBatallaDeshabilitado;
+	private static BufferedImage menuBatallaDeshabilitado;
 	/**
 	 * Sprite de un item nulo. <br>
 	 */
-	public static BufferedImage noItem;
+	private static BufferedImage noItem;
 	/**
 	 * Sprite del inventario. <br>
 	 */
-	public static BufferedImage mochila;
+	private static BufferedImage mochila;
 	/**
 	 * Sprite del menú. <br>
 	 */
-	public static BufferedImage menu;
+	private static BufferedImage menu;
 	/**
 	 * Sprite del chat. <br>
 	 */
-	public static BufferedImage chat;
+	private static BufferedImage chat;
 	/**
 	 * Sprite de las habilidades. <br>
 	 */
@@ -337,6 +337,7 @@ public class Recursos {
 	 * Ochenta y uno misterioso. <br>
 	 */
 	private static final int OCHENTAYUNO = 81;
+
 	/**
 	 * Carga todos los recursos del juego.
 	 * <p>
@@ -351,10 +352,10 @@ public class Recursos {
 	public static void cargar(final MenuCarga menuCarga) throws NumberFormatException, IOException {
 		int elementosCargados = 0;
 		// Items
-		noItem = ImageIO.read(new File("recursos//noItem.png"));
-		mochila = ImageIO.read(new File("recursos//mochila.png"));
-		menu = ImageIO.read(new File("recursos//menu.png"));
-		chat = ImageIO.read(new File("recursos//chat.png"));
+		setNoItem(ImageIO.read(new File("recursos//noItem.png")));
+		setMochila(ImageIO.read(new File("recursos//mochila.png")));
+		setMenu(ImageIO.read(new File("recursos//menu.png")));
+		setChat(ImageIO.read(new File("recursos//chat.png")));
 		// Inicio humano
 		spriteHumano = new SpriteSheet(CargadorImagen.cargarImagen("/Humano.png"));
 		actualizarBarraDeCarga(++elementosCargados, menuCarga);
@@ -570,25 +571,25 @@ public class Recursos {
 		personaje.put("Elfo", elfo);
 		personaje.put("El Bryan", elBryan);
 		// Inicio Entorno
-		cesped = CargadorImagen.cargarImagen("/Cesped.png");
+		setCesped(CargadorImagen.cargarImagen("/Cesped.png"));
 		actualizarBarraDeCarga(++elementosCargados, menuCarga);
-		roca = CargadorImagen.cargarImagen("/rock.png");
+		setRoca(CargadorImagen.cargarImagen("/rock.png"));
 		actualizarBarraDeCarga(++elementosCargados, menuCarga);
-		background = CargadorImagen.cargarImagen("/background.jpg");
+		setBackground(CargadorImagen.cargarImagen("/background.jpg"));
 		actualizarBarraDeCarga(++elementosCargados, menuCarga);
-		marco = CargadorImagen.cargarImagen("/marco.png");
+		setMarco(CargadorImagen.cargarImagen("/marco.png"));
 		actualizarBarraDeCarga(++elementosCargados, menuCarga);
-		botonMenu = CargadorImagen.cargarImagen("/botonMenu.png");
+		setBotonMenu(CargadorImagen.cargarImagen("/botonMenu.png"));
 		actualizarBarraDeCarga(++elementosCargados, menuCarga);
-		menuEnemigo = CargadorImagen.cargarImagen("/MenuEnemigo.png");
+		setMenuEnemigo(CargadorImagen.cargarImagen("/MenuEnemigo.png"));
 		actualizarBarraDeCarga(++elementosCargados, menuCarga);
 		trees = new SpriteSheet(CargadorImagen.cargarImagen("/trees.png"));
 		actualizarBarraDeCarga(++elementosCargados, menuCarga);
-		greenTree = trees.getTile(0, 0, CUARENTAYDOS, CINCUENTA);
+		setGreenTree(trees.getTile(0, 0, CUARENTAYDOS, CINCUENTA));
 		actualizarBarraDeCarga(++elementosCargados, menuCarga);
-		nievePiso1 = CargadorImagen.cargarImagen("/nieve piso.png");
+		setNievePiso1(CargadorImagen.cargarImagen("/nieve piso.png"));
 		actualizarBarraDeCarga(++elementosCargados, menuCarga);
-		iceBlock = CargadorImagen.cargarImagen("/nieve cubo.png");
+		setIceBlock(CargadorImagen.cargarImagen("/nieve cubo.png"));
 		// Mapa
 		if (MenuMapas.numberMap == 1) {
 			SpriteSheet mapaAubenor = new SpriteSheet(CargadorImagen.cargarImagen("/Aubenor.png"));
@@ -627,15 +628,15 @@ public class Recursos {
 		}
 		// Fin Entorno
 		// Inicio Batalla
-		barraSpells = CargadorImagen.cargarImagen("/BarraSpells.png");
+		setBarraSpells(CargadorImagen.cargarImagen("/BarraSpells.png"));
 		actualizarBarraDeCarga(++elementosCargados, menuCarga);
-		estadoPersonaje = CargadorImagen.cargarImagen("/EstadoPersonaje.png");
+		setEstadoPersonaje(CargadorImagen.cargarImagen("/EstadoPersonaje.png"));
 		actualizarBarraDeCarga(++elementosCargados, menuCarga);
-		barraSalud = CargadorImagen.cargarImagen("/BarraDeSalud.png");
+		setBarraSalud(CargadorImagen.cargarImagen("/BarraDeSalud.png"));
 		actualizarBarraDeCarga(++elementosCargados, menuCarga);
-		barraEnergia = CargadorImagen.cargarImagen("/BarraDeEnergia.png");
+		setBarraEnergia(CargadorImagen.cargarImagen("/BarraDeEnergia.png"));
 		actualizarBarraDeCarga(++elementosCargados, menuCarga);
-		barraExperiencia = CargadorImagen.cargarImagen("/BarraDeExperiencia.png");
+		setBarraExperiencia(CargadorImagen.cargarImagen("/BarraDeExperiencia.png"));
 		actualizarBarraDeCarga(++elementosCargados, menuCarga);
 		habilidades.put("Golpe Level", CargadorImagen.cargarImagen("/Golpe Level.png"));
 		actualizarBarraDeCarga(++elementosCargados, menuCarga);
@@ -669,9 +670,9 @@ public class Recursos {
 		actualizarBarraDeCarga(++elementosCargados, menuCarga);
 		habilidades.put("Ser Energizado", CargadorImagen.cargarImagen("/Ser Energizado.png"));
 		actualizarBarraDeCarga(++elementosCargados, menuCarga);
-		menuBatalla = CargadorImagen.cargarImagen("/MenuBatalla.png");
+		setMenuBatalla(CargadorImagen.cargarImagen("/MenuBatalla.png"));
 		actualizarBarraDeCarga(++elementosCargados, menuCarga);
-		menuBatallaDeshabilitado = CargadorImagen.cargarImagen("/MenuBatallaDeshabilitado.png");
+		setMenuBatallaDeshabilitado(CargadorImagen.cargarImagen("/MenuBatallaDeshabilitado.png"));
 		actualizarBarraDeCarga(++elementosCargados, menuCarga);
 		// Fin Batalla
 	}
@@ -685,5 +686,345 @@ public class Recursos {
 	 */
 	private static void actualizarBarraDeCarga(final int elementosCargados, final MenuCarga menuCarga) {
 		menuCarga.setBarraCargando(elementosCargados * ANCHOBARRA / ELEMENTOS);
+	}
+
+	/**
+	 * Devuelve el sprite de la mochila. <br>
+	 * @return Sprite de la mochila. <br>
+	 */
+	public static BufferedImage getMochila() {
+		return mochila;
+	}
+
+	/**
+	 * Establece el sprite de la mochila. <br>
+	 * @param mochila
+	 *            Sprite de la mochila. <br>
+	 */
+	public static void setMochila(final BufferedImage mochila) {
+		Recursos.mochila = mochila;
+	}
+
+	/**
+	 * Devuelve el sprite del menú. <br>
+	 * @return Sprite del menú. <br>
+	 */
+	public static BufferedImage getMenu() {
+		return menu;
+	}
+
+	/**
+	 * Establece el sprite del menú. <br>
+	 * @param menu
+	 *            Sprite del menú. <br>
+	 */
+	public static void setMenu(final BufferedImage menu) {
+		Recursos.menu = menu;
+	}
+
+	/**
+	 * Devuelve el sprite del cesped. <br>
+	 * @return Sprite del cesped. <br>
+	 */
+	public static BufferedImage getCesped() {
+		return cesped;
+	}
+
+	/**
+	 * Establece el sprite del cesped. <br>
+	 * @param cesped
+	 *            Sprite del cesped. <br>
+	 */
+	public static void setCesped(final BufferedImage cesped) {
+		Recursos.cesped = cesped;
+	}
+
+	/**
+	 * Devuelve el sprite de la roca. <br>
+	 * @return Sprite de la roca. <br>
+	 */
+	public static BufferedImage getRoca() {
+		return roca;
+	}
+
+	/**
+	 * Establece el sprite de la roca. <br>
+	 * @param roca
+	 *            Sprite de la roca. <br>
+	 */
+	public static void setRoca(final BufferedImage roca) {
+		Recursos.roca = roca;
+	}
+
+	/**
+	 * Devuelve el sprite del background. <br>
+	 * @return Sprite del background. <br>
+	 */
+	public static BufferedImage getBackground() {
+		return background;
+	}
+
+	/**
+	 * Establece el sprite del background. <br>
+	 * @param background
+	 *            Sprite del background. <br>
+	 */
+	public static void setBackground(final BufferedImage background) {
+		Recursos.background = background;
+	}
+
+	/**
+	 * Devuelve el sprite del marco. <br>
+	 * @return Sprite del marco. <br>
+	 */
+	public static BufferedImage getMarco() {
+		return marco;
+	}
+
+	/**
+	 * Establece el sprite del marco. <br>
+	 * @param marco
+	 *            Sprite del marco. <br>
+	 */
+	public static void setMarco(final BufferedImage marco) {
+		Recursos.marco = marco;
+	}
+
+	/**
+	 * Devuelve el sprite del boton menu. <br>
+	 * @return Sprite del boton menu. <br>
+	 */
+	public static BufferedImage getBotonMenu() {
+		return botonMenu;
+	}
+
+	/**
+	 * Establece el sprite del boton menu. <br>
+	 * @param botonMenu
+	 *            Sprite del boton menu. <br>
+	 */
+	public static void setBotonMenu(final BufferedImage botonMenu) {
+		Recursos.botonMenu = botonMenu;
+	}
+
+	/**
+	 * Devuelve el sprite del menú enemigo. <br>
+	 * @return Sprite del menú enemigo. <br>
+	 */
+	public static BufferedImage getMenuEnemigo() {
+		return menuEnemigo;
+	}
+
+	/**
+	 * Establece el sprite del menú enemigo. <br>
+	 * @param menuEnemigo
+	 *            Sprite del menú enemigo. <br>
+	 */
+	public static void setMenuEnemigo(final BufferedImage menuEnemigo) {
+		Recursos.menuEnemigo = menuEnemigo;
+	}
+
+	/**
+	 * Devuelve el sprite del green tree. <br>
+	 * @return Sprite del green tree. <br>
+	 */
+	public static BufferedImage getGreenTree() {
+		return greenTree;
+	}
+
+	/**
+	 * Establece el sprite del green tree. <br>
+	 * @param greenTree
+	 *            Sprite del green tree. <br>
+	 */
+	public static void setGreenTree(final BufferedImage greenTree) {
+		Recursos.greenTree = greenTree;
+	}
+
+	/**
+	 * Devuelve el sprite del piso de nieve. <br>
+	 * @return Sprite del piso de nieve. <br>
+	 */
+	public static BufferedImage getNievePiso1() {
+		return nievePiso1;
+	}
+
+	/**
+	 * Establece el sprite del piso de nieve. <br>
+	 * @param nievePiso1
+	 *            Sprite del piso de nieve. <br>
+	 */
+	public static void setNievePiso1(final BufferedImage nievePiso1) {
+		Recursos.nievePiso1 = nievePiso1;
+	}
+
+	/**
+	 * Devuelve el sprite del bloque de hielo. <br>
+	 * @return Sprite del bloque de hielo. <br>
+	 */
+	public static BufferedImage getIceBlock() {
+		return iceBlock;
+	}
+
+	/**
+	 * Establece el sprite del bloque de hielo. <br>
+	 * @param iceBlock
+	 *            Sprite del bloque de hielo. <br>
+	 */
+	public static void setIceBlock(final BufferedImage iceBlock) {
+		Recursos.iceBlock = iceBlock;
+	}
+
+	/**
+	 * Devuelve el sprite de la barra de hechizos. <br>
+	 * @return Sprite de la barra de hechizos. <br>
+	 */
+	public static BufferedImage getBarraSpells() {
+		return barraSpells;
+	}
+
+	/**
+	 * Establece el sprite de la barra de hechizos. <br>
+	 * @param barraSpells
+	 *            Sprite de la barra de hechizos. <br>
+	 */
+	public static void setBarraSpells(final BufferedImage barraSpells) {
+		Recursos.barraSpells = barraSpells;
+	}
+
+	/**
+	 * Devuelve el sprite del estado del personaje. <br>
+	 * @return Sprite del estado del personaje. <br>
+	 */
+	public static BufferedImage getEstadoPersonaje() {
+		return estadoPersonaje;
+	}
+
+	/**
+	 * Establece el estado del personaje. <br>
+	 * @param estadoPersonaje
+	 *            Sprite del estado del personaje. <br>
+	 */
+	public static void setEstadoPersonaje(final BufferedImage estadoPersonaje) {
+		Recursos.estadoPersonaje = estadoPersonaje;
+	}
+
+	/**
+	 * Devuelve el sprite de la barra de salud. <br>
+	 * @return Sprite de la barra de salud. <br>
+	 */
+	public static BufferedImage getBarraSalud() {
+		return barraSalud;
+	}
+
+	/**
+	 * Establece el sprite de la barra de salud. <br>
+	 * @param barraSalud
+	 *            Sprite de la barra de salud. <br>
+	 */
+	public static void setBarraSalud(final BufferedImage barraSalud) {
+		Recursos.barraSalud = barraSalud;
+	}
+
+	/**
+	 * Devuelve el sprite de la barra de energía. <br>
+	 * @return Sprite de la barra de energía. <br>
+	 */
+	public static BufferedImage getBarraEnergia() {
+		return barraEnergia;
+	}
+
+	/**
+	 * Establece el sprite de la barra de energía. <br>
+	 * @param barraEnergia
+	 *            Sprite de la barra de energía. <br>
+	 */
+	public static void setBarraEnergia(final BufferedImage barraEnergia) {
+		Recursos.barraEnergia = barraEnergia;
+	}
+
+	/**
+	 * Devuelve el sprite de la barra de experiencia. <br>
+	 * @return Sprite de la barra de experiencia. <br>
+	 */
+	public static BufferedImage getBarraExperiencia() {
+		return barraExperiencia;
+	}
+
+	/**
+	 * Establece el sprite de la barra de experiencia. <br>
+	 * @param barraExperiencia
+	 *            Sprite de la barra de experiencia. <br>
+	 */
+	public static void setBarraExperiencia(final BufferedImage barraExperiencia) {
+		Recursos.barraExperiencia = barraExperiencia;
+	}
+
+	/**
+	 * Devuelve el sprite del menú de batalla. <br>
+	 * @return Sprite del menú de batalla. <br>
+	 */
+	public static BufferedImage getMenuBatalla() {
+		return menuBatalla;
+	}
+
+	/**
+	 * Establece el sprite del menú de batalla. <br>
+	 * @param menuBatalla
+	 *            Sprite del menú de batalla. <br>
+	 */
+	public static void setMenuBatalla(final BufferedImage menuBatalla) {
+		Recursos.menuBatalla = menuBatalla;
+	}
+
+	/**
+	 * Devuelve el sprite del menú de batalla deshabilitado. <br>
+	 * @return Sprite del bloque de hielo. <br>
+	 */
+	public static BufferedImage getMenuBatallaDeshabilitado() {
+		return menuBatallaDeshabilitado;
+	}
+
+	/**
+	 * Establece el sprite del menú de batalla deshabilitado. <br>
+	 * @param menuBatallaDeshabilitado
+	 *            Sprite del menú de batalla deshabilitado. <br>
+	 */
+	public static void setMenuBatallaDeshabilitado(final BufferedImage menuBatallaDeshabilitado) {
+		Recursos.menuBatallaDeshabilitado = menuBatallaDeshabilitado;
+	}
+
+	/**
+	 * Devuelve el sprite del item nulo. <br>
+	 * @return Sprite del item nulo. <br>
+	 */
+	public static BufferedImage getNoItem() {
+		return noItem;
+	}
+
+	/**
+	 * Establece el sprite del item nulo. <br>
+	 * @param noItem
+	 *            Sprite del item nulo. <br>
+	 */
+	public static void setNoItem(final BufferedImage noItem) {
+		Recursos.noItem = noItem;
+	}
+
+	/**
+	 * Devuelve el sprite del chat. <br>
+	 * @return Sprite del chat. <br>
+	 */
+	public static BufferedImage getChat() {
+		return chat;
+	}
+
+	/**
+	 * Establece el sprite del chat. <br>
+	 * @param chat
+	 *            Sprite del chat. <br>
+	 */
+	public static void setChat(final BufferedImage chat) {
+		Recursos.chat = chat;
 	}
 }

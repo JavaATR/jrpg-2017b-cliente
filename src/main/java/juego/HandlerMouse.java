@@ -31,9 +31,10 @@ public class HandlerMouse implements MouseListener {
 		posMouse = new int[2];
 		posMouseRecorrido = new int[2];
 	}
-	
+
 	/**
-	 * Establece el comportamiento a realizar presionado los botones del mouse. <br>
+	 * Establece el comportamiento a realizar presionado los botones del mouse.
+	 * <br>
 	 */
 	@Override
 	public void mouseClicked(final MouseEvent e) {
@@ -57,7 +58,7 @@ public class HandlerMouse implements MouseListener {
 	public void mouseEntered(MouseEvent arg0) {
 
 	}
-	
+
 	/**
 	 * NULL. <br>
 	 */
@@ -81,9 +82,10 @@ public class HandlerMouse implements MouseListener {
 	public void mouseReleased(MouseEvent arg0) {
 
 	}
-	
+
 	/**
-	 * Devuelve la posición del mouse. <br> 
+	 * Devuelve la posición del mouse. <br>
+	 *
 	 * @return Posición del mouse. <br>
 	 */
 	public int[] getPosMouse() {
@@ -92,6 +94,7 @@ public class HandlerMouse implements MouseListener {
 
 	/**
 	 * Devuelve el recorrido del mouse. <br>
+	 *
 	 * @return Recorrido mouse. <br>
 	 */
 	public int[] getPosMouseRecorrido() {
@@ -99,7 +102,8 @@ public class HandlerMouse implements MouseListener {
 	}
 
 	/**
-	 * Devuelve si hay un nuevo recorrido del mouse. <br> 
+	 * Devuelve si hay un nuevo recorrido del mouse. <br>
+	 *
 	 * @return <b>true</b> si lo hay.<br>
 	 *         <b>false</b> de lo contrario. <br>
 	 */
@@ -109,6 +113,7 @@ public class HandlerMouse implements MouseListener {
 
 	/**
 	 * Establece si el mouse tiene un nuevo recorrido. <br>
+	 *
 	 * @param b
 	 *            Indicador de nuevo camino. <br>
 	 */
@@ -118,6 +123,7 @@ public class HandlerMouse implements MouseListener {
 
 	/**
 	 * Devuelve si hubo un nuevo click del mouse. <br>
+	 *
 	 * @return <b>true</b> si lo hay.<br>
 	 *         <b>false</b> de lo contrario. <br>
 	 */
@@ -127,6 +133,7 @@ public class HandlerMouse implements MouseListener {
 
 	/**
 	 * Establece si hubo un nuevo click. <br>
+	 *
 	 * @param b
 	 *            Indicador de si hubo un nuevo click. <br>
 	 */

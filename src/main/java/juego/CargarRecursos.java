@@ -19,12 +19,13 @@ public class CargarRecursos extends Thread {
 	private Cliente cliente;
 
 	/**
-	 * Carga los recursos del cliente. <br> 
-	 * @param cliente
+	 * Carga los recursos del cliente. <br>
+	 *
+	 * @param client
 	 *            Cliente. <br>
 	 */
-	public CargarRecursos(final Cliente cliente) {
-		this.cliente = cliente;
+	public CargarRecursos(final Cliente client) {
+		this.cliente = client;
 	}
 
 	/**
@@ -36,11 +37,14 @@ public class CargarRecursos extends Thread {
 			try {
 				Recursos.cargar(cliente.getMenuCarga());
 			} catch (FileNotFoundException e) {
-				JOptionPane.showMessageDialog(null, "Fallo al abrir el archivo imagen.");
+				JOptionPane.showMessageDialog(null,
+						"Fallo al abrir el archivo imagen.");
 			} catch (NumberFormatException e) {
-				JOptionPane.showMessageDialog(null, "Fallo el formato de imagen/distribucion.");
+				JOptionPane.showMessageDialog(null,
+						"Fallo el formato de imagen/distribucion.");
 			} catch (IOException e) {
-				JOptionPane.showMessageDialog(null, "Fallo importante de archivos de imagen.");
+				JOptionPane.showMessageDialog(null,
+						"Fallo importante de archivos de imagen.");
 			}
 			cliente.setAccion(Comando.SALIR);
 			cliente.notify();

@@ -21,21 +21,23 @@ public class Camara {
 
 	/**
 	 * Crea la cámara que se mueve con el personaje. <br>
-	 * @param juego
+	 *
+	 * @param game
 	 *            Juego. <br>
-	 * @param xOffset
+	 * @param offsetX
 	 *            Offset X. <br>
-	 * @param yOffset
+	 * @param offsetY
 	 *            Offset Y. <br>
 	 */
-	public Camara(final Juego juego, final float xOffset, final float yOffset) {
-		this.juego = juego;
-		this.xOffset = xOffset;
-		this.yOffset = yOffset;
+	public Camara(final Juego game, final float offsetX, final float offsetY) {
+		this.juego = game;
+		this.xOffset = offsetX;
+		this.yOffset = offsetY;
 	}
 
 	/**
 	 * Centra la cámara al personaje. <br>
+	 *
 	 * @param e
 	 *            Entidad. <br>
 	 */
@@ -46,6 +48,7 @@ public class Camara {
 
 	/**
 	 * Mueve la cámara con respecto al personaje. <br>
+	 *
 	 * @param dx
 	 *            Distancia X. <br>
 	 * @param dy
@@ -58,6 +61,7 @@ public class Camara {
 
 	/**
 	 * Devuelve el offset de Y. <br>
+	 *
 	 * @return Offset Y. <br>
 	 */
 	public float getyOffset() {
@@ -66,6 +70,7 @@ public class Camara {
 
 	/**
 	 * Establece el offset de Y. <br>
+	 *
 	 * @param yOffset
 	 *            Offset Y. <br>
 	 */
@@ -75,6 +80,7 @@ public class Camara {
 
 	/**
 	 * Devuelve el offset de X. <br>
+	 *
 	 * @return Offset X. <br>
 	 */
 	public float getxOffset() {
@@ -83,6 +89,7 @@ public class Camara {
 
 	/**
 	 * Establece el offset de X. <br>
+	 *
 	 * @param xOffset
 	 *            Offset X. <br>
 	 */

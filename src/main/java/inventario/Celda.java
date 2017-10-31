@@ -57,18 +57,21 @@ public class Celda extends JPanel {
 
 	/**
 	 * Crea una celda para un item. <br>
+	 *
 	 * @param item
 	 *            Item. <br>
-	 * @param paquetePersonaje
+	 * @param pckgPersonaje
 	 *            Personaje que posee el item. <br>
 	 * @throws IOException
 	 *             El path de la imágen del archivo es errónea. <br>
 	 */
-	public Celda(final Item item, final PaquetePersonaje paquetePersonaje) throws IOException {
+	public Celda(final Item item, final PaquetePersonaje pckgPersonaje)
+			throws IOException {
 		this.item = item.getFoto();
 		it = item;
-		this.paquetePersonaje = paquetePersonaje;
-		label = new JLabel(new ImageIcon(this.item.getScaledInstance(ITEM_WIDTH, ITEM_HEIGHT, Image.SCALE_DEFAULT)));
+		this.paquetePersonaje = pckgPersonaje;
+		label = new JLabel(new ImageIcon(this.item.getScaledInstance(ITEM_WIDTH,
+				ITEM_HEIGHT, Image.SCALE_DEFAULT)));
 		actionListenersYLabel(item);
 	}
 
@@ -76,13 +79,14 @@ public class Celda extends JPanel {
 	 * Crea una celda de item vacía. <br>
 	 */
 	public Celda() {
-		label = new JLabel(
-				new ImageIcon(Recursos.getNoItem().getScaledInstance(ITEM_WIDTH, ITEM_HEIGHT, Image.SCALE_DEFAULT)));
+		label = new JLabel(new ImageIcon(Recursos.getNoItem().getScaledInstance(
+				ITEM_WIDTH, ITEM_HEIGHT, Image.SCALE_DEFAULT)));
 		add(label);
 	}
 
 	/**
 	 * Muestra los modificadores de stats del item. <br>
+	 *
 	 * @param item
 	 *            Item del inventario. <br>
 	 */
@@ -117,7 +121,8 @@ public class Celda extends JPanel {
 	 * Resetea el label del item. <br>
 	 */
 	protected final void resetLabel() {
-		label.setIcon(new ImageIcon(Recursos.getNoItem().getScaledInstance(ITEM_WIDTH, ITEM_HEIGHT, Image.SCALE_DEFAULT)));
+		label.setIcon(new ImageIcon(Recursos.getNoItem().getScaledInstance(
+				ITEM_WIDTH, ITEM_HEIGHT, Image.SCALE_DEFAULT)));
 		label.setToolTipText(null);
 		paquetePersonaje.removerItem(it);
 		label.removeMouseListener(mouseListener);
@@ -134,6 +139,7 @@ public class Celda extends JPanel {
 
 	/**
 	 * Devuelve el label del item. <br>
+	 *
 	 * @return Label del item. <br>
 	 */
 	public final JLabel getLabel() {
@@ -145,13 +151,16 @@ public class Celda extends JPanel {
 	 */
 	private MouseListener mouseListener = new MouseAdapter() {
 		public void mouseClicked(final MouseEvent e) {
-			Object[] options = {"Tirar", "Cancelar"};
+			Object[] options = { "Tirar", "Cancelar" };
 			if (e.getClickCount() == 2) {
-				int answer = JOptionPane.showOptionDialog(getParent(), "¿Qué desea hacer?", "Item: " + it.getNombre(),
-						JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[1]);
+				int answer = JOptionPane.showOptionDialog(getParent(),
+						"¿Qué desea hacer?", "Item: " + it.getNombre(),
+						JOptionPane.YES_NO_CANCEL_OPTION,
+						JOptionPane.PLAIN_MESSAGE, null, options, options[1]);
 				// Tirar
 				if (answer == 0) {
-					paquetePersonaje.sacarBonus(it.getBonusSalud(), it.getBonusEnergia(), it.getBonusFuerza(),
+					paquetePersonaje.sacarBonus(it.getBonusSalud(),
+							it.getBonusEnergia(), it.getBonusFuerza(),
 							it.getBonusDestreza(), it.getBonusInteligencia());
 					resetLabel();
 				}

@@ -23,6 +23,9 @@ import mensajeria.PaquetePersonaje;
  * Clase que administra el juego a nivel interfaz visual. <br>
  */
 public class Juego implements Runnable {
+	private static final int FPS = 60;
+	private static final int TIEMPO_POR_ACTUALIZACION = 1000000000;
+	private static final int TIMER = 1000000000;
 	/**
 	 * Pantalla del usuario. <br>
 	 */
@@ -30,15 +33,15 @@ public class Juego implements Runnable {
 	/**
 	 * Nombre del juego. <br>
 	 */
-	private final String NOMBRE;
+	private final String nombre;
 	/**
 	 * Ancho de pantalla. <br>
 	 */
-	private final int ANCHO;
+	private final int ancho;
 	/**
 	 * Alto de pantalla. <br>
 	 */
-	private final int ALTO;
+	private final int alto;
 	/**
 	 * Hilo del usuario. <br>
 	 */
@@ -118,24 +121,25 @@ public class Juego implements Runnable {
 	private CargarRecursos cargarRecursos;
 
 	/**
-	 * Crea un juego para el usuario. <br> 
-	 * @param nombre
+	 * Crea un juego para el usuario. <br>
+	 *
+	 * @param name
 	 *            Nombre del juego. <br>
-	 * @param ancho
+	 * @param width
 	 *            Ancho de pantalla. <br>
-	 * @param alto
+	 * @param height
 	 *            Alto de pantalla. <br>
-	 * @param cliente
+	 * @param client
 	 *            Usuario. <br>
 	 * @param pp
 	 *            Personaje del usuario. <br>
 	 */
-	public Juego(final String nombre, final int ancho, final int alto, final Cliente cliente,
-			final PaquetePersonaje pp) {
-		this.NOMBRE = nombre;
-		this.ALTO = alto;
-		this.ANCHO = ancho;
-		this.cliente = cliente;
+	public Juego(final String name, final int width, final int height,
+			final Cliente client, final PaquetePersonaje pp) {
+		this.nombre = name;
+		this.alto = height;
+		this.ancho = width;
+		this.cliente = client;
 		this.paquetePersonaje = pp;
 		// Inicializo la ubicacion del personaje
 		ubicacionPersonaje = new PaqueteMovimiento();
@@ -147,15 +151,15 @@ public class Juego implements Runnable {
 		escuchaMensajes.start();
 		handlerMouse = new HandlerMouse();
 		iniciar();
-		cargarRecursos = new CargarRecursos(cliente);
+		cargarRecursos = new CargarRecursos(client);
 		cargarRecursos.start();
 	}
-	
+
 	/**
 	 * Carga lo necesario para inicial el juego. <br>
 	 */
-	public void iniciar() { 
-		pantalla = new Pantalla(NOMBRE, ANCHO, ALTO, cliente);
+	public void iniciar() {
+		pantalla = new Pantalla(nombre, ancho, alto, cliente);
 		pantalla.getCanvas().addMouseListener(handlerMouse);
 		camara = new Camara(this, 0, 0);
 		Personaje.cargarTablaNivel();
@@ -173,14 +177,15 @@ public class Juego implements Runnable {
 	/**
 	 * Grafica los objetos y sus posiciones. <br>
 	 */
-	private void graficar() { 
+	private void graficar() {
 		bs = pantalla.getCanvas().getBufferStrategy();
-		if (bs == null) { // Seteo una estrategia para el canvas en caso de que no tenga una
+		if (bs == null) { // Seteo una estrategia para el canvas en caso de que
+							// no tenga una
 			pantalla.getCanvas().createBufferStrategy(3);
 			return;
 		}
 		g = bs.getDrawGraphics(); // Permite graficar el buffer mediante g
-		g.clearRect(0, 0, ANCHO, ALTO); // Limpiamos la pantalla
+		g.clearRect(0, 0, ancho, alto); // Limpiamos la pantalla
 		// Graficado de imagenes
 		g.setFont(new Font("Book Antiqua", 1, 15));
 		if (Estado.getEstado() != null) {
@@ -195,9 +200,9 @@ public class Juego implements Runnable {
 	 * Hilo principal del juego. <br>
 	 */
 	@Override
-	public void run() { 
-		int fps = 60; // Cantidad de actualizaciones por segundo que se desean
-		double tiempoPorActualizacion = 1000000000 / fps; // Cantidad de
+	public void run() {
+		int fps = FPS; // Cantidad de actualizaciones por segundo que se desean
+		double tiempoPorActualizacion = TIEMPO_POR_ACTUALIZACION / fps; // Cantidad de
 															// nanosegundos en
 															// FPS deseados
 		double delta = 0;
@@ -227,8 +232,9 @@ public class Juego implements Runnable {
 				actualizaciones++;
 				delta--;
 			}
-			if (timer >= 1000000000) { // Si paso 1 segundo muestro los FPS
-				pantalla.getFrame().setTitle(NOMBRE + " | " + "FPS: " + actualizaciones);
+			if (timer >= TIMER) { // Si paso 1 segundo muestro los FPS
+				pantalla.getFrame()
+						.setTitle(nombre + " | " + "FPS: " + actualizaciones);
 				actualizaciones = 0;
 				timer = 0;
 			}
@@ -260,28 +266,32 @@ public class Juego implements Runnable {
 			corriendo = false;
 			hilo.join();
 		} catch (InterruptedException e) {
-			JOptionPane.showMessageDialog(null, "Fallo al intentar detener el juego.");
+			JOptionPane.showMessageDialog(null,
+					"Fallo al intentar detener el juego.");
 		}
 	}
 
 	/**
 	 * Devuelve el ancho de pantalla. <br>
+	 *
 	 * @return Ancho. <br>
 	 */
 	public int getAncho() {
-		return ANCHO;
+		return ancho;
 	}
 
 	/**
 	 * Devuelve el alto de pantalla. <br>
+	 *
 	 * @return Alto. <br>
 	 */
 	public int getAlto() {
-		return ALTO;
+		return alto;
 	}
 
 	/**
 	 * Devuelve posición del mouse. <br>
+	 *
 	 * @return Mouse. <br>
 	 */
 	public HandlerMouse getHandlerMouse() {
@@ -290,6 +300,7 @@ public class Juego implements Runnable {
 
 	/**
 	 * Devuelve la posición actual de la cámara. <br>
+	 *
 	 * @return Posición cámara. <br>
 	 */
 	public Camara getCamara() {
@@ -298,6 +309,7 @@ public class Juego implements Runnable {
 
 	/**
 	 * Devuelve el estado del juego. <br>
+	 *
 	 * @return Estado del juego. <br>
 	 */
 	public EstadoJuego getEstadoJuego() {
@@ -306,6 +318,7 @@ public class Juego implements Runnable {
 
 	/**
 	 * Devuelve el estado de batalla. <br>
+	 *
 	 * @return Estado de batalla. <br>
 	 */
 	public EstadoBatalla getEstadoBatalla() {
@@ -314,6 +327,7 @@ public class Juego implements Runnable {
 
 	/**
 	 * Establece el estado de batalla del juego. <br>
+	 *
 	 * @param estadoBatalla
 	 *            Estado de batalla. <br>
 	 */
@@ -323,6 +337,7 @@ public class Juego implements Runnable {
 
 	/**
 	 * Devuelve el cliente del usuario. <br>
+	 *
 	 * @return Cliente. <br>
 	 */
 	public Cliente getCliente() {
@@ -331,6 +346,7 @@ public class Juego implements Runnable {
 
 	/**
 	 * Devuelve el mensaje actual del cliente. <br>
+	 *
 	 * @return Mensaje. <br>
 	 */
 	public EscuchaMensajes getEscuchaMensajes() {
@@ -339,6 +355,7 @@ public class Juego implements Runnable {
 
 	/**
 	 * Devuelve al personaje del usuario. <br>
+	 *
 	 * @return Personaje. <br>
 	 */
 	public PaquetePersonaje getPersonaje() {
@@ -347,14 +364,16 @@ public class Juego implements Runnable {
 
 	/**
 	 * Devuelve la ubicación del personaje. <br>
+	 *
 	 * @return Ubicación del personaje. <br>
 	 */
 	public PaqueteMovimiento getUbicacionPersonaje() {
 		return ubicacionPersonaje;
 	}
-	
+
 	/**
 	 * Devuelve la ubicación del enemigo. <br>
+	 *
 	 * @return Ubicación del enemigo. <br>
 	 */
 	public PaqueteMovimiento getUbicacionEnemigo() {
@@ -363,6 +382,7 @@ public class Juego implements Runnable {
 
 	/**
 	 * Establece el personaje del jugador. <br>
+	 *
 	 * @param paquetePersonaje
 	 *            Personaje. <br>
 	 */
@@ -374,11 +394,13 @@ public class Juego implements Runnable {
 	 * Actualiza la condición actual del personaje. <br>
 	 */
 	public void actualizarPersonaje() {
-		paquetePersonaje = (PaquetePersonaje) (personajesConectados.get(paquetePersonaje.getId()).clone());
+		paquetePersonaje = (PaquetePersonaje) (personajesConectados
+				.get(paquetePersonaje.getId()).clone());
 	}
 
 	/**
 	 * Devuelve los personajes conectados al juego. <br>
+	 *
 	 * @return Personajes conectados. <br>
 	 */
 	public Map<Integer, PaquetePersonaje> getPersonajesConectados() {
@@ -386,16 +408,19 @@ public class Juego implements Runnable {
 	}
 
 	/**
-	 * Establece los personajes conectados. <br> 
+	 * Establece los personajes conectados. <br>
+	 *
 	 * @param map
 	 *            Personajes conectados. <br>
 	 */
-	public void setPersonajesConectados(final Map<Integer, PaquetePersonaje> map) {
+	public void setPersonajesConectados(
+			final Map<Integer, PaquetePersonaje> map) {
 		this.personajesConectados = map;
 	}
-	
+
 	/**
-	 * Devuelve los enemigos conectados al juego. <br> 
+	 * Devuelve los enemigos conectados al juego. <br>
+	 *
 	 * @return Enemigos conectados. <br>
 	 */
 	public Map<Integer, PaqueteEnemigo> getEnemigosConectados() {
@@ -403,7 +428,8 @@ public class Juego implements Runnable {
 	}
 
 	/**
-	 * Establece los enemigos conectados. <br> 
+	 * Establece los enemigos conectados. <br>
+	 *
 	 * @param map
 	 *            Enemigos conectados. <br>
 	 */
@@ -413,40 +439,47 @@ public class Juego implements Runnable {
 
 	/**
 	 * Devuelve la ubicación de los personajes. <br>
+	 *
 	 * @return Ubicación de los personajes. <br>
 	 */
 	public Map<Integer, PaqueteMovimiento> getUbicacionPersonajes() {
 		return ubicacionPersonajes;
 	}
-	
+
 	/**
 	 * Establece la ubicación de los personajes. <br>
+	 *
 	 * @param ubicacionPersonajes
 	 *            Ubicación de los personajes. <br>
 	 */
-	public void setUbicacionPersonajes(final Map<Integer, PaqueteMovimiento> ubicacionPersonajes) {
+	public void setUbicacionPersonajes(
+			final Map<Integer, PaqueteMovimiento> ubicacionPersonajes) {
 		this.ubicacionPersonajes = ubicacionPersonajes;
 	}
-	
+
 	/**
 	 * Devuelve la ubicación de los enemigos. <br>
+	 *
 	 * @return Ubicación de los enemigos. <br>
 	 */
 	public Map<Integer, PaqueteMovimiento> getUbicacionEnemigos() {
 		return ubicacionEnemigos;
 	}
-	
+
 	/**
-	 * Establece la ubicación de los enemigos. <br> 
+	 * Establece la ubicación de los enemigos. <br>
+	 *
 	 * @param ubicacionEnemigos
 	 *            Ubicación de los enemigos. <br>
 	 */
-	public void setUbicacionEnemigos(final Map<Integer, PaqueteMovimiento> ubicacionEnemigos) {
+	public void setUbicacionEnemigos(
+			final Map<Integer, PaqueteMovimiento> ubicacionEnemigos) {
 		this.ubicacionEnemigos = ubicacionEnemigos;
 	}
-	
+
 	/**
 	 * Devuelve los chats activos. <br>
+	 *
 	 * @return Chats activos. <br>
 	 */
 	public Map<String, MiChat> getChatsActivos() {

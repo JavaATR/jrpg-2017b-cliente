@@ -223,20 +223,20 @@ public class Entidad {
 					if (juego.getEstadoJuego().getMenuEnemigo().clickEnBoton(posMouse[0], posMouse[1])) {
 						// Pregunto si menuBatallar o menuComerciar, sino no me
 						// interesa hacer esto
-						if (juego.getEstadoJuego().getTipoSolicitud() == MenuInfoPersonaje.menuBatallar
-								|| juego.getEstadoJuego().getTipoSolicitud() == MenuInfoPersonaje.menuComerciar) {
+						if (juego.getEstadoJuego().getTipoSolicitud() == MenuInfoPersonaje.MENU_BATALLAR
+								|| juego.getEstadoJuego().getTipoSolicitud() == MenuInfoPersonaje.MENU_COMERCIAR) {
 							// Guardo las poss con el que quiero comerciar
 							xComercio = juego.getUbicacionPersonajes().get(idEnemigo).getPosX();
 							yComercio = juego.getUbicacionPersonajes().get(idEnemigo).getPosY();
 							comercio = Mundo.isoA2D(xComercio, yComercio);
 						}
 						// pregunto si el menu emergente es de tipo batalla
-						if (juego.getEstadoJuego().getTipoSolicitud() == MenuInfoPersonaje.menuBatallar) {
+						if (juego.getEstadoJuego().getTipoSolicitud() == MenuInfoPersonaje.MENU_BATALLAR) {
 							// ME ASEGURO DE QUE EL ENEMIGO NO ESTÉ EN LA ZONA
 							// DE COMERCIO
 							if (!((int) comercio[0] >= 44 && (int) comercio[0] <= 71 && (int) comercio[1] >= 0
 									&& (int) comercio[1] <= 29)) {
-								juego.getEstadoJuego().setHaySolicitud(false, null, MenuInfoPersonaje.menuBatallar);
+								juego.getEstadoJuego().setHaySolicitud(false, null, MenuInfoPersonaje.MENU_BATALLAR);
 
 								PaqueteBatalla pBatalla = new PaqueteBatalla();
 
@@ -254,7 +254,7 @@ public class Entidad {
 							}
 						} else {
 							// PREGUNTO SI EL MENU EMERGENTE ES DE TIPO COMERCIO
-							if (juego.getEstadoJuego().getTipoSolicitud() == MenuInfoPersonaje.menuComerciar) {
+							if (juego.getEstadoJuego().getTipoSolicitud() == MenuInfoPersonaje.MENU_COMERCIAR) {
 								if ((int) comercio[0] >= 44 && (int) comercio[0] <= 71 && (int) comercio[1] >= 0
 										&& (int) comercio[1] <= 29) {
 									if (juego.getCliente().getM1() == null) {
@@ -278,14 +278,14 @@ public class Entidad {
 								}
 							}
 						}
-						juego.getEstadoJuego().setHaySolicitud(false, null, MenuInfoPersonaje.menuBatallar);
+						juego.getEstadoJuego().setHaySolicitud(false, null, MenuInfoPersonaje.MENU_BATALLAR);
 					} else if (juego.getEstadoJuego().getMenuEnemigo().clickEnCerrar(posMouse[0], posMouse[1])) {
-						juego.getEstadoJuego().setHaySolicitud(false, null, MenuInfoPersonaje.menuBatallar);
+						juego.getEstadoJuego().setHaySolicitud(false, null, MenuInfoPersonaje.MENU_BATALLAR);
 					} else if (juego.getEstadoJuego().getMenuEnemigo().clickEnCerrar(posMouse[0], posMouse[1])) {
-						juego.getEstadoJuego().setHaySolicitudEnemigo(false, null, MenuInfoPersonaje.menuBatallar);
+						juego.getEstadoJuego().setHaySolicitudEnemigo(false, null, MenuInfoPersonaje.MENU_BATALLAR);
 					}
 				} else {
-					juego.getEstadoJuego().setHaySolicitud(false, null, MenuInfoPersonaje.menuBatallar);
+					juego.getEstadoJuego().setHaySolicitud(false, null, MenuInfoPersonaje.MENU_BATALLAR);
 				}
 			} else if (juego.getEstadoJuego().getHaySolicitudEnemigo()) { // TODO:
 																			// Completar
@@ -293,10 +293,10 @@ public class Entidad {
 																			// con
 																			// Bryan
 				if (juego.getEstadoJuego().getMenuEnemigoNPC().clickEnCerrar(posMouse[0], posMouse[1])) {
-					juego.getEstadoJuego().setHaySolicitudEnemigo(false, null, MenuInfoPersonaje.menuBatallar);
+					juego.getEstadoJuego().setHaySolicitudEnemigo(false, null, MenuInfoPersonaje.MENU_BATALLAR);
 				} else if (juego.getEstadoJuego().getMenuEnemigoNPC().clickEnMenu(posMouse[0], posMouse[1])) {
 					if (juego.getEstadoJuego().getMenuEnemigoNPC().clickEnBoton(posMouse[0], posMouse[1])) {
-						juego.getEstadoJuego().setHaySolicitudEnemigo(false, null, MenuInfoPersonaje.menuBatallar);
+						juego.getEstadoJuego().setHaySolicitudEnemigo(false, null, MenuInfoPersonaje.MENU_BATALLAR);
 
 						PaqueteBatalla pBatalla = new PaqueteBatalla();
 
@@ -337,13 +337,13 @@ public class Entidad {
 								// DE COMERCIO
 								juego.getEstadoJuego().setHaySolicitud(true,
 										juego.getPersonajesConectados().get(idEnemigo),
-										MenuInfoPersonaje.menuComerciar);
+										MenuInfoPersonaje.MENU_COMERCIAR);
 							} else {
 								// SI ESTOY DENTRO DE LA ZONA DE BATALLA SETEO
 								// QUE SE ABRA EL MENU
 								// DE BATALLA
 								juego.getEstadoJuego().setHaySolicitud(true,
-										juego.getPersonajesConectados().get(idEnemigo), MenuInfoPersonaje.menuBatallar);
+										juego.getPersonajesConectados().get(idEnemigo), MenuInfoPersonaje.MENU_BATALLAR);
 							}
 							juego.getHandlerMouse().setNuevoClick(false);
 						}
@@ -367,7 +367,7 @@ public class Entidad {
 
 			pilaMovimiento = null;
 
-			juego.getEstadoJuego().setHaySolicitud(false, null, MenuInfoPersonaje.menuBatallar);
+			juego.getEstadoJuego().setHaySolicitud(false, null, MenuInfoPersonaje.MENU_BATALLAR);
 		}
 
 		if (!enMovimiento && tileMoverme != null) {
@@ -463,7 +463,7 @@ public class Entidad {
 					float XY[] = Mundo.isoA2D(x, y);
 
 					juego.getEstadoJuego().setHaySolicitudEnemigo(true, juego.getEnemigosConectados().get(idEnemigo),
-							MenuInfoPersonaje.menuBatallar);
+							MenuInfoPersonaje.MENU_BATALLAR);
 					juego.getHandlerMouse().setNuevoClick(false);
 				}
 			}

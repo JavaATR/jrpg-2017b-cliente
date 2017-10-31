@@ -7,10 +7,11 @@ import java.awt.image.BufferedImage;
  * Clase que dibuja los tiles. <br>
  */
 public class Tile {
+	private static final int TILE_NUMBER = 256;
 	/**
 	 * Tiles. <br>
 	 */
-	public static Tile[] tiles = new Tile[256];
+	public static Tile[] tiles = new Tile[TILE_NUMBER];
 	/**
 	 * Tiles del mapa aubenor. <br>
 	 */
@@ -58,40 +59,44 @@ public class Tile {
 
 	/**
 	 * Crea un tile con sus condiciones. <br>
-	 * @param textura
+	 *
+	 * @param texture
 	 *            Imágen del tile. <br>
-	 * @param id
+	 * @param idNumber
 	 *            ID del tile. <br>
-	 * @param esSolido
+	 * @param isSolid
 	 *            Indicador tile sólido. <br>
 	 */
-	public Tile(final BufferedImage textura, final int id, final boolean esSolido) {
-		this.textura = textura;
-		this.id = id;
-		tiles[id] = this;
-		this.esSolido = esSolido;
+	public Tile(final BufferedImage texture, final int idNumber,
+			final boolean isSolid) {
+		this.textura = texture;
+		this.id = idNumber;
+		tiles[idNumber] = this;
+		this.esSolido = isSolid;
 	}
 
 	/**
 	 * Crea un tile con sus condiciones, alto y ancho. <br>
-	 * @param textura
+	 *
+	 * @param texture
 	 *            Imágen del tile. <br>
-	 * @param id
+	 * @param idNumber
 	 *            ID del tile. <br>
-	 * @param esSolido
+	 * @param isSolid
 	 *            Indicador tile sólido. <br>
-	 * @param ancho
+	 * @param width
 	 *            Ancho de tile. <br>
-	 * @param alto
+	 * @param height
 	 *            Alto de tile. <br>
 	 */
-	public Tile(final BufferedImage textura, final int id, final boolean esSolido, final int ancho, final int alto) {
-		this.textura = textura;
-		this.id = id;
-		tiles[id] = this;
-		this.ancho = ancho;
-		this.alto = alto;
-		this.esSolido = esSolido;
+	public Tile(final BufferedImage texture, final int idNumber,
+			final boolean isSolid, final int width, final int height) {
+		this.textura = texture;
+		this.id = idNumber;
+		tiles[idNumber] = this;
+		this.ancho = width;
+		this.alto = height;
+		this.esSolido = isSolid;
 	}
 
 	/**
@@ -102,7 +107,8 @@ public class Tile {
 	}
 
 	/**
-	 * Gradica el tile. <br> 
+	 * Gradica el tile. <br>
+	 *
 	 * @param g
 	 *            Graficador. <br>
 	 * @param x
@@ -116,6 +122,7 @@ public class Tile {
 
 	/**
 	 * Grafica el tile. <br>
+	 *
 	 * @param g
 	 *            Graficador. <br>
 	 * @param x
@@ -127,12 +134,14 @@ public class Tile {
 	 * @param height
 	 *            Alto del tile. <br>
 	 */
-	public void graficar(final Graphics g, final int x, final int y, final int width, final int height) {
+	public void graficar(final Graphics g, final int x, final int y,
+			final int width, final int height) {
 		g.drawImage(this.textura, x, y, width, height, null);
 	}
 
 	/**
 	 * Establece la solidez de un tile. <br>
+	 *
 	 * @param solidez
 	 *            Solidez. <br>
 	 */
@@ -142,6 +151,7 @@ public class Tile {
 
 	/**
 	 * Devuelve si el tile es sólido. <br>
+	 *
 	 * @return true si es sólido, false de lo contrario. <br>
 	 */
 	public boolean esSolido() {
@@ -150,6 +160,7 @@ public class Tile {
 
 	/**
 	 * Devuelve el ID del tile. <br>
+	 *
 	 * @return ID del tile. <br>
 	 */
 	public int getId() {
@@ -158,6 +169,7 @@ public class Tile {
 
 	/**
 	 * Devuelve el ancho del tile. <br>
+	 *
 	 * @return Ancho del tile. <br>
 	 */
 	public int getAncho() {
@@ -165,7 +177,8 @@ public class Tile {
 	}
 
 	/**
-	 * Devuelve el alto del tile. <br> 
+	 * Devuelve el alto del tile. <br>
+	 *
 	 * @return Alto del tile. <br>
 	 */
 	public int getAlto() {

@@ -94,15 +94,17 @@ public class Mundo {
 
 	/**
 	 * Construye un mundo para el juego. <br>
-	 * @param juego
+	 *
+	 * @param game
 	 *            Juego. <br>
 	 * @param pathMap
 	 *            Mundo a cargar. <br>
 	 * @param pathObstac
 	 *            Obstaculos. <br>
 	 */
-	public Mundo(final Juego juego, final String pathMap, final String pathObstac) {
-		this.juego = juego;
+	public Mundo(final Juego game, final String pathMap,
+			final String pathObstac) {
+		this.juego = game;
 		cargarMundo(pathMap, pathObstac);
 		mundoAGrafo();
 	}
@@ -113,8 +115,10 @@ public class Mundo {
 	public void actualizar() {
 
 	}
+
 	/**
 	 * Grafica el mundo. <br>
+	 *
 	 * @param g
 	 *            Graficador. <br>
 	 */
@@ -129,25 +133,42 @@ public class Mundo {
 		for (int i = 0; i < alto; i++) {
 			for (int j = 0; j < ancho; j++) {
 				iso = dosDaIso(j, i);
-				if ((iso[0] >= xMinimo && iso[0] <= xMaximo) && (iso[1] >= yMinimo && iso[1] <= yMaximo)) {
+				if ((iso[0] >= xMinimo && iso[0] <= xMaximo)
+						&& (iso[1] >= yMinimo && iso[1] <= yMaximo)) {
 					int map = juego.getPersonaje().getMapa();
 					if (map == 1) {
-						Tile.aubenor[Tile.aubenorBase].graficar(g, (int) (iso[0] - juego.getCamara().getxOffset()),
-								(int) (iso[1] - juego.getCamara().getyOffset() - OFFSET_MUNDO_Y), MUNDO_X, MUNDO_Y);
+						Tile.aubenor[Tile.aubenorBase].graficar(g,
+								(int) (iso[0] - juego.getCamara().getxOffset()),
+								(int) (iso[1] - juego.getCamara().getyOffset()
+										- OFFSET_MUNDO_Y),
+								MUNDO_X, MUNDO_Y);
 					} else {
 						if (map == 2) {
-							Tile.aris[Tile.arisBase].graficar(g, (int) (iso[0] - juego.getCamara().getxOffset()),
-									(int) (iso[1] - juego.getCamara().getyOffset() - OFFSET_MUNDO_Y), MUNDO_X, MUNDO_Y);
+							Tile.aris[Tile.arisBase].graficar(g,
+									(int) (iso[0]
+											- juego.getCamara().getxOffset()),
+									(int) (iso[1]
+											- juego.getCamara().getyOffset()
+											- OFFSET_MUNDO_Y),
+									MUNDO_X, MUNDO_Y);
 						} else {
 							if (map == 3) {
 								Tile.aubenor[Tile.aubenorBase].graficar(g,
-										(int) (iso[0] - juego.getCamara().getxOffset()),
-										(int) (iso[1] - juego.getCamara().getyOffset() - OFFSET_MUNDO_Y), MUNDO_X, MUNDO_Y);
+										(int) (iso[0] - juego.getCamara()
+												.getxOffset()),
+										(int) (iso[1]
+												- juego.getCamara().getyOffset()
+												- OFFSET_MUNDO_Y),
+										MUNDO_X, MUNDO_Y);
 							}
 							if (!getTile(j, i).esSolido()) {
-								getTile(j, i).graficar(g, (int) (iso[0] - juego.getCamara().getxOffset()),
-										(int) (iso[1] - juego.getCamara().getyOffset() - OFFSET_MUNDO_Y), MUNDO_X,
-										MUNDO_Y);
+								getTile(j, i).graficar(g,
+										(int) (iso[0] - juego.getCamara()
+												.getxOffset()),
+										(int) (iso[1]
+												- juego.getCamara().getyOffset()
+												- OFFSET_MUNDO_Y),
+										MUNDO_X, MUNDO_Y);
 							}
 						}
 					}
@@ -155,9 +176,10 @@ public class Mundo {
 			}
 		}
 	}
-	
+
 	/**
 	 * Grafica objetos obstaculos. <br>
+	 *
 	 * @param g
 	 *            Graficador. <br>
 	 */
@@ -168,27 +190,34 @@ public class Mundo {
 				iso = dosDaIso(j, i);
 				// Grafico al personaje
 				if (Estado.getEstado() == juego.getEstadoJuego()) {
-					if (Mundo.mouseATile(juego.getUbicacionPersonaje().getPosX(),
+					if (Mundo.mouseATile(
+							juego.getUbicacionPersonaje().getPosX(),
 							juego.getUbicacionPersonaje().getPosY())[0] == j
-							&& Mundo.mouseATile(juego.getUbicacionPersonaje().getPosX(),
-									juego.getUbicacionPersonaje().getPosY())[1] == i) {
+							&& Mundo.mouseATile(
+									juego.getUbicacionPersonaje().getPosX(),
+									juego.getUbicacionPersonaje()
+											.getPosY())[1] == i) {
 						juego.getEstadoJuego().getPersonaje().graficar(g);
 					}
 				}
 				// Grafico los obstaculos
-				if ((iso[0] >= xMinimo && iso[0] <= xMaximo) && (iso[1] >= yMinimo && iso[1] <= yMaximo)
+				if ((iso[0] >= xMinimo && iso[0] <= xMaximo)
+						&& (iso[1] >= yMinimo && iso[1] <= yMaximo)
 						&& getTile(j, i).esSolido()) {
 					obst = getTile(j, i);
-					obst.graficar(g, (int) (iso[0] - juego.getCamara().getxOffset()),
-							(int) (iso[1] - juego.getCamara().getyOffset() - obst.getAlto() / 2), obst.getAncho(),
-							obst.getAlto());
+					obst.graficar(g,
+							(int) (iso[0] - juego.getCamara().getxOffset()),
+							(int) (iso[1] - juego.getCamara().getyOffset()
+									- obst.getAlto() / 2),
+							obst.getAncho(), obst.getAlto());
 				}
 			}
 		}
 	}
 
 	/**
-	 * Obitene el tipo de tile. <br> 
+	 * Obitene el tipo de tile. <br>
+	 *
 	 * @param x
 	 *            Posición X. <br>
 	 * @param y
@@ -215,13 +244,15 @@ public class Mundo {
 	}
 
 	/**
-	 * Carga el mundo. <br> 
+	 * Carga el mundo. <br>
+	 *
 	 * @param pathMapa
 	 *            Mapa del mundo. <br>
 	 * @param pathObstaculos
 	 *            Obstaculos del mundo. <br>
 	 */
-	private void cargarMundo(final String pathMapa, final String pathObstaculos) {
+	private void cargarMundo(final String pathMapa,
+			final String pathObstaculos) {
 		String archivo = Utilitarias.archivoAString(pathMapa);
 		String[] tokens = archivo.split("\\s+");
 		this.ancho = Utilitarias.parseInt(tokens[0]);
@@ -232,11 +263,13 @@ public class Mundo {
 		this.tilesInv = new int[this.alto][this.ancho];
 		for (int y = 0; y < this.alto; y++) {
 			for (int x = 0; x < this.ancho; x++) {
-				this.tiles[x][y] = Utilitarias.parseInt(tokens[(x + y * this.ancho + 4)]);
+				this.tiles[x][y] = Utilitarias
+						.parseInt(tokens[(x + y * this.ancho + 4)]);
 				this.tilesInv[y][x] = this.tiles[x][y];
 			}
 		}
 	}
+
 	/**
 	 * Transforma el mapa en un mundo de grafos para calcular las distancias más
 	 * cortas de recorridos.<br>
@@ -260,7 +293,8 @@ public class Mundo {
 				if (!Tile.tiles[this.tilesInv[x][y]].esSolido()) {
 					// Si no es la ultima fila y el tile de abajo es no solido,
 					// lo uno
-					if (y < yFinal - 1 && !Tile.tiles[this.tilesInv[x][y + 1]].esSolido()) {
+					if (y < yFinal - 1 && !Tile.tiles[this.tilesInv[x][y + 1]]
+							.esSolido()) {
 						nodos[x][y].agregarAdyacente(nodos[x][y + 1]);
 						nodos[x][y + 1].agregarAdyacente(nodos[x][y]);
 					}
@@ -270,9 +304,13 @@ public class Mundo {
 						// Y ademas el de arriba ni el de la derecha lo son, lo
 						// uno
 						// Tiene que ser a partir de la segunda fila
-						if (y > 0 && !Tile.tiles[this.tilesInv[x + 1][y - 1]].esSolido()
-								&& !Tile.tiles[this.tilesInv[x + 1][y]].esSolido()
-								&& !Tile.tiles[this.tilesInv[x][y - 1]].esSolido()) {
+						if (y > 0
+								&& !Tile.tiles[this.tilesInv[x + 1][y - 1]]
+										.esSolido()
+								&& !Tile.tiles[this.tilesInv[x + 1][y]]
+										.esSolido()
+								&& !Tile.tiles[this.tilesInv[x][y - 1]]
+										.esSolido()) {
 							nodos[x][y].agregarAdyacente(nodos[x + 1][y - 1]);
 							nodos[x + 1][y - 1].agregarAdyacente(nodos[x][y]);
 						}
@@ -285,9 +323,13 @@ public class Mundo {
 						// Y ademas el de abajo ni el de la derecha lo son, lo
 						// uno
 						// Debe ser antes de la ultima fila
-						if (y < yFinal - 1 && !Tile.tiles[this.tilesInv[x + 1][y + 1]].esSolido()
-								&& !Tile.tiles[this.tilesInv[x + 1][y]].esSolido()
-								&& !Tile.tiles[this.tilesInv[x][y + 1]].esSolido()) {
+						if (y < yFinal - 1
+								&& !Tile.tiles[this.tilesInv[x + 1][y + 1]]
+										.esSolido()
+								&& !Tile.tiles[this.tilesInv[x + 1][y]]
+										.esSolido()
+								&& !Tile.tiles[this.tilesInv[x][y + 1]]
+										.esSolido()) {
 							nodos[x][y].agregarAdyacente(nodos[x + 1][y + 1]);
 							nodos[x + 1][y + 1].agregarAdyacente(nodos[x][y]);
 						}
@@ -308,20 +350,25 @@ public class Mundo {
 
 	/**
 	 * Devuelve los caminos sin obstaculos. <br>
+	 *
 	 * @return Grafos no sólidos. <br>
 	 */
 	public final Grafo obtenerGrafoDeTilesNoSolidos() {
 		return this.grafoDeTilesNoSolidos;
 	}
+
 	/**
 	 * Devuelve el ancho del mundo. <br>
+	 *
 	 * @return Ancho. <br>
 	 */
 	public final int obtenerAncho() {
 		return this.ancho;
 	}
+
 	/**
-	 * Devuelve el alto del mundo. <br> 
+	 * Devuelve el alto del mundo. <br>
+	 *
 	 * @return Alto. <br>
 	 */
 	public final int obtenerAlto() {
@@ -330,6 +377,7 @@ public class Mundo {
 
 	/**
 	 * Convierte de iso a 2D. <br>
+	 *
 	 * @param x
 	 *            Posición X. <br>
 	 * @param y
@@ -345,6 +393,7 @@ public class Mundo {
 
 	/**
 	 * Devuelve alguna distancia. <br>
+	 *
 	 * @param x
 	 *            Posición X. <br>
 	 * @param y
@@ -360,6 +409,7 @@ public class Mundo {
 
 	/**
 	 * Calcula la distancia de tile/mouse. <br>
+	 *
 	 * @param x
 	 *            Posición X. <br>
 	 * @param y

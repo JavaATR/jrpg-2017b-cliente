@@ -13,15 +13,17 @@ public class SpriteSheet {
 
 	/**
 	 * Crea un sprite. <br>
-	 * @param sprite
+	 *
+	 * @param spriteSheet
 	 *            Imágen del sprite. <br>
 	 */
-	public SpriteSheet(final BufferedImage sprite) {
-		this.sprite = sprite;
+	public SpriteSheet(final BufferedImage spriteSheet) {
+		this.sprite = spriteSheet;
 	}
 
 	/**
 	 * Devuelve el tile del sprite. <br>
+	 *
 	 * @param x
 	 *            Posición X del sprite. <br>
 	 * @param y
@@ -32,7 +34,8 @@ public class SpriteSheet {
 	 *            Alto del sprite. <br>
 	 * @return Tile del sprite. <br>
 	 */
-	public final BufferedImage getTile(final int x, final int y, final int ancho, final int alto) {
+	public final BufferedImage getTile(final int x, final int y,
+			final int ancho, final int alto) {
 		return sprite.getSubimage(x, y, ancho, alto);
 	}
 }

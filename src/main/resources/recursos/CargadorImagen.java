@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 public class CargadorImagen {
 	/**
 	 * Carga las imágenes del juego. <br>
+	 *
 	 * @param path
 	 *            Path del recurso. <br>
 	 * @return Recurso. <br>
@@ -20,7 +21,8 @@ public class CargadorImagen {
 		try {
 			return ImageIO.read(CargadorImagen.class.getResource(path));
 		} catch (IOException e) {
-			JOptionPane.showMessageDialog(null, "Error al cargar el archivo " + path);
+			JOptionPane.showMessageDialog(null,
+					"Error al cargar el archivo " + path);
 		}
 		return null;
 	}

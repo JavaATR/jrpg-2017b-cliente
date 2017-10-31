@@ -1,6 +1,12 @@
 package mundo;
 
+/**
+ * Clase Nodo.
+ */
 public class Nodo {
+
+	/** Constante. */
+	private static final int NODO_VALUE = 8;
 	/**
 	 * Posición X. <br>
 	 */
@@ -24,23 +30,25 @@ public class Nodo {
 
 	/**
 	 * Crea un nodo con su posición. <br>
-	 * @param indice
+	 *
+	 * @param index
 	 *            Indice. <br>
-	 * @param x
+	 * @param xValue
 	 *            Posición X. <br>
-	 * @param y
+	 * @param yValue
 	 *            Posición Y. <br>
 	 */
-	public Nodo(final int indice, final int x, final int y) {
-		this.x = x;
-		this.y = y;
-		this.indice = indice;
+	public Nodo(final int index, final int xValue, final int yValue) {
+		this.x = xValue;
+		this.y = yValue;
+		this.indice = index;
 		this.cantidadDeAdyacentes = 0;
-		this.nodosAdyacentes = new Nodo[8];
+		this.nodosAdyacentes = new Nodo[NODO_VALUE];
 	}
 
 	/**
 	 * Devuelve la posición X. <br>
+	 *
 	 * @return Posición X. <br>
 	 */
 	public int obtenerX() {
@@ -49,6 +57,7 @@ public class Nodo {
 
 	/**
 	 * Devuelve la posición Y. <br>
+	 *
 	 * @return Posición Y. <br>
 	 */
 	public int obtenerY() {
@@ -57,6 +66,7 @@ public class Nodo {
 
 	/**
 	 * Devuelve el Indice. <br>
+	 *
 	 * @return Indice. <br>
 	 */
 	public int obtenerIndice() {
@@ -65,6 +75,7 @@ public class Nodo {
 
 	/**
 	 * Devuelve los nodos adyacentes. <br>
+	 *
 	 * @return Nodos adyacentes. <br>
 	 */
 	public Nodo[] obtenerNodosAdyacentes() {
@@ -73,6 +84,7 @@ public class Nodo {
 
 	/**
 	 * Agrega un nodo adyacente. <br>
+	 *
 	 * @param nodo
 	 *            Nodo. <br>
 	 */
@@ -82,6 +94,7 @@ public class Nodo {
 
 	/**
 	 * Obtiene la cantidad de nodos adyacentes. <br>
+	 *
 	 * @return Cantidad de nodos adyacentes. <br>
 	 */
 	public int obtenerCantidadDeAdyacentes() {

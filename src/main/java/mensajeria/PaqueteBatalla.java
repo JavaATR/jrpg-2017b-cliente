@@ -2,39 +2,81 @@ package mensajeria;
 
 import java.io.Serializable;
 
+/**
+ * Clase PaqueteBatalla.
+ */
 public class PaqueteBatalla extends Paquete implements Serializable, Cloneable {
 
+	/** Atributo id. */
 	private int id;
+
+	/** Atributo id enemigo. */
 	private int idEnemigo;
+
+	/** Atributo mi turno. */
 	private boolean miTurno;
 
-	public PaqueteBatalla(){
+	/**
+	 * Constructor paquete batalla.
+	 */
+	public PaqueteBatalla() {
 		setComando(Comando.BATALLA);
 	}
 
+	/**
+	 * Obtiene id.
+	 *
+	 * @return id
+	 */
 	public int getId() {
 		return id;
 	}
 
-
-	public void setId(int id) {
-		this.id = id;
+	/**
+	 * Asigna id. <br>
+	 *
+	 * @param idNumber
+	 *            Valor para asignar id. <br>
+	 */
+	public void setId(int idNumber) {
+		this.id = idNumber;
 	}
 
-
+	/**
+	 * Obtiene id enemigo.
+	 *
+	 * @return id enemigo
+	 */
 	public int getIdEnemigo() {
 		return idEnemigo;
 	}
 
-	public void setIdEnemigo(int idEnemigo){
-		this.idEnemigo = idEnemigo;
+	/**
+	 * Asignar id enemigo. <br>
+	 *
+	 * @param idEnemy
+	 *            Valor para asignar id enemigo. <br>
+	 */
+	public void setIdEnemigo(int idEnemy) {
+		this.idEnemigo = idEnemy;
 	}
 
+	/**
+	 * Checks if is mi turno.
+	 *
+	 * @return true, if is mi turno
+	 */
 	public boolean isMiTurno() {
 		return miTurno;
 	}
 
-	public void setMiTurno(boolean miTurno) {
-		this.miTurno = miTurno;
+	/**
+	 * Asignar mi turno. <br>
+	 *
+	 * @param myTurn
+	 *            Valor para asignar mi turno. <br>
+	 */
+	public void setMiTurno(boolean myTurn) {
+		this.miTurno = myTurn;
 	}
 }

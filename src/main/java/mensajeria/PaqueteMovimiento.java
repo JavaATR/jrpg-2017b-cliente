@@ -2,70 +2,160 @@ package mensajeria;
 
 import java.io.Serializable;
 
-public class PaqueteMovimiento extends Paquete implements Serializable, Cloneable {
+/**
+ * Clase PaqueteMovimiento.
+ */
+public class PaqueteMovimiento extends Paquete
+		implements Serializable, Cloneable {
 
+	/** Atributo id. */
 	private int id;
+
+	/** Atributo pos X. */
 	private float posX;
+
+	/** Atributo pos Y. */
 	private float posY;
+
+	/** Atributo direccion. */
 	private int direccion;
+
+	/** Atributo frame. */
 	private int frame;
 
+	/**
+	 * Constructor paquete movimiento.
+	 */
 	public PaqueteMovimiento() {
 		setComando(Comando.MOVIMIENTO);
 	}
 
+	/**
+	 * Constructor parametrizado. <br>
+	 *
+	 * @param idPersonaje
+	 * 		Valor para asignar id de personaje. <br>
+	 */
 	public PaqueteMovimiento(int idPersonaje) {
 		id = idPersonaje;
 		setComando(Comando.MOVIMIENTO);
 	}
 
-	public PaqueteMovimiento(int idPersonaje, float posX, float posY) {
+	/**
+	 * Constructor parametrizado. <br>
+	 *
+	 * @param idPersonaje
+	 * 		Valor para asignar id de personaje.
+	 * @param posicionX
+	 * 		Valor para asignar posicion x.
+	 * @param posicionY
+	 * 		Valor para asignar posicion Y. <br>
+	 */
+	public PaqueteMovimiento(int idPersonaje, float posicionX, float posicionY) {
 		this.id = idPersonaje;
-		this.posX = posX;
-		this.posY = posY;
+		this.posX = posicionX;
+		this.posY = posicionY;
 		setComando(Comando.MOVIMIENTO);
 	}
 
+	/**
+	 * Obtiene id personaje.
+	 *
+	 * @return id personaje
+	 */
 	public int getIdPersonaje() {
 		return id;
 	}
 
+	/**
+	 * Asignar id personaje. <br>
+	 *
+	 * @param idPersonaje
+	 * 		Valor para asignar id del personaje. <br>
+	 */
 	public void setIdPersonaje(int idPersonaje) {
 		this.id = idPersonaje;
 	}
 
+	/**
+	 * Obtiene pos X.
+	 *
+	 * @return pos X
+	 */
 	public float getPosX() {
 		return posX;
 	}
 
-	public void setPosX(float posX) {
-		this.posX = posX;
+	/**
+	 * Asignar posicion X. <br>
+	 *
+	 * @param posicionX
+	 * 		Valor para asignar posicion X. <br>
+	 */
+	public void setPosX(float posicionX) {
+		this.posX = posicionX;
 	}
 
+	/**
+	 * Obtiene pos Y.
+	 *
+	 * @return pos Y
+	 */
 	public float getPosY() {
 		return posY;
 	}
 
-	public void setPosY(float posY) {
-		this.posY = posY;
+	/**
+	 * Asignar posicion Y. <br>
+	 *
+	 * @param posicionY
+	 * 		Valor para asignar posicion Y. <br>
+	 */
+	public void setPosY(float posicionY) {
+		this.posY = posicionY;
 	}
 
+	/**
+	 * Obtiene direccion.
+	 *
+	 * @return direccion
+	 */
 	public int getDireccion() {
 		return direccion;
 	}
 
-	public void setDireccion(int direccion) {
-		this.direccion = direccion;
+	/**
+	 * Asignar direccion. <br>
+	 *
+	 * @param dir
+	 * 		Valor para asignar dirección. <br>
+	 */
+	public void setDireccion(int dir) {
+		this.direccion = dir;
 	}
 
+	/**
+	 * Obtiene frame.
+	 *
+	 * @return frame
+	 */
 	public int getFrame() {
 		return frame;
 	}
 
-	public void setFrame(int frame) {
-		this.frame = frame;
+	/**
+	 * Asignar frame. <br>
+	 *
+	 * @param marco
+	 * 		Valor para asignar frame. <br>
+	 */
+	public void setFrame(int marco) {
+		this.frame = marco;
 	}
 
+	/* (non-Javadoc)
+	 * @see mensajeria.Paquete#clone()
+	 */
 	@Override
 	public Object clone() {
 		Object obj = null;
@@ -73,4 +163,3 @@ public class PaqueteMovimiento extends Paquete implements Serializable, Cloneabl
 		return obj;
 	}
 }
-

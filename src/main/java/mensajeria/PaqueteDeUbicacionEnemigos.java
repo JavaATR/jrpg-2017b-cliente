@@ -3,22 +3,47 @@ package mensajeria;
 import java.io.Serializable;
 import java.util.Map;
 
-public class PaqueteDeUbicacionEnemigos extends Paquete implements Serializable, Cloneable {
+/**
+ * Clase PaqueteDeUbicacionEnemigos.
+ */
+public class PaqueteDeUbicacionEnemigos extends Paquete
+		implements Serializable, Cloneable {
 
+	/** Atributo enemigos. */
 	private Map<Integer, PaqueteMovimiento> enemigos;
 
-	public PaqueteDeUbicacionEnemigos(){
+	/**
+	 * Constructor paquete de ubicacion enemigos.
+	 */
+	public PaqueteDeUbicacionEnemigos() {
 
 	}
 
-	public PaqueteDeUbicacionEnemigos(Map<Integer, PaqueteMovimiento> enemigos){
+	/**
+	 * Constructor parametrizado new paquete de ubicacion enemigos. <br>
+	 *
+	 * @param enemigos
+	 *            Map para asignar enemigos. <br>
+	 */
+	public PaqueteDeUbicacionEnemigos(
+			Map<Integer, PaqueteMovimiento> enemigos) {
 		this.enemigos = enemigos;
 	}
 
-	public Map<Integer, PaqueteMovimiento> getEnemigos(){
+	/**
+	 * Obtiene enemigos.
+	 *
+	 * @return enemigos
+	 */
+	public Map<Integer, PaqueteMovimiento> getEnemigos() {
 		return enemigos;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see mensajeria.Paquete#clone()
+	 */
 	@Override
 	public Object clone() {
 		Object obj = null;

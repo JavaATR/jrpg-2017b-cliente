@@ -1,97 +1,219 @@
 package mensajeria;
 
-import java.io.IOException;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Iterator;
 
-import javax.swing.JOptionPane;
-
-import dominio.Item;
-import estados.Estado;
-
+// TODO: Auto-generated Javadoc
+/**
+ * Clase PaqueteEnemigo.
+ */
 public class PaqueteEnemigo extends Paquete implements Serializable, Cloneable {
 
+	/** Constante ESTADO. */
+	private static final int ESTADO = 1;
+
+	/** Constante INTELIGENCIA. */
+	private static final int INTELIGENCIA = 50;
+
+	/** Constante DESTREZA. */
+	private static final int DESTREZA = 50;
+
+	/** Constante FUERZA. */
+	private static final int FUERZA = 50;
+
+	/** Constante ENERGIA_TOPE. */
+	private static final int ENERGIA_TOPE = 50;
+
+	/** Constante SALUD_TOPE. */
+	private static final int SALUD_TOPE = 100;
+
+	/** Atributo id. */
 	private int id;
+
+	/** The nombre. */
 	private String nombre;
+
+	/** Atributo salud tope. */
 	private int saludTope;
+
+	/** Atributo energia tope. */
 	private int energiaTope;
+
+	/** Atributo fuerza. */
 	private int fuerza;
+
+	/** Atributo destreza. */
 	private int destreza;
+
+	/** Atributo inteligencia. */
 	private int inteligencia;
+
+	/** Atributo estado. */
 	private int estado;
-	
-	public PaqueteEnemigo(int id) {
-		this.id = id;
+
+	/**
+	 * Constructor new paquete enemigo. <br>
+	 *
+	 * @param idNumber
+	 *            Valor para asignar id. <br>
+	 */
+	public PaqueteEnemigo(int idNumber) {
+		this.id = idNumber;
 		nombre = "El Bryan";
-		saludTope = 100;
-		energiaTope = 50;
-		fuerza = 50;
-		destreza = 50;
-		inteligencia = 50;
-		estado = 1;
+		saludTope = SALUD_TOPE;
+		energiaTope = ENERGIA_TOPE;
+		fuerza = FUERZA;
+		destreza = DESTREZA;
+		inteligencia = INTELIGENCIA;
+		estado = ESTADO;
 	}
-	
+
+	/**
+	 * Obtiene estado.
+	 *
+	 * @return estado
+	 */
 	public int getEstado() {
 		return estado;
 	}
 
-	public void setEstado(int estado) {
-		this.estado = estado;
+	/**
+	 * Asignar estado. <br>
+	 *
+	 * @param status
+	 *            Valor para asignar estado. <br>
+	 */
+	public void setEstado(int status) {
+		this.estado = status;
 	}
 
+	/**
+	 * Obtiene nombre.
+	 *
+	 * @return nombre
+	 */
 	public String getNombre() {
 		return nombre;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	/**
+	 * Asignar nombre. <br>
+	 *
+	 * @param name
+	 *            Valor para asignar nombre. <br>
+	 */
+	public void setNombre(String name) {
+		this.nombre = name;
 	}
 
+	/**
+	 * Obtiene salud tope.
+	 *
+	 * @return salud tope
+	 */
 	public int getSaludTope() {
 		return saludTope;
 	}
 
-	public void setSaludTope(int saludTope) {
-		this.saludTope = saludTope;
+	/**
+	 * Asignar salud tope. <br>
+	 *
+	 * @param topeSalud
+	 *            Valor para asignar salud tope. <br>
+	 */
+	public void setSaludTope(int topeSalud) {
+		this.saludTope = topeSalud;
 	}
 
+	/**
+	 * Obtiene energia tope.
+	 *
+	 * @return energia tope
+	 */
 	public int getEnergiaTope() {
 		return energiaTope;
 	}
 
-	public void setEnergiaTope(int energiaTope) {
-		this.energiaTope = energiaTope;
+	/**
+	 * Asignar energia tope. <br>
+	 *
+	 * @param topeEnergia
+	 *            Valor para asignar energia tope. <br>
+	 */
+	public void setEnergiaTope(int topeEnergia) {
+		this.energiaTope = topeEnergia;
 	}
 
+	/**
+	 * Obtiene fuerza.
+	 *
+	 * @return fuerza
+	 */
 	public int getFuerza() {
 		return fuerza;
 	}
 
-	public void setFuerza(int fuerza) {
-		this.fuerza = fuerza;
+	/**
+	 * Asignar fuerza. <br>
+	 *
+	 * @param strength
+	 *            Valor para asignar fuerza. <br>
+	 */
+	public void setFuerza(int strength) {
+		this.fuerza = strength;
 	}
 
+	/**
+	 * Obtiene destreza.
+	 *
+	 * @return destreza
+	 */
 	public int getDestreza() {
 		return destreza;
 	}
 
-	public void setDestreza(int destreza) {
-		this.destreza = destreza;
+	/**
+	 * Asignar destreza. <br>
+	 *
+	 * @param skill
+	 *            Valor para asignar destreza. <br>
+	 */
+	public void setDestreza(int skill) {
+		this.destreza = skill;
 	}
 
+	/**
+	 * Obtiene inteligencia.
+	 *
+	 * @return inteligencia
+	 */
 	public int getInteligencia() {
 		return inteligencia;
 	}
 
-	public void setInteligencia(int inteligencia) {
-		this.inteligencia = inteligencia;
+	/**
+	 * Asignar inteligencia. <br>
+	 *
+	 * @param intelligence
+	 *            Valor para asignar inteligencia. <br>
+	 */
+	public void setInteligencia(int intelligence) {
+		this.inteligencia = intelligence;
 	}
-	
+
+	/**
+	 * Obtiene id.
+	 *
+	 * @return id
+	 */
 	public int getId() {
 		return id;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see mensajeria.Paquete#clone()
+	 */
 	@Override
 	public Object clone() {
 		Object obj = null;

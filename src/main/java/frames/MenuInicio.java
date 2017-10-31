@@ -183,10 +183,12 @@ public class MenuInicio extends JFrame {
 				}
 			}
 		});
-		setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/java/frames/IconoWome.png"));
+		setIconImage(Toolkit.getDefaultToolkit()
+				.getImage("src/main/java/frames/IconoWome.png"));
 		setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
-				new ImageIcon(MenuJugar.class.getResource("/cursor.png")).getImage(), new Point(0, 0),
-				"custom cursor"));
+				new ImageIcon(MenuJugar.class.getResource("/cursor.png"))
+						.getImage(),
+				new Point(0, 0), "custom cursor"));
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		// Propiedades de la ventana
 		setTitle("WOME - World Of the Middle Earth");
@@ -194,12 +196,13 @@ public class MenuInicio extends JFrame {
 		setLocationRelativeTo(null);
 		setResizable(false);
 		contentPane = new JPanel();
-		contentPane.setBorder(
-				new EmptyBorder(CONTENT_PANE_BORDER, CONTENT_PANE_BORDER, CONTENT_PANE_BORDER, CONTENT_PANE_BORDER));
+		contentPane.setBorder(new EmptyBorder(CONTENT_PANE_BORDER,
+				CONTENT_PANE_BORDER, CONTENT_PANE_BORDER, CONTENT_PANE_BORDER));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		JLabel lblLogo = new JLabel("");
-		lblLogo.setIcon(new ImageIcon(MenuCarga.class.getResource("/frames/WOME.png")));
+		lblLogo.setIcon(
+				new ImageIcon(MenuCarga.class.getResource("/frames/WOME.png")));
 		lblLogo.setBounds(LOGO_X, LOGO_Y, LOGO_WIDTH, LOGO_HEIGHT);
 		contentPane.add(lblLogo);
 		JLayeredPane layeredPane = new JLayeredPane();
@@ -220,10 +223,12 @@ public class MenuInicio extends JFrame {
 		lblIniciarSesion.setForeground(Color.WHITE);
 		lblIniciarSesion.setFont(new Font("Tahoma", Font.PLAIN, SALIR_FONT));
 		JButton btnRegistrar = new JButton("Jugar");
-		btnRegistrar.setBounds(BOTON_JUGAR_X, BOTON_JUGAR_Y, BOTON_JUGAR_WIDTH, BOTON_JUGAR_HEIGHT);
+		btnRegistrar.setBounds(BOTON_JUGAR_X, BOTON_JUGAR_Y, BOTON_JUGAR_WIDTH,
+				BOTON_JUGAR_HEIGHT);
 		layeredPane.add(btnRegistrar, new Integer(1));
 		btnRegistrar.setFocusable(false);
-		btnRegistrar.setIcon(new ImageIcon(MenuJugar.class.getResource("/frames/BotonMenu.png")));
+		btnRegistrar.setIcon(new ImageIcon(
+				MenuJugar.class.getResource("/frames/BotonMenu.png")));
 		btnRegistrar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(final ActionEvent e) {
@@ -233,10 +238,12 @@ public class MenuInicio extends JFrame {
 			}
 		});
 		JButton btnIniciarSesion = new JButton("Salir");
-		btnIniciarSesion.setBounds(BOTON_SALIR_X, BOTON_SALIR_Y, BOTON_SALIR_WIDTH, BOTON_SALIR_HEIGHT);
+		btnIniciarSesion.setBounds(BOTON_SALIR_X, BOTON_SALIR_Y,
+				BOTON_SALIR_WIDTH, BOTON_SALIR_HEIGHT);
 		layeredPane.add(btnIniciarSesion, new Integer(1));
 		btnIniciarSesion.setFocusable(false);
-		btnIniciarSesion.setIcon(new ImageIcon(MenuJugar.class.getResource("/frames/BotonMenu.png")));
+		btnIniciarSesion.setIcon(new ImageIcon(
+				MenuJugar.class.getResource("/frames/BotonMenu.png")));
 		btnIniciarSesion.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(final ActionEvent e) {
@@ -244,13 +251,16 @@ public class MenuInicio extends JFrame {
 			}
 		});
 		JLabel lblBackground = new JLabel("");
-		lblBackground.setBounds(BACKGROUND_X, BACKGROUND_Y, BACKGROUND_WIDTH, BACKGROUND_HEIGHT);
-		lblBackground.setIcon(new ImageIcon(MenuJugar.class.getResource("/frames/menuBackground.jpg")));
+		lblBackground.setBounds(BACKGROUND_X, BACKGROUND_Y, BACKGROUND_WIDTH,
+				BACKGROUND_HEIGHT);
+		lblBackground.setIcon(new ImageIcon(
+				MenuJugar.class.getResource("/frames/menuBackground.jpg")));
 		layeredPane.add(lblBackground, new Integer(0));
 	}
 
 	/**
 	 * Vuelve visible el menú de inicio. <br>
+	 *
 	 * @param args
 	 *            Argumentos. <br>
 	 */

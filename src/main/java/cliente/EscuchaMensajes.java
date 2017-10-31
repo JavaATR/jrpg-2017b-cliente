@@ -39,12 +39,12 @@ public class EscuchaMensajes extends Thread {
 
 	/**
 	 * Constructor de EsuchaMensaje. <br>
-	 * @param juego
+	 * @param game
 	 *            juego del que se escucha el mensaje. <br>
 	 */
-	public EscuchaMensajes(final Juego juego) {
-		this.juego = juego;
-		cliente = juego.getCliente();
+	public EscuchaMensajes(final Juego game) {
+		this.juego = game;
+		cliente = game.getCliente();
 		entrada = cliente.getEntrada();
 	}
 

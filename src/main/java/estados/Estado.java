@@ -31,27 +31,31 @@ public abstract class Estado {
 	protected Juego juego;
 
 	/**
-	 * Crea el estado del juego. <br> 
-	 * @param juego
+	 * Crea el estado del juego. <br>
+	 *
+	 * @param game
 	 *            Juego. <br>
 	 */
-	public Estado(final Juego juego) {
-		this.juego = juego;
+	public Estado(final Juego game) {
+		this.juego = game;
 	}
+
 	/**
 	 * Actualiza el juego. <br>
 	 */
 	public abstract void actualizar();
-	
+
 	/**
 	 * Grafica el juego. <br>
+	 *
 	 * @param g
 	 *            Graficador. <br>
 	 */
 	public abstract void graficar(final Graphics g);
-	
+
 	/**
 	 * Establece el estado del juego. <br>
+	 *
 	 * @param estado
 	 *            Estado del juego. <br>
 	 */
@@ -61,6 +65,7 @@ public abstract class Estado {
 
 	/**
 	 * Devuelve el estado actual del juego. <br>
+	 *
 	 * @return Estado actual. <br>
 	 */
 	public static Estado getEstado() {
@@ -69,6 +74,7 @@ public abstract class Estado {
 
 	/**
 	 * Indica el estado en juego. <br>
+	 *
 	 * @return true si lo esta, false de lo contrario. <br>
 	 */
 	public abstract boolean esEstadoDeJuego();

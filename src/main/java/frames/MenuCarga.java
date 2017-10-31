@@ -21,10 +21,12 @@ public class MenuCarga extends JFrame {
 	private JLabel barraCargando;
 
 	public MenuCarga(final Cliente cliente) {
-		setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/java/frames/IconoWome.png"));
+		setIconImage(Toolkit.getDefaultToolkit()
+				.getImage("src/main/java/frames/IconoWome.png"));
 		setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
-				new ImageIcon(MenuJugar.class.getResource("/cursor.png")).getImage(),
-				new Point(0,0),"custom cursor"));
+				new ImageIcon(MenuJugar.class.getResource("/cursor.png"))
+						.getImage(),
+				new Point(0, 0), "custom cursor"));
 
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
@@ -32,7 +34,7 @@ public class MenuCarga extends JFrame {
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
-				synchronized(cliente){
+				synchronized (cliente) {
 					cliente.setAccion(Comando.SALIR);
 					cliente.notify();
 				}
@@ -51,29 +53,31 @@ public class MenuCarga extends JFrame {
 		contentPane.setLayout(null);
 
 		barraCargando = new JLabel("");
-		barraCargando.setIcon(new ImageIcon(MenuCarga.class.getResource("/frames/Barra.png")));
+		barraCargando.setIcon(new ImageIcon(
+				MenuCarga.class.getResource("/frames/Barra.png")));
 		barraCargando.setBounds(52, 160, 0, 27);
 		contentPane.add(barraCargando);
 
 		JLabel lblBarraCarga = new JLabel("");
-		lblBarraCarga.setIcon(new ImageIcon(MenuCarga.class.getResource("/frames/BarraCarga.png")));
+		lblBarraCarga.setIcon(new ImageIcon(
+				MenuCarga.class.getResource("/frames/BarraCarga.png")));
 		lblBarraCarga.setBounds(47, 154, 355, 40);
 		contentPane.add(lblBarraCarga);
 
 		JLabel lblLogo = new JLabel("");
-		lblLogo.setIcon(new ImageIcon(MenuCarga.class.getResource("/frames/WOME.png")));
+		lblLogo.setIcon(
+				new ImageIcon(MenuCarga.class.getResource("/frames/WOME.png")));
 		lblLogo.setBounds(109, 39, 216, 90);
 		contentPane.add(lblLogo);
 
 		JLabel lblBackground = new JLabel("");
 		lblBackground.setBounds(0, 0, 444, 271);
 		contentPane.add(lblBackground);
-		lblBackground.setIcon(new ImageIcon(MenuCarga.class.getResource("/frames/menuBackground.jpg")));
+		lblBackground.setIcon(new ImageIcon(
+				MenuCarga.class.getResource("/frames/menuBackground.jpg")));
 	}
 
 	public void setBarraCargando(int ancho) {
 		barraCargando.setSize(ancho, 27);
 	}
 }
-
-

@@ -14,10 +14,10 @@ public abstract class ComandosEscucha extends Comando {
 
 	/**
 	 * Establece el juego. <br>
-	 * @param juego
+	 * @param game
 	 *            Juego. <br>
 	 */
-	public final void setJuego(final Juego juego) {
-		this.juego = juego;
+	public final void setJuego(final Juego game) {
+		this.juego = game;
 	}
 }

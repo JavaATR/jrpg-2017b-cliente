@@ -190,25 +190,32 @@ public class EstadoJuego extends Estado {
 
 	/**
 	 * Crea el estado de juego del cliente. <br>
+	 *
 	 * @param juego
 	 *            Juego del cliente. <br>
 	 */
 	public EstadoJuego(final Juego juego) {
 		super(juego);
-		mundo = new Mundo(juego, "recursos/" + getMundo() + ".txt", "recursos/" + getMundo() + ".txt");
+		mundo = new Mundo(juego, "recursos/" + getMundo() + ".txt",
+				"recursos/" + getMundo() + ".txt");
 		paquetePersonaje = juego.getPersonaje();
-		entidadPersonaje = new Entidad(juego, mundo, SESENTAYCUATRO, SESENTAYCUATRO, juego.getPersonaje().getNombre(),
-				0, 0, Recursos.personaje.get(juego.getPersonaje().getRaza()), CIENTOCINCUENTA);
-		miniaturaPersonaje = Recursos.personaje.get(paquetePersonaje.getRaza()).get(CINCO)[0];
+		entidadPersonaje = new Entidad(juego, mundo, SESENTAYCUATRO,
+				SESENTAYCUATRO, juego.getPersonaje().getNombre(), 0, 0,
+				Recursos.personaje.get(juego.getPersonaje().getRaza()),
+				CIENTOCINCUENTA);
+		miniaturaPersonaje = Recursos.personaje.get(paquetePersonaje.getRaza())
+				.get(CINCO)[0];
 		try {
 			// Le envio al servidor que me conecte al mapa y mi posicion
 			juego.getPersonaje().setComando(Comando.CONEXION);
 			juego.getPersonaje().setEstado(Estado.estadoJuego);
-			juego.getCliente().getSalida().writeObject(gson.toJson(juego.getPersonaje(), PaquetePersonaje.class));
-			juego.getCliente().getSalida()
-					.writeObject(gson.toJson(juego.getUbicacionPersonaje(), PaqueteMovimiento.class));
+			juego.getCliente().getSalida().writeObject(
+					gson.toJson(juego.getPersonaje(), PaquetePersonaje.class));
+			juego.getCliente().getSalida().writeObject(gson.toJson(
+					juego.getUbicacionPersonaje(), PaqueteMovimiento.class));
 		} catch (IOException e) {
-			JOptionPane.showMessageDialog(null, "Fallo la conexión con el servidor al ingresar al mundo");
+			JOptionPane.showMessageDialog(null,
+					"Fallo la conexión con el servidor al ingresar al mundo");
 		}
 		// try {
 		// // Le envio al servidor que me pase la información de enemigos
@@ -239,18 +246,24 @@ public class EstadoJuego extends Estado {
 	 */
 	@Override
 	public final void graficar(final Graphics g) {
-		g.drawImage(Recursos.getBackground(), 0, 0, juego.getAncho(), juego.getAlto(), null);
+		g.drawImage(Recursos.getBackground(), 0, 0, juego.getAncho(),
+				juego.getAlto(), null);
 		mundo.graficar(g);
 		// entidadPersonaje.graficar(g);
 		graficarPersonajes(g);
 		mundo.graficarObstaculos(g);
 		graficarEnemigos(g);
 		entidadPersonaje.graficarNombre(g);
-		g.drawImage(Recursos.getMarco(), 0, 0, juego.getAncho(), juego.getAlto(), null);
-		EstadoDePersonaje.dibujarEstadoDePersonaje(g, CINCO, CINCO, paquetePersonaje, miniaturaPersonaje);
-		g.drawImage(Recursos.getMochila(), MOCHILA_X, MOCHILA_Y, MOCHILA_WIDTH, MOCHILA_HEIGHT, null);
-		g.drawImage(Recursos.getMenu(), MENU_X, MENU_Y, MENU_WIDTH, MENU_HEIGHT, null);
-		g.drawImage(Recursos.getChat(), CHAT_X, CHAT_Y, CHAT_WIDTH, CHAT_HEIGHT, null);
+		g.drawImage(Recursos.getMarco(), 0, 0, juego.getAncho(),
+				juego.getAlto(), null);
+		EstadoDePersonaje.dibujarEstadoDePersonaje(g, CINCO, CINCO,
+				paquetePersonaje, miniaturaPersonaje);
+		g.drawImage(Recursos.getMochila(), MOCHILA_X, MOCHILA_Y, MOCHILA_WIDTH,
+				MOCHILA_HEIGHT, null);
+		g.drawImage(Recursos.getMenu(), MENU_X, MENU_Y, MENU_WIDTH, MENU_HEIGHT,
+				null);
+		g.drawImage(Recursos.getChat(), CHAT_X, CHAT_Y, CHAT_WIDTH, CHAT_HEIGHT,
+				null);
 		if (haySolicitud) {
 			menuEnemigo.graficar(g, tipoSolicitud);
 		}
@@ -261,12 +274,15 @@ public class EstadoJuego extends Estado {
 
 	/**
 	 * Grafica a los enemigos. <br>
+	 *
 	 * @param g
 	 *            Graficador. <br>
 	 */
 	private void graficarEnemigos(final Graphics g) {
-		enemigosConectados = new HashMap<Integer, PaqueteEnemigo>(juego.getEnemigosConectados());
-		ubicacionEnemigos = new HashMap<Integer, PaqueteMovimiento>(juego.getUbicacionEnemigos());
+		enemigosConectados = new HashMap<Integer, PaqueteEnemigo>(
+				juego.getEnemigosConectados());
+		ubicacionEnemigos = new HashMap<Integer, PaqueteMovimiento>(
+				juego.getUbicacionEnemigos());
 		Iterator<Integer> it = enemigosConectados.keySet().iterator();
 		int key;
 		PaqueteMovimiento actual;
@@ -275,25 +291,33 @@ public class EstadoJuego extends Estado {
 		while (it.hasNext()) {
 			key = it.next();
 			actual = ubicacionEnemigos.get(key);
-			Pantalla.centerString(g,
-					new Rectangle((int) (actual.getPosX() - juego.getCamara().getxOffset() + TREINTAYDOS),
-							(int) (actual.getPosY() - juego.getCamara().getyOffset() - VEINTE), 0, DIEZ),
-					"El Bryan");
-			g.drawImage(Recursos.elBryan.get(actual.getDireccion())[actual.getFrame()],
+			Pantalla.centerString(g, new Rectangle(
+					(int) (actual.getPosX() - juego.getCamara().getxOffset()
+							+ TREINTAYDOS),
+					(int) (actual.getPosY() - juego.getCamara().getyOffset()
+							- VEINTE),
+					0, DIEZ), "El Bryan");
+			g.drawImage(
+					Recursos.elBryan.get(actual.getDireccion())[actual
+							.getFrame()],
 					(int) (actual.getPosX() - juego.getCamara().getxOffset()),
-					(int) (actual.getPosY() - juego.getCamara().getyOffset()), SESENTAYCUATRO, SESENTAYCUATRO, null);
+					(int) (actual.getPosY() - juego.getCamara().getyOffset()),
+					SESENTAYCUATRO, SESENTAYCUATRO, null);
 		}
 	}
 
 	/**
 	 * Grafica a los personajes. <br>
+	 *
 	 * @param g
 	 *            Graficador. <br>
 	 */
-	public final  void graficarPersonajes(final Graphics g) {
+	public final void graficarPersonajes(final Graphics g) {
 		if (juego.getPersonajesConectados() != null) {
-			personajesConectados = new HashMap<Integer, PaquetePersonaje>(juego.getPersonajesConectados());
-			ubicacionPersonajes = new HashMap<Integer, PaqueteMovimiento>(juego.getUbicacionPersonajes());
+			personajesConectados = new HashMap<Integer, PaquetePersonaje>(
+					juego.getPersonajesConectados());
+			ubicacionPersonajes = new HashMap<Integer, PaqueteMovimiento>(
+					juego.getUbicacionPersonajes());
 			Iterator<Integer> it = personajesConectados.keySet().iterator();
 			int key;
 			PaqueteMovimiento actual;
@@ -302,18 +326,30 @@ public class EstadoJuego extends Estado {
 			while (it.hasNext()) {
 				key = it.next();
 				actual = ubicacionPersonajes.get(key);
-				if (actual != null && actual.getIdPersonaje() != juego.getPersonaje().getId()
-						&& personajesConectados.get(actual.getIdPersonaje()).getEstado() == Estado.estadoJuego) {
+				if (actual != null
+						&& actual.getIdPersonaje() != juego.getPersonaje()
+								.getId()
+						&& personajesConectados.get(actual.getIdPersonaje())
+								.getEstado() == Estado.estadoJuego) {
 					Pantalla.centerString(g,
-							new Rectangle((int) (actual.getPosX() - juego.getCamara().getxOffset() + TREINTAYDOS),
-									(int) (actual.getPosY() - juego.getCamara().getyOffset() - VEINTE), 0, DIEZ),
-							personajesConectados.get(actual.getIdPersonaje()).getNombre());
-					g.drawImage(
-							Recursos.personaje.get(personajesConectados.get(actual.getIdPersonaje()).getRaza())
-									.get(actual.getDireccion())[actual.getFrame()],
-							(int) (actual.getPosX() - juego.getCamara().getxOffset()),
-							(int) (actual.getPosY() - juego.getCamara().getyOffset()), SESENTAYCUATRO, SESENTAYCUATRO,
-							null);
+							new Rectangle((int) (actual.getPosX()
+									- juego.getCamara().getxOffset()
+									+ TREINTAYDOS),
+									(int) (actual.getPosY()
+											- juego.getCamara().getyOffset()
+											- VEINTE),
+									0, DIEZ),
+							personajesConectados.get(actual.getIdPersonaje())
+									.getNombre());
+					g.drawImage(Recursos.personaje
+							.get(personajesConectados
+									.get(actual.getIdPersonaje()).getRaza())
+							.get(actual.getDireccion())[actual.getFrame()],
+							(int) (actual.getPosX()
+									- juego.getCamara().getxOffset()),
+							(int) (actual.getPosY()
+									- juego.getCamara().getyOffset()),
+							SESENTAYCUATRO, SESENTAYCUATRO, null);
 				}
 			}
 		}
@@ -321,6 +357,7 @@ public class EstadoJuego extends Estado {
 
 	/**
 	 * Devuelve al personaje. <br>
+	 *
 	 * @return Personaje. <br>
 	 */
 	public final Entidad getPersonaje() {
@@ -329,31 +366,37 @@ public class EstadoJuego extends Estado {
 
 	/**
 	 * Devuelve el nombre del mundo. <br>
+	 *
 	 * @return Nombre mundo. <br>
 	 */
 	private String getMundo() {
 		int mundo = juego.getPersonaje().getMapa();
-		return (mundo == AUBENOR) ? "Aubenor" : (mundo == ARIS) ? "Aris" : (mundo == EODRIM) ? "Eodrim" : null;
+		return (mundo == AUBENOR) ? "Aubenor"
+				: (mundo == ARIS) ? "Aris"
+						: (mundo == EODRIM) ? "Eodrim" : null;
 	}
 
 	/**
 	 * Establece el tipo de solicitud. <br>
+	 *
 	 * @param b
 	 *            Indicador de solicitud. <br>
 	 * @param enemigo
 	 *            Enemigo. <br>
-	 * @param tipoSolicitud
+	 * @param solicitudType
 	 *            Tipo de solicitud. <br>
 	 */
-	public final void setHaySolicitud(final boolean b, final PaquetePersonaje enemigo, final int tipoSolicitud) {
+	public final void setHaySolicitud(final boolean b,
+			final PaquetePersonaje enemigo, final int solicitudType) {
 		haySolicitud = b;
 		// menu que mostrara al enemigo
 		menuEnemigo = new MenuInfoPersonaje(TRESCIENTOS, CINCUENTA, enemigo);
-		this.tipoSolicitud = tipoSolicitud;
+		this.tipoSolicitud = solicitudType;
 	}
 
 	/**
 	 * Establece el tipo de solicitud del enemigo. <br>
+	 *
 	 * @param b
 	 *            Indicador de solicitud. <br>
 	 * @param enemigo
@@ -361,7 +404,8 @@ public class EstadoJuego extends Estado {
 	 * @param tipoSolicitud
 	 *            Tipo de solicitud. <br>
 	 */
-	public final void setHaySolicitudEnemigo(final boolean b, final PaqueteEnemigo enemigo, final int tipoSolicitud) {
+	public final void setHaySolicitudEnemigo(final boolean b,
+			final PaqueteEnemigo enemigo, final int tipoSolicitud) {
 		haySolicitudEnemigo = b;
 		// menu que mostrara al enemigo
 		menuEnemigoNPC = new MenuInfoEnemigo(TRESCIENTOS, CINCUENTA, enemigo);
@@ -370,6 +414,7 @@ public class EstadoJuego extends Estado {
 
 	/**
 	 * Devuelve si hay una solicitud. <br>
+	 *
 	 * @return true si la hay, false de lo contrario. <br>
 	 */
 	public final boolean getHaySolicitud() {
@@ -378,6 +423,7 @@ public class EstadoJuego extends Estado {
 
 	/**
 	 * Devuelve si hay una solicitud del enemigo. <br>
+	 *
 	 * @return true si la hay, false de lo contrario. <br>
 	 */
 	public final boolean getHaySolicitudEnemigo() {
@@ -393,6 +439,7 @@ public class EstadoJuego extends Estado {
 
 	/**
 	 * Devuelve el menú del enemigo. <br>
+	 *
 	 * @return Menú enemigo. <br>
 	 */
 	public final MenuInfoPersonaje getMenuEnemigo() {
@@ -401,6 +448,7 @@ public class EstadoJuego extends Estado {
 
 	/**
 	 * Devuelve el menú del enemigo NPC. <br>
+	 *
 	 * @return Menú enemigo NPC. <br>
 	 */
 	public final MenuInfoEnemigo getMenuEnemigoNPC() {
@@ -409,6 +457,7 @@ public class EstadoJuego extends Estado {
 
 	/**
 	 * Devuelve el tipo de solicitud. <br>
+	 *
 	 * @return Tipo de solicitud. <br>
 	 */
 	public final int getTipoSolicitud() {

@@ -94,13 +94,13 @@ public class Cliente extends Thread {
 	 * Largo de pantalla. <br>
 	 */
 	private static final int LARGO = 600;
-	
 
 	/**
 	 * Constructor del Cliente. <br>
 	 */
 	public Cliente() {
-		ip = JOptionPane.showInputDialog("Ingrese IP del servidor: (default localhost)");
+		ip = JOptionPane.showInputDialog(
+				"Ingrese IP del servidor: (default localhost)");
 		if (ip == null) {
 			ip = "localhost";
 		}
@@ -111,27 +111,30 @@ public class Cliente extends Thread {
 			salida = new ObjectOutputStream(cliente.getOutputStream());
 		} catch (IOException e) {
 			JOptionPane.showMessageDialog(null,
-					"Fallo al iniciar la aplicación. " + "Revise la conexión con el servidor.");
+					"Fallo al iniciar la aplicación. "
+							+ "Revise la conexión con el servidor.");
 			System.exit(1);
 		}
 	}
 
 	/**
 	 * Crea el cliente con sus configuraciones. <br>
-	 * @param ip
+	 *
+	 * @param ipNumber
 	 *            IP del cliente. <br>
-	 * @param puerto
+	 * @param port
 	 *            Puerto del cliente. <br>
 	 */
-	public Cliente(final String ip, final int puerto) {
+	public Cliente(final String ipNumber, final int port) {
 		try {
-			cliente = new Socket(ip, puerto);
+			cliente = new Socket(ipNumber, port);
 			miIp = cliente.getInetAddress().getHostAddress();
 			entrada = new ObjectInputStream(cliente.getInputStream());
 			salida = new ObjectOutputStream(cliente.getOutputStream());
 		} catch (IOException e) {
 			JOptionPane.showMessageDialog(null,
-					"Fallo al iniciar la aplicación. " + "Revise la conexión con el servidor.");
+					"Fallo al iniciar la aplicación. "
+							+ "Revise la conexión con el servidor.");
 			System.exit(1);
 		}
 	}
@@ -157,7 +160,8 @@ public class Cliente extends Thread {
 						paquetePersonaje = new PaquetePersonaje();
 						// Espero a que el usuario seleccione alguna accion
 						wait();
-						comand = (ComandosCliente) Paquete.getObjetoSet(Comando.NOMBREPAQUETE, getAccion());
+						comand = (ComandosCliente) Paquete.getObjetoSet(
+								Comando.NOMBREPAQUETE, getAccion());
 						comand.setCadena(null);
 						comand.setCliente(this);
 						comand.ejecutar();
@@ -167,7 +171,8 @@ public class Cliente extends Thread {
 					// Recibo el paquete desde el servidor
 					String cadenaLeida = (String) entrada.readObject();
 					Paquete paquete = gson.fromJson(cadenaLeida, Paquete.class);
-					comand = (ComandosCliente) paquete.getObjeto(Comando.NOMBREPAQUETE);
+					comand = (ComandosCliente) paquete
+							.getObjeto(Comando.NOMBREPAQUETE);
 					comand.setCadena(cadenaLeida);
 					comand.setCliente(this);
 					comand.ejecutar();
@@ -189,7 +194,8 @@ public class Cliente extends Thread {
 					// Le envio el paquete con el mapa seleccionado
 					salida.writeObject(gson.toJson(paquetePersonaje));
 					// Instancio el juego y cargo los recursos
-					wome = new Juego("World Of the Middle Earth", ANCHO, LARGO, this, paquetePersonaje);
+					wome = new Juego("World Of the Middle Earth", ANCHO, LARGO,
+							this, paquetePersonaje);
 					// Muestro el menu de carga
 					menuCarga = new MenuCarga(this);
 					menuCarga.setVisible(true);
@@ -200,8 +206,10 @@ public class Cliente extends Thread {
 					// Finalizo el menu de carga
 					menuCarga.dispose();
 				}
-			} catch (IOException | InterruptedException | ClassNotFoundException e) {
-				JOptionPane.showMessageDialog(null, "Fallo la conexión con el servidor durante el inicio de sesión.");
+			} catch (IOException | InterruptedException
+					| ClassNotFoundException e) {
+				JOptionPane.showMessageDialog(null,
+						"Fallo la conexión con el servidor durante el inicio de sesión.");
 				System.exit(1);
 			}
 		}
@@ -209,6 +217,7 @@ public class Cliente extends Thread {
 
 	/**
 	 * Devuelve el cliente. <br>
+	 *
 	 * @return Cliente. <br>
 	 */
 	public final Socket getSocket() {
@@ -217,15 +226,17 @@ public class Cliente extends Thread {
 
 	/**
 	 * Establece el cliente. <br>
-	 * @param cliente
+	 *
+	 * @param client
 	 *            Cliente. <br>
 	 */
-	public final void setSocket(final Socket cliente) {
-		this.cliente = cliente;
+	public final void setSocket(final Socket client) {
+		this.cliente = client;
 	}
 
 	/**
 	 * Devuelve la acción. <br>
+	 *
 	 * @return Acción. <br>
 	 */
 	public final int getAccion() {
@@ -234,15 +245,17 @@ public class Cliente extends Thread {
 
 	/**
 	 * Establece la acción. <br>
-	 * @param accion
+	 *
+	 * @param action
 	 *            Acción. <br>
 	 */
-	public final void setAccion(final int accion) {
-		this.accion = accion;
+	public final void setAccion(final int action) {
+		this.accion = action;
 	}
 
 	/**
 	 * Devuelve la IP. <br>
+	 *
 	 * @return IP. <br>
 	 */
 	public final String getMiIp() {
@@ -251,15 +264,17 @@ public class Cliente extends Thread {
 
 	/**
 	 * Establece la IP. <br>
-	 * @param miIp
+	 *
+	 * @param myIp
 	 *            IP. <br>
 	 */
-	public final void setMiIp(final String miIp) {
-		this.miIp = miIp;
+	public final void setMiIp(final String myIp) {
+		this.miIp = myIp;
 	}
 
 	/**
 	 * Devuelve la entrada. <br>
+	 *
 	 * @return Entrada. <br>
 	 */
 	public final ObjectInputStream getEntrada() {
@@ -268,15 +283,17 @@ public class Cliente extends Thread {
 
 	/**
 	 * Establece la entrada. <br>
-	 * @param entrada
+	 *
+	 * @param entrance
 	 *            Entrada. <br>
 	 */
-	public final void setEntrada(final ObjectInputStream entrada) {
-		this.entrada = entrada;
+	public final void setEntrada(final ObjectInputStream entrance) {
+		this.entrada = entrance;
 	}
 
 	/**
 	 * Devuelve la salida. <br>
+	 *
 	 * @return Salida. <br>
 	 */
 	public final ObjectOutputStream getSalida() {
@@ -285,15 +302,17 @@ public class Cliente extends Thread {
 
 	/**
 	 * Establece la salida. <br>
-	 * @param salida
+	 *
+	 * @param exit
 	 *            Salida. <br>
 	 */
-	public final void setSalida(final ObjectOutputStream salida) {
-		this.salida = salida;
+	public final void setSalida(final ObjectOutputStream exit) {
+		this.salida = exit;
 	}
 
 	/**
 	 * Devuelve el usuario del cliente. <br>
+	 *
 	 * @return Usuario del cliente. <br>
 	 */
 	public final PaqueteUsuario getPaqueteUsuario() {
@@ -302,6 +321,7 @@ public class Cliente extends Thread {
 
 	/**
 	 * Devuelve el personaje del cliente. <br>
+	 *
 	 * @return Personaje del cliente. <br>
 	 */
 	public final PaquetePersonaje getPaquetePersonaje() {
@@ -310,6 +330,7 @@ public class Cliente extends Thread {
 
 	/**
 	 * Devuelve el juego. <br>
+	 *
 	 * @return Juego. <br>
 	 */
 	public final Juego getJuego() {
@@ -318,6 +339,7 @@ public class Cliente extends Thread {
 
 	/**
 	 * Devuelve el menú de carga. <br>
+	 *
 	 * @return Menú de carga. <br>
 	 */
 	public final MenuCarga getMenuCarga() {
@@ -326,13 +348,16 @@ public class Cliente extends Thread {
 
 	/**
 	 * Actualiza los items del personaje del cliente. <br>
+	 *
 	 * @param paqueteActualizado
 	 *            Personaje del cliente. <br>
 	 */
-	public final void actualizarItems(final PaquetePersonaje paqueteActualizado) {
-		if (paquetePersonaje.getCantItems() != 0
-				&& paquetePersonaje.getCantItems() != paqueteActualizado.getCantItems()) {
-			paquetePersonaje.anadirItem(paqueteActualizado.getItems().get(paqueteActualizado.getItems().size() - 1));
+	public final void actualizarItems(
+			final PaquetePersonaje paqueteActualizado) {
+		if (paquetePersonaje.getCantItems() != 0 && paquetePersonaje
+				.getCantItems() != paqueteActualizado.getCantItems()) {
+			paquetePersonaje.anadirItem(paqueteActualizado.getItems()
+					.get(paqueteActualizado.getItems().size() - 1));
 		}
 	}
 
@@ -345,6 +370,7 @@ public class Cliente extends Thread {
 
 	/**
 	 * Devuelve la IP. <br>
+	 *
 	 * @return IP. <br>
 	 */
 	public final String getIp() {
@@ -353,6 +379,7 @@ public class Cliente extends Thread {
 
 	/**
 	 * Actualiza al personaje del cliente. <br>
+	 *
 	 * @param pP
 	 *            Personaje del cliente. <br>
 	 */
@@ -362,6 +389,7 @@ public class Cliente extends Thread {
 
 	/**
 	 * Devuelve el juego del cliente. <br>
+	 *
 	 * @return Juego. <br>
 	 */
 	public final Juego getWome() {
@@ -370,15 +398,17 @@ public class Cliente extends Thread {
 
 	/**
 	 * Establece el juego del cliente. <br>
-	 * @param wome
+	 *
+	 * @param game
 	 *            Juego. <br>
 	 */
-	public final void setWome(final Juego wome) {
-		this.wome = wome;
+	public final void setWome(final Juego game) {
+		this.wome = game;
 	}
 
 	/**
 	 * Devuelve el puerto del cliente. <br>
+	 *
 	 * @return Puerto del cliente. <br>
 	 */
 	public final int getPuerto() {
@@ -387,42 +417,48 @@ public class Cliente extends Thread {
 
 	/**
 	 * Establece el usuario del cliente. <br>
-	 * @param paqueteUsuario
+	 *
+	 * @param pckgUsuario
 	 *            Usuario del cliente. <br>
 	 */
-	public final void setPaqueteUsuario(final PaqueteUsuario paqueteUsuario) {
-		this.paqueteUsuario = paqueteUsuario;
+	public final void setPaqueteUsuario(final PaqueteUsuario pckgUsuario) {
+		this.paqueteUsuario = pckgUsuario;
 	}
 
 	/**
 	 * Establece el personaje del cliente. <br>
-	 * @param paquetePersonaje
+	 *
+	 * @param pckgPersonaje
 	 *            Personaje del cliente. <br>
 	 */
-	public final void setPaquetePersonaje(final PaquetePersonaje paquetePersonaje) {
-		this.paquetePersonaje = paquetePersonaje;
+	public final void setPaquetePersonaje(
+			final PaquetePersonaje pckgPersonaje) {
+		this.paquetePersonaje = pckgPersonaje;
 	}
 
 	/**
 	 * Establece la IP del cliente. <br>
-	 * @param ip
+	 *
+	 * @param ipNumber
 	 *            IP. <br>
 	 */
-	public final void setIp(final String ip) {
-		this.ip = ip;
+	public final void setIp(final String ipNumber) {
+		this.ip = ipNumber;
 	}
 
 	/**
 	 * Establece el menú de carga del cliente. <br>
-	 * @param menuCarga
+	 *
+	 * @param cargaMenu
 	 *            Menú de carga. <br>
 	 */
-	public final void setMenuCarga(final MenuCarga menuCarga) {
-		this.menuCarga = menuCarga;
+	public final void setMenuCarga(final MenuCarga cargaMenu) {
+		this.menuCarga = cargaMenu;
 	}
 
 	/**
 	 * Devuelve el menú de comerciar del cliente. <br>
+	 *
 	 * @return Menú de comerciar. <br>
 	 */
 	public final MenuComerciar getM1() {
@@ -431,15 +467,17 @@ public class Cliente extends Thread {
 
 	/**
 	 * Establece el menú de comerciar. <br>
-	 * @param m1
+	 *
+	 * @param menu
 	 *            Menú de comerciar. <br>
 	 */
-	public final void setM1(final MenuComerciar m1) {
-		this.m1 = m1;
+	public final void setM1(final MenuComerciar menu) {
+		this.m1 = menu;
 	}
 
 	/**
 	 * Devuelve el comercio del cliente. <br>
+	 *
 	 * @return Comercio. <br>
 	 */
 	public final PaqueteComerciar getPaqueteComercio() {
@@ -448,15 +486,17 @@ public class Cliente extends Thread {
 
 	/**
 	 * Establece el comercio del cliente. <br>
-	 * @param paqueteComercio
+	 *
+	 * @param pckgComercio
 	 *            Comercio. <br>
 	 */
-	public final void setPaqueteComercio(final PaqueteComerciar paqueteComercio) {
-		this.paqueteComercio = paqueteComercio;
+	public final void setPaqueteComercio(final PaqueteComerciar pckgComercio) {
+		this.paqueteComercio = pckgComercio;
 	}
 
 	/**
 	 * Devuelve la mensajería del cliente. <br>
+	 *
 	 * @return Mensajería. <br>
 	 */
 	public final PaqueteMensaje getPaqueteMensaje() {
@@ -465,10 +505,11 @@ public class Cliente extends Thread {
 
 	/**
 	 * Establece la mensajería del cliente. <br>
-	 * @param paqueteMensaje
+	 *
+	 * @param pckgMensaje
 	 *            Mensajería. <br>
 	 */
-	public final void setPaqueteMensaje(final PaqueteMensaje paqueteMensaje) {
-		this.paqueteMensaje = paqueteMensaje;
+	public final void setPaqueteMensaje(final PaqueteMensaje pckgMensaje) {
+		this.paqueteMensaje = pckgMensaje;
 	}
 }

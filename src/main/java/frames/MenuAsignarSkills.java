@@ -27,10 +27,92 @@ import mensajeria.Comando;
  * Clase que administra el menú para asignar skills al personaje. <br>
  */
 public class MenuAsignarSkills extends JFrame {
+	/** Constante PUNTOS_ASIGNAR. */
+	private static final int PUNTOS_ASIGNAR = 3;
+
+	/** Constante HEIGHT_BOUND. */
+	private static final int HEIGHT_BOUND = 3;
+
+	/** Constante PUNTOS_FUERZA. */
+	private static final int PUNTOS_FUERZA = 200;
+
+	/** Constante PUNTOS_INTELIGENCIA. */
+	private static final int PUNTOS_INTELIGENCIA = 200;
+
+	/** Constante PUNTOS_DESTREZA. */
+	private static final int PUNTOS_DESTREZA = 200;
+
+	/** Constante EMPTY_BORDER. */
 	private static final int EMPTY_BORDER = 5;
+
+	/** Constante X1. */
 	private static final int X1 = 50;
+
+	/** Constante HEIGHT. */
 	private static final int HEIGHT = 16;
+
+	/** Constante WIDTH. */
 	private static final int WIDTH = 56;
+
+	/** Constante BOUNDS1. */
+	private static final int[] BOUNDS1 = {100, 100, 450, 300 };
+
+	/** Constante BOUNDS2. */
+	private static final int[] BOUNDS2 = {100, 100, 298, 294 };
+
+	/** Constante LABEL_PUNTOS. */
+	private static final int[] LABEL_PUNTOS = {39, 41, 83, 26 };
+
+	/** Constante LABEL_INTELIGENCIA. */
+	private static final int[] LABEL_INTELIGENCIA = {X1, 217, WIDTH, HEIGHT };
+
+	/** Constante LABEL_FUERZA. */
+	private static final int[] LABEL_FUERZA = {X1, 101, WIDTH, HEIGHT };
+
+	/** Constante LABEL_DESTREZA. */
+	private static final int[] LABEL_DESTREZA = {X1, 159, WIDTH, HEIGHT };
+
+	/** Constante LBL_INTELIGENCIA. */
+	private static final int[] LBL_INTELIGENCIA = {39, 188, 83, HEIGHT };
+
+	/** Constante LBL_FUERZA. */
+	private static final int[] LBL_FUERZA = {X1, 72, WIDTH, HEIGHT };
+
+	/** Constante LBL_DESTREZA. */
+	private static final int[] LBL_DESTREZA = {X1, 130, WIDTH, HEIGHT };
+
+	/** Constante LABEL_CANT_PUNTOS. */
+	private static final int[] LABEL_CANT_PUNTOS = {12, 13, 177, 29 };
+
+	/** Constante BTN_CONFIRMAR. */
+	private static final int[] BTN_CONFIRMAR = {176, 112, 97, 25 };
+
+	/** Constante BTN_CANCELAR. */
+	private static final int[] BTN_CANCELAR = {176, 184, 97, 25 };
+
+	/** Constante BTN_REASIGNAR_PUNTOS. */
+	private static final int[] BTN_REASIGNAR_PUNTOS = {176, 148, 97, 27 };
+
+	/** Constante BTN_SUMAR_INTELIGENCIA. */
+	private static final int[] BTN_SUMAR_INTELIGENCIA = {118, 217, 34, 25 };
+
+	/** Constante BTN_SUMAR_DESTREZA. */
+	private static final int[] BTN_SUMAR_DESTREZA = {118, 159, 34, 25 };
+
+	/** Constante BTN_SUMAR_FUERZA. */
+	private static final int[] BTN_SUMAR_FUERZA = {118, 92, 34, 25 };
+
+	/** Constante BTN_RESTAR_INTELIGENCIA. */
+	private static final int[] BTN_RESTAR_INTELIGENCIA = {12, 217, 34, 25 };
+
+	/** Constante BTN_RESTAR_DESTREZA. */
+	private static final int[] BTN_RESTAR_DESTREZA = {12, 159, 34, 25 };
+
+	/** Constante BTN_RESTAR_FUERZA. */
+	private static final int[] BTN_RESTAR_FUERZA = {12, 92, 34, 25 };
+
+	/** Constante IMAGE_LABEL. */
+	private static final int[] IMAGE_LABEL = {0, 0, 298, 294 };
 	/**
 	 * Dato irrelevante para que no moleste. <br>
 	 */
@@ -97,7 +179,7 @@ public class MenuAsignarSkills extends JFrame {
 		puntosAsignar = puntosAsignarInicial;
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(BOUNDS1[0], BOUNDS1[1], BOUNDS1[2], BOUNDS1[HEIGHT_BOUND]);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(EMPTY_BORDER, EMPTY_BORDER,
 				EMPTY_BORDER, EMPTY_BORDER));
@@ -105,7 +187,7 @@ public class MenuAsignarSkills extends JFrame {
 
 		setIconImage(Toolkit.getDefaultToolkit().getImage("recursos//1up.png"));
 		setTitle("Asignar");
-		setBounds(100, 100, 298, 294);
+		setBounds(BOUNDS2[0], BOUNDS2[1], BOUNDS2[2], BOUNDS2[HEIGHT_BOUND]);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		getContentPane().setLayout(null);
 		setVisible(true);
@@ -125,58 +207,68 @@ public class MenuAsignarSkills extends JFrame {
 		final JLabel labelFuerza = new JLabel("");
 		labelFuerza.setForeground(Color.WHITE);
 		labelFuerza.setHorizontalAlignment(SwingConstants.CENTER);
-		labelFuerza.setBounds(X1, 101, WIDTH, HEIGHT);
+		labelFuerza.setBounds(LABEL_FUERZA[0], LABEL_FUERZA[1], LABEL_FUERZA[2],
+				LABEL_FUERZA[HEIGHT_BOUND]);
 		labelFuerza.setText(String.valueOf(puntosFuerzaInicial));
 		contentPane.add(labelFuerza);
 
 		final JLabel labelDestreza = new JLabel("");
 		labelDestreza.setForeground(Color.WHITE);
 		labelDestreza.setHorizontalAlignment(SwingConstants.CENTER);
-		labelDestreza.setBounds(X1, 159, WIDTH, HEIGHT);
+		labelDestreza.setBounds(LABEL_DESTREZA[0], LABEL_DESTREZA[1],
+				LABEL_DESTREZA[2], LABEL_DESTREZA[HEIGHT_BOUND]);
 		labelDestreza.setText(String.valueOf(puntosDestrezaInicial));
 		contentPane.add(labelDestreza);
 
 		final JLabel labelInteligencia = new JLabel("");
 		labelInteligencia.setForeground(Color.WHITE);
 		labelInteligencia.setHorizontalAlignment(SwingConstants.CENTER);
-		labelInteligencia.setBounds(X1, 217, WIDTH, HEIGHT);
+		labelInteligencia.setBounds(LABEL_INTELIGENCIA[0],
+				LABEL_INTELIGENCIA[1], LABEL_INTELIGENCIA[2],
+				LABEL_INTELIGENCIA[HEIGHT_BOUND]);
 		labelInteligencia.setText(String.valueOf(puntosInteligenciaInicial));
 		contentPane.add(labelInteligencia);
 
 		final JLabel labelPuntos = new JLabel("");
 		labelPuntos.setForeground(Color.WHITE);
 		labelPuntos.setHorizontalAlignment(SwingConstants.CENTER);
-		labelPuntos.setBounds(39, 41, 83, 26);
+		labelPuntos.setBounds(LABEL_PUNTOS[0], LABEL_PUNTOS[1], LABEL_PUNTOS[2],
+				LABEL_PUNTOS[HEIGHT_BOUND]);
 		labelPuntos.setText(String.valueOf(puntosAsignarInicial));
 		contentPane.add(labelPuntos);
 
 		final JLabel lblCantidadDePuntos = new JLabel(
 				"Cantidad de Puntos a Asignar");
 		lblCantidadDePuntos.setForeground(Color.WHITE);
-		lblCantidadDePuntos.setBounds(12, 13, 177, 29);
+		lblCantidadDePuntos.setBounds(LABEL_CANT_PUNTOS[0],
+				LABEL_CANT_PUNTOS[1], LABEL_CANT_PUNTOS[2],
+				LABEL_CANT_PUNTOS[HEIGHT_BOUND]);
 		contentPane.add(lblCantidadDePuntos);
 
 		final JLabel lblInteligencia = new JLabel("Inteligencia");
 		lblInteligencia.setForeground(Color.WHITE);
 		lblInteligencia.setHorizontalAlignment(SwingConstants.CENTER);
-		lblInteligencia.setBounds(39, 188, 83, HEIGHT);
+		lblInteligencia.setBounds(LBL_INTELIGENCIA[0], LBL_INTELIGENCIA[1],
+				LBL_INTELIGENCIA[2], LBL_INTELIGENCIA[HEIGHT_BOUND]);
 		contentPane.add(lblInteligencia);
 
 		JLabel lblDestreza = new JLabel("Destreza");
 		lblDestreza.setForeground(Color.WHITE);
 		lblDestreza.setHorizontalAlignment(SwingConstants.CENTER);
-		lblDestreza.setBounds(X1, 130, WIDTH, HEIGHT);
+		lblDestreza.setBounds(LBL_DESTREZA[0], LBL_DESTREZA[1], LBL_DESTREZA[2],
+				LBL_DESTREZA[HEIGHT_BOUND]);
 		contentPane.add(lblDestreza);
 
 		final JLabel lblFuerza = new JLabel("Fuerza");
 		lblFuerza.setForeground(Color.WHITE);
 		lblFuerza.setHorizontalAlignment(SwingConstants.CENTER);
-		lblFuerza.setBounds(X1, 72, WIDTH, HEIGHT);
+		lblFuerza.setBounds(LBL_FUERZA[0], LBL_FUERZA[1], LBL_FUERZA[2],
+				LBL_FUERZA[HEIGHT_BOUND]);
 		contentPane.add(lblFuerza);
 
 		final JButton buttonConfirmar = new JButton("Confirmar");
-		ImageIcon icono_confirm = new ImageIcon("recursos//botonConfirmar.png");
-		buttonConfirmar.setIcon(icono_confirm);
+		ImageIcon iconoConfirm = new ImageIcon("recursos//botonConfirmar.png");
+		buttonConfirmar.setIcon(iconoConfirm);
 		buttonConfirmar.setEnabled(false);
 		buttonConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -203,12 +295,13 @@ public class MenuAsignarSkills extends JFrame {
 				dispose();
 			}
 		});
-		buttonConfirmar.setBounds(176, 112, 97, 25);
+		buttonConfirmar.setBounds(BTN_CONFIRMAR[0], BTN_CONFIRMAR[1],
+				BTN_CONFIRMAR[2], BTN_CONFIRMAR[HEIGHT_BOUND]);
 		contentPane.add(buttonConfirmar);
 
 		final JButton buttonCancelar = new JButton("Cancelar");
-		ImageIcon icono_c = new ImageIcon("recursos//botonCancelar.png");
-		buttonCancelar.setIcon(icono_c);
+		ImageIcon iconoC = new ImageIcon("recursos//botonCancelar.png");
+		buttonCancelar.setIcon(iconoC);
 		buttonCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Pantalla.menuAsignar = null;
@@ -217,9 +310,9 @@ public class MenuAsignarSkills extends JFrame {
 		});
 
 		final JButton btnReasignarPuntos = new JButton("Reiniciar");
-		ImageIcon icono_reiniciar = new ImageIcon(
+		ImageIcon iconoReiniciar = new ImageIcon(
 				"recursos//botonReiniciar.png");
-		btnReasignarPuntos.setIcon(icono_reiniciar);
+		btnReasignarPuntos.setIcon(iconoReiniciar);
 		btnReasignarPuntos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (JOptionPane.showConfirmDialog(btnReasignarPuntos,
@@ -233,7 +326,7 @@ public class MenuAsignarSkills extends JFrame {
 					puntosInteligencia = cliente.getPaquetePersonaje()
 							.getInteligenciaInicial();
 
-					puntosAsignar = 3
+					puntosAsignar = PUNTOS_ASIGNAR
 							* (cliente.getPaquetePersonaje().getNivel());
 
 					labelFuerza.setText(Integer.toString(puntosFuerza));
@@ -245,9 +338,12 @@ public class MenuAsignarSkills extends JFrame {
 				}
 			}
 		});
-		btnReasignarPuntos.setBounds(176, 148, 97, 27);
+		btnReasignarPuntos.setBounds(BTN_REASIGNAR_PUNTOS[0],
+				BTN_REASIGNAR_PUNTOS[1], BTN_REASIGNAR_PUNTOS[2],
+				BTN_REASIGNAR_PUNTOS[HEIGHT_BOUND]);
 		contentPane.add(btnReasignarPuntos);
-		buttonCancelar.setBounds(176, 184, 97, 25);
+		buttonCancelar.setBounds(BTN_CANCELAR[0], BTN_CANCELAR[1],
+				BTN_CANCELAR[2], BTN_CANCELAR[HEIGHT_BOUND]);
 		contentPane.add(buttonCancelar);
 
 		final JButton buttonRestarFuerza = new JButton("");
@@ -260,17 +356,17 @@ public class MenuAsignarSkills extends JFrame {
 		buttonRestarDestreza.setEnabled(false);
 		buttonRestarInteligencia.setEnabled(false);
 
-		ImageIcon icono_1 = new ImageIcon("recursos//botonMenoss.png");
-		buttonRestarFuerza.setIcon(icono_1);
+		ImageIcon icono1 = new ImageIcon("recursos//botonMenoss.png");
+		buttonRestarFuerza.setIcon(icono1);
 		buttonRestarFuerza.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (puntosFuerza > puntosFuerzaInicial) {
 					puntosFuerza--;
 					if (puntosAsignar == 0) {
-						if (puntosInteligencia != 200) {
+						if (puntosInteligencia != PUNTOS_INTELIGENCIA) {
 							buttonSumarInteligencia.setEnabled(true);
 						}
-						if (puntosDestreza != 200) {
+						if (puntosDestreza != PUNTOS_DESTREZA) {
 							buttonSumarDestreza.setEnabled(true);
 						}
 					} else {
@@ -293,7 +389,8 @@ public class MenuAsignarSkills extends JFrame {
 				}
 			}
 		});
-		buttonRestarFuerza.setBounds(12, 92, 34, 25);
+		buttonRestarFuerza.setBounds(BTN_RESTAR_FUERZA[0], BTN_RESTAR_FUERZA[1],
+				BTN_RESTAR_FUERZA[2], BTN_RESTAR_FUERZA[HEIGHT_BOUND]);
 		contentPane.add(buttonRestarFuerza);
 
 		buttonRestarDestreza.addActionListener(new ActionListener() {
@@ -301,10 +398,10 @@ public class MenuAsignarSkills extends JFrame {
 				if (puntosDestreza > puntosDestrezaInicial) {
 					puntosDestreza--;
 					if (puntosAsignar == 0) {
-						if (puntosInteligencia != 200) {
+						if (puntosInteligencia != PUNTOS_INTELIGENCIA) {
 							buttonSumarInteligencia.setEnabled(true);
 						}
-						if (puntosFuerza != 200) {
+						if (puntosFuerza != PUNTOS_FUERZA) {
 							buttonSumarFuerza.setEnabled(true);
 						}
 					} else {
@@ -327,8 +424,10 @@ public class MenuAsignarSkills extends JFrame {
 				}
 			}
 		});
-		buttonRestarDestreza.setIcon(icono_1);
-		buttonRestarDestreza.setBounds(12, 159, 34, 25);
+		buttonRestarDestreza.setIcon(icono1);
+		buttonRestarDestreza.setBounds(BTN_RESTAR_DESTREZA[0],
+				BTN_RESTAR_DESTREZA[1], BTN_RESTAR_DESTREZA[2],
+				BTN_RESTAR_DESTREZA[HEIGHT_BOUND]);
 		contentPane.add(buttonRestarDestreza);
 
 		buttonRestarInteligencia.addActionListener(new ActionListener() {
@@ -336,10 +435,10 @@ public class MenuAsignarSkills extends JFrame {
 				if (puntosInteligencia > puntosInteligenciaInicial) {
 					puntosInteligencia--;
 					if (puntosAsignar == 0) {
-						if (puntosFuerza != 200) {
+						if (puntosFuerza != PUNTOS_FUERZA) {
 							buttonSumarFuerza.setEnabled(true);
 						}
-						if (puntosDestreza != 200) {
+						if (puntosDestreza != PUNTOS_DESTREZA) {
 							buttonSumarDestreza.setEnabled(true);
 						}
 					} else {
@@ -363,8 +462,10 @@ public class MenuAsignarSkills extends JFrame {
 				}
 			}
 		});
-		buttonRestarInteligencia.setIcon(icono_1);
-		buttonRestarInteligencia.setBounds(12, 217, 34, 25);
+		buttonRestarInteligencia.setIcon(icono1);
+		buttonRestarInteligencia.setBounds(BTN_RESTAR_INTELIGENCIA[0],
+				BTN_RESTAR_INTELIGENCIA[1], BTN_RESTAR_INTELIGENCIA[2],
+				BTN_RESTAR_INTELIGENCIA[HEIGHT_BOUND]);
 		contentPane.add(buttonRestarInteligencia);
 
 		buttonSumarFuerza.addActionListener(new ActionListener() {
@@ -388,9 +489,10 @@ public class MenuAsignarSkills extends JFrame {
 				}
 			}
 		});
-		ImageIcon icono_2 = new ImageIcon("recursos//botonMass.png");
-		buttonSumarFuerza.setIcon(icono_2);
-		buttonSumarFuerza.setBounds(118, 92, 34, 25);
+		ImageIcon icono2 = new ImageIcon("recursos//botonMass.png");
+		buttonSumarFuerza.setIcon(icono2);
+		buttonSumarFuerza.setBounds(BTN_SUMAR_FUERZA[0], BTN_SUMAR_FUERZA[1],
+				BTN_SUMAR_FUERZA[2], BTN_SUMAR_FUERZA[HEIGHT_BOUND]);
 		contentPane.add(buttonSumarFuerza);
 
 		buttonSumarDestreza.addActionListener(new ActionListener() {
@@ -415,12 +517,14 @@ public class MenuAsignarSkills extends JFrame {
 				}
 			}
 		});
-		buttonSumarDestreza.setIcon(icono_2);
-		buttonSumarDestreza.setBounds(118, 159, 34, 25);
+		buttonSumarDestreza.setIcon(icono2);
+		buttonSumarDestreza.setBounds(BTN_SUMAR_DESTREZA[0],
+				BTN_SUMAR_DESTREZA[1], BTN_SUMAR_DESTREZA[2],
+				BTN_SUMAR_DESTREZA[HEIGHT_BOUND]);
 		contentPane.add(buttonSumarDestreza);
 
 		buttonSumarInteligencia.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(final ActionEvent e) {
 				if (puntosAsignar != 0
 						&& !labelInteligencia.getText().equals("200")) {
 					puntosInteligencia++;
@@ -442,13 +546,16 @@ public class MenuAsignarSkills extends JFrame {
 				}
 			}
 		});
-		buttonSumarInteligencia.setIcon(icono_2);
-		buttonSumarInteligencia.setBounds(118, 217, 34, 25);
+		buttonSumarInteligencia.setIcon(icono2);
+		buttonSumarInteligencia.setBounds(BTN_SUMAR_INTELIGENCIA[0],
+				BTN_SUMAR_INTELIGENCIA[1], BTN_SUMAR_INTELIGENCIA[2],
+				BTN_SUMAR_INTELIGENCIA[HEIGHT_BOUND]);
 		contentPane.add(buttonSumarInteligencia);
 
 		final JLabel imageLabel = new JLabel(
 				new ImageIcon("recursos//background.jpg"));
-		imageLabel.setBounds(0, 0, 298, 294);
+		imageLabel.setBounds(IMAGE_LABEL[0], IMAGE_LABEL[1], IMAGE_LABEL[2],
+				IMAGE_LABEL[HEIGHT_BOUND]);
 		imageLabel.setVisible(true);
 		contentPane.add(imageLabel);
 	}

@@ -47,7 +47,7 @@ public class MiChat extends JFrame {
 	 */
 	@SuppressWarnings("unused")
 	private Juego juego;
-	/*
+	/**
 	 * Gson. <br>
 	 */
 	private final Gson gson = new Gson();
@@ -149,7 +149,9 @@ public class MiChat extends JFrame {
 	private static final int SCROLL_PANE_HEIGHT = 201;
 
 	/**
-	 * Create the frame.
+	 * Crea el frame. <br>
+	 * @param juego
+	 *            Juego.<br>
 	 */
 	public MiChat(final Juego juego) {
 		this.juego = juego;
@@ -250,7 +252,7 @@ public class MiChat extends JFrame {
 	 * Devuelve el área del chat del cliente. <br>
 	 * @return Área del chat. <br>
 	 */
-	public JTextArea getChat() {
+	public final JTextArea getChat() {
 		return chat;
 	}
 
@@ -258,7 +260,7 @@ public class MiChat extends JFrame {
 	 * Devuelve el texto escrito. <br>
 	 * @return Texto escrito. <br>
 	 */
-	public JTextField getTexto() {
+	public final JTextField getTexto() {
 		return texto;
 	}
 }

@@ -4,22 +4,30 @@ import java.util.Map;
 
 import javax.swing.DefaultListModel;
 
-import cliente.Cliente;
 import chat.VentanaContactos;
 import mensajeria.PaqueteDePersonajes;
 import mensajeria.PaquetePersonaje;
 
+/**
+ * Clase que administra el comando de conexión de clientes. <br>
+ */
 public class Conexion extends ComandosEscucha {
-
-	
+	/**
+	 * Ejecuta la conexión de clientes. <br>
+	 */
 	@Override
-	public void ejecutar() {
+	public final void ejecutar() {
 		PaqueteDePersonajes pdp = (PaqueteDePersonajes) gson.fromJson(cadenaLeida, PaqueteDePersonajes.class);
 		juego.setPersonajesConectados(pdp.getPersonajes());
 		actualizarLista(pdp);
 	}
 
-	private void actualizarLista(final PaqueteDePersonajes pdp) {
+	/**
+	 * Actualiza la lista de personajes conectados. <br>
+	 * @param pdp
+	 *            Personajes en el juego. <br>
+	 */
+	private final void actualizarLista(final PaqueteDePersonajes pdp) {
 		DefaultListModel<String> modelo = new DefaultListModel<String>();
 		VentanaContactos.getList().removeAll();
 		for (Map.Entry<Integer, PaquetePersonaje> personaje : pdp.getPersonajes().entrySet()) {

@@ -14,21 +14,33 @@ import mensajeria.Paquete;
 import mensajeria.PaqueteEnemigo;
 import mensajeria.PaqueteMovimiento;
 import mensajeria.PaquetePersonaje;
-/**La clase EscuchaMensajes tiene como función  
- * esuchar los mensajes que se enviaran
- * al servidor.
+
+/**
+ * La clase EscuchaMensajes tiene como función esuchar los mensajes que se
+ * enviaran al servidor. <br>
  */
 public class EscuchaMensajes extends Thread {
-
+	/**
+	 * Juego del cliente. <br>
+	 */
 	private Juego juego;
+	/**
+	 * Cliente. <br>
+	 */
 	private Cliente cliente;
+	/**
+	 * Entada. <br>
+	 */
 	private ObjectInputStream entrada;
+	/**
+	 * Gson. <br>
+	 */
 	private final Gson gson = new Gson();
 
-	//private Map<Integer, PaqueteMovimiento> ubicacionPersonajes;
-	//private Map<Integer, PaquetePersonaje> personajesConectados;
-	/**Constructor de EsuchaMensaje
-	 * @param juego juego del que se escucha el mensaje
+	/**
+	 * Constructor de EsuchaMensaje. <br>
+	 * @param juego
+	 *            juego del que se escucha el mensaje. <br>
 	 */
 	public EscuchaMensajes(final Juego juego) {
 		this.juego = juego;
@@ -36,22 +48,21 @@ public class EscuchaMensajes extends Thread {
 		entrada = cliente.getEntrada();
 	}
 
+	/**
+	 * Corre el escucha de mensajes. <br>
+	 */
 	@Override
-	public void run() {
-
+	public final void run() {
 		try {
 			Paquete paquete;
-			
 			ComandosEscucha comand;
 			juego.setPersonajesConectados(new HashMap<Integer, PaquetePersonaje>());
 			juego.setUbicacionPersonajes(new HashMap<Integer, PaqueteMovimiento>());
 			juego.setEnemigosConectados(new HashMap<Integer, PaqueteEnemigo>());
 			juego.setUbicacionEnemigos(new HashMap<Integer, PaqueteMovimiento>());
-
 			while (true) {
 				String objetoLeido = (String) entrada.readObject();
-
-				paquete = gson.fromJson(objetoLeido , Paquete.class);
+				paquete = gson.fromJson(objetoLeido, Paquete.class);
 				comand = (ComandosEscucha) paquete.getObjeto(Comando.NOMBREPAQUETE);
 				comand.setJuego(juego);
 				comand.setCadena(objetoLeido);
@@ -61,12 +72,4 @@ public class EscuchaMensajes extends Thread {
 			JOptionPane.showMessageDialog(null, "Fallo la conexión con el servidor.");
 		}
 	}
-	/**Pide la ubicacion de los personajes
-	 * @return devuelve el mapa con la ubicacion de los personajes
-	 */
-
-	/**Pide los personajes conectados
-	 * @return devuelve el mapa con los personajes conectados
-	 */
-
 }

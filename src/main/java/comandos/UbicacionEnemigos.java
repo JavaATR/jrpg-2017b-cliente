@@ -2,11 +2,17 @@ package comandos;
 
 import mensajeria.PaqueteDeUbicacionEnemigos;
 
-public class UbicacionEnemigos extends ComandosEscucha{
-
+/**
+ * Clase que administra el comando de ubicación de enemigos. <br>
+ */
+public class UbicacionEnemigos extends ComandosEscucha {
+	/**
+	 * Ejecuta la ubicación de los enemigos. <br>
+	 */
 	@Override
-	public void ejecutar() {
-		PaqueteDeUbicacionEnemigos pdm = (PaqueteDeUbicacionEnemigos) gson.fromJson(cadenaLeida,PaqueteDeUbicacionEnemigos.class);
-		juego.setUbicacionEnemigos(pdm.getEnemigos());		
+	public final void ejecutar() {
+		PaqueteDeUbicacionEnemigos pdm = (PaqueteDeUbicacionEnemigos) gson.fromJson(cadenaLeida,
+				PaqueteDeUbicacionEnemigos.class);
+		juego.setUbicacionEnemigos(pdm.getEnemigos());
 	}
 }

@@ -2,10 +2,15 @@ package comandos;
 
 import mensajeria.PaquetePersonaje;
 
+/**
+ * Clase que administra la actualización del inventario. <br>
+ */
 public class ActualizarInventario extends ComandosEscucha {
-
+	/**
+	 * Ejecuta la actualización del inventario. <br>
+	 */
 	@Override
-	public void ejecutar() {
+	public final void ejecutar() {
 		PaquetePersonaje paquetePersonaje = (PaquetePersonaje) gson.fromJson(cadenaLeida, PaquetePersonaje.class);
 		juego.getPersonajesConectados().remove(paquetePersonaje.getId());
 		juego.getPersonajesConectados().put(paquetePersonaje.getId(), paquetePersonaje);
@@ -15,7 +20,5 @@ public class ActualizarInventario extends ComandosEscucha {
 			juego.getCliente().actualizarItems(paquetePersonaje);
 			juego.getCliente().actualizarPersonaje(juego.getPersonajesConectados().get(paquetePersonaje.getId()));
 		}
-
 	}
-
 }

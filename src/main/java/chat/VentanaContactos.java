@@ -117,7 +117,9 @@ public class VentanaContactos extends JFrame {
 	private static final int BACKGROUND_HEIGHT = 254;
 
 	/**
-	 * Create the frame.
+	 * Crea el frame. <br>
+	 * @param juego
+	 *            Juego. <br>
 	 */
 	public VentanaContactos(final Juego juego) {
 		setResizable(false);

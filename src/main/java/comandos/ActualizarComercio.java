@@ -9,6 +9,9 @@ import mensajeria.PaqueteComerciar;
  * Clase que administra el comando de actualización del comercio. <br>
  */
 public class ActualizarComercio extends ComandosEscucha {
+	/**
+	 * Tamaño de cuenta. <br>
+	 */
 	private static final int CUENTA_SIZE = 9;
 
 	/**

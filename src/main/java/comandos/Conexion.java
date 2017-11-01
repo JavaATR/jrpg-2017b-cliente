@@ -27,7 +27,7 @@ public class Conexion extends ComandosEscucha {
 	 * @param pdp
 	 *            Personajes en el juego. <br>
 	 */
-	private final void actualizarLista(final PaqueteDePersonajes pdp) {
+	private void actualizarLista(final PaqueteDePersonajes pdp) {
 		DefaultListModel<String> modelo = new DefaultListModel<String>();
 		VentanaContactos.getList().removeAll();
 		for (Map.Entry<Integer, PaquetePersonaje> personaje : pdp.getPersonajes().entrySet()) {

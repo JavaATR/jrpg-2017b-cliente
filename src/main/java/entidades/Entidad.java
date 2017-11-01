@@ -29,77 +29,233 @@ import mundo.Nodo;
 import recursos.Recursos;
 
 /**
- * Clase Entidad
+ * Clase Entidad.
  */
 public class Entidad {
-
+	/**
+	 * Juego. <br>
+	 */
 	Juego juego;
 
 	// Tamaño de la entidad
+	/**
+	 * Ancho de la entidad. <br>
+	 */
 	private int ancho;
+	/**
+	 * Alto de la entidad. <br>
+	 */
 	private int alto;
 
 	// Posiciones
+	/**
+	 * Punto X. <br>
+	 */
 	private float x;
+	/**
+	 * Punto Y. <br>
+	 */
 	private float y;
+	/**
+	 * Distancia X. <br>
+	 */
 	private float dx;
+	/**
+	 * Distancia Y: <br>
+	 */
 	private float dy;
+	/**
+	 * Inicio X. <br>
+	 */
 	private float xInicio;
+	/**
+	 * Inicio Y. <br>
+	 */
 	private float yInicio;
+	/**
+	 * X final. <br>
+	 */
 	private float xFinal;
+	/**
+	 * Y final. <br>
+	 */
 	private float yFinal;
+	/**
+	 * Offset X. <br>
+	 */
 	private int xOffset;
+	/**
+	 * Offset Y. <br>
+	 */
 	private int yOffset;
+	/**
+	 * Dibuja X. <br>
+	 */
 	private int drawX;
+	/**
+	 * Dibuja Y. <br>
+	 */
 	private int drawY;
+	/**
+	 * Posición mouse recorrido. <br>
+	 */
 	private int[] posMouseRecorrido;
+	/**
+	 * Posicón mouse. <br>
+	 */
 	private int[] posMouse;
+	/**
+	 * Tiles. <br>
+	 */
 	private int[] tile;
 
 	// Movimiento Actual
-	private static final int horizontalDer = 4;
-	private static final int horizontalIzq = 0;
-	private static final int verticalSup = 2;
-	private static final int verticalInf = 6;
-	private static final int diagonalInfIzq = 7;
-	private static final int diagonalInfDer = 5;
-	private static final int diagonalSupDer = 3;
-	private static final int diagonalSupIzq = 1;
+	/**
+	 * Dirección horizontal derecha. <br>
+	 */
+	private static final int HORIZONTAL_DERECHA = 4;
+	/**
+	 * Dirección horizontal izquierda. <br>
+	 */
+	private static final int HORIZONTAL_IZQUIERDA = 0;
+	/**
+	 * Dirección vertical superior. <br>
+	 */
+	private static final int VERTICAL_SUPERIOR = 2;
+	/**
+	 * Dirección vertical inferior. <br>
+	 */
+	private static final int VERTICAL_INFERIOR = 6;
+	/**
+	 * Dirección inferior izquierda. <br>
+	 */
+	private static final int DIAGONAL_INFERIOR_IZQUIERDA = 7;
+	/**
+	 * Dirección inferior derecha. <br>
+	 */
+	private static final int DIAGONAL_INFERIOR_DERECHA = 5;
+	/**
+	 * Dirección superior derecha. <br>
+	 */
+	private static final int DIAGONAL_SUPERIOR_DERECHA = 3;
+	/**
+	 * Dirección superior izquierda. <br>
+	 */
+	private static final int DIAGONAL_SUPERIOR_IZQUIERDA = 1;
+	/**
+	 * Dirección de movimiento hacia. <br>
+	 */
 	private int movimientoHacia = 6;
+	/**
+	 * Indicador de movimiento. <br>
+	 */
 	private boolean enMovimiento;
 
-	// Animaciones
+	// Animacione
+	/**
+	 * Animación de movimiento hacia la izquierda. <br>
+	 */
 	private final Animacion moverIzq;
+	/**
+	 * Animación de movimiento hacia la izquierda/arriba. <br>
+	 */
 	private final Animacion moverArribaIzq;
+	/**
+	 * Animación de movimiento hacia arriba. <br>
+	 */
 	private final Animacion moverArriba;
+	/**
+	 * Animación de movimiento hacia la derecha/arriba. <br>
+	 */
 	private final Animacion moverArribaDer;
+	/**
+	 * Animación de movimiento hacia la derecha. <br>
+	 */
 	private final Animacion moverDer;
+	/**
+	 * Animación de movimiento hacia la derecha/abajo. <br>
+	 */
 	private final Animacion moverAbajoDer;
+	/**
+	 * Animación de movimiento hacia abajo. <br>
+	 */
 	private final Animacion moverAbajo;
+	/**
+	 * Animación de movimiento hacia la izquierda/abajo. <br>
+	 */
 	private final Animacion moverAbajoIzq;
-
+	/**
+	 * Gson. <br>
+	 */
 	private final Gson gson = new Gson();
+	/**
+	 * Intervalo de envío. <br>
+	 */
 	private int intervaloEnvio = 0;
 
 	// pila de movimiento
+	/**
+	 * Pila de tiles de movimiento. <br>
+	 */
 	private PilaDeTiles pilaMovimiento;
+	/**
+	 * Tile actual del personaje. <br>
+	 */
 	private int[] tileActual;
+	/**
+	 * Tile final del desplazamiento. <br>
+	 */
 	private int[] tileFinal;
+	/**
+	 * Tile de transición del personaje. <br>
+	 */
 	private int[] tileMoverme;
-
+	/**
+	 * Mundo del juego. <br>
+	 */
 	private Mundo mundo;
+	/**
+	 * Nombre del personaje. <br>
+	 */
 	private String nombre;
+	/**
+	 * Tile de los personajes conectados. <br>
+	 */
 	private int[] tilePersonajes;
+	/**
+	 * Tile de los personajes enemigos. <br>
+	 */
 	private int[] tileEnemigos;
+	/**
+	 * Id del enemigo. <br>
+	 */
 	private int idEnemigo;
 
 	// Ubicacion para abrir comerciar.
+	/**
+	 * Comercio X. <br>
+	 */
 	private float xComercio;
+	/**
+	 * Comercio Y. <br>
+	 */
 	private float yComercio;
+	/**
+	 * Comercio. <br>
+	 */
 	private float[] comercio;
 
+	/**
+	 * Manager de animación. <br>
+	 */
 	public ScriptEngineManager manager = new ScriptEngineManager();
+	/**
+	 * Engine de animación. <br>
+	 */
 	public ScriptEngine engine = manager.getEngineByName("javascript");
+	/**
+	 * Opciones de movimiento. <br>
+	 */
 	private String[] moveOptions = new String[8];
 
 	/**
@@ -483,35 +639,35 @@ public class Entidad {
 
 			if (tileFinal[0] == tileActual[0] - 1
 					&& tileFinal[1] == tileActual[1] - 1) {
-				movimientoHacia = verticalSup;
+				movimientoHacia = VERTICAL_SUPERIOR;
 			}
 			if (tileFinal[0] == tileActual[0] + 1
 					&& tileFinal[1] == tileActual[1] + 1) {
-				movimientoHacia = verticalInf;
+				movimientoHacia = VERTICAL_INFERIOR;
 			}
 			if (tileFinal[0] == tileActual[0] - 1
 					&& tileFinal[1] == tileActual[1] + 1) {
-				movimientoHacia = horizontalIzq;
+				movimientoHacia = HORIZONTAL_IZQUIERDA;
 			}
 			if (tileFinal[0] == tileActual[0] + 1
 					&& tileFinal[1] == tileActual[1] - 1) {
-				movimientoHacia = horizontalDer;
+				movimientoHacia = HORIZONTAL_DERECHA;
 			}
 			if (tileFinal[0] == tileActual[0] - 1
 					&& tileFinal[1] == tileActual[1]) {
-				movimientoHacia = diagonalSupIzq;
+				movimientoHacia = DIAGONAL_SUPERIOR_IZQUIERDA;
 			}
 			if (tileFinal[0] == tileActual[0] + 1
 					&& tileFinal[1] == tileActual[1]) {
-				movimientoHacia = diagonalInfDer;
+				movimientoHacia = DIAGONAL_INFERIOR_DERECHA;
 			}
 			if (tileFinal[0] == tileActual[0]
 					&& tileFinal[1] == tileActual[1] - 1) {
-				movimientoHacia = diagonalSupDer;
+				movimientoHacia = DIAGONAL_SUPERIOR_DERECHA;
 			}
 			if (tileFinal[0] == tileActual[0]
 					&& tileFinal[1] == tileActual[1] + 1) {
-				movimientoHacia = diagonalInfIzq;
+				movimientoHacia = DIAGONAL_INFERIOR_IZQUIERDA;
 			}
 			enMovimiento = true;
 		}
@@ -555,24 +711,24 @@ public class Entidad {
 		double paso = 1;
 
 		if (enMovimiento && !(x == xFinal && y == yFinal - 32)) {
-			if (movimientoHacia == verticalSup) {
+			if (movimientoHacia == VERTICAL_SUPERIOR) {
 				dy -= paso;
-			} else if (movimientoHacia == verticalInf) {
+			} else if (movimientoHacia == VERTICAL_INFERIOR) {
 				dy += paso;
-			} else if (movimientoHacia == horizontalDer) {
+			} else if (movimientoHacia == HORIZONTAL_DERECHA) {
 				dx += paso;
-			} else if (movimientoHacia == horizontalIzq) {
+			} else if (movimientoHacia == HORIZONTAL_IZQUIERDA) {
 				dx -= paso;
-			} else if (movimientoHacia == diagonalInfDer) {
+			} else if (movimientoHacia == DIAGONAL_INFERIOR_DERECHA) {
 				dx += paso;
 				dy += paso / 2;
-			} else if (movimientoHacia == diagonalInfIzq) {
+			} else if (movimientoHacia == DIAGONAL_INFERIOR_IZQUIERDA) {
 				dx -= paso;
 				dy += paso / 2;
-			} else if (movimientoHacia == diagonalSupDer) {
+			} else if (movimientoHacia == DIAGONAL_SUPERIOR_DERECHA) {
 				dx += paso;
 				dy -= paso / 2;
-			} else if (movimientoHacia == diagonalSupIzq) {
+			} else if (movimientoHacia == DIAGONAL_SUPERIOR_IZQUIERDA) {
 				dx -= paso;
 				dy -= paso / 2;
 			}
@@ -617,21 +773,21 @@ public class Entidad {
 	 * Obtiene el frameActual del personaje
 	 */
 	private BufferedImage getFrameAnimacionActual() {
-		if (movimientoHacia == horizontalIzq) {
+		if (movimientoHacia == HORIZONTAL_IZQUIERDA) {
 			return moverIzq.getFrameActual();
-		} else if (movimientoHacia == horizontalDer) {
+		} else if (movimientoHacia == HORIZONTAL_DERECHA) {
 			return moverDer.getFrameActual();
-		} else if (movimientoHacia == verticalSup) {
+		} else if (movimientoHacia == VERTICAL_SUPERIOR) {
 			return moverArriba.getFrameActual();
-		} else if (movimientoHacia == verticalInf) {
+		} else if (movimientoHacia == VERTICAL_INFERIOR) {
 			return moverAbajo.getFrameActual();
-		} else if (movimientoHacia == diagonalInfIzq) {
+		} else if (movimientoHacia == DIAGONAL_INFERIOR_IZQUIERDA) {
 			return moverAbajoIzq.getFrameActual();
-		} else if (movimientoHacia == diagonalInfDer) {
+		} else if (movimientoHacia == DIAGONAL_INFERIOR_DERECHA) {
 			return moverAbajoDer.getFrameActual();
-		} else if (movimientoHacia == diagonalSupIzq) {
+		} else if (movimientoHacia == DIAGONAL_SUPERIOR_IZQUIERDA) {
 			return moverArribaIzq.getFrameActual();
-		} else if (movimientoHacia == diagonalSupDer) {
+		} else if (movimientoHacia == DIAGONAL_SUPERIOR_DERECHA) {
 			return moverArribaDer.getFrameActual();
 		}
 
@@ -652,14 +808,14 @@ public class Entidad {
 	 */
 	private int getFrame() {
 
-		moveOptions[horizontalIzq] = "return moverIzq.getFrame()";
-		moveOptions[horizontalDer] = "return moverDer.getFrame()";
-		moveOptions[verticalSup] = "return moverArriba.getFrame()";
-		moveOptions[verticalInf] = "return moverAbajo.getFrame()";
-		moveOptions[diagonalInfIzq] = "return moverAbajoIzq.getFrame()";
-		moveOptions[diagonalInfDer] = "return moverAbajoDer.getFrame()";
-		moveOptions[diagonalSupIzq] = "return moverArribaIzq.getFrame()";
-		moveOptions[diagonalSupDer] = "return moverArribaDer.getFrame()";
+		moveOptions[HORIZONTAL_IZQUIERDA] = "return moverIzq.getFrame()";
+		moveOptions[HORIZONTAL_DERECHA] = "return moverDer.getFrame()";
+		moveOptions[VERTICAL_SUPERIOR] = "return moverArriba.getFrame()";
+		moveOptions[VERTICAL_INFERIOR] = "return moverAbajo.getFrame()";
+		moveOptions[DIAGONAL_INFERIOR_IZQUIERDA] = "return moverAbajoIzq.getFrame()";
+		moveOptions[DIAGONAL_INFERIOR_DERECHA] = "return moverAbajoDer.getFrame()";
+		moveOptions[DIAGONAL_SUPERIOR_IZQUIERDA] = "return moverArribaIzq.getFrame()";
+		moveOptions[DIAGONAL_SUPERIOR_DERECHA] = "return moverArribaDer.getFrame()";
 
 		if (movimientoHacia < 8)
 			try {

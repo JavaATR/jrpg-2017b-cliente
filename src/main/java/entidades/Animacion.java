@@ -17,12 +17,12 @@ public class Animacion {
 	private BufferedImage[] frames;
 
 	/**
-	 * Constructor de la clase
+	 * Constructor de la clase. <br>
 	 *
 	 * @param velocity
-	 *            velocidad con la cual se actualiza
+	 *            velocidad con la cual se actualiza. <br>
 	 * @param marcos
-	 *            imagen de frame
+	 *            imagen de frame. <br>
 	 */
 	public Animacion(final int velocity, final BufferedImage[] marcos) {
 		this.velocidad = velocity;
@@ -33,9 +33,9 @@ public class Animacion {
 	}
 
 	/**
-	 * Actualiza los frames
+	 * Actualiza los frames. <br>
 	 */
-	public void actualizar() {
+	public final void actualizar() {
 		timer += System.currentTimeMillis() - ultimoTiempo;
 		ultimoTiempo = System.currentTimeMillis();
 
@@ -49,27 +49,27 @@ public class Animacion {
 	}
 
 	/**
-	 * Resetea el indice
+	 * Resetea el indice. <br>
 	 */
-	public void reset() {
+	public final void reset() {
 		indice = 0;
 	}
 
 	/**
-	 * Pide el frame actual
+	 * Pide el frame actual. <br>
 	 *
-	 * @return devuelve el valor del frame en un indice
+	 * @return devuelve el valor del frame en un indice. <br>
 	 */
-	public BufferedImage getFrameActual() {
+	public final BufferedImage getFrameActual() {
 		return frames[indice];
 	}
 
 	/**
-	 * Pide el frame
+	 * Pide el frame. <br>
 	 *
-	 * @return devuelve el indice del frame
+	 * @return devuelve el indice del frame. <br>
 	 */
-	public int getFrame() {
+	public final int getFrame() {
 		return indice;
 	}
 }

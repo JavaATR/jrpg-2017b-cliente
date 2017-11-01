@@ -271,7 +271,7 @@ public class MenuAsignarSkills extends JFrame {
 		buttonConfirmar.setIcon(iconoConfirm);
 		buttonConfirmar.setEnabled(false);
 		buttonConfirmar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(final ActionEvent e) {
 				puntosAsignarInicial = puntosAsignar;
 				int bonusF = puntosFuerza - puntosFuerzaInicial;
 				int bonusD = puntosDestreza - puntosDestrezaInicial;
@@ -303,7 +303,7 @@ public class MenuAsignarSkills extends JFrame {
 		ImageIcon iconoC = new ImageIcon("recursos//botonCancelar.png");
 		buttonCancelar.setIcon(iconoC);
 		buttonCancelar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(final ActionEvent arg0) {
 				Pantalla.menuAsignar = null;
 				dispose();
 			}
@@ -314,7 +314,7 @@ public class MenuAsignarSkills extends JFrame {
 				"recursos//botonReiniciar.png");
 		btnReasignarPuntos.setIcon(iconoReiniciar);
 		btnReasignarPuntos.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(final ActionEvent e) {
 				if (JOptionPane.showConfirmDialog(btnReasignarPuntos,
 						"Esta seguro que quiere reasignar los puntos?") == 0) {
 
@@ -359,7 +359,7 @@ public class MenuAsignarSkills extends JFrame {
 		ImageIcon icono1 = new ImageIcon("recursos//botonMenoss.png");
 		buttonRestarFuerza.setIcon(icono1);
 		buttonRestarFuerza.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(final ActionEvent e) {
 				if (puntosFuerza > puntosFuerzaInicial) {
 					puntosFuerza--;
 					if (puntosAsignar == 0) {
@@ -394,7 +394,7 @@ public class MenuAsignarSkills extends JFrame {
 		contentPane.add(buttonRestarFuerza);
 
 		buttonRestarDestreza.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(final ActionEvent e) {
 				if (puntosDestreza > puntosDestrezaInicial) {
 					puntosDestreza--;
 					if (puntosAsignar == 0) {
@@ -431,7 +431,7 @@ public class MenuAsignarSkills extends JFrame {
 		contentPane.add(buttonRestarDestreza);
 
 		buttonRestarInteligencia.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(final ActionEvent e) {
 				if (puntosInteligencia > puntosInteligenciaInicial) {
 					puntosInteligencia--;
 					if (puntosAsignar == 0) {
@@ -469,7 +469,7 @@ public class MenuAsignarSkills extends JFrame {
 		contentPane.add(buttonRestarInteligencia);
 
 		buttonSumarFuerza.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(final ActionEvent e) {
 				if (puntosAsignar != 0
 						&& !labelFuerza.getText().equals("200")) {
 					puntosFuerza++;
@@ -496,7 +496,7 @@ public class MenuAsignarSkills extends JFrame {
 		contentPane.add(buttonSumarFuerza);
 
 		buttonSumarDestreza.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(final ActionEvent e) {
 				if (puntosAsignar != 0
 						&& !labelDestreza.getText().equals("200")) {
 					puntosDestreza++;

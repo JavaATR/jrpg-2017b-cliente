@@ -20,7 +20,7 @@ public class PilaDeTiles {
 	 * @param nodo
 	 *            nuevo nodo siguiente
 	 */
-	public void push(final NodoDePila nodo) {
+	public final void push(final NodoDePila nodo) {
 		nodo.establecerSiguiente(ptrPila);
 		ptrPila = nodo;
 	}
@@ -30,7 +30,7 @@ public class PilaDeTiles {
 	 *
 	 * @return un nodo de pila con el tope de la pila
 	 */
-	public NodoDePila pop() {
+	public final NodoDePila pop() {
 		NodoDePila tope = ptrPila;
 		if (tope == null) {
 			return null;
@@ -44,7 +44,7 @@ public class PilaDeTiles {
 	 *
 	 * @return true or false
 	 */
-	public boolean estaVacia() {
+	public final boolean estaVacia() {
 		return ptrPila == null;
 	}
 

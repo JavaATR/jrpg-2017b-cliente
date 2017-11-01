@@ -143,7 +143,7 @@ public class Cliente extends Thread {
 	 * Corre el cliente. <br>
 	 */
 	@Override
-	public void run() {
+	public final void run() {
 		synchronized (this) {
 			try {
 				ComandosCliente comand;

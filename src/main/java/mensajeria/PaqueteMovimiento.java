@@ -64,7 +64,7 @@ public class PaqueteMovimiento extends Paquete
      *
      * @return id personaje
      */
-    public int getIdPersonaje() {
+    public final int getIdPersonaje() {
         return id;
     }
 
@@ -74,7 +74,7 @@ public class PaqueteMovimiento extends Paquete
      * @param idPersonaje
      *            Valor para asignar id del personaje. <br>
      */
-    public void setIdPersonaje(final int idPersonaje) {
+    public final void setIdPersonaje(final int idPersonaje) {
         this.id = idPersonaje;
     }
 
@@ -83,7 +83,7 @@ public class PaqueteMovimiento extends Paquete
      *
      * @return pos X
      */
-    public float getPosX() {
+    public final float getPosX() {
         return posX;
     }
 
@@ -93,7 +93,7 @@ public class PaqueteMovimiento extends Paquete
      * @param posicionX
      *            Valor para asignar posicion X. <br>
      */
-    public void setPosX(final float posicionX) {
+    public final void setPosX(final float posicionX) {
         this.posX = posicionX;
     }
 
@@ -102,7 +102,7 @@ public class PaqueteMovimiento extends Paquete
      *
      * @return pos Y
      */
-    public float getPosY() {
+    public final float getPosY() {
         return posY;
     }
 
@@ -112,7 +112,7 @@ public class PaqueteMovimiento extends Paquete
      * @param posicionY
      *            Valor para asignar posicion Y. <br>
      */
-    public void setPosY(final float posicionY) {
+    public final void setPosY(final float posicionY) {
         this.posY = posicionY;
     }
 
@@ -121,7 +121,7 @@ public class PaqueteMovimiento extends Paquete
      *
      * @return direccion
      */
-    public int getDireccion() {
+    public final int getDireccion() {
         return direccion;
     }
 
@@ -131,7 +131,7 @@ public class PaqueteMovimiento extends Paquete
      * @param dir
      *            Valor para asignar dirección. <br>
      */
-    public void setDireccion(final int dir) {
+    public final void setDireccion(final int dir) {
         this.direccion = dir;
     }
 
@@ -140,7 +140,7 @@ public class PaqueteMovimiento extends Paquete
      *
      * @return frame
      */
-    public int getFrame() {
+    public final int getFrame() {
         return frame;
     }
 
@@ -150,7 +150,7 @@ public class PaqueteMovimiento extends Paquete
      * @param marco
      *            Valor para asignar frame. <br>
      */
-    public void setFrame(final int marco) {
+    public final void setFrame(final int marco) {
         this.frame = marco;
     }
 
@@ -160,7 +160,7 @@ public class PaqueteMovimiento extends Paquete
      * @see mensajeria.Paquete#clone()
      */
     @Override
-    public Object clone() {
+    public final Object clone() {
         Object obj = null;
         obj = super.clone();
         return obj;

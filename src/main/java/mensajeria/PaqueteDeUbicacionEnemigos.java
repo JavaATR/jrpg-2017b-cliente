@@ -35,7 +35,7 @@ public class PaqueteDeUbicacionEnemigos extends Paquete
      *
      * @return enemigos
      */
-    public Map<Integer, PaqueteMovimiento> getEnemigos() {
+    public final Map<Integer, PaqueteMovimiento> getEnemigos() {
         return enemigos;
     }
 
@@ -45,7 +45,7 @@ public class PaqueteDeUbicacionEnemigos extends Paquete
      * @see mensajeria.Paquete#clone()
      */
     @Override
-    public Object clone() {
+    public final Object clone() {
         Object obj = null;
         obj = super.clone();
         return obj;

@@ -48,7 +48,7 @@ public class PaqueteUsuario extends Paquete implements Serializable, Cloneable {
      *
      * @return id pj
      */
-    public int getIdPj() {
+    public final int getIdPj() {
         return idPj;
     }
 
@@ -58,7 +58,7 @@ public class PaqueteUsuario extends Paquete implements Serializable, Cloneable {
      * @param idPj
      *            Valor para asignar id de personaje. <br>
      */
-    public void setIdPj(final int idPj) {
+    public final void setIdPj(final int idPj) {
         this.idPj = idPj;
     }
 
@@ -67,7 +67,7 @@ public class PaqueteUsuario extends Paquete implements Serializable, Cloneable {
      *
      * @return the username
      */
-    public String getUsername() {
+    public final String getUsername() {
         return username;
     }
 
@@ -77,7 +77,7 @@ public class PaqueteUsuario extends Paquete implements Serializable, Cloneable {
      * @param user
      *            Valor para asignar nombre de usuario. <br>
      */
-    public void setUsername(final String user) {
+    public final void setUsername(final String user) {
         this.username = user;
     }
 
@@ -86,7 +86,7 @@ public class PaqueteUsuario extends Paquete implements Serializable, Cloneable {
      *
      * @return password
      */
-    public String getPassword() {
+    public final String getPassword() {
         return password;
     }
 
@@ -96,14 +96,16 @@ public class PaqueteUsuario extends Paquete implements Serializable, Cloneable {
      * @param pass
      *            Valor para asignar password. <br>
      */
-    public void setPassword(final String pass) {
+    public final void setPassword(final String pass) {
         this.password = pass;
     }
 
     /**
      * Checks inicio de sesion. <br>
+     *
+     * @return inicioSesion
      */
-    public boolean isInicioSesion() {
+    public final boolean isInicioSesion() {
         return inicioSesion;
     }
 
@@ -113,7 +115,7 @@ public class PaqueteUsuario extends Paquete implements Serializable, Cloneable {
      * @param initSesion
      *            Valor para setear inicio de sesión. <br>
      */
-    public void setInicioSesion(final boolean initSesion) {
+    public final void setInicioSesion(final boolean initSesion) {
         this.inicioSesion = initSesion;
     }
 
@@ -123,7 +125,7 @@ public class PaqueteUsuario extends Paquete implements Serializable, Cloneable {
      * @see mensajeria.Paquete#clone()
      */
     @Override
-    public Object clone() {
+    public final Object clone() {
         Object obj = null;
         obj = super.clone();
         return obj;

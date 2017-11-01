@@ -168,7 +168,7 @@ public class Juego implements Runnable {
     /**
      * Carga lo necesario para inicial el juego. <br>
      */
-    public void iniciar() {
+    public final void iniciar() {
         pantalla = new Pantalla(nombre, ancho, alto, cliente);
         pantalla.getCanvas().addMouseListener(handlerMouse);
         camara = new Camara(this, 0, 0);
@@ -210,7 +210,7 @@ public class Juego implements Runnable {
      * Hilo principal del juego. <br>
      */
     @Override
-    public void run() {
+    public final void run() {
         int fps = FPS; // Cantidad de actualizaciones por segundo que se desean
         double tiempoPorActualizacion = TIEMPO_POR_ACTUALIZACION / fps; // Cantidad
                                                                         // de
@@ -257,8 +257,9 @@ public class Juego implements Runnable {
      * Hilo principal del juego. <br>
      */
     public synchronized void start() { // Inicia el juego
-        if (corriendo)
+        if (corriendo) {
             return;
+        }
         estadoJuego = new EstadoJuego(this);
         Estado.setEstado(estadoJuego);
         pantalla.mostrar();
@@ -271,8 +272,9 @@ public class Juego implements Runnable {
      * Detiene el juego. <br>
      */
     public synchronized void stop() { // Detiene el juego
-        if (!corriendo)
+        if (!corriendo) {
             return;
+        }
         try {
             corriendo = false;
             hilo.join();
@@ -287,7 +289,7 @@ public class Juego implements Runnable {
      *
      * @return Ancho. <br>
      */
-    public int getAncho() {
+    public final int getAncho() {
         return ancho;
     }
 
@@ -296,7 +298,7 @@ public class Juego implements Runnable {
      *
      * @return Alto. <br>
      */
-    public int getAlto() {
+    public final int getAlto() {
         return alto;
     }
 
@@ -305,7 +307,7 @@ public class Juego implements Runnable {
      *
      * @return Mouse. <br>
      */
-    public HandlerMouse getHandlerMouse() {
+    public final HandlerMouse getHandlerMouse() {
         return handlerMouse;
     }
 
@@ -314,7 +316,7 @@ public class Juego implements Runnable {
      *
      * @return Posición cámara. <br>
      */
-    public Camara getCamara() {
+    public final Camara getCamara() {
         return camara;
     }
 
@@ -323,7 +325,7 @@ public class Juego implements Runnable {
      *
      * @return Estado del juego. <br>
      */
-    public EstadoJuego getEstadoJuego() {
+    public final EstadoJuego getEstadoJuego() {
         return (EstadoJuego) estadoJuego;
     }
 
@@ -332,18 +334,18 @@ public class Juego implements Runnable {
      *
      * @return Estado de batalla. <br>
      */
-    public EstadoBatalla getEstadoBatalla() {
+    public final EstadoBatalla getEstadoBatalla() {
         return (EstadoBatalla) estadoBatalla;
     }
 
     /**
      * Establece el estado de batalla del juego. <br>
      *
-     * @param estadoBatalla
+     * @param battleStatus
      *            Estado de batalla. <br>
      */
-    public void setEstadoBatalla(final EstadoBatalla estadoBatalla) {
-        this.estadoBatalla = estadoBatalla;
+    public final void setEstadoBatalla(final EstadoBatalla battleStatus) {
+        this.estadoBatalla = battleStatus;
     }
 
     /**
@@ -351,7 +353,7 @@ public class Juego implements Runnable {
      *
      * @return Cliente. <br>
      */
-    public Cliente getCliente() {
+    public final Cliente getCliente() {
         return cliente;
     }
 
@@ -360,7 +362,7 @@ public class Juego implements Runnable {
      *
      * @return Mensaje. <br>
      */
-    public EscuchaMensajes getEscuchaMensajes() {
+    public final EscuchaMensajes getEscuchaMensajes() {
         return escuchaMensajes;
     }
 
@@ -369,7 +371,7 @@ public class Juego implements Runnable {
      *
      * @return Personaje. <br>
      */
-    public PaquetePersonaje getPersonaje() {
+    public final PaquetePersonaje getPersonaje() {
         return paquetePersonaje;
     }
 
@@ -378,7 +380,7 @@ public class Juego implements Runnable {
      *
      * @return Ubicación del personaje. <br>
      */
-    public PaqueteMovimiento getUbicacionPersonaje() {
+    public final PaqueteMovimiento getUbicacionPersonaje() {
         return ubicacionPersonaje;
     }
 
@@ -387,24 +389,24 @@ public class Juego implements Runnable {
      *
      * @return Ubicación del enemigo. <br>
      */
-    public PaqueteMovimiento getUbicacionEnemigo() {
+    public final PaqueteMovimiento getUbicacionEnemigo() {
         return ubicacionEnemigo;
     }
 
     /**
      * Establece el personaje del jugador. <br>
      *
-     * @param paquetePersonaje
+     * @param pckgPersonaje
      *            Personaje. <br>
      */
-    public void setPersonaje(final PaquetePersonaje paquetePersonaje) {
-        this.paquetePersonaje = paquetePersonaje;
+    public final void setPersonaje(final PaquetePersonaje pckgPersonaje) {
+        this.paquetePersonaje = pckgPersonaje;
     }
 
     /**
      * Actualiza la condición actual del personaje. <br>
      */
-    public void actualizarPersonaje() {
+    public final void actualizarPersonaje() {
         paquetePersonaje = (PaquetePersonaje) (personajesConectados
                 .get(paquetePersonaje.getId()).clone());
     }
@@ -414,7 +416,7 @@ public class Juego implements Runnable {
      *
      * @return Personajes conectados. <br>
      */
-    public Map<Integer, PaquetePersonaje> getPersonajesConectados() {
+    public final Map<Integer, PaquetePersonaje> getPersonajesConectados() {
         return personajesConectados;
     }
 
@@ -424,7 +426,7 @@ public class Juego implements Runnable {
      * @param map
      *            Personajes conectados. <br>
      */
-    public void setPersonajesConectados(
+    public final void setPersonajesConectados(
             final Map<Integer, PaquetePersonaje> map) {
         this.personajesConectados = map;
     }
@@ -434,7 +436,7 @@ public class Juego implements Runnable {
      *
      * @return Enemigos conectados. <br>
      */
-    public Map<Integer, PaqueteEnemigo> getEnemigosConectados() {
+    public final Map<Integer, PaqueteEnemigo> getEnemigosConectados() {
         return enemigosConectados;
     }
 
@@ -444,7 +446,7 @@ public class Juego implements Runnable {
      * @param map
      *            Enemigos conectados. <br>
      */
-    public void setEnemigosConectados(final Map<Integer, PaqueteEnemigo> map) {
+    public final void setEnemigosConectados(final Map<Integer, PaqueteEnemigo> map) {
         this.enemigosConectados = map;
     }
 
@@ -453,19 +455,19 @@ public class Juego implements Runnable {
      *
      * @return Ubicación de los personajes. <br>
      */
-    public Map<Integer, PaqueteMovimiento> getUbicacionPersonajes() {
+    public final Map<Integer, PaqueteMovimiento> getUbicacionPersonajes() {
         return ubicacionPersonajes;
     }
 
     /**
      * Establece la ubicación de los personajes. <br>
      *
-     * @param ubicacionPersonajes
+     * @param locationPersonajes
      *            Ubicación de los personajes. <br>
      */
-    public void setUbicacionPersonajes(
-            final Map<Integer, PaqueteMovimiento> ubicacionPersonajes) {
-        this.ubicacionPersonajes = ubicacionPersonajes;
+    public final void setUbicacionPersonajes(
+            final Map<Integer, PaqueteMovimiento> locationPersonajes) {
+        this.ubicacionPersonajes = locationPersonajes;
     }
 
     /**
@@ -473,19 +475,19 @@ public class Juego implements Runnable {
      *
      * @return Ubicación de los enemigos. <br>
      */
-    public Map<Integer, PaqueteMovimiento> getUbicacionEnemigos() {
+    public final Map<Integer, PaqueteMovimiento> getUbicacionEnemigos() {
         return ubicacionEnemigos;
     }
 
     /**
      * Establece la ubicación de los enemigos. <br>
      *
-     * @param ubicacionEnemigos
+     * @param locationEnemigos
      *            Ubicación de los enemigos. <br>
      */
-    public void setUbicacionEnemigos(
-            final Map<Integer, PaqueteMovimiento> ubicacionEnemigos) {
-        this.ubicacionEnemigos = ubicacionEnemigos;
+    public final void setUbicacionEnemigos(
+            final Map<Integer, PaqueteMovimiento> locationEnemigos) {
+        this.ubicacionEnemigos = locationEnemigos;
     }
 
     /**
@@ -493,7 +495,7 @@ public class Juego implements Runnable {
      *
      * @return Chats activos. <br>
      */
-    public Map<String, MiChat> getChatsActivos() {
+    public final Map<String, MiChat> getChatsActivos() {
         return chatsActivos;
     }
 }

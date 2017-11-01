@@ -1,7 +1,7 @@
 package entidades;
 
 /**
- * Clase Nodo de Pila
+ * Clase Nodo de Pila.
  */
 public class NodoDePila {
 
@@ -31,7 +31,7 @@ public class NodoDePila {
      *
      * @return devuelve un nodo de pila con el siguiente
      */
-    public NodoDePila obtenerSiguiente() {
+    public final NodoDePila obtenerSiguiente() {
         return ptrSiguiente;
     }
 
@@ -41,7 +41,7 @@ public class NodoDePila {
      * @param nodo
      *            nuevo nodo a setear
      */
-    public void establecerSiguiente(NodoDePila nodo) {
+    public final void establecerSiguiente(NodoDePila nodo) {
         ptrSiguiente = nodo;
     }
 
@@ -50,7 +50,7 @@ public class NodoDePila {
      *
      * @return devuelve el valor de X
      */
-    public int obtenerX() {
+    public final int obtenerX() {
         return x;
     }
 
@@ -59,7 +59,7 @@ public class NodoDePila {
      *
      * @return devuelve el valor de Y
      */
-    public int obtenerY() {
+    public final int obtenerY() {
         return y;
     }
 

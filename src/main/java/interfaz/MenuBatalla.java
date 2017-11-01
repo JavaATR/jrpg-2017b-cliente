@@ -163,7 +163,7 @@ public class MenuBatalla {
      *            Valor y del mouse.
      * @return the boton clickeado. <br>
      */
-    public int getBotonClickeado(final int mouseX, final int mouseY) {
+    public final int getBotonClickeado(final int mouseX, final int mouseY) {
         if (!habilitado) {
             return 0;
         }
@@ -188,7 +188,7 @@ public class MenuBatalla {
      *            Valor y del mouse.
      * @return true, if successful <br>
      */
-    public boolean clickEnMenu(final int mouseX, final int mouseY) {
+    public final boolean clickEnMenu(final int mouseX, final int mouseY) {
         if (mouseX >= X && mouseX <= X + Recursos.getMenuBatalla().getWidth()
                 && mouseY >= Y
                 && mouseY <= Y + Recursos.getMenuBatalla().getHeight()) {
@@ -204,7 +204,7 @@ public class MenuBatalla {
      * @param b
      *            Boolean habilitado. <br>
      */
-    public void setHabilitado(final boolean b) {
+    public final void setHabilitado(final boolean b) {
         habilitado = b;
     }
 }

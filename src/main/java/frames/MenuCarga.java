@@ -123,7 +123,7 @@ public class MenuCarga extends JFrame {
      * @param ancho
      *            Valor de barra cargando <br>
      */
-    public void setBarraCargando(int ancho) {
+    public final void setBarraCargando(int ancho) {
         barraCargando.setSize(ancho, ANCHO_BARRA);
     }
 }

@@ -89,7 +89,7 @@ public class Paquete implements Serializable, Cloneable {
      * @param ipNumber
      *            Valor para asignar ip. <br>
      */
-    public void setIp(final String ipNumber) {
+    public final void setIp(final String ipNumber) {
         this.ip = ipNumber;
     }
 
@@ -99,7 +99,7 @@ public class Paquete implements Serializable, Cloneable {
      * @param command
      *            Valor para asignar comando. <br>
      */
-    public void setComando(final int command) {
+    public final void setComando(final int command) {
         this.comando = command;
     }
 
@@ -117,7 +117,7 @@ public class Paquete implements Serializable, Cloneable {
      *
      * @return ip
      */
-    public String getIp() {
+    public final String getIp() {
         return ip;
     }
 
@@ -126,7 +126,7 @@ public class Paquete implements Serializable, Cloneable {
      *
      * @return comando
      */
-    public int getComando() {
+    public final int getComando() {
         return comando;
     }
 
@@ -154,7 +154,7 @@ public class Paquete implements Serializable, Cloneable {
      *            String con el nombre del paquete.
      * @return the objeto
      */
-    public Comando getObjeto(final String nombrePaquete) {
+    public final Comando getObjeto(final String nombrePaquete) {
         try {
             Comando c;
             c = (Comando) Class
@@ -177,7 +177,7 @@ public class Paquete implements Serializable, Cloneable {
      *            Entero con el valor de la acción.
      * @return objeto set
      */
-    public static Comando getObjetoSet(final String nombrePaquete,
+    public final static Comando getObjetoSet(final String nombrePaquete,
             final int accion) {
         try {
             Comando c;

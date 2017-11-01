@@ -46,7 +46,7 @@ public class PaqueteMensaje extends Paquete implements Serializable, Cloneable {
      *
      * @return user emisor
      */
-    public String getUserEmisor() {
+    public final String getUserEmisor() {
         return userEmisor;
     }
 
@@ -56,7 +56,7 @@ public class PaqueteMensaje extends Paquete implements Serializable, Cloneable {
      * @param idEmisor
      *            Valor para asignar user emisor. <br>
      */
-    public void setUserEmisor(final String idEmisor) {
+    public final void setUserEmisor(final String idEmisor) {
         this.userEmisor = idEmisor;
     }
 
@@ -65,7 +65,7 @@ public class PaqueteMensaje extends Paquete implements Serializable, Cloneable {
      *
      * @return user receptor
      */
-    public String getUserReceptor() {
+    public final String getUserReceptor() {
         return userReceptor;
     }
 
@@ -75,14 +75,14 @@ public class PaqueteMensaje extends Paquete implements Serializable, Cloneable {
      * @param idReceptor
      *            Valor para asignar user receptor. <br>
      */
-    public void setUserReceptor(final String idReceptor) {
+    public final void setUserReceptor(final String idReceptor) {
         this.userReceptor = idReceptor;
     }
 
     /**
      * Object clone. <br>
      */
-    public Object clone() {
+    public final Object clone() {
         Object obj = null;
         obj = super.clone();
         return obj;

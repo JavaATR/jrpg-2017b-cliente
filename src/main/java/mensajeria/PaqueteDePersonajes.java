@@ -34,7 +34,7 @@ public class PaqueteDePersonajes extends Paquete
      *
      * @return personajes
      */
-    public Map<Integer, PaquetePersonaje> getPersonajes() {
+    public final Map<Integer, PaquetePersonaje> getPersonajes() {
         return personajes;
     }
 
@@ -44,7 +44,7 @@ public class PaqueteDePersonajes extends Paquete
      * @see mensajeria.Paquete#clone()
      */
     @Override
-    public Object clone() {
+    public final Object clone() {
         Object obj = null;
         obj = super.clone();
         return obj;

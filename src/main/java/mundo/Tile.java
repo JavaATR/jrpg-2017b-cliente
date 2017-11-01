@@ -119,7 +119,7 @@ public class Tile {
      * @param y
      *            Posición Y. <br>
      */
-    public void graficar(final Graphics g, final int x, final int y) {
+    public final void graficar(final Graphics g, final int x, final int y) {
         g.drawImage(this.textura, x, y, ANCHO, ALTO, null);
     }
 
@@ -137,7 +137,7 @@ public class Tile {
      * @param height
      *            Alto del tile. <br>
      */
-    public void graficar(final Graphics g, final int x, final int y,
+    public final void graficar(final Graphics g, final int x, final int y,
             final int width, final int height) {
         g.drawImage(this.textura, x, y, width, height, null);
     }
@@ -148,7 +148,7 @@ public class Tile {
      * @param solidez
      *            Solidez. <br>
      */
-    public void setSolido(final boolean solidez) {
+    public final void setSolido(final boolean solidez) {
         this.esSolido = solidez;
     }
 
@@ -157,7 +157,7 @@ public class Tile {
      *
      * @return true si es sólido, false de lo contrario. <br>
      */
-    public boolean esSolido() {
+    public final boolean esSolido() {
         return this.esSolido;
     }
 
@@ -166,7 +166,7 @@ public class Tile {
      *
      * @return ID del tile. <br>
      */
-    public int getId() {
+    public final int getId() {
         return this.id;
     }
 
@@ -175,7 +175,7 @@ public class Tile {
      *
      * @return Ancho del tile. <br>
      */
-    public int getAncho() {
+    public final int getAncho() {
         return this.ancho;
     }
 
@@ -184,7 +184,7 @@ public class Tile {
      *
      * @return Alto del tile. <br>
      */
-    public int getAlto() {
+    public final int getAlto() {
         return this.alto;
     }
 }

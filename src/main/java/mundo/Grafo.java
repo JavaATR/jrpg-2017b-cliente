@@ -35,7 +35,7 @@ public class Grafo {
      * @param nodo
      *            Nuevo nodo. <br>
      */
-    public void agregarNodo(final Nodo nodo) {
+    public final void agregarNodo(final Nodo nodo) {
         this.nodos[cantidadDeNodos++] = nodo;
     }
 
@@ -47,7 +47,7 @@ public class Grafo {
      * @param nodoDos
      *            Nodo adyacente. <br>
      */
-    public void agregarAdyacentes(final Nodo nodoUno, final Nodo nodoDos) {
+    public final void agregarAdyacentes(final Nodo nodoUno, final Nodo nodoDos) {
         nodoUno.agregarAdyacente(nodoDos);
     }
 
@@ -56,7 +56,7 @@ public class Grafo {
      *
      * @return Nodos. <br>
      */
-    public Nodo[] obtenerNodos() {
+    public final Nodo[] obtenerNodos() {
         return this.nodos;
     }
 
@@ -65,7 +65,7 @@ public class Grafo {
      *
      * @return Cantidad de nodos del gráfo. <br>
      */
-    public int obtenerCantidadDeNodos() {
+    public final int obtenerCantidadDeNodos() {
         return this.cantidadDeNodos;
     }
 
@@ -74,7 +74,7 @@ public class Grafo {
      *
      * @return Cantidad total de nodos. <br>
      */
-    public int obtenerCantidadDeNodosTotal() {
+    public final int obtenerCantidadDeNodosTotal() {
         return this.cantidadDeNodosTotal;
     }
 }

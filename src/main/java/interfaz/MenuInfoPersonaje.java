@@ -369,7 +369,7 @@ public class MenuInfoPersonaje {
      * @param g
      *            Valor g. <br>
      */
-    private void graficarMenuComerciar(final Graphics g) {
+    private final void graficarMenuComerciar(final Graphics g) {
 
         // muestro los nombres de los atributos
         g.setColor(Color.BLACK);
@@ -400,7 +400,7 @@ public class MenuInfoPersonaje {
      *            Valor y del mouse.
      * @return true, if successful <br>
      */
-    public boolean clickEnBoton(final int mouseX, final int mouseY) {
+    public final boolean clickEnBoton(final int mouseX, final int mouseY) {
         return (mouseX >= x + CLCK_BOTON[0] && mouseX <= x + CLCK_BOTON[1]
                 && mouseY >= y + CLCK_BOTON[2]
                 && mouseY <= y + CLCK_BOTON[INDEX_3]);
@@ -415,7 +415,7 @@ public class MenuInfoPersonaje {
      *            Valor y del mouse.
      * @return true, if successful <br>
      */
-    public boolean clickEnCerrar(final int mouseX, final int mouseY) {
+    public final boolean clickEnCerrar(final int mouseX, final int mouseY) {
         return (mouseX >= x + MENU.getWidth() - CLCK_CERRAR[0]
                 && mouseX <= x + MENU.getWidth() + CLCK_CERRAR[1]
                 && mouseY >= y + CLCK_CERRAR[2]
@@ -431,7 +431,7 @@ public class MenuInfoPersonaje {
      *            Valor y del mouse.
      * @return true, if successful <br>
      */
-    public boolean clickEnMenu(final int mouseX, final int mouseY) {
+    public final boolean clickEnMenu(final int mouseX, final int mouseY) {
         return (mouseX >= x && mouseX <= x + MENU.getWidth() && mouseY >= y
                 && mouseY <= y + MENU.getHeight());
     }

@@ -7,46 +7,46 @@ import java.util.Map;
  * Clase PaqueteDePersonajes.
  */
 public class PaqueteDePersonajes extends Paquete
-		implements Serializable, Cloneable {
+        implements Serializable, Cloneable {
 
-	/** Atributo personajes. */
-	private Map<Integer, PaquetePersonaje> personajes;
+    /** Atributo personajes. */
+    private Map<Integer, PaquetePersonaje> personajes;
 
-	/**
-	 * Constructor paquete de personajes.
-	 */
-	public PaqueteDePersonajes() {
+    /**
+     * Constructor paquete de personajes.
+     */
+    public PaqueteDePersonajes() {
 
-	}
+    }
 
-	/**
-	 * Constructor parametrizado paquete de personajes. <br>
-	 *
-	 * @param characters
-	 *            Map para asignar personajes. <br>
-	 */
-	public PaqueteDePersonajes(Map<Integer, PaquetePersonaje> characters) {
-		this.personajes = characters;
-	}
+    /**
+     * Constructor parametrizado paquete de personajes. <br>
+     *
+     * @param characters
+     *            Map para asignar personajes. <br>
+     */
+    public PaqueteDePersonajes(Map<Integer, PaquetePersonaje> characters) {
+        this.personajes = characters;
+    }
 
-	/**
-	 * Obtiene personajes.
-	 *
-	 * @return personajes
-	 */
-	public Map<Integer, PaquetePersonaje> getPersonajes() {
-		return personajes;
-	}
+    /**
+     * Obtiene personajes.
+     *
+     * @return personajes
+     */
+    public Map<Integer, PaquetePersonaje> getPersonajes() {
+        return personajes;
+    }
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see mensajeria.Paquete#clone()
-	 */
-	@Override
-	public Object clone() {
-		Object obj = null;
-		obj = super.clone();
-		return obj;
-	}
+    /*
+     * (non-Javadoc)
+     *
+     * @see mensajeria.Paquete#clone()
+     */
+    @Override
+    public Object clone() {
+        Object obj = null;
+        obj = super.clone();
+        return obj;
+    }
 }

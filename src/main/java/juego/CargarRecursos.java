@@ -13,41 +13,41 @@ import recursos.Recursos;
  * Clase que carga los recursos. <br>
  */
 public class CargarRecursos extends Thread {
-	/**
-	 * ClienteComandos. <br>
-	 */
-	private Cliente cliente;
+    /**
+     * ClienteComandos. <br>
+     */
+    private Cliente cliente;
 
-	/**
-	 * Carga los recursos del cliente. <br>
-	 *
-	 * @param client
-	 *            Cliente. <br>
-	 */
-	public CargarRecursos(final Cliente client) {
-		this.cliente = client;
-	}
+    /**
+     * Carga los recursos del cliente. <br>
+     *
+     * @param client
+     *            Cliente. <br>
+     */
+    public CargarRecursos(final Cliente client) {
+        this.cliente = client;
+    }
 
-	/**
-	 * Corre los recursos del cliente. <br>
-	 */
-	@Override
-	public void run() {
-		synchronized (cliente) {
-			try {
-				Recursos.cargar(cliente.getMenuCarga());
-			} catch (FileNotFoundException e) {
-				JOptionPane.showMessageDialog(null,
-						"Fallo al abrir el archivo imagen.");
-			} catch (NumberFormatException e) {
-				JOptionPane.showMessageDialog(null,
-						"Fallo el formato de imagen/distribucion.");
-			} catch (IOException e) {
-				JOptionPane.showMessageDialog(null,
-						"Fallo importante de archivos de imagen.");
-			}
-			cliente.setAccion(Comando.SALIR);
-			cliente.notify();
-		}
-	}
+    /**
+     * Corre los recursos del cliente. <br>
+     */
+    @Override
+    public void run() {
+        synchronized (cliente) {
+            try {
+                Recursos.cargar(cliente.getMenuCarga());
+            } catch (FileNotFoundException e) {
+                JOptionPane.showMessageDialog(null,
+                        "Fallo al abrir el archivo imagen.");
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null,
+                        "Fallo el formato de imagen/distribucion.");
+            } catch (IOException e) {
+                JOptionPane.showMessageDialog(null,
+                        "Fallo importante de archivos de imagen.");
+            }
+            cliente.setAccion(Comando.SALIR);
+            cliente.notify();
+        }
+    }
 }

@@ -11,213 +11,428 @@ import juego.Pantalla;
 import mensajeria.PaquetePersonaje;
 import recursos.Recursos;
 
+/**
+ * Clase MenuInfoPersonaje.
+ */
 public class MenuInfoPersonaje {
 
-	private static final int ANCHO_PERSONAJE = 128;
-	private static final BufferedImage MENU = Recursos.getMenuEnemigo();
-	public static final int MENU_BATALLAR = 0;
-	public static final int MENU_INFORMACION = 1;
-	public static final int MENU_SUBIR_NIVEL = 2;
-	public static final int MENU_GANAR_BATALLA = 3;
-	public static final int MENU_PERDER_BATALLA = 4;
-	public static final int MENU_GANAR_ITEM = 5;
-	public static final int MENU_COMERCIAR = 6;
-	private static final String[] leyendaBoton = { "Batallar", "Volver",
-			"Aceptar", "Aceptar", "Aceptar", "Aceptar", "Comerciar" };
+    /** Constante NUM_128. */
+    private static final int NUM_128 = 128;
 
-	private int x;
-	private int y;
-	private PaquetePersonaje personaje;
+    /** Constante OFFSET_Y_70. */
+    private static final int OFFSET_Y_70 = 70;
 
-	public MenuInfoPersonaje(int x, int y, PaquetePersonaje personaje) {
-		this.x = x;
-		this.y = y;
-		this.personaje = personaje;
-	}
+    /** Constante OFFSET_Y_15. */
+    private static final int OFFSET_Y_15 = 15;
 
-	public void graficar(Graphics g, int tipoMenu) {
+    /** Constante OFFSET_X_30. */
+    private static final int OFFSET_X_30 = 30;
 
-		// dibujo el menu
-		g.drawImage(MENU, x, y, null);
+    /** Constante OFFSET_X_150. */
+    private static final int OFFSET_X_150 = 150;
 
-		// dibujo el personaje
-		g.drawImage(Recursos.personaje.get(personaje.getRaza()).get(6)[0],
-				x + MENU.getWidth() / 2 - ANCHO_PERSONAJE / 2, y + 70, 128, 128,
-				null);
+    /** Constante SEIS. */
+    private static final int SEIS = 6;
 
-		// muestro el nombre
-		g.setColor(Color.WHITE);
-		g.setFont(new Font("Book Antiqua", 1, 20));
-		Pantalla.centerString(g, new Rectangle(x, y + 15, MENU.getWidth(), 0),
-				personaje.getNombre());
+    /** Constante OFFSET_Y_325. */
+    private static final int OFFSET_Y_325 = 325;
 
-		// Grafico la leyenda segun el tipo de menu
-		switch (tipoMenu) {
-		case MENU_BATALLAR:
-			graficarMenuInformacion(g);
-			break;
-		case MENU_INFORMACION:
-			graficarMenuInformacion(g);
-			break;
-		case MENU_SUBIR_NIVEL:
-			graficarMenuSubirNivel(g);
-			break;
-		case MENU_GANAR_BATALLA:
-			graficarMenuGanarBatalla(g);
-			break;
-		case MENU_PERDER_BATALLA:
-			graficarMenuPerderBatalla(g);
-			break;
-		case MENU_GANAR_ITEM:
-			graficarMenuItem(g);
-			break;
-		case MENU_COMERCIAR:
-			graficarMenuComerciar(g);
-			break;
-		}
+    /** Constante OFFSET_Y_270. */
+    private static final int OFFSET_Y_270 = 270;
 
-		// muestro los botones
-		g.setFont(new Font("Book Antiqua", 1, 20));
-		g.drawImage(Recursos.getBotonMenu(), x + 50, y + 380, 200, 25, null);
-		g.setColor(Color.WHITE);
-		Pantalla.centerString(g, new Rectangle(x + 50, y + 380, 200, 25),
-				leyendaBoton[tipoMenu]);
-	}
+    /** Constante OFFSET_Y_240. */
+    private static final int OFFSET_Y_240 = 240;
 
-	private void graficarMenuPerderBatalla(Graphics g) {
+    /** Constante OFFSET_Y_200. */
+    private static final int OFFSET_Y_200 = 200;
 
-		// Informo que perdio la batalla
-		g.setColor(Color.BLACK);
-		Pantalla.centerString(g, new Rectangle(x, y + 200, MENU.getWidth(), 0),
-				"¡Has sido derrotado!");
+    /** Constante OFFSET_Y_320. */
+    private static final int OFFSET_Y_320 = 320;
 
-		g.setFont(new Font("Book Antiqua", 0, 14));
-		Pantalla.centerString(g, new Rectangle(x, y + 250, MENU.getWidth(), 0),
-				"¡No te rindas! Sigue luchando");
-		Pantalla.centerString(g, new Rectangle(x, y + 270, MENU.getWidth(), 0),
-				"contra los demás personajes");
-		Pantalla.centerString(g, new Rectangle(x, y + 290, MENU.getWidth(), 0),
-				"para aumentar tu nivel y");
-		Pantalla.centerString(g, new Rectangle(x, y + 310, MENU.getWidth(), 0),
-				"mejorar tus atributos.");
-	}
+    /** Constante OFFSET_X_100. */
+    private static final int OFFSET_X_100 = 100;
 
-	private void graficarMenuGanarBatalla(Graphics g) {
+    /** Constante OFFSET_Y_290. */
+    private static final int OFFSET_Y_290 = 290;
 
-		// Informo que gano la batalla
-		g.setColor(Color.BLACK);
-		Pantalla.centerString(g, new Rectangle(x, y + 200, MENU.getWidth(), 0),
-				"¡Has derrotado");
-		Pantalla.centerString(g, new Rectangle(x, y + 230, MENU.getWidth(), 0),
-				"a tu enemigo!");
+    /** Constante OFFSET_Y_260. */
+    private static final int OFFSET_Y_260 = 260;
 
-		g.setFont(new Font("Book Antiqua", 0, 14));
-		Pantalla.centerString(g, new Rectangle(x, y + 270, MENU.getWidth(), 0),
-				"¡Felicitaciones! Has derrotado");
-		Pantalla.centerString(g, new Rectangle(x, y + 290, MENU.getWidth(), 0),
-				"a tu oponente, sigue así");
-		Pantalla.centerString(g, new Rectangle(x, y + 310, MENU.getWidth(), 0),
-				"para lograr subir de nivel");
-		Pantalla.centerString(g, new Rectangle(x, y + 330, MENU.getWidth(), 0),
-				"y mejorar tus atributos.");
+    /** Constante LABEL_OFFSET_X. */
+    private static final int LABEL_OFFSET_X = 30;
 
-	}
+    /** Constante INDEX_5. */
+    private static final int INDEX_5 = 5;
 
-	private void graficarMenuSubirNivel(Graphics g) {
+    /** Constante INDEX_4. */
+    private static final int INDEX_4 = 4;
 
-		// Informo que subio de nivel
-		g.setColor(Color.BLACK);
-		Pantalla.centerString(g, new Rectangle(x, y + 200, MENU.getWidth(), 0),
-				"¡Has subido de nivel!");
+    /** Constante INDEX_3. */
+    private static final int INDEX_3 = 3;
 
-		g.setFont(new Font("Book Antiqua", 0, 18));
-		Pantalla.centerString(g, new Rectangle(x, y + 240, MENU.getWidth(), 0),
-				"¡Felicitaciones!");
-		Pantalla.centerString(g, new Rectangle(x, y + 270, MENU.getWidth(), 0),
-				"Nuevo Nivel");
-		g.setFont(new Font("Book Antiqua", 1, 62));
-		Pantalla.centerString(g, new Rectangle(x, y + 325, MENU.getWidth(), 0),
-				String.valueOf(personaje.getNivel()));
+    /** Constante FONT_SIZE_20. */
+    private static final int FONT_SIZE_20 = 20;
 
-	}
+    /** Constante FONT_SIZE_62. */
+    private static final int FONT_SIZE_62 = 62;
 
-	public void graficarMenuInformacion(Graphics g) {
+    /** Constante FONT_SIZE_18. */
+    private static final int FONT_SIZE_18 = 18;
 
-		// muestro los nombres de los atributos
-		g.setColor(Color.BLACK);
-		Pantalla.centerString(g, new Rectangle(x, y + 200, MENU.getWidth(), 0),
-				personaje.getRaza());
-		g.drawString("Casta: ", x + 30, y + 260);
-		g.drawString("Nivel: ", x + 30, y + 290);
-		g.drawString("Experiencia: ", x + 30, y + 320);
+    /** Constante FONT_SIZE_MENU_GANAR. */
+    private static final int FONT_SIZE_MENU_GANAR = 14;
 
-		// muestro los atributos
-		g.setFont(new Font("Book Antiqua", 0, 20));
-		g.drawString(personaje.getCasta(), x + 100, y + 260);
-		g.drawString(personaje.getNivel() + " ", x + 100, y + 290);
-		g.drawString(personaje.getExperiencia() + " / "
-				+ Personaje.getTablaDeNiveles()[personaje.getNivel() + 1],
-				x + 150, y + 320);
+    /** Constante FONT_SIZE_MENU_PERDER. */
+    private static final int FONT_SIZE_MENU_PERDER = 14;
 
-	}
+    /** Constante FONT_SIZE. */
+    private static final int FONT_SIZE = 20;
 
-	private void graficarMenuItem(Graphics g) {
+    /** Constante ANCHO_PERSONAJE. */
+    private static final int ANCHO_PERSONAJE = 128;
 
-		// Informo que subio de nivel
-		g.setColor(Color.BLACK);
-		Pantalla.centerString(g, new Rectangle(x, y + 200, MENU.getWidth(), 0),
-				"¡Aca iria algo!");
+    /** Constante MENU. */
+    private static final BufferedImage MENU = Recursos.getMenuEnemigo();
 
-		g.setFont(new Font("Book Antiqua", 0, 18));
-		Pantalla.centerString(g, new Rectangle(x, y + 240, MENU.getWidth(), 0),
-				"¡Aca otra cosa!");
-		Pantalla.centerString(g, new Rectangle(x, y + 270, MENU.getWidth(), 0),
-				"Nuevo Nivel");
-		g.setFont(new Font("Book Antiqua", 1, 62));
-		Pantalla.centerString(g, new Rectangle(x, y + 325, MENU.getWidth(), 0),
-				String.valueOf(personaje.getNivel()));
+    /** Constante MENU_BATALLAR. */
+    public static final int MENU_BATALLAR = 0;
 
-	}
+    /** Constante MENU_INFORMACION. */
+    public static final int MENU_INFORMACION = 1;
 
-	private void graficarMenuComerciar(Graphics g) {
+    /** Constante MENU_SUBIR_NIVEL. */
+    public static final int MENU_SUBIR_NIVEL = 2;
 
-		// muestro los nombres de los atributos
-		g.setColor(Color.BLACK);
-		Pantalla.centerString(g, new Rectangle(x, y + 200, MENU.getWidth(), 0),
-				personaje.getRaza());
-		g.drawString("Casta: ", x + 30, y + 260);
-		g.drawString("Nivel: ", x + 30, y + 290);
-		g.drawString("Experiencia: ", x + 30, y + 320);
+    /** Constante MENU_GANAR_BATALLA. */
+    public static final int MENU_GANAR_BATALLA = 3;
 
-		// muestro los atributos
-		g.setFont(new Font("Book Antiqua", 0, 20));
-		g.drawString(personaje.getCasta(), x + 100, y + 260);
-		g.drawString(personaje.getNivel() + " ", x + 100, y + 290);
-		g.drawString(personaje.getExperiencia() + " / "
-				+ Personaje.getTablaDeNiveles()[personaje.getNivel() + 1],
-				x + 150, y + 320);
+    /** Constante MENU_PERDER_BATALLA. */
+    public static final int MENU_PERDER_BATALLA = 4;
 
-	}
+    /** Constante MENU_GANAR_ITEM. */
+    public static final int MENU_GANAR_ITEM = 5;
 
-	public boolean clickEnBoton(int mouseX, int mouseY) {
-		if (mouseX >= x + 50 && mouseX <= x + 250 && mouseY >= y + 380
-				&& mouseY <= y + 405)
-			return true;
-		return false;
-	}
+    /** Constante MENU_COMERCIAR. */
+    public static final int MENU_COMERCIAR = 6;
 
-	public boolean clickEnCerrar(int mouseX, int mouseY) {
-		if (mouseX >= x + MENU.getWidth() - 24
-				&& mouseX <= x + MENU.getWidth() + 4 && mouseY >= y + 12
-				&& mouseY <= y + 36)
-			return true;
-		return false;
-	}
+    /** Constante LEYENDA_BOTON. */
+    private static final String[] LEYENDA_BOTON = {"Batallar", "Volver",
+            "Aceptar", "Aceptar", "Aceptar", "Aceptar", "Comerciar"};
 
-	public boolean clickEnMenu(int mouseX, int mouseY) {
-		if (mouseX >= x && mouseX <= x + MENU.getWidth() && mouseY >= y
-				&& mouseY <= y + MENU.getHeight())
-			return true;
-		return false;
-	}
+    /** Constante BTN_OFFSET. */
+    public static final int[] BTN_OFFSET = {50, 380, 200, 25};
+    /** Constante MENU_PERDER. */
+    public static final int[] MENU_PERDER = {250, 270, 290, 310};
+    /** Constante MENU_GANAR. */
+    public static final int[] MENU_GANAR = {200, 230, 270, 290, 310, 330};
+    /** Constante CLCK_CERRAR. */
+    public static final int[] CLCK_CERRAR = {24, 4, 12, 36};
+    /** Constante CLCK_BOTON. */
+    public static final int[] CLCK_BOTON = {50, 250, 380, 405};
+
+    /** Atributo x. */
+    private int x;
+
+    /** Atributo y. */
+    private int y;
+
+    /** Atributo personaje. */
+    private PaquetePersonaje personaje;
+
+    /**
+     * Constructor menu info personaje. <br>
+     *
+     * @param xValue
+     *            valor x.
+     * @param yValue
+     *            valor y.
+     * @param character
+     *            the character
+     */
+    public MenuInfoPersonaje(final int xValue, final int yValue,
+            final PaquetePersonaje character) {
+        this.x = xValue;
+        this.y = yValue;
+        this.personaje = character;
+    }
+
+    /**
+     * Graficar. <br>
+     *
+     * @param g
+     *            Valor g.
+     * @param tipoMenu
+     *            Valor tipo de menu.<br>
+     */
+    public void graficar(final Graphics g, final int tipoMenu) {
+
+        // dibujo el menu
+        g.drawImage(MENU, x, y, null);
+
+        // dibujo el personaje
+        g.drawImage(Recursos.personaje.get(personaje.getRaza()).get(SEIS)[0],
+                x + MENU.getWidth() / 2 - ANCHO_PERSONAJE / 2, y + OFFSET_Y_70,
+                NUM_128, NUM_128, null);
+
+        // muestro el nombre
+        g.setColor(Color.WHITE);
+        g.setFont(new Font("Book Antiqua", 1, FONT_SIZE_20));
+        Pantalla.centerString(g,
+                new Rectangle(x, y + OFFSET_Y_15, MENU.getWidth(), 0),
+                personaje.getNombre());
+
+        // Grafico la leyenda segun el tipo de menu
+        switch (tipoMenu) {
+        case MENU_BATALLAR:
+            graficarMenuInformacion(g);
+            break;
+        case MENU_INFORMACION:
+            graficarMenuInformacion(g);
+            break;
+        case MENU_SUBIR_NIVEL:
+            graficarMenuSubirNivel(g);
+            break;
+        case MENU_GANAR_BATALLA:
+            graficarMenuGanarBatalla(g);
+            break;
+        case MENU_PERDER_BATALLA:
+            graficarMenuPerderBatalla(g);
+            break;
+        case MENU_GANAR_ITEM:
+            graficarMenuItem(g);
+            break;
+        case MENU_COMERCIAR:
+            graficarMenuComerciar(g);
+            break;
+        }
+
+        // muestro los botones
+        g.setFont(new Font("Book Antiqua", 1, FONT_SIZE));
+        g.drawImage(Recursos.getBotonMenu(), x + BTN_OFFSET[0],
+                y + BTN_OFFSET[1], BTN_OFFSET[2], BTN_OFFSET[INDEX_3], null);
+        g.setColor(Color.WHITE);
+        Pantalla.centerString(g,
+                new Rectangle(x + BTN_OFFSET[0], y + BTN_OFFSET[1],
+                        BTN_OFFSET[2], BTN_OFFSET[INDEX_3]),
+                LEYENDA_BOTON[tipoMenu]);
+    }
+
+    /**
+     * Graficar menu perder batalla. <br>
+     *
+     * @param g
+     *            Valor g. <br>
+     */
+    private void graficarMenuPerderBatalla(final Graphics g) {
+
+        // Informo que perdio la batalla
+        g.setColor(Color.BLACK);
+        Pantalla.centerString(g,
+                new Rectangle(x, y + MENU_PERDER[0], MENU.getWidth(), 0),
+                "¡Has sido derrotado!");
+
+        g.setFont(new Font("Book Antiqua", 0, FONT_SIZE_MENU_PERDER));
+        Pantalla.centerString(g,
+                new Rectangle(x, y + MENU_PERDER[1], MENU.getWidth(), 0),
+                "¡No te rindas! Sigue luchando");
+        Pantalla.centerString(g,
+                new Rectangle(x, y + MENU_PERDER[2], MENU.getWidth(), 0),
+                "contra los demás personajes");
+        Pantalla.centerString(g,
+                new Rectangle(x, y + MENU_PERDER[INDEX_3], MENU.getWidth(), 0),
+                "para aumentar tu nivel y");
+        Pantalla.centerString(g,
+                new Rectangle(x, y + MENU_PERDER[INDEX_4], MENU.getWidth(), 0),
+                "mejorar tus atributos.");
+    }
+
+    /**
+     * Graficar menu ganar batalla. <br>
+     *
+     * @param g
+     *            Valor g. <br>
+     */
+    private void graficarMenuGanarBatalla(final Graphics g) {
+
+        // Informo que gano la batalla
+        g.setColor(Color.BLACK);
+        Pantalla.centerString(g,
+                new Rectangle(x, y + MENU_GANAR[0], MENU.getWidth(), 0),
+                "¡Has derrotado");
+        Pantalla.centerString(g,
+                new Rectangle(x, y + MENU_GANAR[1], MENU.getWidth(), 0),
+                "a tu enemigo!");
+
+        g.setFont(new Font("Book Antiqua", 0, FONT_SIZE_MENU_GANAR));
+        Pantalla.centerString(g,
+                new Rectangle(x, y + MENU_GANAR[2], MENU.getWidth(), 0),
+                "¡Felicitaciones! Has derrotado");
+        Pantalla.centerString(g,
+                new Rectangle(x, y + MENU_GANAR[INDEX_3], MENU.getWidth(), 0),
+                "a tu oponente, sigue así");
+        Pantalla.centerString(g,
+                new Rectangle(x, y + MENU_GANAR[INDEX_4], MENU.getWidth(), 0),
+                "para lograr subir de nivel");
+        Pantalla.centerString(g,
+                new Rectangle(x, y + MENU_GANAR[INDEX_5], MENU.getWidth(), 0),
+                "y mejorar tus atributos.");
+
+    }
+
+    /**
+     * Graficar menu subir de nivel. <br>
+     *
+     * @param g
+     *            Valor g. <br>
+     */
+    private void graficarMenuSubirNivel(final Graphics g) {
+
+        // Informo que subio de nivel
+        g.setColor(Color.BLACK);
+        Pantalla.centerString(g,
+                new Rectangle(x, y + OFFSET_Y_200, MENU.getWidth(), 0),
+                "¡Has subido de nivel!");
+
+        g.setFont(new Font("Book Antiqua", 0, FONT_SIZE_18));
+        Pantalla.centerString(g,
+                new Rectangle(x, y + OFFSET_Y_240, MENU.getWidth(), 0),
+                "¡Felicitaciones!");
+        Pantalla.centerString(g,
+                new Rectangle(x, y + OFFSET_Y_270, MENU.getWidth(), 0),
+                "Nuevo Nivel");
+        g.setFont(new Font("Book Antiqua", 1, FONT_SIZE_62));
+        Pantalla.centerString(g,
+                new Rectangle(x, y + OFFSET_Y_325, MENU.getWidth(), 0),
+                String.valueOf(personaje.getNivel()));
+
+    }
+
+    /**
+     * Graficar menu información. <br>
+     *
+     * @param g
+     *            Valor g. <br>
+     */
+    public void graficarMenuInformacion(final Graphics g) {
+
+        // muestro los nombres de los atributos
+        g.setColor(Color.BLACK);
+        Pantalla.centerString(g,
+                new Rectangle(x, y + OFFSET_Y_200, MENU.getWidth(), 0),
+                personaje.getRaza());
+        g.drawString("Casta: ", x + LABEL_OFFSET_X, y + OFFSET_Y_260);
+        g.drawString("Nivel: ", x + LABEL_OFFSET_X, y + OFFSET_Y_290);
+        g.drawString("Experiencia: ", x + LABEL_OFFSET_X, y + OFFSET_Y_320);
+
+        // muestro los atributos
+        g.setFont(new Font("Book Antiqua", 0, FONT_SIZE_20));
+        g.drawString(personaje.getCasta(), x + OFFSET_X_100, y + OFFSET_Y_260);
+        g.drawString(personaje.getNivel() + " ", x + OFFSET_X_100,
+                y + OFFSET_Y_290);
+        g.drawString(personaje.getExperiencia() + " / "
+                + Personaje.getTablaDeNiveles()[personaje.getNivel() + 1],
+                x + OFFSET_X_150, y + OFFSET_Y_320);
+
+    }
+
+    /**
+     * Graficar menu item. <br>
+     *
+     * @param g
+     *            Valor g. <br>
+     */
+    private void graficarMenuItem(final Graphics g) {
+
+        // Informo que subio de nivel
+        g.setColor(Color.BLACK);
+        Pantalla.centerString(g,
+                new Rectangle(x, y + OFFSET_Y_200, MENU.getWidth(), 0),
+                "¡Aca iria algo!");
+
+        g.setFont(new Font("Book Antiqua", 0, FONT_SIZE_18));
+        Pantalla.centerString(g,
+                new Rectangle(x, y + OFFSET_Y_240, MENU.getWidth(), 0),
+                "¡Aca otra cosa!");
+        Pantalla.centerString(g,
+                new Rectangle(x, y + OFFSET_Y_270, MENU.getWidth(), 0),
+                "Nuevo Nivel");
+        g.setFont(new Font("Book Antiqua", 1, FONT_SIZE_62));
+        Pantalla.centerString(g,
+                new Rectangle(x, y + OFFSET_Y_325, MENU.getWidth(), 0),
+                String.valueOf(personaje.getNivel()));
+
+    }
+
+    /**
+     * Graficar menu comerciar. <br>
+     *
+     * @param g
+     *            Valor g. <br>
+     */
+    private void graficarMenuComerciar(final Graphics g) {
+
+        // muestro los nombres de los atributos
+        g.setColor(Color.BLACK);
+        Pantalla.centerString(g,
+                new Rectangle(x, y + OFFSET_Y_200, MENU.getWidth(), 0),
+                personaje.getRaza());
+        g.drawString("Casta: ", x + OFFSET_X_30, y + OFFSET_Y_260);
+        g.drawString("Nivel: ", x + OFFSET_X_30, y + OFFSET_Y_290);
+        g.drawString("Experiencia: ", x + OFFSET_X_30, y + OFFSET_Y_320);
+
+        // muestro los atributos
+        g.setFont(new Font("Book Antiqua", 0, FONT_SIZE_20));
+        g.drawString(personaje.getCasta(), x + OFFSET_X_100, y + OFFSET_Y_260);
+        g.drawString(personaje.getNivel() + " ", x + OFFSET_X_100,
+                y + OFFSET_Y_290);
+        g.drawString(personaje.getExperiencia() + " / "
+                + Personaje.getTablaDeNiveles()[personaje.getNivel() + 1],
+                x + OFFSET_X_150, y + OFFSET_Y_320);
+
+    }
+
+    /**
+     * Click en boton. <br>
+     *
+     * @param mouseX
+     *            Valor x del mouse.
+     * @param mouseY
+     *            Valor y del mouse.
+     * @return true, if successful <br>
+     */
+    public boolean clickEnBoton(final int mouseX, final int mouseY) {
+        return (mouseX >= x + CLCK_BOTON[0] && mouseX <= x + CLCK_BOTON[1]
+                && mouseY >= y + CLCK_BOTON[2]
+                && mouseY <= y + CLCK_BOTON[INDEX_3]);
+    }
+
+    /**
+     * Click en cerrar. <br>
+     *
+     * @param mouseX
+     *            Valor x del mouse.
+     * @param mouseY
+     *            Valor y del mouse.
+     * @return true, if successful <br>
+     */
+    public boolean clickEnCerrar(final int mouseX, final int mouseY) {
+        return (mouseX >= x + MENU.getWidth() - CLCK_CERRAR[0]
+                && mouseX <= x + MENU.getWidth() + CLCK_CERRAR[1]
+                && mouseY >= y + CLCK_CERRAR[2]
+                && mouseY <= y + CLCK_CERRAR[INDEX_3]);
+    }
+
+    /**
+     * Click en menu. <br>
+     *
+     * @param mouseX
+     *            Valor x del mouse.
+     * @param mouseY
+     *            Valor y del mouse.
+     * @return true, if successful <br>
+     */
+    public boolean clickEnMenu(final int mouseX, final int mouseY) {
+        return (mouseX >= x && mouseX <= x + MENU.getWidth() && mouseY >= y
+                && mouseY <= y + MENU.getHeight());
+    }
 }

@@ -20,56 +20,62 @@ import mensajeria.PaquetePersonaje;
  * enviaran al servidor. <br>
  */
 public class EscuchaMensajes extends Thread {
-	/**
-	 * Juego del cliente. <br>
-	 */
-	private Juego juego;
-	/**
-	 * Cliente. <br>
-	 */
-	private Cliente cliente;
-	/**
-	 * Entada. <br>
-	 */
-	private ObjectInputStream entrada;
-	/**
-	 * Gson. <br>
-	 */
-	private final Gson gson = new Gson();
+    /**
+     * Juego del cliente. <br>
+     */
+    private Juego juego;
+    /**
+     * Cliente. <br>
+     */
+    private Cliente cliente;
+    /**
+     * Entada. <br>
+     */
+    private ObjectInputStream entrada;
+    /**
+     * Gson. <br>
+     */
+    private final Gson gson = new Gson();
 
-	/**
-	 * Constructor de EsuchaMensaje. <br>
-	 * @param game
-	 *            juego del que se escucha el mensaje. <br>
-	 */
-	public EscuchaMensajes(final Juego game) {
-		this.juego = game;
-		cliente = game.getCliente();
-		entrada = cliente.getEntrada();
-	}
+    /**
+     * Constructor de EsuchaMensaje. <br>
+     *
+     * @param game
+     *            juego del que se escucha el mensaje. <br>
+     */
+    public EscuchaMensajes(final Juego game) {
+        this.juego = game;
+        cliente = game.getCliente();
+        entrada = cliente.getEntrada();
+    }
 
-	/**
-	 * Corre el escucha de mensajes. <br>
-	 */
-	@Override
-	public final void run() {
-		try {
-			Paquete paquete;
-			ComandosEscucha comand;
-			juego.setPersonajesConectados(new HashMap<Integer, PaquetePersonaje>());
-			juego.setUbicacionPersonajes(new HashMap<Integer, PaqueteMovimiento>());
-			juego.setEnemigosConectados(new HashMap<Integer, PaqueteEnemigo>());
-			juego.setUbicacionEnemigos(new HashMap<Integer, PaqueteMovimiento>());
-			while (true) {
-				String objetoLeido = (String) entrada.readObject();
-				paquete = gson.fromJson(objetoLeido, Paquete.class);
-				comand = (ComandosEscucha) paquete.getObjeto(Comando.NOMBREPAQUETE);
-				comand.setJuego(juego);
-				comand.setCadena(objetoLeido);
-				comand.ejecutar();
-			}
-		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Fallo la conexión con el servidor.");
-		}
-	}
+    /**
+     * Corre el escucha de mensajes. <br>
+     */
+    @Override
+    public final void run() {
+        try {
+            Paquete paquete;
+            ComandosEscucha comand;
+            juego.setPersonajesConectados(
+                    new HashMap<Integer, PaquetePersonaje>());
+            juego.setUbicacionPersonajes(
+                    new HashMap<Integer, PaqueteMovimiento>());
+            juego.setEnemigosConectados(new HashMap<Integer, PaqueteEnemigo>());
+            juego.setUbicacionEnemigos(
+                    new HashMap<Integer, PaqueteMovimiento>());
+            while (true) {
+                String objetoLeido = (String) entrada.readObject();
+                paquete = gson.fromJson(objetoLeido, Paquete.class);
+                comand = (ComandosEscucha) paquete
+                        .getObjeto(Comando.NOMBREPAQUETE);
+                comand.setJuego(juego);
+                comand.setCadena(objetoLeido);
+                comand.ejecutar();
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,
+                    "Fallo la conexión con el servidor.");
+        }
+    }
 }

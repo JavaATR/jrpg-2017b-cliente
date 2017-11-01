@@ -181,7 +181,7 @@ public class Pantalla {
      *
      * @return Canvas. <br>
      */
-    public Canvas getCanvas() {
+    public final Canvas getCanvas() {
         return canvas;
     }
 
@@ -190,14 +190,14 @@ public class Pantalla {
      *
      * @return Pantalla. <br>
      */
-    public JFrame getFrame() {
+    public final JFrame getFrame() {
         return pantalla;
     }
 
     /**
      * Hace la pantalla visible. <br>
      */
-    public void mostrar() {
+    public final void mostrar() {
         pantalla.setVisible(true);
     }
 

@@ -37,7 +37,7 @@ import mensajeria.Comando;
  * Clase MenuComerciar.
  */
 public class MenuComerciar extends JFrame {
-
+    /** Constante size. */
     private static final int SIZE = 9;
     /** Constante HEIGHT_BOUND. */
     private static final int HEIGHT_BOUND = 3;
@@ -701,7 +701,7 @@ public class MenuComerciar extends JFrame {
      *
      * @return cant listos
      */
-    public int getCantListos() {
+    public final int getCantListos() {
         return cantListos;
     }
 
@@ -711,7 +711,7 @@ public class MenuComerciar extends JFrame {
      * @param cantListos
      *            cant listos <br>
      */
-    public void setCantListos(final int cantListos) {
+    public final void setCantListos(final int cantListos) {
         this.cantListos = cantListos;
     }
 
@@ -720,7 +720,7 @@ public class MenuComerciar extends JFrame {
      *
      * @return cant listo
      */
-    public JLabel getCantListo() {
+    public final JLabel getCantListo() {
         return cantListo;
     }
 
@@ -730,7 +730,7 @@ public class MenuComerciar extends JFrame {
      * @param obtener
      *            obtener <br>
      */
-    public void setObtener(final DefaultListModel<String> obtener) {
+    public final void setObtener(final DefaultListModel<String> obtener) {
         this.obtener = obtener;
     }
 
@@ -739,7 +739,7 @@ public class MenuComerciar extends JFrame {
      *
      * @return obtener
      */
-    public DefaultListModel<String> getObtener() {
+    public final DefaultListModel<String> getObtener() {
         return obtener;
     }
 
@@ -748,7 +748,7 @@ public class MenuComerciar extends JFrame {
      *
      * @return dar
      */
-    public DefaultListModel<String> getDar() {
+    public final DefaultListModel<String> getDar() {
         return dar;
     }
 
@@ -757,7 +757,7 @@ public class MenuComerciar extends JFrame {
      *
      * @return size items
      */
-    public int getSizeItems() {
+    public final int getSizeItems() {
         return sizeItems;
     }
 
@@ -766,7 +766,7 @@ public class MenuComerciar extends JFrame {
      *
      * @return chckbx listo
      */
-    public JCheckBox getChckbxListo() {
+    public final JCheckBox getChckbxListo() {
         return chckbxListo;
     }
 
@@ -775,7 +775,7 @@ public class MenuComerciar extends JFrame {
      *
      * @return leyenda
      */
-    public JLabel getLeyenda() {
+    public final JLabel getLeyenda() {
         return leyenda;
     }
 }

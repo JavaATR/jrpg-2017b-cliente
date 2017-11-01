@@ -37,7 +37,7 @@ public class HandlerMouse implements MouseListener {
      * <br>
      */
     @Override
-    public void mouseClicked(final MouseEvent e) {
+    public final void mouseClicked(final MouseEvent e) {
         if (e.getButton() == MouseEvent.BUTTON1) {
             posMouse[0] = e.getX();
             posMouse[1] = e.getY();
@@ -107,7 +107,7 @@ public class HandlerMouse implements MouseListener {
      * @return <b>true</b> si lo hay.<br>
      *         <b>false</b> de lo contrario. <br>
      */
-    public boolean getNuevoRecorrido() {
+    public final boolean getNuevoRecorrido() {
         return nuevoRecorrido;
     }
 
@@ -117,7 +117,7 @@ public class HandlerMouse implements MouseListener {
      * @param b
      *            Indicador de nuevo camino. <br>
      */
-    public void setNuevoRecorrido(final boolean b) {
+    public final void setNuevoRecorrido(final boolean b) {
         nuevoRecorrido = b;
     }
 
@@ -127,7 +127,7 @@ public class HandlerMouse implements MouseListener {
      * @return <b>true</b> si lo hay.<br>
      *         <b>false</b> de lo contrario. <br>
      */
-    public boolean getNuevoClick() {
+    public final boolean getNuevoClick() {
         return nuevoClick;
     }
 
@@ -137,7 +137,7 @@ public class HandlerMouse implements MouseListener {
      * @param b
      *            Indicador de si hubo un nuevo click. <br>
      */
-    public void setNuevoClick(final boolean b) {
+    public final void setNuevoClick(final boolean b) {
         nuevoClick = b;
     }
 }

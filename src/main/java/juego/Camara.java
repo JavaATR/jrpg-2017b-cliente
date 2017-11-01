@@ -41,7 +41,7 @@ public class Camara {
      * @param e
      *            Entidad. <br>
      */
-    public void centrar(final Entidad e) {
+    public final void centrar(final Entidad e) {
         xOffset = e.getX() - juego.getAncho() / 2 + e.getAncho() / 2;
         yOffset = e.getY() - juego.getAlto() / 2 + e.getAlto() / 2;
     }
@@ -54,7 +54,7 @@ public class Camara {
      * @param dy
      *            Distancia Y. <br>
      */
-    public void mover(final float dx, final float dy) {
+    public final void mover(final float dx, final float dy) {
         xOffset += dx;
         yOffset += dy;
     }
@@ -64,7 +64,7 @@ public class Camara {
      *
      * @return Offset Y. <br>
      */
-    public float getyOffset() {
+    public final float getyOffset() {
         return yOffset;
     }
 
@@ -74,7 +74,7 @@ public class Camara {
      * @param yOffset
      *            Offset Y. <br>
      */
-    public void setyOffset(final float yOffset) {
+    public final void setyOffset(final float yOffset) {
         this.yOffset = yOffset;
     }
 
@@ -83,7 +83,7 @@ public class Camara {
      *
      * @return Offset X. <br>
      */
-    public float getxOffset() {
+    public final float getxOffset() {
         return xOffset;
     }
 
@@ -93,7 +93,7 @@ public class Camara {
      * @param xOffset
      *            Offset X. <br>
      */
-    public void setxOffset(final float xOffset) {
+    public final void setxOffset(final float xOffset) {
         this.xOffset = xOffset;
     }
 }

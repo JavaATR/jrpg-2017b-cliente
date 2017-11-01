@@ -71,7 +71,7 @@ public class PaqueteEnemigo extends Paquete implements Serializable, Cloneable {
      *
      * @return estado
      */
-    public int getEstado() {
+    public final int getEstado() {
         return estado;
     }
 
@@ -81,7 +81,7 @@ public class PaqueteEnemigo extends Paquete implements Serializable, Cloneable {
      * @param status
      *            Valor para asignar estado. <br>
      */
-    public void setEstado(final int status) {
+    public final void setEstado(final int status) {
         this.estado = status;
     }
 
@@ -90,7 +90,7 @@ public class PaqueteEnemigo extends Paquete implements Serializable, Cloneable {
      *
      * @return nombre
      */
-    public String getNombre() {
+    public final String getNombre() {
         return nombre;
     }
 
@@ -100,7 +100,7 @@ public class PaqueteEnemigo extends Paquete implements Serializable, Cloneable {
      * @param name
      *            Valor para asignar nombre. <br>
      */
-    public void setNombre(final String name) {
+    public final void setNombre(final String name) {
         this.nombre = name;
     }
 
@@ -109,7 +109,7 @@ public class PaqueteEnemigo extends Paquete implements Serializable, Cloneable {
      *
      * @return salud tope
      */
-    public int getSaludTope() {
+    public final int getSaludTope() {
         return saludTope;
     }
 
@@ -119,7 +119,7 @@ public class PaqueteEnemigo extends Paquete implements Serializable, Cloneable {
      * @param topeSalud
      *            Valor para asignar salud tope. <br>
      */
-    public void setSaludTope(final int topeSalud) {
+    public final void setSaludTope(final int topeSalud) {
         this.saludTope = topeSalud;
     }
 
@@ -128,7 +128,7 @@ public class PaqueteEnemigo extends Paquete implements Serializable, Cloneable {
      *
      * @return energia tope
      */
-    public int getEnergiaTope() {
+    public final int getEnergiaTope() {
         return energiaTope;
     }
 
@@ -138,7 +138,7 @@ public class PaqueteEnemigo extends Paquete implements Serializable, Cloneable {
      * @param topeEnergia
      *            Valor para asignar energia tope. <br>
      */
-    public void setEnergiaTope(final int topeEnergia) {
+    public final void setEnergiaTope(final int topeEnergia) {
         this.energiaTope = topeEnergia;
     }
 
@@ -147,7 +147,7 @@ public class PaqueteEnemigo extends Paquete implements Serializable, Cloneable {
      *
      * @return fuerza
      */
-    public int getFuerza() {
+    public final int getFuerza() {
         return fuerza;
     }
 
@@ -157,7 +157,7 @@ public class PaqueteEnemigo extends Paquete implements Serializable, Cloneable {
      * @param strength
      *            Valor para asignar fuerza. <br>
      */
-    public void setFuerza(final int strength) {
+    public final void setFuerza(final int strength) {
         this.fuerza = strength;
     }
 
@@ -166,7 +166,7 @@ public class PaqueteEnemigo extends Paquete implements Serializable, Cloneable {
      *
      * @return destreza
      */
-    public int getDestreza() {
+    public final int getDestreza() {
         return destreza;
     }
 
@@ -176,7 +176,7 @@ public class PaqueteEnemigo extends Paquete implements Serializable, Cloneable {
      * @param skill
      *            Valor para asignar destreza. <br>
      */
-    public void setDestreza(final int skill) {
+    public final void setDestreza(final int skill) {
         this.destreza = skill;
     }
 
@@ -185,7 +185,7 @@ public class PaqueteEnemigo extends Paquete implements Serializable, Cloneable {
      *
      * @return inteligencia
      */
-    public int getInteligencia() {
+    public final int getInteligencia() {
         return inteligencia;
     }
 
@@ -195,7 +195,7 @@ public class PaqueteEnemigo extends Paquete implements Serializable, Cloneable {
      * @param intelligence
      *            Valor para asignar inteligencia. <br>
      */
-    public void setInteligencia(final int intelligence) {
+    public final void setInteligencia(final int intelligence) {
         this.inteligencia = intelligence;
     }
 
@@ -204,7 +204,7 @@ public class PaqueteEnemigo extends Paquete implements Serializable, Cloneable {
      *
      * @return id
      */
-    public int getId() {
+    public final int getId() {
         return id;
     }
 
@@ -214,7 +214,7 @@ public class PaqueteEnemigo extends Paquete implements Serializable, Cloneable {
      * @see mensajeria.Paquete#clone()
      */
     @Override
-    public Object clone() {
+    public final Object clone() {
         Object obj = null;
         obj = super.clone();
         return obj;

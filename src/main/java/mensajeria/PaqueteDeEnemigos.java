@@ -34,7 +34,7 @@ public class PaqueteDeEnemigos extends Paquete
      *
      * @return enemigos
      */
-    public Map<Integer, PaqueteEnemigo> getEnemigos() {
+    public final Map<Integer, PaqueteEnemigo> getEnemigos() {
         return enemigos;
     }
 

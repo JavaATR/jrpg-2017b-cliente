@@ -42,7 +42,7 @@ public class PaqueteComerciar extends Paquete
      *
      * @return true o false.
      */
-    public boolean isSolicitudDeComercio() {
+    public final boolean isSolicitudDeComercio() {
         return solicitudDeComercio;
     }
 
@@ -52,7 +52,7 @@ public class PaqueteComerciar extends Paquete
      * @param comercioSolicitud
      *            Boolean para asignar solicitud de comercio <br>
      */
-    public void setSolicitudDeComercio(final boolean comercioSolicitud) {
+    public final void setSolicitudDeComercio(final boolean comercioSolicitud) {
         this.solicitudDeComercio = comercioSolicitud;
     }
 
@@ -61,7 +61,7 @@ public class PaqueteComerciar extends Paquete
      *
      * @return items A dar
      */
-    public ArrayList<Item> getItemsADar() {
+    public final ArrayList<Item> getItemsADar() {
         return itemsADar;
     }
 
@@ -71,7 +71,7 @@ public class PaqueteComerciar extends Paquete
      * @param itemsToGive
      *            List para asignar items A dar. <br>
      */
-    public void setItemsADar(final ArrayList<Item> itemsToGive) {
+    public final void setItemsADar(final ArrayList<Item> itemsToGive) {
         this.itemsADar = itemsToGive;
     }
 
@@ -80,7 +80,7 @@ public class PaqueteComerciar extends Paquete
      *
      * @return id
      */
-    public int getId() {
+    public final int getId() {
         return id;
     }
 
@@ -90,7 +90,7 @@ public class PaqueteComerciar extends Paquete
      * @param idValue
      *            Valor para asignar id. <br>
      */
-    public void setId(final int idValue) {
+    public final void setId(final int idValue) {
         this.id = idValue;
     }
 
@@ -99,7 +99,7 @@ public class PaqueteComerciar extends Paquete
      *
      * @return id enemigo
      */
-    public int getIdEnemigo() {
+    public final int getIdEnemigo() {
         return idEnemigo;
     }
 
@@ -109,7 +109,7 @@ public class PaqueteComerciar extends Paquete
      * @param idEnemy
      *            Valor para asignar id enemigo. <br>
      */
-    public void setIdEnemigo(final int idEnemy) {
+    public final void setIdEnemigo(final int idEnemy) {
         this.idEnemigo = idEnemy;
     }
 
@@ -118,21 +118,21 @@ public class PaqueteComerciar extends Paquete
      *
      * @return the listo
      */
-    public int getListo() {
+    public final int getListo() {
         return listo;
     }
 
     /**
      * Aumentar listo.
      */
-    public void aumentarListo() {
+    public final void aumentarListo() {
         this.listo++;
     }
 
     /**
      * Disminuir listo.
      */
-    public void disminuirListo() {
+    public final void disminuirListo() {
         this.listo--;
     }
 
@@ -141,7 +141,7 @@ public class PaqueteComerciar extends Paquete
      *
      * @return the items A obtener
      */
-    public ArrayList<Item> getItemsAObtener() {
+    public final ArrayList<Item> getItemsAObtener() {
         return itemsAObtener;
     }
 
@@ -151,7 +151,7 @@ public class PaqueteComerciar extends Paquete
      * @param itemsToObtain
      *            List con el valor de los items A obtener. <br>
      */
-    public void setItemsAObtener(final ArrayList<Item> itemsToObtain) {
+    public final void setItemsAObtener(final ArrayList<Item> itemsToObtain) {
         this.itemsAObtener = itemsToObtain;
     }
 }

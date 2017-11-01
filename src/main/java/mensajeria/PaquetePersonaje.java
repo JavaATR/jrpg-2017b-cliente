@@ -88,7 +88,7 @@ public class PaquetePersonaje extends Paquete
      *
      * @return estado
      */
-    public int getEstado() {
+    public final int getEstado() {
         return estado;
     }
 
@@ -98,7 +98,7 @@ public class PaquetePersonaje extends Paquete
      * @param status
      *            Valor para asignar de estado. <br>
      */
-    public void setEstado(final int status) {
+    public final void setEstado(final int status) {
         this.estado = status;
     }
 
@@ -107,7 +107,7 @@ public class PaquetePersonaje extends Paquete
      *
      * @return the mapa
      */
-    public int getMapa() {
+    public final int getMapa() {
         return idMapa;
     }
 
@@ -117,7 +117,7 @@ public class PaquetePersonaje extends Paquete
      * @param map
      *            Valor para asignar mapa. <br>
      */
-    public void setMapa(final int map) {
+    public final void setMapa(final int map) {
         idMapa = map;
     }
 
@@ -126,7 +126,7 @@ public class PaquetePersonaje extends Paquete
      *
      * @return nivel
      */
-    public int getNivel() {
+    public final int getNivel() {
         return nivel;
     }
 
@@ -136,7 +136,7 @@ public class PaquetePersonaje extends Paquete
      * @param level
      *            Valor para asignar nivel. <br>
      */
-    public void setNivel(final int level) {
+    public final void setNivel(final int level) {
         this.nivel = level;
     }
 
@@ -145,7 +145,7 @@ public class PaquetePersonaje extends Paquete
      *
      * @return experiencia
      */
-    public int getExperiencia() {
+    public final int getExperiencia() {
         return experiencia;
     }
 
@@ -155,7 +155,7 @@ public class PaquetePersonaje extends Paquete
      * @param experience
      *            Valor para asignar experiencia. <br>
      */
-    public void setExperiencia(final int experience) {
+    public final void setExperiencia(final int experience) {
         this.experiencia = experience;
     }
 
@@ -164,7 +164,7 @@ public class PaquetePersonaje extends Paquete
      *
      * @return id
      */
-    public int getId() {
+    public final int getId() {
         return id;
     }
 
@@ -174,7 +174,7 @@ public class PaquetePersonaje extends Paquete
      * @param idNumber
      *            Valor para asignar id. <br>
      */
-    public void setId(final int idNumber) {
+    public final void setId(final int idNumber) {
         this.id = idNumber;
     }
 
@@ -183,7 +183,7 @@ public class PaquetePersonaje extends Paquete
      *
      * @return the casta
      */
-    public String getCasta() {
+    public final String getCasta() {
         return casta;
     }
 
@@ -193,7 +193,7 @@ public class PaquetePersonaje extends Paquete
      * @param casta
      *            Valor para asignar casta. <br>
      */
-    public void setCasta(final String casta) {
+    public final void setCasta(final String casta) {
         this.casta = casta;
     }
 
@@ -202,7 +202,7 @@ public class PaquetePersonaje extends Paquete
      *
      * @return nombre
      */
-    public String getNombre() {
+    public final String getNombre() {
         return nombre;
     }
 
@@ -212,7 +212,7 @@ public class PaquetePersonaje extends Paquete
      * @param name
      *            Valor para asignar nombre. <br>
      */
-    public void setNombre(final String name) {
+    public final void setNombre(final String name) {
         this.nombre = name;
     }
 
@@ -221,7 +221,7 @@ public class PaquetePersonaje extends Paquete
      *
      * @return raza
      */
-    public String getRaza() {
+    public final String getRaza() {
         return raza;
     }
 
@@ -231,7 +231,7 @@ public class PaquetePersonaje extends Paquete
      * @param race
      *            Valor para asignar raza. <br>
      */
-    public void setRaza(final String race) {
+    public final void setRaza(final String race) {
         this.raza = race;
     }
 
@@ -240,7 +240,7 @@ public class PaquetePersonaje extends Paquete
      *
      * @return salud tope
      */
-    public int getSaludTope() {
+    public final int getSaludTope() {
         return saludTope;
     }
 
@@ -250,7 +250,7 @@ public class PaquetePersonaje extends Paquete
      * @param topeSalud
      *            Valor para asignar salud tope. <br>
      */
-    public void setSaludTope(final int topeSalud) {
+    public final void setSaludTope(final int topeSalud) {
         this.saludTope = topeSalud;
     }
 
@@ -259,7 +259,7 @@ public class PaquetePersonaje extends Paquete
      *
      * @return energia tope
      */
-    public int getEnergiaTope() {
+    public final int getEnergiaTope() {
         return energiaTope;
     }
 
@@ -269,7 +269,7 @@ public class PaquetePersonaje extends Paquete
      * @param topeEnergia
      *            Valor para asignar energia tope. <br>
      */
-    public void setEnergiaTope(final int topeEnergia) {
+    public final void setEnergiaTope(final int topeEnergia) {
         this.energiaTope = topeEnergia;
     }
 
@@ -278,7 +278,7 @@ public class PaquetePersonaje extends Paquete
      *
      * @return fuerza
      */
-    public int getFuerza() {
+    public final int getFuerza() {
         return fuerza;
     }
 
@@ -288,7 +288,7 @@ public class PaquetePersonaje extends Paquete
      * @param strength
      *            Valor para asignar fuerza. <br>
      */
-    public void setFuerza(final int strength) {
+    public final void setFuerza(final int strength) {
         this.fuerza = strength;
     }
 
@@ -297,7 +297,7 @@ public class PaquetePersonaje extends Paquete
      *
      * @return destreza
      */
-    public int getDestreza() {
+    public final int getDestreza() {
         return destreza;
     }
 
@@ -307,7 +307,7 @@ public class PaquetePersonaje extends Paquete
      * @param skill
      *            Valor para asignar destreza. <br>
      */
-    public void setDestreza(final int skill) {
+    public final void setDestreza(final int skill) {
         this.destreza = skill;
     }
 
@@ -316,7 +316,7 @@ public class PaquetePersonaje extends Paquete
      *
      * @return inteligencia
      */
-    public int getInteligencia() {
+    public final int getInteligencia() {
         return inteligencia;
     }
 
@@ -326,7 +326,7 @@ public class PaquetePersonaje extends Paquete
      * @param intelligence
      *            Valor para asignar inteligencia. <br>
      */
-    public void setInteligencia(final int intelligence) {
+    public final void setInteligencia(final int intelligence) {
         this.inteligencia = intelligence;
     }
 
@@ -336,7 +336,7 @@ public class PaquetePersonaje extends Paquete
      * @see mensajeria.Paquete#clone()
      */
     @Override
-    public Object clone() {
+    public final Object clone() {
         Object obj = null;
         obj = super.clone();
         return obj;
@@ -367,7 +367,7 @@ public class PaquetePersonaje extends Paquete
      *
      * @return items
      */
-    public ArrayList<Item> getItems() {
+    public final ArrayList<Item> getItems() {
         return new ArrayList<Item>(items);
     }
 
@@ -505,7 +505,7 @@ public class PaquetePersonaje extends Paquete
      * @param puntosAAsignar
      *            Puntos de skill a agregar. <br>
      */
-    public void useBonus(final int bonusSalud, final int bonusEnergia,
+    public final void useBonus(final int bonusSalud, final int bonusEnergia,
             final int bonusAtaque, final int bonusDefensa, final int bonusMagia,
             final int puntosAAsignar) {
         saludTope += bonusSalud;
@@ -520,7 +520,7 @@ public class PaquetePersonaje extends Paquete
      *
      * @return cant items
      */
-    public int getCantItems() {
+    public final int getCantItems() {
         return items.size();
     }
 
@@ -530,7 +530,7 @@ public class PaquetePersonaje extends Paquete
      * @param idItem
      *            Valor para añadir item. <br>
      */
-    public void anadirItem(final int idItem) {
+    public final void anadirItem(final int idItem) {
         try {
             items.add(new Item(idItem, null, 0, 0, 0, 0, 0, 0, null, null));
         } catch (IOException e) {
@@ -544,14 +544,14 @@ public class PaquetePersonaje extends Paquete
      *
      * @return iterator
      */
-    public Iterator<Item> getIterator() {
+    public final Iterator<Item> getIterator() {
         return items.iterator();
     }
 
     /**
      * Remover ultimo item.
      */
-    public void removerUltimoItem() {
+    public final void removerUltimoItem() {
         items.remove(items.size() - 1);
 
     }
@@ -561,7 +561,7 @@ public class PaquetePersonaje extends Paquete
      *
      * @return true, if successful
      */
-    public boolean nuevoItem() {
+    public final boolean nuevoItem() {
         return items.get(items.size() - 1).getNombre() == null;
     }
 
@@ -571,7 +571,7 @@ public class PaquetePersonaje extends Paquete
      * @param cantItems
      *            Valor para asignar bonus. <br>
      */
-    public void ponerBonus(final int cantItems) {
+    public final void ponerBonus(final int cantItems) {
         int i = 0;
         while (i < cantItems) {
             useBonus(items.get(i).getBonusSalud(),
@@ -586,7 +586,7 @@ public class PaquetePersonaje extends Paquete
     /**
      * Sacar ultimo item.
      */
-    public void sacarUltimoItem() {
+    public final void sacarUltimoItem() {
         int i = items.size() - 1;
         if (i >= 0) {
             sacarBonus(items.get(i).getBonusSalud(),
@@ -600,7 +600,7 @@ public class PaquetePersonaje extends Paquete
     /**
      * Inserta el último item. <br>
      */
-    public void ponerUltimoItem() {
+    public final void ponerUltimoItem() {
         int i = items.size() - 1;
         if (i >= 0) {
             useBonus(items.get(i).getBonusSalud(),
@@ -614,7 +614,7 @@ public class PaquetePersonaje extends Paquete
     /**
      * Quita todos items del inventario. <br>
      */
-    public void eliminarItems() {
+    public final void eliminarItems() {
         items.removeAll(items);
     }
 
@@ -624,7 +624,7 @@ public class PaquetePersonaje extends Paquete
      * @param itemsList
      *            Lista de items para actualizar trueque. <br>
      */
-    public void actualizarTrueque(final ArrayList<Item> itemsList) {
+    public final void actualizarTrueque(final ArrayList<Item> itemsList) {
         this.items.removeAll(this.items);
         for (Item item : itemsList) {
             this.items.add(item);
@@ -636,7 +636,7 @@ public class PaquetePersonaje extends Paquete
      *
      * @return Puntos para asignar de skill. <br>
      */
-    public int getPuntosAsignar() {
+    public final int getPuntosAsignar() {
         return this.puntosAsignar;
     }
 
@@ -646,7 +646,7 @@ public class PaquetePersonaje extends Paquete
      * @param cantPuntosAsignar
      *            Puntos para asignar de skill. <br>
      */
-    public void setPuntosAsignar(final int cantPuntosAsignar) {
+    public final void setPuntosAsignar(final int cantPuntosAsignar) {
         this.puntosAsignar = cantPuntosAsignar;
     }
 
@@ -655,7 +655,7 @@ public class PaquetePersonaje extends Paquete
      *
      * @return Fuerza inicial de la casta. <br>
      */
-    public int getFuerzaInicial() {
+    public final int getFuerzaInicial() {
         if (this.casta.equals("Guerrero")) {
             return this.fuerzaIncial[0];
         }
@@ -670,7 +670,7 @@ public class PaquetePersonaje extends Paquete
      *
      * @return Destreza inicial de la casta. <br>
      */
-    public int getDestrezaInicial() {
+    public final int getDestrezaInicial() {
         if (this.casta.equals("Guerrero")) {
             return this.destrezaIncial[0];
         }
@@ -685,7 +685,7 @@ public class PaquetePersonaje extends Paquete
      *
      * @return Inteligencia inicial de la casta. <br>
      */
-    public int getInteligenciaInicial() {
+    public final int getInteligenciaInicial() {
         if (this.casta.equals("Guerrero")) {
             return this.inteligenciaInicial[0];
         }
@@ -698,7 +698,7 @@ public class PaquetePersonaje extends Paquete
     /**
      * Sube el nivel del personaje. <br>
      */
-    public void subirDeNivel() {
+    public final void subirDeNivel() {
         this.nivel++;
     }
 }

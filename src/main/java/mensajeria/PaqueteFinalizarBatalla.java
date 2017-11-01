@@ -29,7 +29,7 @@ public class PaqueteFinalizarBatalla extends Paquete
      *
      * @return id
      */
-    public int getId() {
+    public final int getId() {
         return id;
     }
 
@@ -39,7 +39,7 @@ public class PaqueteFinalizarBatalla extends Paquete
      * @param idNumber
      *            Valor para asignar id. <br>
      */
-    public void setId(final int idNumber) {
+    public final void setId(final int idNumber) {
         this.id = idNumber;
     }
 
@@ -48,7 +48,7 @@ public class PaqueteFinalizarBatalla extends Paquete
      *
      * @return id enemigo
      */
-    public int getIdEnemigo() {
+    public final int getIdEnemigo() {
         return idEnemigo;
     }
 
@@ -58,7 +58,7 @@ public class PaqueteFinalizarBatalla extends Paquete
      * @param idEnemy
      *            Valor para asignar idEnemigo. <br>
      */
-    public void setIdEnemigo(final int idEnemy) {
+    public final void setIdEnemigo(final int idEnemy) {
         this.idEnemigo = idEnemy;
     }
 
@@ -67,7 +67,7 @@ public class PaqueteFinalizarBatalla extends Paquete
      *
      * @return ganador batalla.
      */
-    public int getGanadorBatalla() {
+    public final int getGanadorBatalla() {
         return ganadorBatalla;
     }
 
@@ -77,7 +77,7 @@ public class PaqueteFinalizarBatalla extends Paquete
      * @param winnerBatalla
      *            Valor para asignar ganador batalla
      */
-    public void setGanadorBatalla(final int winnerBatalla) {
+    public final void setGanadorBatalla(final int winnerBatalla) {
         this.ganadorBatalla = winnerBatalla;
     }
 }

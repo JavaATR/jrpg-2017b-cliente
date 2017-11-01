@@ -389,7 +389,7 @@ public class Entidad {
     /**
      * Actualiza el personaje.
      */
-    public void actualizar() {
+    public final void actualizar() {
 
         if (enMovimiento) {
             moverIzq.actualizar();
@@ -421,7 +421,7 @@ public class Entidad {
      * Devuelve la entrada.
      *
      */
-    public void getEntrada() {
+    public final void getEntrada() {
         posMouseRecorrido = juego.getHandlerMouse().getPosMouseRecorrido();
         posMouse = juego.getHandlerMouse().getPosMouse();
         if (juego.getHandlerMouse().getNuevoClick() && posMouse[0] >= NUM_738
@@ -786,7 +786,7 @@ public class Entidad {
     /**
      * Mueve el personaje.
      */
-    public void mover() {
+    public final void mover() {
 
         dx = 0;
         dy = 0;
@@ -838,7 +838,7 @@ public class Entidad {
      * @param g
      *            the g
      */
-    public void graficar(final Graphics g) {
+    public final void graficar(final Graphics g) {
         drawX = (int) (x - juego.getCamara().getxOffset());
         drawY = (int) (y - juego.getCamara().getyOffset());
         g.drawImage(getFrameAnimacionActual(), drawX, drawY + CUATRO, ancho,
@@ -851,7 +851,7 @@ public class Entidad {
      * @param g
      *            the g
      */
-    public void graficarNombre(final Graphics g) {
+    public final void graficarNombre(final Graphics g) {
         g.setColor(Color.WHITE);
         g.setFont(new Font("Book Antiqua", Font.BOLD, FONT_SIZE_15));
         Pantalla.centerString(g, new java.awt.Rectangle(drawX + NUM_32,
@@ -1063,7 +1063,7 @@ public class Entidad {
      *
      * @return devuelve la ubicacion en X
      */
-    public float getX() {
+    public final float getX() {
         return x;
     }
 
@@ -1073,7 +1073,7 @@ public class Entidad {
      * @param xValue
      *            valor nuevo de la ubicacion en X
      */
-    public void setX(final float xValue) {
+    public final void setX(final float xValue) {
         this.x = xValue;
     }
 
@@ -1082,7 +1082,7 @@ public class Entidad {
      *
      * @return devuelve la ubicacion en Y
      */
-    public float getY() {
+    public final float getY() {
         return y;
     }
 
@@ -1092,7 +1092,7 @@ public class Entidad {
      * @param yValue
      *            valor nuevo de la ubicacion en Y
      */
-    public void setY(final float yValue) {
+    public final void setY(final float yValue) {
         this.y = yValue;
     }
 
@@ -1101,7 +1101,7 @@ public class Entidad {
      *
      * @return devuelve el ancho
      */
-    public int getAncho() {
+    public final int getAncho() {
         return ancho;
     }
 
@@ -1111,7 +1111,7 @@ public class Entidad {
      * @param width
      *            nuevo ancho a setear
      */
-    public void setAncho(final int width) {
+    public final void setAncho(final int width) {
         this.ancho = width;
     }
 
@@ -1120,7 +1120,7 @@ public class Entidad {
      *
      * @return devuelve el alto
      */
-    public int getAlto() {
+    public final int getAlto() {
         return alto;
     }
 
@@ -1130,7 +1130,7 @@ public class Entidad {
      * @param height
      *            nuevo alto a setear
      */
-    public void setAlto(final int height) {
+    public final void setAlto(final int height) {
         this.alto = height;
     }
 
@@ -1139,7 +1139,7 @@ public class Entidad {
      *
      * @return devuelve el offset de X
      */
-    public int getxOffset() {
+    public final int getxOffset() {
         return xOffset;
     }
 
@@ -1148,7 +1148,7 @@ public class Entidad {
      *
      * @return devuelve el offset de Y
      */
-    public int getYOffset() {
+    public final int getYOffset() {
         return yOffset;
     }
 }

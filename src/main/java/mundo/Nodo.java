@@ -51,7 +51,7 @@ public class Nodo {
      *
      * @return Posición X. <br>
      */
-    public int obtenerX() {
+    public final int obtenerX() {
         return this.x;
     }
 
@@ -60,7 +60,7 @@ public class Nodo {
      *
      * @return Posición Y. <br>
      */
-    public int obtenerY() {
+    public final int obtenerY() {
         return this.y;
     }
 
@@ -69,7 +69,7 @@ public class Nodo {
      *
      * @return Indice. <br>
      */
-    public int obtenerIndice() {
+    public final int obtenerIndice() {
         return this.indice;
     }
 
@@ -78,7 +78,7 @@ public class Nodo {
      *
      * @return Nodos adyacentes. <br>
      */
-    public Nodo[] obtenerNodosAdyacentes() {
+    public final Nodo[] obtenerNodosAdyacentes() {
         return this.nodosAdyacentes;
     }
 
@@ -88,7 +88,7 @@ public class Nodo {
      * @param nodo
      *            Nodo. <br>
      */
-    public void agregarAdyacente(final Nodo nodo) {
+    public final void agregarAdyacente(final Nodo nodo) {
         this.nodosAdyacentes[this.cantidadDeAdyacentes++] = nodo;
     }
 
@@ -97,7 +97,7 @@ public class Nodo {
      *
      * @return Cantidad de nodos adyacentes. <br>
      */
-    public int obtenerCantidadDeAdyacentes() {
+    public final int obtenerCantidadDeAdyacentes() {
         return this.cantidadDeAdyacentes;
     }
 }

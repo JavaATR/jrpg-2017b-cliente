@@ -41,7 +41,7 @@ public class NodoDePila {
      * @param nodo
      *            nuevo nodo a setear
      */
-    public final void establecerSiguiente(NodoDePila nodo) {
+    public final void establecerSiguiente(final NodoDePila nodo) {
         ptrSiguiente = nodo;
     }
 

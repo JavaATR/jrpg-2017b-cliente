@@ -190,11 +190,11 @@ public class PaquetePersonaje extends Paquete
     /**
      * Establece la casta. <br>
      *
-     * @param casta
+     * @param castaValue
      *            Valor para asignar casta. <br>
      */
-    public final void setCasta(final String casta) {
-        this.casta = casta;
+    public final void setCasta(final String castaValue) {
+        this.casta = castaValue;
     }
 
     /**

@@ -20,13 +20,13 @@ public class Grafo {
     /**
      * Crea un gráfo. <br>
      *
-     * @param cantidadDeNodosTotal
+     * @param cantTotalDeNodos
      *            Cantidad total de nodos. <br>
      */
-    public Grafo(final int cantidadDeNodosTotal) {
+    public Grafo(final int cantTotalDeNodos) {
         this.cantidadDeNodos = 0;
-        this.nodos = new Nodo[cantidadDeNodosTotal];
-        this.cantidadDeNodosTotal = cantidadDeNodosTotal;
+        this.nodos = new Nodo[cantTotalDeNodos];
+        this.cantidadDeNodosTotal = cantTotalDeNodos;
     }
 
     /**

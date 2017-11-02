@@ -756,7 +756,7 @@ public class Entidad {
      * @param tileMov
      *            the tile moverme
      */
-    private void clickEsSobreEnemigo(int[] tileMov) {
+    private void clickEsSobreEnemigo(final int[] tileMov) {
         Iterator<Integer> it = juego.getUbicacionEnemigos().keySet().iterator();
         int key;
         PaqueteMovimiento actual;
@@ -944,23 +944,23 @@ public class Entidad {
      *            ubicacion en X inicial
      * @param yInicial
      *            ubicacion en Y inicial
-     * @param xFinal
+     * @param finalX
      *            ubicacion en X final
-     * @param yFinal
+     * @param finalY
      *            ubicacion en Y final
      * @return la pila de tiles a recorrer
      */
     private PilaDeTiles caminoMasCorto(final int xInicial, final int yInicial,
-            final int xFinal, final int yFinal) {
+            final int finalX, final int finalY) {
         Grafo grafoLibres = mundo.obtenerGrafoDeTilesNoSolidos();
         // Transformo las coordenadas iniciales y finales en indices
         int nodoInicial = (yInicial - grafoLibres.obtenerNodos()[0].obtenerY())
                 * (int) Math.sqrt(grafoLibres.obtenerCantidadDeNodosTotal())
                 + xInicial - grafoLibres.obtenerNodos()[0].obtenerX();
 
-        int nodoFinal = (yFinal - grafoLibres.obtenerNodos()[0].obtenerY())
+        int nodoFinal = (finalY - grafoLibres.obtenerNodos()[0].obtenerY())
                 * (int) Math.sqrt(grafoLibres.obtenerCantidadDeNodosTotal())
-                + xFinal - grafoLibres.obtenerNodos()[0].obtenerX();
+                + finalX - grafoLibres.obtenerNodos()[0].obtenerX();
 
         // Hago todo
         double[] vecCostos = new double[grafoLibres

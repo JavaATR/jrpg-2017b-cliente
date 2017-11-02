@@ -72,7 +72,7 @@ public class Pantalla {
 	/**
 	 * Construye la pantalla del juego. <br>
 	 * Se encarga de mostrar desde el mundo hasta el inventario. <br>
-	 *
+	 * 
 	 * @param nombre
 	 *            Nombre del juego. <br>
 	 * @param ancho
@@ -82,12 +82,14 @@ public class Pantalla {
 	 * @param cliente
 	 *            Usuario. <br>
 	 */
-	public Pantalla(final String nombre, final int ancho, final int alto, final Cliente cliente) {
+	public Pantalla(final String nombre, final int ancho, final int alto,
+			final Cliente cliente) {
 		pantalla = new JFrame(nombre);
-		pantalla.setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/java/frames/IconoWome.png"));
+		pantalla.setIconImage(Toolkit.getDefaultToolkit().getImage(
+				"src/main/java/frames/IconoWome.png"));
 		pantalla.setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
-				new ImageIcon(MenuJugar.class.getResource("/cursor.png")).getImage(), new Point(0, 0),
-				"custom cursor"));
+				new ImageIcon(MenuJugar.class.getResource("/cursor.png"))
+						.getImage(), new Point(0, 0), "custom cursor"));
 		pantalla.setSize(ancho, alto);
 		pantalla.setResizable(false);
 		pantalla.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -104,7 +106,8 @@ public class Pantalla {
 					cliente.getSocket().close();
 					System.exit(0);
 				} catch (IOException e) {
-					JOptionPane.showMessageDialog(null, "Fallo al intentar cerrar la aplicación.");
+					JOptionPane.showMessageDialog(null,
+							"Fallo al intentar cerrar la aplicación.");
 					System.exit(1);
 				}
 			}
@@ -112,7 +115,8 @@ public class Pantalla {
 		pantalla.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(final KeyEvent e) {
-				if (e.getKeyCode() == KeyEvent.VK_I && Estado.getEstado().esEstadoDeJuego()
+				if (e.getKeyCode() == KeyEvent.VK_I
+						&& Estado.getEstado().esEstadoDeJuego()
 						&& (menuInventario == null)) {
 					menuInventario = new MenuInventario(cliente);
 					menuInventario.setVisible(true);
@@ -126,23 +130,27 @@ public class Pantalla {
 							menuAsignar = null;
 						}
 					} else {
-						if (e.getKeyCode() == KeyEvent.VK_S) {
-							if (Estado.getEstado().esEstadoDeJuego() && (menuStats == null)) {
-								menuStats = new MenuStats(cliente);
-								menuStats.setVisible(true);
-							}
+						if (e.getKeyCode() == KeyEvent.VK_S
+								&& Estado.getEstado().esEstadoDeJuego()
+								&& (menuStats == null)) {
+							menuStats = new MenuStats(cliente);
+							menuStats.setVisible(true);
+
 						} else {
-							if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-								if (Estado.getEstado().esEstadoDeJuego() && (menuEscp == null)) {
-									menuEscp = new MenuEscape(cliente);
-									menuEscp.setVisible(true);
-								}
+							if (e.getKeyCode() == KeyEvent.VK_ESCAPE
+									&& Estado.getEstado().esEstadoDeJuego()
+									&& (menuEscp == null)) {
+								menuEscp = new MenuEscape(cliente);
+								menuEscp.setVisible(true);
+
 							} else {
-								if (e.getKeyCode() == KeyEvent.VK_C) {
-									if (ventContac == null) {
-										ventContac = new VentanaContactos(cliente.getJuego());
-										ventContac.setVisible(true);
-									}
+								if (e.getKeyCode() == KeyEvent.VK_C
+										&& ventContac == null) {
+
+									ventContac = new VentanaContactos(cliente
+											.getJuego());
+									ventContac.setVisible(true);
+
 								}
 							}
 						}
@@ -163,7 +171,7 @@ public class Pantalla {
 
 	/**
 	 * Devuelve el canvas. <br>
-	 *
+	 * 
 	 * @return Canvas. <br>
 	 */
 	public final Canvas getCanvas() {
@@ -172,7 +180,7 @@ public class Pantalla {
 
 	/**
 	 * Muestra la pantalla. <br>
-	 *
+	 * 
 	 * @return Pantalla. <br>
 	 */
 	public final JFrame getFrame() {
@@ -188,7 +196,7 @@ public class Pantalla {
 
 	/**
 	 * Centraliza la pantalla con el movimiento del jugador. <br>
-	 *
+	 * 
 	 * @param g
 	 *            Grafico. <br>
 	 * @param area
@@ -196,7 +204,8 @@ public class Pantalla {
 	 * @param string
 	 *            String. <br>
 	 */
-	public static void centerString(final Graphics g, final Rectangle area, final String string) {
+	public static void centerString(final Graphics g, final Rectangle area,
+			final String string) {
 		FontRenderContext frc = new FontRenderContext(null, true, true);
 		Rectangle2D r2D = g.getFont().getStringBounds(string, frc);
 		int rWidth = (int) Math.round(r2D.getWidth());

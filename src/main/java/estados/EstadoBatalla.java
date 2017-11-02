@@ -361,10 +361,9 @@ public class EstadoBatalla extends Estado {
                 }
                 juego.getHandlerMouse().setNuevoClick(false);
             }
-        }
-        // Si no es mi turno y estoy en batalla contra un NPC, El Bryan nos
-        // ataca
-        else {
+        } else {
+            // Si no es mi turno y estoy en batalla contra un NPC, El Bryan nos
+            // ataca
             if (enemigoNPC != null) {
                 paqueteAtacar = new PaqueteAtacar(paqueteEnemigoNPC.getId(),
                         paquetePersonaje.getId(), enemigoNPC.getSalud(),

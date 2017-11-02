@@ -206,7 +206,7 @@ public class MenuComerciar extends JFrame {
 
         addWindowListener(new WindowAdapter() {
             @Override
-            public void windowClosing(WindowEvent e) {
+            public void windowClosing(final WindowEvent e) {
                 cliente.setM1(null);
                 dispose();
             }
@@ -708,11 +708,11 @@ public class MenuComerciar extends JFrame {
     /**
      * Sets cant listos. <br>
      *
-     * @param cantListos
+     * @param cantDeListos
      *            cant listos <br>
      */
-    public final void setCantListos(final int cantListos) {
-        this.cantListos = cantListos;
+    public final void setCantListos(final int cantDeListos) {
+        this.cantListos = cantDeListos;
     }
 
     /**
@@ -727,11 +727,11 @@ public class MenuComerciar extends JFrame {
     /**
      * Sets obtener. <br>
      *
-     * @param obtener
+     * @param obtain
      *            obtener <br>
      */
-    public final void setObtener(final DefaultListModel<String> obtener) {
-        this.obtener = obtener;
+    public final void setObtener(final DefaultListModel<String> obtain) {
+        this.obtener = obtain;
     }
 
     /**

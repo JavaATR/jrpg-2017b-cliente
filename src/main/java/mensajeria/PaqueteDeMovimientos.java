@@ -25,7 +25,8 @@ public class PaqueteDeMovimientos extends Paquete
      * @param characters
      *            Map para asignar personajes. <br>
      */
-    public PaqueteDeMovimientos(Map<Integer, PaqueteMovimiento> characters) {
+    public PaqueteDeMovimientos(
+            final Map<Integer, PaqueteMovimiento> characters) {
         this.personajes = characters;
     }
 

@@ -369,7 +369,7 @@ public class MenuInfoPersonaje {
      * @param g
      *            Valor g. <br>
      */
-    private final void graficarMenuComerciar(final Graphics g) {
+    private void graficarMenuComerciar(final Graphics g) {
 
         // muestro los nombres de los atributos
         g.setColor(Color.BLACK);

@@ -81,6 +81,8 @@ public class PaqueteMensaje extends Paquete implements Serializable, Cloneable {
 
     /**
      * Object clone. <br>
+     *
+     * @return obj <br>
      */
     public final Object clone() {
         Object obj = null;

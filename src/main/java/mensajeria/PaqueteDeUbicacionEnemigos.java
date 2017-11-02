@@ -22,12 +22,12 @@ public class PaqueteDeUbicacionEnemigos extends Paquete
     /**
      * Constructor parametrizado new paquete de ubicacion enemigos. <br>
      *
-     * @param enemigos
+     * @param enemies
      *            Map para asignar enemigos. <br>
      */
     public PaqueteDeUbicacionEnemigos(
-            Map<Integer, PaqueteMovimiento> enemigos) {
-        this.enemigos = enemigos;
+            final Map<Integer, PaqueteMovimiento> enemies) {
+        this.enemigos = enemies;
     }
 
     /**

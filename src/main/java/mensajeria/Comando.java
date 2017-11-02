@@ -105,7 +105,7 @@ public abstract class Comando {
      * @param readString
      *            String para asignar cadena leída. <br>
      */
-    public final void setCadena(String readString) {
+    public final void setCadena(final String readString) {
         this.cadenaLeida = readString;
     }
 

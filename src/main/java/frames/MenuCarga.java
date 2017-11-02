@@ -5,7 +5,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import cliente.*;
+import cliente.Cliente;
 import mensajeria.Comando;
 
 import javax.swing.ImageIcon;
@@ -68,7 +68,7 @@ public class MenuCarga extends JFrame {
         // En caso de cerrar la ventana
         addWindowListener(new WindowAdapter() {
             @Override
-            public void windowClosing(WindowEvent e) {
+            public void windowClosing(final WindowEvent e) {
                 synchronized (cliente) {
                     cliente.setAccion(Comando.SALIR);
                     cliente.notify();
@@ -123,7 +123,7 @@ public class MenuCarga extends JFrame {
      * @param ancho
      *            Valor de barra cargando <br>
      */
-    public final void setBarraCargando(int ancho) {
+    public final void setBarraCargando(final int ancho) {
         barraCargando.setSize(ancho, ANCHO_BARRA);
     }
 }

@@ -10,11 +10,11 @@ public class HandlerMouse implements MouseListener {
     /**
      * Posición del mouse. <br>
      */
-    private int posMouse[];
+    private int[] posMouse;
     /**
      * Recorrido del mouse. <br>
      */
-    private int posMouseRecorrido[];
+    private int[] posMouseRecorrido;
     /**
      * Indicador de si hubo un nuevo recorrido. <br>
      */

@@ -401,15 +401,15 @@ public class EstadoJuego extends Estado {
      *            Indicador de solicitud. <br>
      * @param enemigo
      *            Enemigo. <br>
-     * @param tipoSolicitud
+     * @param solicitudTipo
      *            Tipo de solicitud. <br>
      */
     public final void setHaySolicitudEnemigo(final boolean b,
-            final PaqueteEnemigo enemigo, final int tipoSolicitud) {
+            final PaqueteEnemigo enemigo, final int solicitudTipo) {
         haySolicitudEnemigo = b;
         // menu que mostrara al enemigo
         menuEnemigoNPC = new MenuInfoEnemigo(TRESCIENTOS, CINCUENTA, enemigo);
-        this.tipoSolicitud = tipoSolicitud;
+        this.tipoSolicitud = solicitudTipo;
     }
 
     /**

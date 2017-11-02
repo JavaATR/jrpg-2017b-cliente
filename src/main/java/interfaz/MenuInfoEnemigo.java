@@ -11,7 +11,6 @@ import juego.Pantalla;
 import mensajeria.PaqueteEnemigo;
 import recursos.Recursos;
 
-// TODO: Auto-generated Javadoc
 /**
  * Clase MenuInfoEnemigo.
  */

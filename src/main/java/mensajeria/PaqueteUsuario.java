@@ -55,11 +55,11 @@ public class PaqueteUsuario extends Paquete implements Serializable, Cloneable {
     /**
      * Sets id pj. <br>
      *
-     * @param idPj
+     * @param idPersonaje
      *            Valor para asignar id de personaje. <br>
      */
-    public final void setIdPj(final int idPj) {
-        this.idPj = idPj;
+    public final void setIdPj(final int idPersonaje) {
+        this.idPj = idPersonaje;
     }
 
     /**

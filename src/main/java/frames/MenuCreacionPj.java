@@ -168,8 +168,9 @@ public class MenuCreacionPj extends JFrame {
             @Override
             public void windowClosing(final WindowEvent e) {
                 personaje.setNombre(nombre.getText());
-                if (nombre.getText().equals(""))
+                if (nombre.getText().equals("")) {
                     personaje.setNombre("nameless");
+                }
                 personaje.setRaza((String) cbxRaza.getSelectedItem());
                 personaje.setSaludTope(
                         Integer.parseInt(vecSalud[cbxRaza.getSelectedIndex()]));
@@ -389,15 +390,16 @@ public class MenuCreacionPj extends JFrame {
      * @param vecInteligencia
      *            vec inteligencia. <br>
      */
-    protected void crearPj(final Cliente cliente,
+    protected final void crearPj(final Cliente cliente,
             final PaquetePersonaje personaje, final Gson gson,
             final String[] vecSalud, final String[] vecEnergia,
             final String[] vecFuerza, final String[] vecDestreza,
             final String[] vecInteligencia) {
 
         personaje.setNombre(nombre.getText());
-        if (nombre.getText().equals(""))
+        if (nombre.getText().equals("")) {
             personaje.setNombre("nameless");
+        }
         personaje.setRaza((String) cbxRaza.getSelectedItem());
         personaje.setSaludTope(
                 Integer.parseInt(vecSalud[cbxRaza.getSelectedIndex()]));

@@ -38,7 +38,7 @@ public class PaqueteBatalla extends Paquete implements Serializable, Cloneable {
      * @param idNumber
      *            Valor para asignar id. <br>
      */
-    public final void setId(int idNumber) {
+    public final void setId(final int idNumber) {
         this.id = idNumber;
     }
 
@@ -57,7 +57,7 @@ public class PaqueteBatalla extends Paquete implements Serializable, Cloneable {
      * @param idEnemy
      *            Valor para asignar id enemigo. <br>
      */
-    public final void setIdEnemigo(int idEnemy) {
+    public final void setIdEnemigo(final int idEnemy) {
         this.idEnemigo = idEnemy;
     }
 
@@ -76,7 +76,7 @@ public class PaqueteBatalla extends Paquete implements Serializable, Cloneable {
      * @param myTurn
      *            Valor para asignar mi turno. <br>
      */
-    public final void setMiTurno(boolean myTurn) {
+    public final void setMiTurno(final boolean myTurn) {
         this.miTurno = myTurn;
     }
 }

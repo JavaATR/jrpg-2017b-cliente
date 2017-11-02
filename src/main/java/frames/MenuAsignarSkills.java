@@ -197,7 +197,7 @@ public class MenuAsignarSkills extends JFrame {
 
         addWindowListener(new WindowAdapter() {
             @Override
-            public void windowClosing(WindowEvent arg0) {
+            public void windowClosing(final WindowEvent arg0) {
                 Pantalla.menuAsignar = null;
                 dispose();
             }

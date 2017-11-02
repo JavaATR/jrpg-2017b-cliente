@@ -5,12 +5,14 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 
 import javax.swing.JOptionPane;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
+
 import com.google.gson.Gson;
 
 import chat.VentanaContactos;
@@ -756,7 +758,7 @@ public class Entidad {
      * @param tileMov
      *            the tile moverme
      */
-    private void clickEsSobreEnemigo(final int[] tileMov) {
+    private void clickEsSobreEnemigo(int[] tileMov) {
         Iterator<Integer> it = juego.getUbicacionEnemigos().keySet().iterator();
         int key;
         PaqueteMovimiento actual;
@@ -864,25 +866,24 @@ public class Entidad {
      * @return the frame animacion actual
      */
     private BufferedImage getFrameAnimacionActual() {
-        if (movimientoHacia == HORIZONTAL_IZQUIERDA) {
-            return moverIzq.getFrameActual();
-        } else if (movimientoHacia == HORIZONTAL_DERECHA) {
-            return moverDer.getFrameActual();
-        } else if (movimientoHacia == VERTICAL_SUPERIOR) {
-            return moverArriba.getFrameActual();
-        } else if (movimientoHacia == VERTICAL_INFERIOR) {
-            return moverAbajo.getFrameActual();
-        } else if (movimientoHacia == DIAGONAL_INFERIOR_IZQUIERDA) {
-            return moverAbajoIzq.getFrameActual();
-        } else if (movimientoHacia == DIAGONAL_INFERIOR_DERECHA) {
-            return moverAbajoDer.getFrameActual();
-        } else if (movimientoHacia == DIAGONAL_SUPERIOR_IZQUIERDA) {
-            return moverArribaIzq.getFrameActual();
-        } else if (movimientoHacia == DIAGONAL_SUPERIOR_DERECHA) {
-            return moverArribaDer.getFrameActual();
-        }
+        // Gurdamos en un HasMap los tipos de movimiento que luego mostraremos
+        HashMap<Integer, BufferedImage> tipoMovimiento = new HashMap<Integer, BufferedImage>();
+        tipoMovimiento.put(HORIZONTAL_IZQUIERDA, moverIzq.getFrameActual());
+        tipoMovimiento.put(HORIZONTAL_DERECHA, moverDer.getFrameActual());
+        tipoMovimiento.put(VERTICAL_SUPERIOR, moverArriba.getFrameActual());
+        tipoMovimiento.put(VERTICAL_INFERIOR, moverAbajo.getFrameActual());
+        tipoMovimiento.put(DIAGONAL_INFERIOR_IZQUIERDA,
+                moverAbajoIzq.getFrameActual());
+        tipoMovimiento.put(DIAGONAL_INFERIOR_DERECHA,
+                moverAbajoDer.getFrameActual());
+        tipoMovimiento.put(DIAGONAL_SUPERIOR_IZQUIERDA,
+                moverArribaIzq.getFrameActual());
+        tipoMovimiento.put(DIAGONAL_SUPERIOR_DERECHA,
+                moverArribaDer.getFrameActual());
 
-        return Recursos.orco.get(SEIS)[0];
+        return tipoMovimiento.get(movimientoHacia) != null
+                ? tipoMovimiento.get(movimientoHacia)
+                : Recursos.orco.get(SEIS)[0];
     }
 
     /**
@@ -944,23 +945,23 @@ public class Entidad {
      *            ubicacion en X inicial
      * @param yInicial
      *            ubicacion en Y inicial
-     * @param finalX
+     * @param xFinal
      *            ubicacion en X final
-     * @param finalY
+     * @param yFinal
      *            ubicacion en Y final
      * @return la pila de tiles a recorrer
      */
     private PilaDeTiles caminoMasCorto(final int xInicial, final int yInicial,
-            final int finalX, final int finalY) {
+            final int xFinal, final int yFinal) {
         Grafo grafoLibres = mundo.obtenerGrafoDeTilesNoSolidos();
         // Transformo las coordenadas iniciales y finales en indices
         int nodoInicial = (yInicial - grafoLibres.obtenerNodos()[0].obtenerY())
                 * (int) Math.sqrt(grafoLibres.obtenerCantidadDeNodosTotal())
                 + xInicial - grafoLibres.obtenerNodos()[0].obtenerX();
 
-        int nodoFinal = (finalY - grafoLibres.obtenerNodos()[0].obtenerY())
+        int nodoFinal = (yFinal - grafoLibres.obtenerNodos()[0].obtenerY())
                 * (int) Math.sqrt(grafoLibres.obtenerCantidadDeNodosTotal())
-                + finalX - grafoLibres.obtenerNodos()[0].obtenerX();
+                + xFinal - grafoLibres.obtenerNodos()[0].obtenerX();
 
         // Hago todo
         double[] vecCostos = new double[grafoLibres

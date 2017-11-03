@@ -72,6 +72,14 @@ public class PaquetePersonaje extends Paquete
      * Inteligencia inicial de las castas. <br>
      */
     private final int[] inteligenciaInicial = {10, 15, 10};
+	/**
+	 * Vida inicial de los personajes (Humano / Elfo / Orco). <br>
+	 */
+	private final int saludIncial[] = { 55, 50, 60 };
+	/**
+	 * Energia inicial de los personajes (Humano / Elfo / Orco). <br>
+	 */
+	private final int energiaInicial[] = { 55, 60, 50 };
 
     /**
      * Constructor.
@@ -695,6 +703,47 @@ public class PaquetePersonaje extends Paquete
         return this.inteligenciaInicial[2];
     }
 
+
+	/**
+	 * Setea todos los stats como si el personaje no hubiera agregado puntos de nivel. <br>
+	 */	
+	public void reiniciarStats() {
+		
+		// En los proximos 3 if, segun la casta, se setean los stats base
+		if (this.casta.equals("Guerrero")) {
+			this.setFuerza(fuerzaIncial[0]);
+			this.setDestreza(destrezaIncial[0]);
+			this.setInteligencia(inteligenciaInicial[0]);
+		}
+		if (this.casta.equals("Hechicero")) {
+			this.setFuerza(fuerzaIncial[1]);
+			this.setDestreza(destrezaIncial[1]);
+			this.setInteligencia(inteligenciaInicial[1]);
+		}
+		if (this.casta.equals("Asesino")) {
+			this.setFuerza(fuerzaIncial[2]);
+			this.setDestreza(destrezaIncial[2]);
+			this.setInteligencia(inteligenciaInicial[2]);
+		}
+		
+		// En los proximos 3 if, segun la raza, se setea la Salud y Energia base
+		if (this.raza.equals("Humano")) {
+			this.setSaludTope(saludIncial[0]);
+			this.setEnergiaTope(energiaInicial[0]);
+		}
+		if (this.raza.equals("Elfo")) {
+			this.setSaludTope(saludIncial[1]);
+			this.setEnergiaTope(energiaInicial[1]);
+		}
+		if (this.raza.equals("Orco")) {
+			this.setSaludTope(saludIncial[2]);
+			this.setEnergiaTope(energiaInicial[2]);
+		}
+		
+		// Setea los puntos para agregar segun el nivel del personaje
+		this.setPuntosAsignar(3 * (this.getNivel()));
+	}
+    
     /**
      * Sube el nivel del personaje. <br>
      */

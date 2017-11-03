@@ -318,23 +318,15 @@ public class MenuAsignarSkills extends JFrame {
                 if (JOptionPane.showConfirmDialog(btnReasignarPuntos,
                         "Esta seguro que quiere reasignar los puntos?") == 0) {
 
-                    puntosFuerza = cliente.getPaquetePersonaje()
-                            .getFuerzaInicial(); // Aca adentro valido que casta
-                                                 // es y cuanto le devuelvo
-                    puntosDestreza = cliente.getPaquetePersonaje()
-                            .getDestrezaInicial();
-                    puntosInteligencia = cliente.getPaquetePersonaje()
-                            .getInteligenciaInicial();
+					cliente.getPaquetePersonaje().reiniciarStats();
+					
+					cliente.getPaquetePersonaje().ponerBonus();
 
-                    puntosAsignar = PUNTOS_ASIGNAR
-                            * (cliente.getPaquetePersonaje().getNivel());
-
-                    labelFuerza.setText(Integer.toString(puntosFuerza));
-                    labelDestreza.setText(Integer.toString(puntosDestreza));
-                    labelInteligencia
-                            .setText(Integer.toString(puntosInteligencia));
-
-                    labelPuntos.setText(Integer.toString(puntosAsignar));
+					labelFuerza.setText(Integer.toString(cliente.getPaquetePersonaje().getFuerza()));
+					labelDestreza.setText(Integer.toString(cliente.getPaquetePersonaje().getDestreza()));
+					labelInteligencia.setText(Integer.toString(cliente.getPaquetePersonaje().getInteligencia()));
+					
+					labelPuntos.setText(Integer.toString(cliente.getPaquetePersonaje().getPuntosAsignar()));
                 }
             }
         });

@@ -10,8 +10,6 @@ import java.util.Iterator;
 import java.util.LinkedList;
 
 import javax.swing.JOptionPane;
-import javax.script.ScriptEngine;
-import javax.script.ScriptEngineManager;
 
 import com.google.gson.Gson;
 
@@ -101,9 +99,6 @@ public class Entidad {
 
     /** Constante DIVISOR. */
     private static final int DIVISOR = 2;
-
-    /** Constante MOVE_OPTS. */
-    private static final int MOVE_OPTS = 8;
 
     /** Constante MOV_HACIA. */
     private static final int MOV_HACIA = 6;
@@ -322,19 +317,6 @@ public class Entidad {
      * Comercio. <br>
      */
     private float[] comercio;
-
-    /**
-     * Manager de animación. <br>
-     */
-    public ScriptEngineManager manager = new ScriptEngineManager();
-    /**
-     * Engine de animación. <br>
-     */
-    public ScriptEngine engine = manager.getEngineByName("javascript");
-    /**
-     * Opciones de movimiento. <br>
-     */
-    private String[] moveOptions = new String[MOVE_OPTS];
 
     /**
      * Constructor de la clase Entidad.
@@ -902,22 +884,19 @@ public class Entidad {
      */
     private int getFrame() {
 
-        moveOptions[HORIZONTAL_IZQUIERDA] = "return moverIzq.getFrame()";
-        moveOptions[HORIZONTAL_DERECHA] = "return moverDer.getFrame()";
-        moveOptions[VERTICAL_SUPERIOR] = "return moverArriba.getFrame()";
-        moveOptions[VERTICAL_INFERIOR] = "return moverAbajo.getFrame()";
-        moveOptions[DIAGONAL_INFERIOR_IZQUIERDA] = "return moverAbajoIzq.getFrame()";
-        moveOptions[DIAGONAL_INFERIOR_DERECHA] = "return moverAbajoDer.getFrame()";
-        moveOptions[DIAGONAL_SUPERIOR_IZQUIERDA] = "return moverArribaIzq.getFrame()";
-        moveOptions[DIAGONAL_SUPERIOR_DERECHA] = "return moverArribaDer.getFrame()";
-
-        if (movimientoHacia < OCHO) {
-            try {
-                engine.eval(moveOptions[movimientoHacia]);
-            } catch (Exception e) {
-                e.getMessage();
-            }
-        }
+        HashMap<Integer, Integer> tipoMovimiento = new HashMap<Integer, Integer>();
+        tipoMovimiento.put(HORIZONTAL_IZQUIERDA, moverIzq.getFrame());
+        tipoMovimiento.put(HORIZONTAL_DERECHA, moverDer.getFrame());
+        tipoMovimiento.put(VERTICAL_SUPERIOR, moverArriba.getFrame());
+        tipoMovimiento.put(VERTICAL_INFERIOR, moverAbajo.getFrame());
+        tipoMovimiento.put(DIAGONAL_INFERIOR_IZQUIERDA,
+                moverAbajoIzq.getFrame());
+        tipoMovimiento.put(DIAGONAL_INFERIOR_DERECHA,
+                moverAbajoDer.getFrame());
+        tipoMovimiento.put(DIAGONAL_SUPERIOR_IZQUIERDA,
+                moverArribaIzq.getFrame());
+        tipoMovimiento.put(DIAGONAL_SUPERIOR_DERECHA,
+                moverArribaDer.getFrame());
         return 0;
     }
 

@@ -1,9 +1,11 @@
 package cliente;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.Properties;
 
 import javax.swing.JOptionPane;
 
@@ -75,9 +77,20 @@ public class Cliente extends Thread {
      */
     private String ip;
     /**
+     * Defino de donde se saca el puerto del juego. <br>
+     */
+    Properties prop = new Properties();
+    {
+        try {
+            prop.load(new FileInputStream("puerto.properties"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    /**
      * Puerto del cliente. <br>
      */
-    private final int puerto = 55050;
+    private final int puerto = Integer.valueOf(prop.getProperty("puerto"));
     /**
      * Juego. <br>
      */

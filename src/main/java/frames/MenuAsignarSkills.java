@@ -27,9 +27,6 @@ import mensajeria.Comando;
  * Clase que administra el menú para asignar skills al personaje. <br>
  */
 public class MenuAsignarSkills extends JFrame {
-    /** Constante PUNTOS_ASIGNAR. */
-    private static final int PUNTOS_ASIGNAR = 3;
-
     /** Constante HEIGHT_BOUND. */
     private static final int HEIGHT_BOUND = 3;
 
@@ -272,11 +269,11 @@ public class MenuAsignarSkills extends JFrame {
         buttonConfirmar.setEnabled(false);
         buttonConfirmar.addActionListener(new ActionListener() {
             public void actionPerformed(final ActionEvent e) {
-                puntosAsignarInicial = puntosAsignar;
                 int bonusF = puntosFuerza - puntosFuerzaInicial;
                 int bonusD = puntosDestreza - puntosDestrezaInicial;
                 int bonusI = puntosInteligencia - puntosInteligenciaInicial;
-                int bonusS = puntosAsignar - puntosAsignarInicial;
+                int bonusS =  puntosAsignarInicial - puntosAsignar;
+                
                 cliente.getPaquetePersonaje().useBonus(0, 0, bonusF, bonusD,
                         bonusI, bonusS);
                 cliente.getPaquetePersonaje().removerBonus();

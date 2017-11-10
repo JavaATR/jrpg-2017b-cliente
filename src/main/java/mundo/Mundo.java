@@ -147,35 +147,33 @@ public class Mundo {
                                 (int) (iso[1] - juego.getCamara().getyOffset()
                                         - OFFSET_MUNDO_Y),
                                 MUNDO_X, MUNDO_Y);
-                    } else {
-                        if (map == 2) {
-                            Tile.aris[Tile.arisBase].graficar(g,
-                                    (int) (iso[0]
-                                            - juego.getCamara().getxOffset()),
-                                    (int) (iso[1]
-                                            - juego.getCamara().getyOffset()
-                                            - OFFSET_MUNDO_Y),
-                                    MUNDO_X, MUNDO_Y);
-                        } else {
-                            if (map == TRES) {
-                                Tile.aubenor[Tile.aubenorBase].graficar(g,
-                                        (int) (iso[0] - juego.getCamara()
-                                                .getxOffset()),
-                                        (int) (iso[1]
-                                                - juego.getCamara().getyOffset()
-                                                - OFFSET_MUNDO_Y),
-                                        MUNDO_X, MUNDO_Y);
-                            }
-                            if (!getTile(j, i).esSolido()) {
-                                getTile(j, i).graficar(g,
-                                        (int) (iso[0] - juego.getCamara()
-                                                .getxOffset()),
-                                        (int) (iso[1]
-                                                - juego.getCamara().getyOffset()
-                                                - OFFSET_MUNDO_Y),
-                                        MUNDO_X, MUNDO_Y);
-                            }
-                        }
+                    }
+                    else if (map == 2) {
+                        Tile.aris[Tile.arisBase].graficar(g,
+                                (int) (iso[0]
+                                        - juego.getCamara().getxOffset()),
+                                (int) (iso[1]
+                                        - juego.getCamara().getyOffset()
+                                        - OFFSET_MUNDO_Y),
+                                MUNDO_X, MUNDO_Y);
+                    }
+                    else if (map == TRES) {
+                        Tile.aubenor[Tile.aubenorBase].graficar(g,
+                                (int) (iso[0] - juego.getCamara()
+                                        .getxOffset()),
+                                (int) (iso[1]
+                                        - juego.getCamara().getyOffset()
+                                        - OFFSET_MUNDO_Y),
+                                MUNDO_X, MUNDO_Y);
+                    }
+                    if (!getTile(j, i).esSolido()) {
+                        getTile(j, i).graficar(g,
+                                (int) (iso[0] - juego.getCamara()
+                                        .getxOffset()),
+                                (int) (iso[1]
+                                        - juego.getCamara().getyOffset()
+                                        - OFFSET_MUNDO_Y),
+                                MUNDO_X, MUNDO_Y);
                     }
                 }
             }

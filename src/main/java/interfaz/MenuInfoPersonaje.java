@@ -122,7 +122,7 @@ public class MenuInfoPersonaje {
     /** Constante BTN_OFFSET. */
     public static final int[] BTN_OFFSET = {50, 380, 200, 25};
     /** Constante MENU_PERDER. */
-    public static final int[] MENU_PERDER = {250, 270, 290, 310};
+    public static final int[] MENU_PERDER = {200, 250, 270, 290, 310};
     /** Constante MENU_GANAR. */
     public static final int[] MENU_GANAR = {200, 230, 270, 290, 310, 330};
     /** Constante CLCK_CERRAR. */

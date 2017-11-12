@@ -292,7 +292,8 @@ public class EstadoJuego extends Estado {
             key = it.next();
             actual = ubicacionEnemigos.get(key);
             Pantalla.centerString(g, new Rectangle(
-                    (int) (actual.getPosX() - juego.getCamara().getxOffset()
+
+
                             + TREINTAYDOS),
                     (int) (actual.getPosY() - juego.getCamara().getyOffset()
                             - VEINTE),

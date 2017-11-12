@@ -212,8 +212,7 @@ public class EstadoBatalla extends Estado {
         paqueteFinalizarBatalla.setId(personaje.getIdPersonaje());
         paqueteFinalizarBatalla.setIdEnemigo(paqueteBatalla.getIdEnemigo());
         // por defecto batalla perdida
-        juego.getEstadoJuego().setHaySolicitud(true, juego.getPersonaje(),
-                MenuInfoPersonaje.MENU_PERDER_BATALLA);
+        juego.getEstadoJuego().setHaySolicitud(true, juego.getPersonaje(), MenuInfoPersonaje.MENU_PERDER_BATALLA);
         // limpio la accion del mouse
         juego.getHandlerMouse().setNuevoClick(false);
     }
@@ -309,17 +308,12 @@ public class EstadoBatalla extends Estado {
                         enemigoEstaVivo = enemigo.estaVivo();
                     }
                     if (enemigoEstaVivo == false) {
-                        juego.getEstadoJuego().setHaySolicitud(true,
-                                juego.getPersonaje(),
-                                MenuInfoPersonaje.MENU_GANAR_BATALLA);
+                        juego.getEstadoJuego().setHaySolicitud(true, juego.getPersonaje(), MenuInfoPersonaje.MENU_GANAR_BATALLA);
                         if (personaje.ganarExperiencia(nivelEnemigo * NUM_40)) {
                         	juego.getPersonaje().setPuntosAsignar(juego.getPersonaje().getPuntosAsignar() + 3);
-                            juego.getEstadoJuego().setHaySolicitud(true,
-                                    juego.getPersonaje(),
-                                    MenuInfoPersonaje.MENU_SUBIR_NIVEL);
+                            juego.getEstadoJuego().setHaySolicitud(true, juego.getPersonaje(), MenuInfoPersonaje.MENU_SUBIR_NIVEL);
                         }
-                        paqueteFinalizarBatalla.setGanadorBatalla(
-                                juego.getPersonaje().getId());
+                        paqueteFinalizarBatalla.setGanadorBatalla(juego.getPersonaje().getId());
                         finalizarBatalla();
                         Estado.setEstado(juego.getEstadoJuego());
                     } else {

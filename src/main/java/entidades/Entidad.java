@@ -543,11 +543,7 @@ public class Entidad {
 					juego.getEstadoJuego().setHaySolicitud(false, null,
 							MenuInfoPersonaje.MENU_BATALLAR);
 				}
-			} else if (juego.getEstadoJuego().getHaySolicitudEnemigo()) { // TODO:
-																			// Completar
-																			// batalla
-																			// con
-																			// Bryan
+			} else if (juego.getEstadoJuego().getHaySolicitudEnemigo()) {
 				if (juego.getEstadoJuego().getMenuEnemigoNPC()
 						.clickEnCerrar(posMouse[0], posMouse[1])) {
 					juego.getEstadoJuego().setHaySolicitudEnemigo(false, null,
@@ -648,6 +644,7 @@ public class Entidad {
 
 			juego.getEstadoJuego().setHaySolicitud(false, null,
 					MenuInfoPersonaje.MENU_BATALLAR);
+			
 		}
 
 		if (!enMovimiento && tileMoverme != null) {
@@ -756,7 +753,7 @@ public class Entidad {
 				if (tileMov[0] == tileEnemigos[0]
 						&& tileMov[1] == tileEnemigos[1]
 						&& juego.getEnemigosConectados()
-								.get(actual.getIdPersonaje() * -1 + 1)
+								.get(actual.getIdPersonaje() * -1 - 1)
 								.getEstado() == Estado.estadoJuego) {
 					idEnemigo = actual.getIdPersonaje();
 					float[] xy = Mundo.isoA2D(x, y);

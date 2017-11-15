@@ -291,10 +291,9 @@ public class EstadoJuego extends Estado {
         while (it.hasNext()) {
             key = it.next();
             actual = ubicacionEnemigos.get(key);
-            Pantalla.centerString(g, new Rectangle(
-
-
-                            + TREINTAYDOS),
+            Pantalla.centerString(g, new Rectangle((int) (actual.getPosX()
+                    - juego.getCamara().getxOffset()
+                   + TREINTAYDOS),
                     (int) (actual.getPosY() - juego.getCamara().getyOffset()
                             - VEINTE),
                     0, DIEZ), "El Bryan");

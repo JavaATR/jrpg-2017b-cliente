@@ -272,8 +272,8 @@ public class MenuAsignarSkills extends JFrame {
                 int bonusF = puntosFuerza - puntosFuerzaInicial;
                 int bonusD = puntosDestreza - puntosDestrezaInicial;
                 int bonusI = puntosInteligencia - puntosInteligenciaInicial;
-                int bonusS =  puntosAsignarInicial - puntosAsignar;
-                
+                int bonusS = puntosAsignarInicial - puntosAsignar;
+
                 cliente.getPaquetePersonaje().useBonus(0, 0, bonusF, bonusD,
                         bonusI, bonusS);
                 cliente.getPaquetePersonaje().removerBonus();
@@ -315,15 +315,19 @@ public class MenuAsignarSkills extends JFrame {
                 if (JOptionPane.showConfirmDialog(btnReasignarPuntos,
                         "Esta seguro que quiere reasignar los puntos?") == 0) {
 
-					cliente.getPaquetePersonaje().reiniciarStats();
-					
-					cliente.getPaquetePersonaje().ponerBonus();
+                    cliente.getPaquetePersonaje().reiniciarStats();
 
-					labelFuerza.setText(Integer.toString(cliente.getPaquetePersonaje().getFuerza()));
-					labelDestreza.setText(Integer.toString(cliente.getPaquetePersonaje().getDestreza()));
-					labelInteligencia.setText(Integer.toString(cliente.getPaquetePersonaje().getInteligencia()));
-					
-					labelPuntos.setText(Integer.toString(cliente.getPaquetePersonaje().getPuntosAsignar()));
+                    cliente.getPaquetePersonaje().ponerBonus();
+
+                    labelFuerza.setText(Integer.toString(
+                            cliente.getPaquetePersonaje().getFuerza()));
+                    labelDestreza.setText(Integer.toString(
+                            cliente.getPaquetePersonaje().getDestreza()));
+                    labelInteligencia.setText(Integer.toString(
+                            cliente.getPaquetePersonaje().getInteligencia()));
+
+                    labelPuntos.setText(Integer.toString(
+                            cliente.getPaquetePersonaje().getPuntosAsignar()));
                 }
             }
         });

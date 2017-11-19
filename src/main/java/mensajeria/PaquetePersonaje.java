@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 
@@ -57,6 +58,9 @@ public class PaquetePersonaje extends Paquete
 
     /** Atributo puntos asignar. */
     private int puntosAsignar;
+    
+    /** Atributo trucos activados. */
+    List<Integer> trucosActivados = new ArrayList<Integer>();
 
     /** Atributo items. */
     private ArrayList<Item> items = new ArrayList<Item>();
@@ -656,6 +660,28 @@ public class PaquetePersonaje extends Paquete
      */
     public final void setPuntosAsignar(final int cantPuntosAsignar) {
         this.puntosAsignar = cantPuntosAsignar;
+    }
+    
+    /**
+     * Devuelve los trucos activos del personaje. <br>
+     *
+     * @return Una lista de los ids de los trucos activos del personaje. <br>
+     */
+    public final List<Integer> getTrucosActivados() {
+        return this.trucosActivados;
+    }
+
+    /**
+     * Establece los trucos activos del personaje. <br>
+     *
+     * @param idTruco
+     *            Id del truco a activarse. <br>
+     */
+    public final void setTrucoActivado(final int idTruco) {
+    	if (this.trucosActivados.indexOf(idTruco) != -1) // Si el truco ya está activado, lo desactivo
+    		this.trucosActivados.remove(Integer.valueOf(idTruco));
+    	else
+    		this.trucosActivados.add(idTruco);
     }
 
     /**

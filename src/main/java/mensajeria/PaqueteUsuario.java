@@ -48,7 +48,7 @@ public class PaqueteUsuario extends Paquete implements Serializable, Cloneable {
      *
      * @return id pj
      */
-    public final int getIdPj() {
+    public int getIdPj() {
         return idPj;
     }
 
@@ -58,7 +58,7 @@ public class PaqueteUsuario extends Paquete implements Serializable, Cloneable {
      * @param idPersonaje
      *            Valor para asignar id de personaje. <br>
      */
-    public final void setIdPj(final int idPersonaje) {
+    public void setIdPj(final int idPersonaje) {
         this.idPj = idPersonaje;
     }
 
@@ -67,7 +67,7 @@ public class PaqueteUsuario extends Paquete implements Serializable, Cloneable {
      *
      * @return the username
      */
-    public final String getUsername() {
+    public String getUsername() {
         return username;
     }
 
@@ -77,7 +77,7 @@ public class PaqueteUsuario extends Paquete implements Serializable, Cloneable {
      * @param user
      *            Valor para asignar nombre de usuario. <br>
      */
-    public final void setUsername(final String user) {
+    public void setUsername(final String user) {
         this.username = user;
     }
 
@@ -86,7 +86,7 @@ public class PaqueteUsuario extends Paquete implements Serializable, Cloneable {
      *
      * @return password
      */
-    public final String getPassword() {
+    public String getPassword() {
         return password;
     }
 
@@ -96,7 +96,7 @@ public class PaqueteUsuario extends Paquete implements Serializable, Cloneable {
      * @param pass
      *            Valor para asignar password. <br>
      */
-    public final void setPassword(final String pass) {
+    public void setPassword(final String pass) {
         this.password = pass;
     }
 
@@ -130,5 +130,4 @@ public class PaqueteUsuario extends Paquete implements Serializable, Cloneable {
         obj = super.clone();
         return obj;
     }
-
 }

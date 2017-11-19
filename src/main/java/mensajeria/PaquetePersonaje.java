@@ -14,6 +14,7 @@ import estados.Estado;
 /**
  * Clase PaquetePersonaje.
  */
+@SuppressWarnings("serial")
 public class PaquetePersonaje extends Paquete
         implements Serializable, Cloneable {
 
@@ -84,7 +85,19 @@ public class PaquetePersonaje extends Paquete
      * Energia inicial de los personajes (Humano / Elfo / Orco). <br>
      */
     private final int[] energiaInicial = {55, 60, 50};
-
+	/**
+	 * Id del inventario del personaje. <br>
+	 */
+	private int idInventario;
+	/**
+	 * Id de la mochila del personaje. <br>
+	 */
+	private int idMochila;
+	/**
+	 * Id de la alianza del personaje. <br>
+	 */
+	private int idAlianza;
+    
     /**
      * Constructor.
      *
@@ -100,7 +113,7 @@ public class PaquetePersonaje extends Paquete
      *
      * @return estado
      */
-    public final int getEstado() {
+    public int getEstado() {
         return estado;
     }
 
@@ -110,7 +123,7 @@ public class PaquetePersonaje extends Paquete
      * @param status
      *            Valor para asignar de estado. <br>
      */
-    public final void setEstado(final int status) {
+    public void setEstado(final int status) {
         this.estado = status;
     }
 
@@ -119,7 +132,7 @@ public class PaquetePersonaje extends Paquete
      *
      * @return the mapa
      */
-    public final int getMapa() {
+    public int getMapa() {
         return idMapa;
     }
 
@@ -129,7 +142,7 @@ public class PaquetePersonaje extends Paquete
      * @param map
      *            Valor para asignar mapa. <br>
      */
-    public final void setMapa(final int map) {
+    public void setMapa(final int map) {
         idMapa = map;
     }
 
@@ -138,7 +151,7 @@ public class PaquetePersonaje extends Paquete
      *
      * @return nivel
      */
-    public final int getNivel() {
+    public int getNivel() {
         return nivel;
     }
 
@@ -148,7 +161,7 @@ public class PaquetePersonaje extends Paquete
      * @param level
      *            Valor para asignar nivel. <br>
      */
-    public final void setNivel(final int level) {
+    public void setNivel(final int level) {
         this.nivel = level;
     }
 
@@ -157,7 +170,7 @@ public class PaquetePersonaje extends Paquete
      *
      * @return experiencia
      */
-    public final int getExperiencia() {
+    public int getExperiencia() {
         return experiencia;
     }
 
@@ -167,7 +180,7 @@ public class PaquetePersonaje extends Paquete
      * @param experience
      *            Valor para asignar experiencia. <br>
      */
-    public final void setExperiencia(final int experience) {
+    public void setExperiencia(final int experience) {
         this.experiencia = experience;
     }
 
@@ -176,7 +189,7 @@ public class PaquetePersonaje extends Paquete
      *
      * @return id
      */
-    public final int getId() {
+    public int getId() {
         return id;
     }
 
@@ -186,7 +199,7 @@ public class PaquetePersonaje extends Paquete
      * @param idNumber
      *            Valor para asignar id. <br>
      */
-    public final void setId(final int idNumber) {
+    public void setId(final int idNumber) {
         this.id = idNumber;
     }
 
@@ -195,7 +208,7 @@ public class PaquetePersonaje extends Paquete
      *
      * @return the casta
      */
-    public final String getCasta() {
+    public String getCasta() {
         return casta;
     }
 
@@ -205,7 +218,7 @@ public class PaquetePersonaje extends Paquete
      * @param castaValue
      *            Valor para asignar casta. <br>
      */
-    public final void setCasta(final String castaValue) {
+    public void setCasta(final String castaValue) {
         this.casta = castaValue;
     }
 
@@ -214,7 +227,7 @@ public class PaquetePersonaje extends Paquete
      *
      * @return nombre
      */
-    public final String getNombre() {
+    public String getNombre() {
         return nombre;
     }
 
@@ -224,7 +237,7 @@ public class PaquetePersonaje extends Paquete
      * @param name
      *            Valor para asignar nombre. <br>
      */
-    public final void setNombre(final String name) {
+    public void setNombre(final String name) {
         this.nombre = name;
     }
 
@@ -233,7 +246,7 @@ public class PaquetePersonaje extends Paquete
      *
      * @return raza
      */
-    public final String getRaza() {
+    public String getRaza() {
         return raza;
     }
 
@@ -243,7 +256,7 @@ public class PaquetePersonaje extends Paquete
      * @param race
      *            Valor para asignar raza. <br>
      */
-    public final void setRaza(final String race) {
+    public void setRaza(final String race) {
         this.raza = race;
     }
 
@@ -252,7 +265,7 @@ public class PaquetePersonaje extends Paquete
      *
      * @return salud tope
      */
-    public final int getSaludTope() {
+    public int getSaludTope() {
         return saludTope;
     }
 
@@ -262,7 +275,7 @@ public class PaquetePersonaje extends Paquete
      * @param topeSalud
      *            Valor para asignar salud tope. <br>
      */
-    public final void setSaludTope(final int topeSalud) {
+    public void setSaludTope(final int topeSalud) {
         this.saludTope = topeSalud;
     }
 
@@ -271,7 +284,7 @@ public class PaquetePersonaje extends Paquete
      *
      * @return energia tope
      */
-    public final int getEnergiaTope() {
+    public int getEnergiaTope() {
         return energiaTope;
     }
 
@@ -281,7 +294,7 @@ public class PaquetePersonaje extends Paquete
      * @param topeEnergia
      *            Valor para asignar energia tope. <br>
      */
-    public final void setEnergiaTope(final int topeEnergia) {
+    public void setEnergiaTope(final int topeEnergia) {
         this.energiaTope = topeEnergia;
     }
 
@@ -290,7 +303,7 @@ public class PaquetePersonaje extends Paquete
      *
      * @return fuerza
      */
-    public final int getFuerza() {
+    public int getFuerza() {
         return fuerza;
     }
 
@@ -300,7 +313,7 @@ public class PaquetePersonaje extends Paquete
      * @param strength
      *            Valor para asignar fuerza. <br>
      */
-    public final void setFuerza(final int strength) {
+    public void setFuerza(final int strength) {
         this.fuerza = strength;
     }
 
@@ -309,7 +322,7 @@ public class PaquetePersonaje extends Paquete
      *
      * @return destreza
      */
-    public final int getDestreza() {
+    public int getDestreza() {
         return destreza;
     }
 
@@ -319,7 +332,7 @@ public class PaquetePersonaje extends Paquete
      * @param skill
      *            Valor para asignar destreza. <br>
      */
-    public final void setDestreza(final int skill) {
+    public void setDestreza(final int skill) {
         this.destreza = skill;
     }
 
@@ -328,7 +341,7 @@ public class PaquetePersonaje extends Paquete
      *
      * @return inteligencia
      */
-    public final int getInteligencia() {
+    public int getInteligencia() {
         return inteligencia;
     }
 
@@ -338,7 +351,7 @@ public class PaquetePersonaje extends Paquete
      * @param intelligence
      *            Valor para asignar inteligencia. <br>
      */
-    public final void setInteligencia(final int intelligence) {
+    public void setInteligencia(final int intelligence) {
         this.inteligencia = intelligence;
     }
 
@@ -389,7 +402,7 @@ public class PaquetePersonaje extends Paquete
      * @param itemsList
      *            Array list de items. <br>
      */
-    public final void setItems(final ArrayList<Item> itemsList) {
+    public void setItems(final ArrayList<Item> itemsList) {
         this.items = itemsList;
     }
 
@@ -400,7 +413,7 @@ public class PaquetePersonaje extends Paquete
      *            Valor con índice para obtener item id.
      * @return the item ID
      */
-    public final int getItemID(final int index) {
+    public int getItemID(final int index) {
         return items.get(index).getIdItem();
     }
 
@@ -532,7 +545,7 @@ public class PaquetePersonaje extends Paquete
      *
      * @return cant items
      */
-    public final int getCantItems() {
+    public int getCantItems() {
         return items.size();
     }
 
@@ -648,7 +661,7 @@ public class PaquetePersonaje extends Paquete
      *
      * @return Puntos para asignar de skill. <br>
      */
-    public final int getPuntosAsignar() {
+    public int getPuntosAsignar() {
         return this.puntosAsignar;
     }
 
@@ -658,7 +671,7 @@ public class PaquetePersonaje extends Paquete
      * @param cantPuntosAsignar
      *            Puntos para asignar de skill. <br>
      */
-    public final void setPuntosAsignar(final int cantPuntosAsignar) {
+    public void setPuntosAsignar(final int cantPuntosAsignar) {
         this.puntosAsignar = cantPuntosAsignar;
     }
     
@@ -689,7 +702,7 @@ public class PaquetePersonaje extends Paquete
      *
      * @return Fuerza inicial de la casta. <br>
      */
-    public final int getFuerzaInicial() {
+    public int getFuerzaInicial() {
         if (this.casta.equals("Guerrero")) {
             return this.fuerzaIncial[0];
         }
@@ -704,7 +717,7 @@ public class PaquetePersonaje extends Paquete
      *
      * @return Destreza inicial de la casta. <br>
      */
-    public final int getDestrezaInicial() {
+    public int getDestrezaInicial() {
         if (this.casta.equals("Guerrero")) {
             return this.destrezaIncial[0];
         }
@@ -719,7 +732,7 @@ public class PaquetePersonaje extends Paquete
      *
      * @return Inteligencia inicial de la casta. <br>
      */
-    public final int getInteligenciaInicial() {
+    public int getInteligenciaInicial() {
         if (this.casta.equals("Guerrero")) {
             return this.inteligenciaInicial[0];
         }
@@ -776,4 +789,55 @@ public class PaquetePersonaje extends Paquete
     public final void subirDeNivel() {
         this.nivel++;
     }
+    
+	/**
+	 * Devuelve el id del inventario del personaje. <br>
+	 * @return Id del inventario. <br>
+	 */
+	public int getIdInventario() {
+		return idInventario;
+	}
+
+	/**
+	 * Establece el id del inventario del personaje. <br>
+	 * @param idInventario
+	 *            Id del inventario. <br>
+	 */
+	public void setIdInventario(int idInventario) {
+		this.idInventario = idInventario;
+	}
+
+	/**
+	 * Devuelve el id de la mochila del personaje. <br>
+	 * @return Id de la mochila. <br>
+	 */
+	public int getIdMochila() {
+		return idMochila;
+	}
+
+	/**
+	 * Establece el id de la mochila del personaje. <br>
+	 * @param idMochila
+	 *            Id de la mochila. <br>
+	 */
+	public void setIdMochila(int idMochila) {
+		this.idMochila = idMochila;
+	}
+
+	/**
+	 * Devuelve el id de la alianza del personaje. <br>
+	 * @return Id de la alianza. <br>
+	 */
+	public int getIdAlianza() {
+		return idAlianza;
+	}
+
+	/**
+	 * Establece el id de la alianza del personaje. <br>
+	 * @param idAlianza
+	 *            Id de la alianza. <br>
+	 */
+	public void setIdAlianza(int idAlianza) {
+		this.idAlianza = idAlianza;
+	}
 }

@@ -55,10 +55,10 @@ public class PaquetePersonaje extends Paquete
     private int nivel = 1;
 
     /** Atributo experiencia. */
-    private int experiencia;
+    private int experiencia = 0;
 
     /** Atributo puntos asignar. */
-    private int puntosAsignar;
+    private int puntosAsignar = 3;
     
     /** Atributo trucos activados. */
     List<Integer> trucosActivados = new ArrayList<Integer>();
@@ -86,17 +86,13 @@ public class PaquetePersonaje extends Paquete
      */
     private final int[] energiaInicial = {55, 60, 50};
 	/**
-	 * Id del inventario del personaje. <br>
-	 */
-	private int idInventario;
-	/**
 	 * Id de la mochila del personaje. <br>
 	 */
-	private int idMochila;
+	private int idMochila = -1;
 	/**
 	 * Id de la alianza del personaje. <br>
 	 */
-	private int idAlianza;
+	private int idAlianza = -1;
     
     /**
      * Constructor.

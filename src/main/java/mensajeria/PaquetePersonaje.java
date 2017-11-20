@@ -93,6 +93,8 @@ public class PaquetePersonaje extends Paquete
 	 * Id de la alianza del personaje. <br>
 	 */
 	private int idAlianza = -1;
+	
+	private int idInventario = -1;
     
     /**
      * Constructor.

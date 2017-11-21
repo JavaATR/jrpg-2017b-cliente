@@ -439,13 +439,11 @@ public class PaquetePersonaje extends Paquete
      * @param fotoEquipado
      *            String para asignar foto equipado. <br>
      */
-    public final void anadirItem(final int idItem, final String name,
-            final int wearLocation, final int bonusSalud,
-            final int bonusEnergia, final int bonusAtaque,
-            final int bonusDefensa, final int bonusMagia, final String foto,
-            final String fotoEquipado) {
+	public final void anadirItem(final int idItem, final String name, final int bonusSalud, final int bonusEnergia,
+			final int bonusAtaque, final int bonusDefensa, final int bonusMagia, final String foto,
+			final String fotoEquipado) {
         try {
-            items.add(new Item(idItem, name, wearLocation, bonusSalud,
+            items.add(new Item(idItem, name, bonusSalud,
                     bonusEnergia, bonusAtaque, bonusDefensa, bonusMagia, foto,
                     fotoEquipado));
             useBonus(bonusSalud, bonusEnergia, bonusAtaque, bonusDefensa,
@@ -555,7 +553,7 @@ public class PaquetePersonaje extends Paquete
      */
     public final void anadirItem(final int idItem) {
         try {
-            items.add(new Item(idItem, null, 0, 0, 0, 0, 0, 0, null, null));
+            items.add(new Item(idItem, null, 0, 0, 0, 0, 0, null, null));
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Falló al añadir item");
         }

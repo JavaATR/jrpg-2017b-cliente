@@ -9,6 +9,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 import dominio.Item;
+import dominio.Mochila;
 import estados.Estado;
 
 /**
@@ -93,8 +94,10 @@ public class PaquetePersonaje extends Paquete
 	 * Id de la alianza del personaje. <br>
 	 */
 	private int idAlianza = -1;
-	
-	private int idInventario = -1;
+	/**
+	 * Mochila del personaje. <br>
+	 */
+	private Mochila mochila = new Mochila();
     
     /**
      * Constructor.
@@ -373,16 +376,18 @@ public class PaquetePersonaje extends Paquete
      */
     public final void anadirItem(final Item i) {
         items.add(i);
+        this.mochila.ordenarMochila(this.items);
     }
 
     /**
      * Remover item. <br>
      *
-     * @param i
+     * @param item
      *            Valor para remover item. <br>
      */
-    public final void removerItem(final Item i) {
-        items.remove(i);
+    public final void removerItem(final Item item) {
+        items.remove(item);
+        this.mochila.ordenarMochila(this.items);
     }
 
     /**
@@ -442,17 +447,16 @@ public class PaquetePersonaje extends Paquete
 	public final void anadirItem(final int idItem, final String name, final int bonusSalud, final int bonusEnergia,
 			final int bonusAtaque, final int bonusDefensa, final int bonusMagia, final String foto,
 			final String fotoEquipado) {
-        try {
-            items.add(new Item(idItem, name, bonusSalud,
-                    bonusEnergia, bonusAtaque, bonusDefensa, bonusMagia, foto,
-                    fotoEquipado));
-            useBonus(bonusSalud, bonusEnergia, bonusAtaque, bonusDefensa,
-                    bonusMagia, 0);
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, "Falló al añadir item");
+		try {
+			items.add(new Item(idItem, name, bonusSalud, bonusEnergia, bonusAtaque, bonusDefensa, bonusMagia, foto,
+					fotoEquipado));
+			useBonus(bonusSalud, bonusEnergia, bonusAtaque, bonusDefensa, bonusMagia, 0);
+			this.mochila.ordenarMochila(this.items);
+		} catch (IOException e) {
+			JOptionPane.showMessageDialog(null, "Falló al añadir item");
 
-        }
-    }
+		}
+	}
 
     /**
      * Remover bonus.
@@ -574,6 +578,7 @@ public class PaquetePersonaje extends Paquete
      */
     public final void removerUltimoItem() {
         items.remove(items.size() - 1);
+        this.mochila.ordenarMochila(this.items);
 
     }
 
@@ -622,14 +627,11 @@ public class PaquetePersonaje extends Paquete
      * Inserta el último item. <br>
      */
     public final void ponerUltimoItem() {
-        int i = items.size() - 1;
-        if (i >= 0) {
-            useBonus(items.get(i).getBonusSalud(),
-                    items.get(i).getBonusEnergia(),
-                    items.get(i).getBonusFuerza(),
-                    items.get(i).getBonusDestreza(),
-                    items.get(i).getBonusInteligencia(), 0);
-        }
+		int i = items.size() - 1;
+		if (i >= 0) {
+			useBonus(items.get(i).getBonusSalud(), items.get(i).getBonusEnergia(), items.get(i).getBonusFuerza(),
+					items.get(i).getBonusDestreza(), items.get(i).getBonusInteligencia(), 0);
+		}
     }
 
     /**
@@ -637,6 +639,7 @@ public class PaquetePersonaje extends Paquete
      */
     public final void eliminarItems() {
         items.removeAll(items);
+        this.mochila.ordenarMochila(this.items);
     }
 
     /**
@@ -650,6 +653,7 @@ public class PaquetePersonaje extends Paquete
         for (Item item : itemsList) {
             this.items.add(item);
         }
+        this.mochila.ordenarMochila(this.items);
     }
 
     /**
@@ -785,23 +789,6 @@ public class PaquetePersonaje extends Paquete
     public final void subirDeNivel() {
         this.nivel++;
     }
-    
-	/**
-	 * Devuelve el id del inventario del personaje. <br>
-	 * @return Id del inventario. <br>
-	 */
-	public int getIdInventario() {
-		return idInventario;
-	}
-
-	/**
-	 * Establece el id del inventario del personaje. <br>
-	 * @param idInventario
-	 *            Id del inventario. <br>
-	 */
-	public void setIdInventario(int idInventario) {
-		this.idInventario = idInventario;
-	}
 
 	/**
 	 * Devuelve el id de la mochila del personaje. <br>
@@ -835,5 +822,22 @@ public class PaquetePersonaje extends Paquete
 	 */
 	public void setIdAlianza(int idAlianza) {
 		this.idAlianza = idAlianza;
+	}
+
+	/**
+	 * Devuelve la mochila del personaje. <br> 
+	 * @return Mochila del personaje. <br>
+	 */
+	public Mochila getMochila() {
+		return mochila;
+	}
+
+	/**
+	 * Establece la mochila del personaje. <br> 
+	 * @param mochila
+	 *            Mochila con items. <br>
+	 */
+	public void setMochila(Mochila mochila) {
+		this.mochila = mochila;
 	}
 }

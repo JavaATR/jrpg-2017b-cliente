@@ -157,8 +157,11 @@ public class Tile {
      *
      * @return true si es sólido, false de lo contrario. <br>
      */
-    public final boolean esSolido() {
-        return this.esSolido;
+    public final boolean esSolido(boolean personajeInvisible) {
+    	if (personajeInvisible)
+    		return false;
+    	else
+    		return this.esSolido;
     }
 
     /**

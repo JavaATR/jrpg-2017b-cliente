@@ -199,6 +199,12 @@ public class EstadoBatalla extends Estado {
                     .get(paqueteBatalla.getIdEnemigo());
         }
         crearPersonajes(esEnemigoNPC);
+
+        if (paquetePersonaje.getTrucosActivados().indexOf(0) != -1) // Si modo dios está activo en personaje, actualizo
+        	personaje.setModoDios();
+        if (paqueteEnemigo.getTrucosActivados().indexOf(0) != -1) // Si modo dios está activo en enemigo, actualizo
+        	enemigo.setModoDios();
+        
         menuBatalla = new MenuBatalla(miTurno, personaje);
         miniaturaPersonaje = Recursos.personaje.get(personaje.getNombreRaza())
                 .get(CINCO)[0];
@@ -364,14 +370,21 @@ public class EstadoBatalla extends Estado {
                 juego.getHandlerMouse().setNuevoClick(false);
             }
         } else {
-            // Si no es mi turno y estoy en batalla contra un NPC, El Bryan nos
-            // ataca
+            // Si no es mi turno y estoy en batalla contra un NPC, El Bryan nos ataca
             if (enemigoNPC != null) {
-                paqueteAtacar = new PaqueteAtacar(paqueteEnemigoNPC.getId(),
-                        paquetePersonaje.getId(), enemigoNPC.getSalud(),
-                        enemigoNPC.getEnergia(), personaje.getSalud() - DIEZ,
-                        personaje.getEnergia(), enemigoNPC.getDefensa(),
-                        personaje.getDefensa(), 0, 0);
+            	if (paquetePersonaje.getTrucosActivados().indexOf(0) != -1)
+            		paqueteAtacar = new PaqueteAtacar(paqueteEnemigoNPC.getId(),
+                            paquetePersonaje.getId(), enemigoNPC.getSalud(),
+                            enemigoNPC.getEnergia(), personaje.getSalud(),
+                            personaje.getEnergia(), enemigoNPC.getDefensa(),
+                            personaje.getDefensa(), 0, 0);
+            	else
+	                paqueteAtacar = new PaqueteAtacar(paqueteEnemigoNPC.getId(),
+	                        paquetePersonaje.getId(), enemigoNPC.getSalud(),
+	                        enemigoNPC.getEnergia(), personaje.getSalud() - DIEZ,
+	                        personaje.getEnergia(), enemigoNPC.getDefensa(),
+	                        personaje.getDefensa(), 0, 0);
+            	
                 enviarAtaque(paqueteAtacar);
                 enemigoNPC.setEnergia(enemigoNPC.getEnergia() - DIEZ);
                 miTurno = true;

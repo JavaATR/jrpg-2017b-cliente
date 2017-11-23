@@ -795,6 +795,9 @@ public class PaquetePersonaje extends Paquete
 	 * @return Id de la mochila. <br>
 	 */
 	public int getIdMochila() {
+		if (this.idMochila == -1) {
+			return this.id;
+		}
 		return idMochila;
 	}
 

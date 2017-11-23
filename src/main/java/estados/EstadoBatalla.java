@@ -202,8 +202,10 @@ public class EstadoBatalla extends Estado {
 
         if (paquetePersonaje.getTrucosActivados().indexOf(0) != -1) // Si modo dios está activo en personaje, actualizo
         	personaje.setModoDios();
-        if (paqueteEnemigo.getTrucosActivados().indexOf(0) != -1) // Si modo dios está activo en enemigo, actualizo
-        	enemigo.setModoDios();
+        if (esEnemigoNPC != 1) {
+	        if (paqueteEnemigo.getTrucosActivados().indexOf(0) != -1) // Si modo dios está activo en enemigo, actualizo
+	        	enemigo.setModoDios();
+        }
         
         menuBatalla = new MenuBatalla(miTurno, personaje);
         miniaturaPersonaje = Recursos.personaje.get(personaje.getNombreRaza())

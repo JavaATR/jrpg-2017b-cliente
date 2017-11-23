@@ -530,15 +530,15 @@ public class PaquetePersonaje extends Paquete
      * @param puntosAAsignar
      *            Puntos de skill a agregar. <br>
      */
-    public final void useBonus(final int bonusSalud, final int bonusEnergia,
-            final int bonusAtaque, final int bonusDefensa, final int bonusMagia,
-            final int puntosAAsignar) {
-        saludTope += bonusSalud;
-        energiaTope += bonusEnergia;
-        fuerza += bonusAtaque;
-        destreza += bonusDefensa;
-        inteligencia += bonusMagia;
-    }
+	public final void useBonus(final int bonusSalud, final int bonusEnergia, final int bonusAtaque,
+			final int bonusDefensa, final int bonusMagia, final int puntosAAsignar) {
+		saludTope += bonusSalud;
+		energiaTope += bonusEnergia;
+		fuerza += bonusAtaque;
+		destreza += bonusDefensa;
+		inteligencia += bonusMagia;
+		puntosAsignar -= puntosAAsignar;
+	}
 
     /**
      * Obtiene cant items.

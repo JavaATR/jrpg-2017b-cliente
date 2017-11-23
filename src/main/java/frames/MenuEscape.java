@@ -117,6 +117,7 @@ public class MenuEscape extends JFrame {
                     Pantalla.menuAsignar = new MenuAsignarSkills(cliente);
                     Pantalla.menuAsignar.setVisible(true);
                 }
+                Pantalla.menuAsignar = null;
             }
         });
         contentPane.add(asignarSkills);

@@ -67,7 +67,7 @@ public class Celda extends JPanel {
      */
     public Celda(final Item item, final PaquetePersonaje pckgPersonaje)
             throws IOException {
-        this.item = item.getFoto();
+        this.item = item.getImagenItem();
         it = item;
         this.paquetePersonaje = pckgPersonaje;
         label = new JLabel(new ImageIcon(this.item.getScaledInstance(ITEM_WIDTH,

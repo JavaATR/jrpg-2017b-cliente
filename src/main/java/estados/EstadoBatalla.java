@@ -323,9 +323,9 @@ public class EstadoBatalla extends Estado {
                         if (personaje.ganarExperiencia(nivelEnemigo * NUM_40)) {
                         	juego.getPersonaje().setNivel(personaje.getNivel()); 
 							System.out.println(juego.getPersonaje().getPuntosAsignar() + 3);
-                            juego.getPersonaje().setPuntosAsignar(
-                                    juego.getPersonaje().getPuntosAsignar()
-                                            + 3);
+//                            juego.getPersonaje().setPuntosAsignar(
+//                                    juego.getPersonaje().getPuntosAsignar()
+//                                            + 3);
                             juego.getEstadoJuego().setHaySolicitud(true,
                                     juego.getPersonaje(),
                                     MenuInfoPersonaje.MENU_SUBIR_NIVEL);
@@ -542,6 +542,7 @@ public class EstadoBatalla extends Estado {
             paquetePersonaje.setDestreza(personaje.getDestreza());
             paquetePersonaje.setFuerza(personaje.getFuerza());
             paquetePersonaje.setInteligencia(personaje.getInteligencia());
+            paquetePersonaje.setPuntosAsignar(paquetePersonaje.getPuntosAsignar() + 3);
             paquetePersonaje.removerBonus();
             paquetePersonaje.setComando(Comando.ACTUALIZARPERSONAJE);
             if (paqueteEnemigoNPC != null) {

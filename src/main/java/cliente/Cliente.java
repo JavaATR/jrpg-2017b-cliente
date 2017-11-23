@@ -375,13 +375,6 @@ public class Cliente extends Thread {
     }
 
     /**
-     * Sube el nivel del personaje del cliente. <br>
-     */
-    public final void subirDeNivel() {
-        this.paquetePersonaje.subirDeNivel();
-    }
-
-    /**
      * Devuelve la IP. <br>
      *
      * @return IP. <br>

@@ -20,7 +20,6 @@ public class ActualizarPersonajeLvl extends ComandosEscucha {
         if (juego.getPersonaje().getId() == paquetePersonaje.getId()) {
             juego.actualizarPersonaje();
             juego.getEstadoJuego().actualizarPersonaje();
-            juego.getCliente().subirDeNivel();
             juego.getCliente().actualizarPersonaje(juego
                     .getPersonajesConectados().get(paquetePersonaje.getId()));
         }

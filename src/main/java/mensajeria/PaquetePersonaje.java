@@ -780,7 +780,7 @@ public class PaquetePersonaje extends Paquete
         }
 
         // Setea los puntos para agregar segun el nivel del personaje
-        this.setPuntosAsignar(3 * (this.getNivel()));
+        this.puntosAsignar = 3 * this.getNivel();
     }
 
     /**

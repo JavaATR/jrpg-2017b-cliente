@@ -290,6 +290,13 @@ public class MenuAsignarSkills extends JFrame {
 			}
 		});
 
+		final JButton buttonRestarFuerza = new JButton("");
+		final JButton buttonRestarDestreza = new JButton("");
+		final JButton buttonRestarInteligencia = new JButton("");
+		final JButton buttonSumarFuerza = new JButton("");
+		final JButton buttonSumarDestreza = new JButton("");
+		final JButton buttonSumarInteligencia = new JButton("");
+		
 		final JButton btnReasignarPuntos = new JButton("Reiniciar");
 		ImageIcon iconoReiniciar = new ImageIcon("recursos//botonReiniciar.png");
 		btnReasignarPuntos.setIcon(iconoReiniciar);
@@ -297,16 +304,27 @@ public class MenuAsignarSkills extends JFrame {
 			public void actionPerformed(final ActionEvent e) {
 				if (JOptionPane.showConfirmDialog(btnReasignarPuntos,
 						"Esta seguro que quiere reasignar los puntos?") == 0) {
-
+					buttonConfirmar.setEnabled(false);
 					cliente.getPaquetePersonaje().reiniciarStats();
-
 					cliente.getPaquetePersonaje().ponerBonus();
-
 					labelFuerza.setText(Integer.toString(cliente.getPaquetePersonaje().getFuerza()));
 					labelDestreza.setText(Integer.toString(cliente.getPaquetePersonaje().getDestreza()));
 					labelInteligencia.setText(Integer.toString(cliente.getPaquetePersonaje().getInteligencia()));
-
 					labelPuntos.setText(Integer.toString(cliente.getPaquetePersonaje().getPuntosAsignar()));
+					puntosFuerzaInicial = cliente.getPaquetePersonaje().getFuerza();
+					puntosDestrezaInicial = cliente.getPaquetePersonaje().getDestreza();
+					puntosInteligenciaInicial = cliente.getPaquetePersonaje().getInteligencia();
+					puntosAsignarInicial = cliente.getPaquetePersonaje().getPuntosAsignar();
+					puntosFuerza = puntosFuerzaInicial;
+					puntosDestreza = puntosDestrezaInicial;
+					puntosInteligencia = puntosInteligenciaInicial;
+					puntosAsignar = puntosAsignarInicial;
+					buttonRestarFuerza.setEnabled(false);
+					buttonRestarDestreza.setEnabled(false);
+					buttonRestarInteligencia.setEnabled(false);
+					buttonSumarFuerza.setEnabled(true);
+					buttonSumarDestreza.setEnabled(true);
+					buttonSumarInteligencia.setEnabled(true);
 				}
 			}
 		});
@@ -316,12 +334,6 @@ public class MenuAsignarSkills extends JFrame {
 		buttonCancelar.setBounds(BTN_CANCELAR[0], BTN_CANCELAR[1], BTN_CANCELAR[2], BTN_CANCELAR[HEIGHT_BOUND]);
 		contentPane.add(buttonCancelar);
 
-		final JButton buttonRestarFuerza = new JButton("");
-		final JButton buttonRestarDestreza = new JButton("");
-		final JButton buttonRestarInteligencia = new JButton("");
-		final JButton buttonSumarFuerza = new JButton("");
-		final JButton buttonSumarDestreza = new JButton("");
-		final JButton buttonSumarInteligencia = new JButton("");
 		buttonRestarFuerza.setEnabled(false);
 		buttonRestarDestreza.setEnabled(false);
 		buttonRestarInteligencia.setEnabled(false);
@@ -353,8 +365,10 @@ public class MenuAsignarSkills extends JFrame {
 					if (puntosFuerza == puntosFuerzaInicial) {
 						buttonRestarFuerza.setEnabled(false);
 						buttonSumarFuerza.setEnabled(true);
-					} else if (puntosFuerza >= puntosFuerzaInicial) {
-						buttonSumarFuerza.setEnabled(true);
+					} else {
+						if (puntosFuerza >= puntosFuerzaInicial) {
+							buttonSumarFuerza.setEnabled(true);
+						}
 					}
 				}
 			}

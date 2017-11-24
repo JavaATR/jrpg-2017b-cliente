@@ -749,36 +749,35 @@ public class PaquetePersonaje extends Paquete
     public void reiniciarStats() {
 
         // En los proximos 3 if, segun la casta, se setean los stats base
-        if (this.casta.equals("Guerrero")) {
-            this.setFuerza(fuerzaIncial[0]);
-            this.setDestreza(destrezaIncial[0]);
-            this.setInteligencia(inteligenciaInicial[0]);
-        }
+		if (this.casta.equals("Guerrero")) {
+			this.fuerza = this.fuerzaIncial[0];
+			this.destreza = this.destrezaIncial[0];
+			this.inteligencia = this.inteligenciaInicial[0];
+		}
         if (this.casta.equals("Hechicero")) {
-            this.setFuerza(fuerzaIncial[1]);
-            this.setDestreza(destrezaIncial[1]);
-            this.setInteligencia(inteligenciaInicial[1]);
+        	this.fuerza = this.fuerzaIncial[1];
+			this.destreza = this.destrezaIncial[1];
+			this.inteligencia = this.inteligenciaInicial[1];
         }
         if (this.casta.equals("Asesino")) {
-            this.setFuerza(fuerzaIncial[2]);
-            this.setDestreza(destrezaIncial[2]);
-            this.setInteligencia(inteligenciaInicial[2]);
+        	this.fuerza = this.fuerzaIncial[2];
+			this.destreza = this.destrezaIncial[2];
+			this.inteligencia = this.inteligenciaInicial[2];
         }
 
         // En los proximos 3 if, segun la raza, se setea la Salud y Energia base
         if (this.raza.equals("Humano")) {
-            this.setSaludTope(saludIncial[0]);
-            this.setEnergiaTope(energiaInicial[0]);
+        	this.saludTope = this.saludIncial[0];
+        	this.energiaTope = this.energiaInicial[0];
         }
         if (this.raza.equals("Elfo")) {
-            this.setSaludTope(saludIncial[1]);
-            this.setEnergiaTope(energiaInicial[1]);
+        	this.saludTope = this.saludIncial[1];
+        	this.energiaTope = this.energiaInicial[1];
         }
         if (this.raza.equals("Orco")) {
-            this.setSaludTope(saludIncial[2]);
-            this.setEnergiaTope(energiaInicial[2]);
+        	this.saludTope = this.saludIncial[2];
+        	this.energiaTope = this.energiaInicial[2];
         }
-
         // Setea los puntos para agregar segun el nivel del personaje
         this.puntosAsignar = 3 * this.getNivel();
     }

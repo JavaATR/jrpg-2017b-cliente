@@ -255,6 +255,7 @@ public class EstadoJuego extends Estado {
         entidadPersonaje.graficarNombre(g);
         g.drawImage(Recursos.getMarco(), 0, 0, juego.getAncho(),
                 juego.getAlto(), null);
+        graficarEnemigos(g);
         EstadoDePersonaje.dibujarEstadoDePersonaje(g, CINCO, CINCO,
                 paquetePersonaje, miniaturaPersonaje);
         g.drawImage(Recursos.getMochila(), MOCHILA_X, MOCHILA_Y, MOCHILA_WIDTH,
@@ -263,7 +264,6 @@ public class EstadoJuego extends Estado {
                 null);
         g.drawImage(Recursos.getChat(), CHAT_X, CHAT_Y, CHAT_WIDTH, CHAT_HEIGHT,
                 null);
-        graficarEnemigos(g);
         if (haySolicitud) {
             menuEnemigo.graficar(g, tipoSolicitud);
         }

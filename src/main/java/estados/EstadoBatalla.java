@@ -383,7 +383,7 @@ public class EstadoBatalla extends Estado {
             // Si no es mi turno y estoy en batalla contra un NPC, El Bryan nos
             // ataca
             if (enemigoNPC != null) {
-                if (paquetePersonaje.getTrucosActivados().indexOf(0) != -1)
+                if (paquetePersonaje.getTrucosActivados().indexOf(0) == -1)
                     paqueteAtacar = new PaqueteAtacar(paqueteEnemigoNPC.getId(),
                             paquetePersonaje.getId(), enemigoNPC.getSalud(),
                             enemigoNPC.getEnergia(), personaje.getSalud(),

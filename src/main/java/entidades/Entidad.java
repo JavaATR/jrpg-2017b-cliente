@@ -403,7 +403,6 @@ public class Entidad {
 
     /**
      * Devuelve la entrada.
-     *
      */
     public final void getEntrada() {
         posMouseRecorrido = juego.getHandlerMouse().getPosMouseRecorrido();
@@ -665,7 +664,9 @@ public class Entidad {
             if (tileMoverme[0] == tileActual[0]
                     && tileMoverme[1] == tileActual[1]
                     || mundo.getTile(tileMoverme[0], tileMoverme[1])
-                            .esSolido(juego.getPersonajesConectados().get(juego.getPersonaje().getId()).getTrucosActivados().indexOf(1) != -1)) {
+                            .esSolido(juego.getPersonajesConectados()
+                                    .get(juego.getPersonaje().getId())
+                                    .getTrucosActivados().indexOf(1) != -1)) {
                 tileMoverme = null;
                 enMovimiento = false;
                 juego.getHandlerMouse().setNuevoRecorrido(false);
@@ -932,11 +933,12 @@ public class Entidad {
      */
     private PilaDeTiles caminoMasCorto(final int xInicial, final int yInicial,
             final int xFinal, final int yFinal) {
-    	Grafo grafoLibres = mundo.obtenerGrafoDeTilesNoSolidos();
-    	
-    	if (juego.getPersonajesConectados().get(juego.getPersonaje().getId()).getTrucosActivados().indexOf(1) != -1)
-    		grafoLibres = mundo.obtenerGrafoDeTodosLosTiles();
-        
+        Grafo grafoLibres = mundo.obtenerGrafoDeTilesNoSolidos();
+
+        if (juego.getPersonajesConectados().get(juego.getPersonaje().getId())
+                .getTrucosActivados().indexOf(1) != -1)
+            grafoLibres = mundo.obtenerGrafoDeTodosLosTiles();
+
         // Transformo las coordenadas iniciales y finales en indices
         int nodoInicial = (yInicial - grafoLibres.obtenerNodos()[0].obtenerY())
                 * (int) Math.sqrt(grafoLibres.obtenerCantidadDeNodosTotal())

@@ -291,11 +291,18 @@ public class EstadoJuego extends Estado {
         while (it.hasNext()) {
             key = it.next();
             actual = ubicacionEnemigos.get(key);
-            Pantalla.centerString(g, new Rectangle((int) (actual.getPosX() - juego.getCamara().getxOffset() + TREINTAYDOS),
-            						(int) (actual.getPosY() - juego.getCamara().getyOffset() - VEINTE), 0, DIEZ), "El Bryan");
-            g.drawImage(Recursos.elBryan.get(actual.getDireccion())[actual.getFrame()],
-                		(int) (actual.getPosX() - juego.getCamara().getxOffset()),
-                		(int) (actual.getPosY() - juego.getCamara().getyOffset()), SESENTAYCUATRO, SESENTAYCUATRO, null);
+            Pantalla.centerString(g, new Rectangle(
+                    (int) (actual.getPosX() - juego.getCamara().getxOffset()
+                            + TREINTAYDOS),
+                    (int) (actual.getPosY() - juego.getCamara().getyOffset()
+                            - VEINTE),
+                    0, DIEZ), "El Bryan");
+            g.drawImage(
+                    Recursos.elBryan.get(actual.getDireccion())[actual
+                            .getFrame()],
+                    (int) (actual.getPosX() - juego.getCamara().getxOffset()),
+                    (int) (actual.getPosY() - juego.getCamara().getyOffset()),
+                    SESENTAYCUATRO, SESENTAYCUATRO, null);
         }
     }
 

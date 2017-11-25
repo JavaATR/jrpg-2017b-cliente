@@ -446,7 +446,8 @@ public class Juego implements Runnable {
      * @param map
      *            Enemigos conectados. <br>
      */
-    public final void setEnemigosConectados(final Map<Integer, PaqueteEnemigo> map) {
+    public final void setEnemigosConectados(
+            final Map<Integer, PaqueteEnemigo> map) {
         this.enemigosConectados = map;
     }
 

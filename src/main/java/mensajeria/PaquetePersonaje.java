@@ -60,7 +60,7 @@ public class PaquetePersonaje extends Paquete
 
     /** Atributo puntos asignar. */
     private int puntosAsignar = 3;
-    
+
     /** Atributo trucos activados. */
     List<Integer> trucosActivados = new ArrayList<Integer>();
 
@@ -86,19 +86,19 @@ public class PaquetePersonaje extends Paquete
      * Energia inicial de los personajes (Humano / Elfo / Orco). <br>
      */
     private final int[] energiaInicial = {55, 60, 50};
-	/**
-	 * Id de la mochila del personaje. <br>
-	 */
-	private int idMochila = -1;
-	/**
-	 * Id de la alianza del personaje. <br>
-	 */
-	private int idAlianza = -1;
-	/**
-	 * Mochila del personaje. <br>
-	 */
-	private Mochila mochila = new Mochila();
-    
+    /**
+     * Id de la mochila del personaje. <br>
+     */
+    private int idMochila = -1;
+    /**
+     * Id de la alianza del personaje. <br>
+     */
+    private int idAlianza = -1;
+    /**
+     * Mochila del personaje. <br>
+     */
+    private Mochila mochila = new Mochila();
+
     /**
      * Constructor.
      *
@@ -358,7 +358,6 @@ public class PaquetePersonaje extends Paquete
 
     /*
      * (non-Javadoc)
-     *
      * @see mensajeria.Paquete#clone()
      */
     @Override
@@ -444,19 +443,21 @@ public class PaquetePersonaje extends Paquete
      * @param fotoEquipado
      *            String para asignar foto equipado. <br>
      */
-	public final void anadirItem(final int idItem, final String name, final int bonusSalud, final int bonusEnergia,
-			final int bonusAtaque, final int bonusDefensa, final int bonusMagia, final String foto,
-			final String fotoEquipado) {
-		try {
-			items.add(new Item(idItem, name, bonusSalud, bonusEnergia, bonusAtaque, bonusDefensa, bonusMagia, foto,
-					fotoEquipado));
-			useBonus(bonusSalud, bonusEnergia, bonusAtaque, bonusDefensa, bonusMagia, 0);
-			this.mochila.ordenarMochila(this.items);
-		} catch (IOException e) {
-			JOptionPane.showMessageDialog(null, "Falló al añadir item");
+    public final void anadirItem(final int idItem, final String name,
+            final int bonusSalud, final int bonusEnergia, final int bonusAtaque,
+            final int bonusDefensa, final int bonusMagia, final String foto,
+            final String fotoEquipado) {
+        try {
+            items.add(new Item(idItem, name, bonusSalud, bonusEnergia,
+                    bonusAtaque, bonusDefensa, bonusMagia, foto, fotoEquipado));
+            useBonus(bonusSalud, bonusEnergia, bonusAtaque, bonusDefensa,
+                    bonusMagia, 0);
+            this.mochila.ordenarMochila(this.items);
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "Falló al añadir item");
 
-		}
-	}
+        }
+    }
 
     /**
      * Remover bonus.
@@ -530,15 +531,16 @@ public class PaquetePersonaje extends Paquete
      * @param puntosAAsignar
      *            Puntos de skill a agregar. <br>
      */
-	public final void useBonus(final int bonusSalud, final int bonusEnergia, final int bonusAtaque,
-			final int bonusDefensa, final int bonusMagia, final int puntosAAsignar) {
-		saludTope += bonusSalud;
-		energiaTope += bonusEnergia;
-		fuerza += bonusAtaque;
-		destreza += bonusDefensa;
-		inteligencia += bonusMagia;
-		puntosAsignar -= puntosAAsignar;
-	}
+    public final void useBonus(final int bonusSalud, final int bonusEnergia,
+            final int bonusAtaque, final int bonusDefensa, final int bonusMagia,
+            final int puntosAAsignar) {
+        saludTope += bonusSalud;
+        energiaTope += bonusEnergia;
+        fuerza += bonusAtaque;
+        destreza += bonusDefensa;
+        inteligencia += bonusMagia;
+        puntosAsignar -= puntosAAsignar;
+    }
 
     /**
      * Obtiene cant items.
@@ -627,11 +629,14 @@ public class PaquetePersonaje extends Paquete
      * Inserta el último item. <br>
      */
     public final void ponerUltimoItem() {
-		int i = items.size() - 1;
-		if (i >= 0) {
-			useBonus(items.get(i).getBonusSalud(), items.get(i).getBonusEnergia(), items.get(i).getBonusFuerza(),
-					items.get(i).getBonusDestreza(), items.get(i).getBonusInteligencia(), 0);
-		}
+        int i = items.size() - 1;
+        if (i >= 0) {
+            useBonus(items.get(i).getBonusSalud(),
+                    items.get(i).getBonusEnergia(),
+                    items.get(i).getBonusFuerza(),
+                    items.get(i).getBonusDestreza(),
+                    items.get(i).getBonusInteligencia(), 0);
+        }
     }
 
     /**
@@ -674,7 +679,7 @@ public class PaquetePersonaje extends Paquete
     public void setPuntosAsignar(final int cantPuntosAsignar) {
         this.puntosAsignar = cantPuntosAsignar;
     }
-    
+
     /**
      * Devuelve los trucos activos del personaje. <br>
      *
@@ -691,10 +696,12 @@ public class PaquetePersonaje extends Paquete
      *            Id del truco a activarse. <br>
      */
     public final void setTrucoActivado(final int idTruco) {
-    	if (this.trucosActivados.indexOf(idTruco) != -1) // Si el truco ya está activado, lo desactivo
-    		this.trucosActivados.remove(Integer.valueOf(idTruco));
-    	else
-    		this.trucosActivados.add(idTruco);
+        if (this.trucosActivados.indexOf(idTruco) != -1) // Si el truco ya está
+                                                         // activado, lo
+                                                         // desactivo
+            this.trucosActivados.remove(Integer.valueOf(idTruco));
+        else
+            this.trucosActivados.add(idTruco);
     }
 
     /**
@@ -749,34 +756,34 @@ public class PaquetePersonaje extends Paquete
     public void reiniciarStats() {
 
         // En los proximos 3 if, segun la casta, se setean los stats base
-		if (this.casta.equals("Guerrero")) {
-			this.fuerza = this.fuerzaIncial[0];
-			this.destreza = this.destrezaIncial[0];
-			this.inteligencia = this.inteligenciaInicial[0];
-		}
+        if (this.casta.equals("Guerrero")) {
+            this.fuerza = this.fuerzaIncial[0];
+            this.destreza = this.destrezaIncial[0];
+            this.inteligencia = this.inteligenciaInicial[0];
+        }
         if (this.casta.equals("Hechicero")) {
-        	this.fuerza = this.fuerzaIncial[1];
-			this.destreza = this.destrezaIncial[1];
-			this.inteligencia = this.inteligenciaInicial[1];
+            this.fuerza = this.fuerzaIncial[1];
+            this.destreza = this.destrezaIncial[1];
+            this.inteligencia = this.inteligenciaInicial[1];
         }
         if (this.casta.equals("Asesino")) {
-        	this.fuerza = this.fuerzaIncial[2];
-			this.destreza = this.destrezaIncial[2];
-			this.inteligencia = this.inteligenciaInicial[2];
+            this.fuerza = this.fuerzaIncial[2];
+            this.destreza = this.destrezaIncial[2];
+            this.inteligencia = this.inteligenciaInicial[2];
         }
 
         // En los proximos 3 if, segun la raza, se setea la Salud y Energia base
         if (this.raza.equals("Humano")) {
-        	this.saludTope = this.saludIncial[0];
-        	this.energiaTope = this.energiaInicial[0];
+            this.saludTope = this.saludIncial[0];
+            this.energiaTope = this.energiaInicial[0];
         }
         if (this.raza.equals("Elfo")) {
-        	this.saludTope = this.saludIncial[1];
-        	this.energiaTope = this.energiaInicial[1];
+            this.saludTope = this.saludIncial[1];
+            this.energiaTope = this.energiaInicial[1];
         }
         if (this.raza.equals("Orco")) {
-        	this.saludTope = this.saludIncial[2];
-        	this.energiaTope = this.energiaInicial[2];
+            this.saludTope = this.saludIncial[2];
+            this.energiaTope = this.energiaInicial[2];
         }
         // Setea los puntos para agregar segun el nivel del personaje
         this.puntosAsignar = 3 * this.getNivel();
@@ -789,57 +796,63 @@ public class PaquetePersonaje extends Paquete
         this.nivel++;
     }
 
-	/**
-	 * Devuelve el id de la mochila del personaje. <br>
-	 * @return Id de la mochila. <br>
-	 */
-	public int getIdMochila() {
-		if (this.idMochila == -1) {
-			return this.id;
-		}
-		return idMochila;
-	}
+    /**
+     * Devuelve el id de la mochila del personaje. <br>
+     *
+     * @return Id de la mochila. <br>
+     */
+    public int getIdMochila() {
+        if (this.idMochila == -1) {
+            return this.id;
+        }
+        return idMochila;
+    }
 
-	/**
-	 * Establece el id de la mochila del personaje. <br>
-	 * @param idMochila
-	 *            Id de la mochila. <br>
-	 */
-	public void setIdMochila(int idMochila) {
-		this.idMochila = idMochila;
-	}
+    /**
+     * Establece el id de la mochila del personaje. <br>
+     *
+     * @param idMochila
+     *            Id de la mochila. <br>
+     */
+    public void setIdMochila(int idMochila) {
+        this.idMochila = idMochila;
+    }
 
-	/**
-	 * Devuelve el id de la alianza del personaje. <br>
-	 * @return Id de la alianza. <br>
-	 */
-	public int getIdAlianza() {
-		return idAlianza;
-	}
+    /**
+     * Devuelve el id de la alianza del personaje. <br>
+     *
+     * @return Id de la alianza. <br>
+     */
+    public int getIdAlianza() {
+        return idAlianza;
+    }
 
-	/**
-	 * Establece el id de la alianza del personaje. <br>
-	 * @param idAlianza
-	 *            Id de la alianza. <br>
-	 */
-	public void setIdAlianza(int idAlianza) {
-		this.idAlianza = idAlianza;
-	}
+    /**
+     * Establece el id de la alianza del personaje. <br>
+     *
+     * @param idAlianza
+     *            Id de la alianza. <br>
+     */
+    public void setIdAlianza(int idAlianza) {
+        this.idAlianza = idAlianza;
+    }
 
-	/**
-	 * Devuelve la mochila del personaje. <br> 
-	 * @return Mochila del personaje. <br>
-	 */
-	public Mochila getMochila() {
-		return mochila;
-	}
+    /**
+     * Devuelve la mochila del personaje. <br>
+     *
+     * @return Mochila del personaje. <br>
+     */
+    public Mochila getMochila() {
+        return mochila;
+    }
 
-	/**
-	 * Establece la mochila del personaje. <br> 
-	 * @param mochila
-	 *            Mochila con items. <br>
-	 */
-	public void setMochila(Mochila mochila) {
-		this.mochila = mochila;
-	}
+    /**
+     * Establece la mochila del personaje. <br>
+     *
+     * @param mochila
+     *            Mochila con items. <br>
+     */
+    public void setMochila(Mochila mochila) {
+        this.mochila = mochila;
+    }
 }

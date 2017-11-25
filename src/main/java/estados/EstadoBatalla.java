@@ -200,13 +200,23 @@ public class EstadoBatalla extends Estado {
         }
         crearPersonajes(esEnemigoNPC);
 
-        if (paquetePersonaje.getTrucosActivados().indexOf(0) != -1) // Si modo dios está activo en personaje, actualizo
-        	personaje.setModoDios();
+        if (paquetePersonaje.getTrucosActivados().indexOf(0) != -1) // Si modo
+                                                                    // dios está
+                                                                    // activo en
+                                                                    // personaje,
+                                                                    // actualizo
+            personaje.setModoDios();
         if (esEnemigoNPC != 1) {
-	        if (paqueteEnemigo.getTrucosActivados().indexOf(0) != -1) // Si modo dios está activo en enemigo, actualizo
-	        	enemigo.setModoDios();
+            if (paqueteEnemigo.getTrucosActivados().indexOf(0) != -1) // Si modo
+                                                                      // dios
+                                                                      // está
+                                                                      // activo
+                                                                      // en
+                                                                      // enemigo,
+                                                                      // actualizo
+                enemigo.setModoDios();
         }
-        
+
         menuBatalla = new MenuBatalla(miTurno, personaje);
         miniaturaPersonaje = Recursos.personaje.get(personaje.getNombreRaza())
                 .get(CINCO)[0];
@@ -321,7 +331,7 @@ public class EstadoBatalla extends Estado {
                                 juego.getPersonaje(),
                                 MenuInfoPersonaje.MENU_GANAR_BATALLA);
                         if (personaje.ganarExperiencia(nivelEnemigo * NUM_40)) {
-                        	juego.getPersonaje().setNivel(personaje.getNivel()); 
+                            juego.getPersonaje().setNivel(personaje.getNivel());
                             juego.getEstadoJuego().setHaySolicitud(true,
                                     juego.getPersonaje(),
                                     MenuInfoPersonaje.MENU_SUBIR_NIVEL);
@@ -370,21 +380,23 @@ public class EstadoBatalla extends Estado {
                 juego.getHandlerMouse().setNuevoClick(false);
             }
         } else {
-            // Si no es mi turno y estoy en batalla contra un NPC, El Bryan nos ataca
+            // Si no es mi turno y estoy en batalla contra un NPC, El Bryan nos
+            // ataca
             if (enemigoNPC != null) {
-            	if (paquetePersonaje.getTrucosActivados().indexOf(0) != -1)
-            		paqueteAtacar = new PaqueteAtacar(paqueteEnemigoNPC.getId(),
+                if (paquetePersonaje.getTrucosActivados().indexOf(0) != -1)
+                    paqueteAtacar = new PaqueteAtacar(paqueteEnemigoNPC.getId(),
                             paquetePersonaje.getId(), enemigoNPC.getSalud(),
                             enemigoNPC.getEnergia(), personaje.getSalud(),
                             personaje.getEnergia(), enemigoNPC.getDefensa(),
                             personaje.getDefensa(), 0, 0);
-            	else
-	                paqueteAtacar = new PaqueteAtacar(paqueteEnemigoNPC.getId(),
-	                        paquetePersonaje.getId(), enemigoNPC.getSalud(),
-	                        enemigoNPC.getEnergia(), personaje.getSalud() - DIEZ,
-	                        personaje.getEnergia(), enemigoNPC.getDefensa(),
-	                        personaje.getDefensa(), 0, 0);
-            	
+                else
+                    paqueteAtacar = new PaqueteAtacar(paqueteEnemigoNPC.getId(),
+                            paquetePersonaje.getId(), enemigoNPC.getSalud(),
+                            enemigoNPC.getEnergia(),
+                            personaje.getSalud() - DIEZ, personaje.getEnergia(),
+                            enemigoNPC.getDefensa(), personaje.getDefensa(), 0,
+                            0);
+
                 enviarAtaque(paqueteAtacar);
                 enemigoNPC.setEnergia(enemigoNPC.getEnergia() - DIEZ);
                 miTurno = true;
@@ -538,7 +550,8 @@ public class EstadoBatalla extends Estado {
             paquetePersonaje.setDestreza(personaje.getDestreza());
             paquetePersonaje.setFuerza(personaje.getFuerza());
             paquetePersonaje.setInteligencia(personaje.getInteligencia());
-            paquetePersonaje.setPuntosAsignar(paquetePersonaje.getPuntosAsignar() + 3);
+            paquetePersonaje
+                    .setPuntosAsignar(paquetePersonaje.getPuntosAsignar() + 3);
             paquetePersonaje.removerBonus();
             paquetePersonaje.setComando(Comando.ACTUALIZARPERSONAJE);
             if (paqueteEnemigoNPC != null) {

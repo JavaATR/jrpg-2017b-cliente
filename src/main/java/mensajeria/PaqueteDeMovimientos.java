@@ -41,7 +41,6 @@ public class PaqueteDeMovimientos extends Paquete
 
     /*
      * (non-Javadoc)
-     *
      * @see mensajeria.Paquete#clone()
      */
     @Override

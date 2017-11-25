@@ -47,7 +47,8 @@ public class Grafo {
      * @param nodoDos
      *            Nodo adyacente. <br>
      */
-    public final void agregarAdyacentes(final Nodo nodoUno, final Nodo nodoDos) {
+    public final void agregarAdyacentes(final Nodo nodoUno,
+            final Nodo nodoDos) {
         nodoUno.agregarAdyacente(nodoDos);
     }
 

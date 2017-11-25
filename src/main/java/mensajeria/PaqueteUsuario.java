@@ -121,7 +121,6 @@ public class PaqueteUsuario extends Paquete implements Serializable, Cloneable {
 
     /*
      * (non-Javadoc)
-     *
      * @see mensajeria.Paquete#clone()
      */
     @Override

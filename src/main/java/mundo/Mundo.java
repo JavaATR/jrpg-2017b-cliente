@@ -152,31 +152,23 @@ public class Mundo {
                                 (int) (iso[1] - juego.getCamara().getyOffset()
                                         - OFFSET_MUNDO_Y),
                                 MUNDO_X, MUNDO_Y);
-                    }
-                    else if (map == 2) {
+                    } else if (map == 2) {
                         Tile.aris[Tile.arisBase].graficar(g,
-                                (int) (iso[0]
-                                        - juego.getCamara().getxOffset()),
-                                (int) (iso[1]
-                                        - juego.getCamara().getyOffset()
+                                (int) (iso[0] - juego.getCamara().getxOffset()),
+                                (int) (iso[1] - juego.getCamara().getyOffset()
                                         - OFFSET_MUNDO_Y),
                                 MUNDO_X, MUNDO_Y);
-                    }
-                    else if (map == TRES) {
+                    } else if (map == TRES) {
                         Tile.aubenor[Tile.aubenorBase].graficar(g,
-                                (int) (iso[0] - juego.getCamara()
-                                        .getxOffset()),
-                                (int) (iso[1]
-                                        - juego.getCamara().getyOffset()
+                                (int) (iso[0] - juego.getCamara().getxOffset()),
+                                (int) (iso[1] - juego.getCamara().getyOffset()
                                         - OFFSET_MUNDO_Y),
                                 MUNDO_X, MUNDO_Y);
                     }
                     if (!getTile(j, i).esSolido(false)) {
                         getTile(j, i).graficar(g,
-                                (int) (iso[0] - juego.getCamara()
-                                        .getxOffset()),
-                                (int) (iso[1]
-                                        - juego.getCamara().getyOffset()
+                                (int) (iso[0] - juego.getCamara().getxOffset()),
+                                (int) (iso[1] - juego.getCamara().getyOffset()
                                         - OFFSET_MUNDO_Y),
                                 MUNDO_X, MUNDO_Y);
                     }
@@ -323,7 +315,8 @@ public class Mundo {
                             nodos[x + 1][y - 1].agregarAdyacente(nodos[x][y]);
                         }
                         // Si el de la derecha no es un tile solido lo uno
-                        if (!Tile.tiles[this.tilesInv[x + 1][y]].esSolido(false)) {
+                        if (!Tile.tiles[this.tilesInv[x + 1][y]]
+                                .esSolido(false)) {
                             nodos[x][y].agregarAdyacente(nodos[x + 1][y]);
                             nodos[x + 1][y].agregarAdyacente(nodos[x][y]);
                         }
@@ -364,7 +357,7 @@ public class Mundo {
     public final Grafo obtenerGrafoDeTilesNoSolidos() {
         return this.grafoDeTilesNoSolidos;
     }
-    
+
     /**
      * Transforma el mapa en un mundo de grafos para calcular las distancias más
      * cortas de recorridos, para personajes invisibles.<br>
@@ -410,7 +403,8 @@ public class Mundo {
                             nodos[x + 1][y - 1].agregarAdyacente(nodos[x][y]);
                         }
                         // Si el de la derecha no es un tile solido lo uno
-                        if (!Tile.tiles[this.tilesInv[x + 1][y]].esSolido(true)) {
+                        if (!Tile.tiles[this.tilesInv[x + 1][y]]
+                                .esSolido(true)) {
                             nodos[x][y].agregarAdyacente(nodos[x + 1][y]);
                             nodos[x + 1][y].agregarAdyacente(nodos[x][y]);
                         }
@@ -442,7 +436,7 @@ public class Mundo {
             }
         }
     }
-    
+
     /**
      * Devuelve todos los caminos. <br>
      *

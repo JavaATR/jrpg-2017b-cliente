@@ -365,11 +365,11 @@ public class EstadoBatalla extends Estado {
                                             .getProbabilidadEvitarDano(),
                                     enemigo.getCasta()
                                             .getProbabilidadEvitarDano());
-
-                            enviarAtaque(paqueteAtacar);
-                            miTurno = false;
-                            menuBatalla.setHabilitado(false);
                         }
+
+                        enviarAtaque(paqueteAtacar);
+                        miTurno = false;
+                        menuBatalla.setHabilitado(false);
                     }
                 } else {
                     if (haySpellSeleccionada && !seRealizoAccion) {
@@ -383,7 +383,7 @@ public class EstadoBatalla extends Estado {
             // Si no es mi turno y estoy en batalla contra un NPC, El Bryan nos
             // ataca
             if (enemigoNPC != null) {
-                if (paquetePersonaje.getTrucosActivados().indexOf(0) == -1)
+                if (paquetePersonaje.getTrucosActivados().indexOf(0) != -1)
                     paqueteAtacar = new PaqueteAtacar(paqueteEnemigoNPC.getId(),
                             paquetePersonaje.getId(), enemigoNPC.getSalud(),
                             enemigoNPC.getEnergia(), personaje.getSalud(),
@@ -398,9 +398,19 @@ public class EstadoBatalla extends Estado {
                             0);
 
                 enviarAtaque(paqueteAtacar);
-                enemigoNPC.setEnergia(enemigoNPC.getEnergia() - DIEZ);
-                miTurno = true;
-                menuBatalla.setHabilitado(true);
+                
+                if (personaje.getSalud() <= 0) {
+                	juego.getEstadoJuego().setHaySolicitud(true,
+                            juego.getPersonaje(),
+                            MenuInfoPersonaje.MENU_PERDER_BATALLA);
+
+                    finalizarBatalla();
+                    Estado.setEstado(juego.getEstadoJuego());
+                }
+                else {
+	                miTurno = true;
+	                menuBatalla.setHabilitado(true);
+                }
             }
         }
     }
